@@ -223,13 +223,6 @@
     }
 }
 
-@media (max-width: 400px) {
-    .register-tab {
-        width: 100%;
-        border-radius: 0;
-    }
-}
-
 @media (max-width: 500px) {
     .register-tab {
         width: 80%;
@@ -241,7 +234,14 @@
     }
 
     .register-container {
-        gap: 0;
+        gap: 1.3rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .register-tab {
+        width: 100%;
+        border-radius: 0;
     }
 }
 
@@ -304,4 +304,23 @@
 
 .CTA-text button:active {
     transform: translateY(0);
+}
+
+@media (max-width: 500px) {
+    .CTA-section {
+        flex-direction: column;
+    }
+    
+    .CTA-text {
+        font-size: 1.7rem;
+    }
+    
+    .CTA-image {
+        min-height: 300px;
+        width: 60%;
+    }
+
+    .CTA-text button {
+        width: 120%;
+    }
 }
