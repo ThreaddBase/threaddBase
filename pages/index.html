@@ -2,17 +2,19 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ThreaddBase</title>
-    <link rel="stylesheet" href="../CSS/util.css">
-    <link rel="stylesheet" href="../CSS/style.css">
-    <link rel="stylesheet" href="../CSS/nav.css">
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ThreaddBase</title>
+  <link rel="stylesheet" href="../CSS/util.css">
+  <link rel="stylesheet" href="../CSS/style.css">
+  <link rel="stylesheet" href="../CSS/nav.css">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <!-- iconify -->
+  <script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
 </head>
 
 <body>
-    
+  <!-- navigation starts -->
   <nav>
     <a href="#" class="logo">Thre<span>ads</span></a>
     <ul class="nav-links">
@@ -20,13 +22,16 @@
       <li><a href="#">Contact Us</a></li>
     </ul>
   </nav>
+  <!-- navigation ends -->
 
+  <!-- top hero section starts -->
   <section class="hero">
 
     <div class="hero-left">
       <h1>The best community for
         <br>
-         <span>your discussions.</span></h1>
+        <span>your discussions.</span>
+      </h1>
 
       <div class="buttons-container">
         <a href="#" class="btn-login">Log In</a>
@@ -37,7 +42,8 @@
     <div class="hero-right">
 
       <div class="card">
-        <img src="https://images.pexels.com/photos/2161449/pexels-photo-2161449.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Southeast Asia street" />
+        <img src="https://images.pexels.com/photos/2161449/pexels-photo-2161449.jpeg?auto=compress&cs=tinysrgb&w=400"
+          alt="Southeast Asia street" />
         <div class="card-info">
           <p>10 days left</p>
           <h3>Mainland Southeast</h3>
@@ -46,84 +52,187 @@
       </div>
 
       <div class="card">
-        <img src="https://images.pexels.com/photos/3756679/pexels-photo-3756679.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Modern headshot" />
+        <img src="https://images.pexels.com/photos/3756679/pexels-photo-3756679.jpeg?auto=compress&cs=tinysrgb&w=400"
+          alt="Modern headshot" />
         <div class="card-info">
           <p class="tag">10 days left</p>
           <h3>The Modern Headshot</h3>
           <a href="#">Join</a>
         </div>
       </div>
-
     </div>
-
   </section>
-    <!-- Registration section -->
-    <div class="register-container">
-        <div class="register-text">
-            Keep up with the <span>Discussions.</span>
+  <!-- Top hero section ends -->
+
+  <!-- work section starts -->
+  <section class="works-section">
+
+    <p class="section-label">Process</p>
+    <h2 class="works-title">How Threadbase works</h2>
+
+    <div class="cards-row">
+
+      <!-- First Card -->
+      <div class="col">
+        <div class="card">
+          <div class="card-body">
+            <div class="card-top-row">
+              <span class="card-number">01</span>
+              <iconify-icon icon="lucide:users" width="28" height="28" class="card-icon"></iconify-icon>
+            </div>
+            <h5 class="card-title">Join a community</h5>
+            <p class="card-text">Browse hundreds of communities built around topics you care about — tech, science,
+              culture, and more. Find your people and join the ones that speak to you.</p>
+          </div>
         </div>
-        <div class="register-tab">
-            <h2>Create your <span>account</span></h2>
+      </div>
 
-            <div class="input-row">
-                <div class="input-section">
-                    <label for="firstname">First Name</label>
-                    <input type="text" id="firstname" placeholder="Enter First name" />
-                </div>
-                <div class="input-section">
-                    <label for="lastname">Last Name</label>
-                    <input type="text" id="lastname" placeholder="Enter Last name" />
-                </div>
+      <!-- Second Card -->
+      <div class="col">
+        <div class="card">
+          <div class="card-body">
+            <div class="card-top-row">
+              <span class="card-number">02</span>
+              <iconify-icon icon="lucide:pencil-line" width="28" height="28" class="card-icon"></iconify-icon>
             </div>
-
-            <div class="input-section">
-                <label for="username">Username</label>
-                <input type="text" id="username" placeholder="What would you like to be called as?" />
-            </div>
-
-            <div class="input-section">
-                <label for="email">Email</label>
-                <input type="email" id="email" placeholder="abc@gmail.com" />
-            </div>
-
-            <div class="input-section">
-                <label for="password">Password</label>
-                <input type="password" id="password" placeholder="*********" />
-            </div>
-
-            <div class="input-section">
-                <label for="repass">Confirm Password</label>
-                <input type="password" id="repass" placeholder="*********" />
-            </div>
-
-            <div class="terms">
-                <input type="checkbox" id="terms" />
-                <label for="terms">
-                    I agree to the <a href="#">Terms & Conditions</a> and <a href="#">Privacy Policy</a>
-                </label>
-            </div>
-
-            <button class="btn-submit">Create Account</button>
-
-            <div class="login-link">
-                Already have an account? <a href="#">Sign in</a>
-            </div>
+            <h5 class="card-title">Start a thread</h5>
+            <p class="card-text">Got something to say? Post a question, share an opinion, or spark a debate. Every great
+              discussion starts with a single post — yours could be next.</p>
+          </div>
         </div>
+      </div>
+
+      <!-- Third Card -->
+      <div class="col">
+        <div class="card">
+          <div class="card-body">
+            <div class="card-top-row">
+              <span class="card-number">03</span>
+              <iconify-icon icon="lucide:message-square-more" width="28" height="28" class="card-icon"></iconify-icon>
+            </div>
+            <h5 class="card-title">Dive into discussion</h5>
+            <p class="card-text">Reply to posts, reply to replies, and keep the conversation going as deep as it needs
+              to go. Fully nested threads mean no thought ever gets lost in the noise.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Fourth Card -->
+      <div class="col">
+        <div class="card">
+          <div class="card-body">
+            <div class="card-top-row">
+              <span class="card-number">04</span>
+              <iconify-icon icon="lucide:thumbs-up" width="28" height="28" class="card-icon"></iconify-icon>
+            </div>
+            <h5 class="card-title">Vote what matters</h5>
+            <p class="card-text">Upvote the posts and replies that add value. Downvote what doesn't. The community
+              decides what rises to the top — no algorithm, no ads, no agenda.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Fifth Card -->
+      <div class="col">
+        <div class="card">
+          <div class="card-body">
+            <div class="card-top-row">
+              <span class="card-number">05</span>
+              <iconify-icon icon="lucide:bookmark" width="28" height="28" class="card-icon"></iconify-icon>
+            </div>
+            <h5 class="card-title">Save for later</h5>
+            <p class="card-text">Bookmark any thread you want to come back to. Your saved posts live in your profile,
+              always one click away — no more losing that great discussion.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sixth Card -->
+      <div class="col">
+        <div class="card">
+          <div class="card-body">
+            <div class="card-top-row">
+              <span class="card-number">06</span>
+              <iconify-icon icon="lucide:shield-check" width="28" height="28" class="card-icon"></iconify-icon>
+            </div>
+            <h5 class="card-title">Stay in control</h5>
+            <p class="card-text">Edit your posts, manage your profile, and report content that breaks the rules.
+              Threadbase is actively moderated to keep discussions healthy and on-topic.</p>
+          </div>
+        </div>
+      </div>
     </div>
+  </section>
+  <!-- work section ends -->
 
-    <!-- CTA section -->
-     <div class="CTA-section">
-        <div class="CTA-image"></div>
-        <div class="CTA-text">
-            <p>Where every voice finds its thread.
-            Join the discussion,<span>
-                Start a Thread.
-            </span> 
-                
-            </p>
-            <button>Share Your Thoughts -></button>
+  <!-- Registration section starts -->
+  <div class="register-container">
+    <div class="register-text">
+      Keep up with the <span>Discussions.</span>
+    </div>
+    <div class="register-tab">
+      <h2>Create your <span>account</span></h2>
+
+      <div class="input-row">
+        <div class="input-section">
+          <label for="firstname">First Name</label>
+          <input type="text" id="firstname" placeholder="Enter First name" />
         </div>
-     </div>
+        <div class="input-section">
+          <label for="lastname">Last Name</label>
+          <input type="text" id="lastname" placeholder="Enter Last name" />
+        </div>
+      </div>
+
+      <div class="input-section">
+        <label for="username">Username</label>
+        <input type="text" id="username" placeholder="What would you like to be called as?" />
+      </div>
+
+      <div class="input-section">
+        <label for="email">Email</label>
+        <input type="email" id="email" placeholder="abc@gmail.com" />
+      </div>
+
+      <div class="input-section">
+        <label for="password">Password</label>
+        <input type="password" id="password" placeholder="*********" />
+      </div>
+
+      <div class="input-section">
+        <label for="repass">Confirm Password</label>
+        <input type="password" id="repass" placeholder="*********" />
+      </div>
+
+      <div class="terms">
+        <input type="checkbox" id="terms" />
+        <label for="terms">
+          I agree to the <a href="#">Terms & Conditions</a> and <a href="#">Privacy Policy</a>
+        </label>
+      </div>
+
+      <button class="btn-submit">Create Account</button>
+
+      <div class="login-link">
+        Already have an account? <a href="#">Sign in</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA section -->
+  <div class="CTA-section">
+    <div class="CTA-image"></div>
+    <div class="CTA-text">
+      <p>Where every voice finds its thread.
+        Join the discussion,<span>
+          Start a Thread.
+        </span>
+
+      </p>
+      <button>Share Your Thoughts -></button>
+    </div>
+  </div>
+  <!-- CTA section ends -->
 </body>
 
 </html>
