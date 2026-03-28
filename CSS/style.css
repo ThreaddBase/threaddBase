@@ -1,39 +1,168 @@
-:root {
-  /* Base Theme */
-  --color-primary: #222831;
-  --color-secondary: #393E46;
-  --color-highlight: #00ADB5;
-  --color-font: #EEEEEE;
-
-  /* Accent Colors */
-  --color-rose: #FF6B8A;
-  --color-amber-gold: #F0A500;
-  --color-mint: #00C9A7;
-  --color-lavender: #A78BFA;
-  --color-peach: #FF8C69;
-  --color-slate: #AAB4BE;
-
-  /* Semantic Aliases */
-  --color-success: #00C9A7;
-  --color-warning: #F0A500;
-  --color-error: #FF6B8A;
-  --color-info: #00ADB5;
-
-  /* Gradient Presets */
-  --gradient-aqua: linear-gradient(90deg, #00ADB5, #00C9A7);
-  --gradient-dreamy: linear-gradient(90deg, #00ADB5, #A78BFA);
-  --gradient-energetic: linear-gradient(90deg, #00ADB5, #F0A500);
-  --gradient-warm-cool: linear-gradient(90deg, #FF6B8A, #A78BFA);
+/* Top hero section styling */
+.hero {
+    padding: 80px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Outfit',-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+.hero-left {
+    display: flex;
+    flex-direction: column;
+    width: 40%;
 }
 
+.hero-left h1 {
+    font-size: 2.6rem;
+    font-weight: 700;
+    line-height: 1.2;
+    color: #EEEEEE;
+    margin-bottom: 28px;
+    text-align: justify;
+}
+
+.hero-left h1 span {
+    color: #00ADB5;
+}
+
+.buttons-container {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.btn-login {
+    padding: 10px 24px;
+    border-radius: 8px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.88rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    border: 1px solid #EEEEEE;
+    background-color: transparent;
+    color: #EEEEEE;
+}
+
+.btn-login:hover {
+    border-color: #00ADB5;
+    color: #00ADB5;
+}
+
+.btn-signup {
+    padding: 10px 24px;
+    border-radius: 8px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.88rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    border: 1px solid #00ADB5;
+    background-color: #00ADB5;
+    color: #222831;
+}
+
+.btn-signup:hover {
+    background-color: #009aa1;
+    border-color: #009aa1;
+}
+
+.hero-right {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 16px;
+    width: 55%;
+}
+
+.card {
+    border-radius: 12px;
+    overflow: hidden;
+    background-color: #393E46;
+    cursor: pointer;
+    width: 260px;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5), 0 0 0 2px #00ADB5;
+}
+
+.card img {
+    display: block;
+    width: 260px;
+    height: 260px;
+    object-fit: cover;
+}
+
+.card-info {
+    padding: 12px 14px;
+}
+
+.card-info a {
+    font-size: 0.78rem;
+    color: #00ADB5;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.card-info a:hover {
+    text-decoration: underline;
+}
+
+/* hero section responsive code */
+@media (max-width: 900px) {
+    .hero {
+        flex-direction: column;
+        gap: 50px;
+        padding: 60px 40px;
+    }
+
+    .hero-left {
+        width: 100%;
+    }
+
+    .hero-right {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 600px) {
+
+  .hero {
+    padding: 50px 20px;
+  }
+
+  .hero-left h1 {
+    font-size: 1.9rem;
+  }
+
+  .card {
+    width: 170px;
+  }
+
+  .card img {
+    width: 170px;
+    height: 170px;
+  }
+}
+
+@media (max-width: 400px) {
+  .hero-left h1 {
+    font-size: 1.6rem;
+  }
+
+  .card {
+    width: 145px;
+  }
+
+  .card img {
+    width: 145px;
+    height: 145px;
+  }
+}
 
 /* Registration section CSS */
 .register-container {
@@ -103,7 +232,7 @@
 
 .input-section input {
     background-color: var(--color-primary);
-    border: 1.5px solid rgba(255,255,255,0.08);
+    border: 1.5px solid rgba(255, 255, 255, 0.08);
     border-radius: 6px;
     padding: 0.6rem 0.85rem;
     color: var(--color-font);
@@ -147,7 +276,7 @@
 .terms a:hover {
     text-decoration: underline;
 }
- 
+
 .btn-submit {
     width: 100%;
     padding: 0.75rem;
@@ -310,11 +439,11 @@
     .CTA-section {
         flex-direction: column;
     }
-    
+
     .CTA-text {
         font-size: 1.7rem;
     }
-    
+
     .CTA-image {
         min-height: 300px;
         width: 60%;
