@@ -1,0 +1,138 @@
+@charset "UTF-8";
+
+
+.login_page{
+    width: 100%;
+    max-width: 480px;
+    background-color: white;
+    color: black;
+    padding: 40px 45px;
+    border-radius: 30px;
+    position: relative;
+}
+
+.fa-xmark {
+    position: absolute;
+    top: 20px;          
+    right: 20px;        
+    font-size: 24px;   
+    color: #333;        
+    cursor: pointer;   
+    transition: transform 0.2s ease, color 0.2s ease;
+}
+
+
+.login_page h1{
+    font-size: 28px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.login_page .input-box {
+    position: relative;
+    width: 100%;
+    margin: 15px 0;
+    padding: 10px 0px;
+}
+
+.input-box input{
+    width: 100%;
+    height: 45px;
+    border: 2px solid black;
+    border-radius: 10px;
+    font-size: 18px;
+    padding: 0 15px;
+
+}
+
+.input-box input::placeholder{
+    color: black;
+}
+
+
+.input-box label{
+    display: block;
+    font-size: 16px;
+    margin-bottom: 6px;
+}
+
+
+.wrapper{
+    position: relative;
+}
+
+.wrapper input{
+    width: 100%;
+    height: 45px;
+    border: 2px solid black;
+    border-radius: 10px;
+    padding: 0px 40px 0px 15px;
+    font-size: 18px;
+}
+
+.wrapper span{
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: gray;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.wrapper input:focus{
+    border-color: #1e5bb8;
+    outline: none;
+}
+
+.login_page .forget{
+    display: flex;
+    font-size: 14px;
+    margin: 5px 0 15px ;
+    justify-content: end;
+}
+
+.forget a{
+    color: black;
+    text-decoration: none;
+
+}
+
+.forget a:hover{
+    text-decoration: underline;
+
+ }
+
+ .login_page .btn{
+    width: 100%;
+    height: 50px; 
+    background: #008080;
+    border: none;
+    border-radius: 25px;
+    font-size: 15px;
+    color: #fff;
+    font-weight: 600;
+    margin-top: 20px;
+    display: block;
+ }
+
+ @media (max-width: 480px){
+    .login_page{
+        padding: 20px;
+        border-radius: 20px;
+    }
+    .login_page h1{
+        font-size: 22px;
+    }
+    .input-box label{
+        font-size: 14px;
+    }
+    .input-box input{
+        height: 40px;
+        font-size: 13px;
+    }
+    .login-page .btn{
+        height: 42px;
+        font-size: 14px;
+    }
+ }
