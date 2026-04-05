@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Login</title>
+<link rel="stylesheet" href="<%=request.getContextPath()%>/CSS/login.css">
 </head>
 <body>
     <div class ="login_page"> 
