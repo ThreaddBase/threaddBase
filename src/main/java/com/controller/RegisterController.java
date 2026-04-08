@@ -38,6 +38,7 @@ public class RegisterController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		try {
+			System.out.println("do post reached");
             // Get form parameters
             String firstName = request.getParameter("first_name");
             String lastName = request.getParameter("last_name");
@@ -50,10 +51,14 @@ public class RegisterController extends HttpServlet {
             service.registerUser(firstName, lastName, dob, username, email, password);
 
             response.sendRedirect(request.getContextPath() + "/home");
+            System.out.println("registerUser done");
 
         } catch (Exception e) {
             // TODO: Handle exception properly (currently missing in the image)
             e.printStackTrace();
+            System.out.println("Registation Failed");
+            request.setAttribute("errorMessage", "Registration failed. Please try again.");
+            request.getRequestDispatcher("/WEB-INF/Pages/home.jsp").forward(request, response);
         }
 	}
 
