@@ -10,7 +10,8 @@ public class LoginService {
 	private LoginDAO loginDAO = new LoginDAO();
 
     public boolean authenticate(String username, String password) throws Exception {
-
+    	
+    	// validation
         if (username == null || username.trim().isEmpty()) {
             return false;
         }

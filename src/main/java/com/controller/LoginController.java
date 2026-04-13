@@ -7,9 +7,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-import com.model.LoginModel;
+import com.util.SessionUtil;
 import com.service.LoginService;
-
 
 
 /**
@@ -40,18 +39,23 @@ public class LoginController extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		
+		// get username and password from Login form from LoginUI
 		String username = request.getParameter("Username");
 		String password = request.getParameter("Password");
 		
 		
 		try {
 			LoginService service = new LoginService();
-			boolean userStatus = service.authenticate(username, password);
-			System.out.println(username + password);
-			System.out.println(userStatus);
+			boolean userStatus = service.authenticate(username, password); // return true if user exists
+
 			if (userStatus) {
-	            request.getSession().setAttribute("loggedUser", username);
+				
+				// Session 
+				// calling SetAttribute method from SessionUtil package
+				SessionUtil.setAttribute(request, "loggedUser", username);
 	            response.sendRedirect(request.getContextPath() + "/home");
+	            
 	        } else {
 	            request.setAttribute("errorMessage", "Invalid username or password.");
 	            request.getRequestDispatcher("/WEB-INF/Pages/login.jsp").forward(request, response);

@@ -11,9 +11,10 @@
 
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet" />
   <!-- iconify -->
-  <script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
+  
 </head>
 <body>
+
   <!-- navigation starts -->
   <%@ include file="nav.jsp" %>
 
@@ -263,5 +264,6 @@
     </div>
   </div>
   <!-- CTA section ends -->
+  <script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
 </body>
 </html>

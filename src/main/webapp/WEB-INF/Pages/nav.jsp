@@ -13,7 +13,7 @@
   <nav>
     <a href="/Threaddbase/home" class="logo">Threadd<span>Base</span></a>
     <ul class="nav-links">
-      <li><a href="#">About Us</a></li>
+      <li><a href="/Threaddbase/aboutUS">About Us</a></li>
       <li><a href="/Threaddbase/contact">Contact Us</a></li>
     </ul>
   </nav>
