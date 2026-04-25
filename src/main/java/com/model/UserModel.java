@@ -10,27 +10,25 @@ public class UserModel {
     private String userLastName;
     private String username;
     private String password;
-    private Date userDob;
+    private String userDob;
     private String userRole;
     private String userEmail;
     private String userBio;
-    private byte[] userProfilePicture;
-    private Date createdAt;
+    private String image;
+    private String createdAt;
     
     // constructor
-    public UserModel(int userId, String userFirstName, String userLastName, String username, String password, Date userDob, String userRole, String userEmail,
-    String userBio, byte[] userProfilePicture, Date createdAt) {
+    public UserModel(int userId, String userFirstName, String userLastName, String username, String userDob, String userRole, String userEmail,
+    String userBio, String createdAt) {
 
 	    this.userId = userId;
 	    this.userFirstName = userFirstName;
 	    this.userLastName = userLastName;
 	    this.username = username;
-	    this.password = password;
 	    this.userDob = userDob;
 	    this.userRole = userRole;
 	    this.userEmail = userEmail;
 	    this.userBio = userBio;
-	    this.userProfilePicture = userProfilePicture;
 	    this.createdAt = createdAt;
     }
     
@@ -55,7 +53,7 @@ public class UserModel {
         return password;
     }
 
-    public Date getUserDob() {
+    public String getUserDob() {
         return userDob;
     }
 
@@ -71,11 +69,11 @@ public class UserModel {
         return userBio;
     }
 
-    public byte[] getUserProfilePicture() {
-        return userProfilePicture;
+    public String getUserProfilePicture() {
+        return image;
     }
 
-    public Date getCreatedAt() {
+    public String getCreatedAt() {
         return createdAt;
     }
     
@@ -100,7 +98,7 @@ public class UserModel {
         this.password = password;
     }
 
-    public void setUserDob(Date userDob) {
+    public void setUserDob(String userDob) {
         this.userDob = userDob;
     }
 
@@ -116,11 +114,11 @@ public class UserModel {
         this.userBio = userBio;
     }
 
-    public void setUserProfilePicture(byte[] userProfilePicture) {
-        this.userProfilePicture = userProfilePicture;
+    public void setUserProfilePicture(String image) {
+        this.image = image;
     }
 
-    public void setCreatedAt(Date createdAt) {
+    public void setCreatedAt(String createdAt) {
         this.createdAt = createdAt;
     }
 }

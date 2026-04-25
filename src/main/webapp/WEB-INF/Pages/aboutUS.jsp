@@ -5,7 +5,6 @@
 <head>
 <meta charset="UTF-8">
 <title>About US</title>
-<link rel="stylesheet" href="<%=request.getContextPath()%>/CSS/utill.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/CSS/aboutUS.css">
 </head>
 <body>

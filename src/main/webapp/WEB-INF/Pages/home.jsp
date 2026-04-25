@@ -7,14 +7,20 @@
 <title>ThreaddBase</title>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/CSS/util.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/CSS/home.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/CSS/login.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/CSS/registration.css">
 
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet" />
   <!-- iconify -->
-  
+<style>
+	.fa-xmark {
+		display: block;
+	}
+</style>
 </head>
 <body>
-
+	<div id="overlay">
   <!-- navigation starts -->
   <%@ include file="nav.jsp" %>
 
@@ -28,8 +34,8 @@
       </h1>
 
       <div class="buttons-container">
-        <a href="#" class="btn-login">Log In</a>
-        <a href="#" class="btn-signup">Sign Up</a>
+        <button class="btn-login" onclick="loginPopup()">Log In</button>
+        <button class="btn-signup" onclick="scrollToRegister()">Sign Up</button>
       </div>
     </div>
 
@@ -264,6 +270,16 @@
     </div>
   </div>
   <!-- CTA section ends -->
+
+	</div>
+  <!-- Login popup -->
+
+   <%@ include file="loginModel.jsp" %>
+	<script type="text/javascript">
+		function scrollToRegister() {
+		    document.querySelector('.register-container').scrollIntoView({ behavior: 'smooth' });
+		}
+	</script>
   <script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
 </body>
 </html>
