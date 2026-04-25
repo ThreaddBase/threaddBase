@@ -5,31 +5,18 @@
 <head>
 <meta charset="UTF-8">
 <title>Login</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
 <link rel="stylesheet" href="<%=request.getContextPath()%>/CSS/util.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/CSS/login.css">
+<style>
+	.login_page {
+		display: block;
+	}
+	
+	.fa-xmark {
+		display: none;
+	}
+</style>
 </head>
-<body>
-    <div class ="login_page"> 
-
-        <form action="<%=request.getContextPath()%>/login" method="post">
-            <h1> Login Page</h1>
-            
-        <div class="input-box">
-            <label>Username</label>
-            <input type ="text" placeholder="username" name="Username" required>
-        </div>
-        <div class="input-box">
-            <label>Password</label>
-            <div class="wrapper">
-            <input type ="password" id="password" name="Password" placeholder="Password" required> 
-            <span class="material-symbols-outlined" > eye_tracking </span>
-            </div>
-            </div>
-        <div class="forget">
-            <a href="#"> Forgot your Password ?</a>
-        </div>
-        <button type="submit" class ="btn"> Log in</button>
-        </form>
-    </div>
-</body>
+	<%@ include file="loginModel.jsp" %>
 </html>

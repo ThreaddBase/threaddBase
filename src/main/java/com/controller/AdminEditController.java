@@ -5,19 +5,23 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.Part;
+
 import java.io.IOException;
 
-/**
- * Servlet implementation class Home
- */
-@WebServlet(asyncSupported = true, name = "HomeController", urlPatterns = { "/home" })
-public class HomeController extends HttpServlet {
-	private static final long serialVersionUID = 1L;
 
+/**
+ * Servlet implementation class AdminEditController
+ */
+@WebServlet(asyncSupported = true, urlPatterns = { "/adminEdit" })
+public class AdminEditController extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
     /**
-     * Default constructor. 
+     * @see HttpServlet#HttpServlet()
      */
-    public HomeController() {
+    public AdminEditController() {
+        super();
         // TODO Auto-generated constructor stub
     }
 
@@ -26,15 +30,27 @@ public class HomeController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		request.getRequestDispatcher("/WEB-INF/Pages/home.jsp").forward(request, response);
-    }
+		request.getRequestDispatcher("/WEB-INF/Pages/adminEdit.jsp").forward(request, response);
+	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
+		// IMAGE upload
+		
+		Part filePart = request.getPart("image");
+		
+		String fileName = (filePart != null) ? filePart.getSubmittedFileName() : null;
+		String imagePath;
+
+		if (fileName != null && !fileName.isEmpty()) {
+		    imagePath = "uploads/" + fileName;
+		} else {
+		    imagePath = "uploads/default.png";
+		}
+		
 	}
 
 }

@@ -25,13 +25,15 @@ public class AuthenticationFilter extends HttpFilter implements Filter {
     private static final String LOGIN = "/login";
     private static final String REGISTER = "/register";
     private static final String HOME = "/home";
+    private static final String CONTACT = "/contact";
+    private static final String ABOUTUS = "/aboutUS";
     
     /**
 	 * @see Filter#init(FilterConfig)
 	 */
 	public void init(FilterConfig fConfig) throws ServletException {
 		// TODO Auto-generated method stub
-	}
+	} 
 
 	/**
 	 * @see Filter#doFilter(ServletRequest, ServletResponse, FilterChain)
@@ -58,8 +60,8 @@ public class AuthenticationFilter extends HttpFilter implements Filter {
         boolean isLoggedIn = (user != null);
 
  
-        boolean isPublic = path.equals(LOGIN) || path.equals(REGISTER) || path.equals(HOME);
-
+        boolean isPublic = path.equals(LOGIN) || path.equals(REGISTER) || path.equals(HOME) || path.equals(ABOUTUS) || path.equals(CONTACT);
+        boolean isAccessed = path.equals(LOGIN) || path.equals(REGISTER) || path.equals(HOME);
         if (!isLoggedIn) {
             if (isPublic) {
                 chain.doFilter(request, response);
@@ -67,7 +69,7 @@ public class AuthenticationFilter extends HttpFilter implements Filter {
                 res.sendRedirect(contextPath + HOME);
             }
         } else {
-            if (isPublic) {
+            if (isAccessed) {
                 res.sendRedirect(contextPath + "/main");
             } else {
                 chain.doFilter(request, response);

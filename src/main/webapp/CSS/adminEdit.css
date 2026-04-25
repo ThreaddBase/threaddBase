@@ -1,0 +1,257 @@
+@charset "UTF-8";
+
+body{
+    background-color: #222831;
+    color: #EEEEEE;
+}
+
+.navbar {
+    background-color: transparent;
+    padding: 2% 3%;
+    margin-bottom: 4%;
+    display: flex;
+    align-items: center;
+}
+
+.menu {
+  font-size: 22px;
+  cursor: pointer;
+}
+.profile_img img{
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    border: 3px solid white;
+    object-fit: cover;
+
+} 
+
+.profile_img {
+    position: absolute;
+    top: -7%;
+    z-index: 10;
+    left: 50%;
+    transform: translate(-50%);
+    max-width: 200px;
+    min-width: 130px;
+    width: 20%;
+}
+.card-wrap{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position :relative;
+    padding: 2% 2%;
+    border-radius: 20px;
+    margin: 0% 22% 4% 22%;
+    background-color: #393E46;
+}
+.card-title{
+    align-self: flex-start;
+    margin:4% 4%;
+    padding-right: 10%;
+    font-size: 25px;
+}
+.change {
+	margin-top: 10%;
+    font-size: 18px;
+    padding: 2% 2%;
+}
+
+.profile-section{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin: 1% 0 4%;
+    padding: 1% 2%;
+    width: 100%;
+    text-align: center;
+}
+
+.profile-section label{
+    display: block;
+    text-align: center;
+    margin-bottom: 8px;
+    font-size: 18px;
+}
+.profile-section input{
+    width: 80%;
+    height: 40px;
+    border: none;
+    padding: 3%;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 14px;
+    outline: none;
+    box-sizing: border-box;
+}
+
+.bio label{
+    display: block;
+    text-align: center;
+    margin-bottom: 8px;
+    font-size: 18px;
+}
+
+.bio{
+    margin-bottom: 4%;
+    width: 100%;
+    text-align: center;
+}
+
+.bio textarea{
+    width: 50%;
+    height: 100px;
+    border: none;
+    padding: 3% 3%;
+    border-radius: 8px;
+    font-size: 14px;
+    outline: none;
+    text-align: center;
+    box-sizing: border-box;
+    resize: vertical;
+}
+
+.DOB label{
+    display: block;
+    text-align: center;
+    margin-bottom: 8px;
+    font-size: 18px;
+} 
+.DOB input{
+    width: 40%;
+    height: 40px;
+    border: none;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 14px;
+    outline: none;
+    box-sizing: border-box;
+}
+
+.password input{
+    width: 40%;
+    height: 40px;
+    border: none;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 14px;
+    outline: none;
+    box-sizing: border-box;
+}
+
+    .DOB{
+        margin-bottom: 2%;
+        width: 100%;
+        text-align: center;
+    }
+    .password{
+        margin-bottom: 2%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+        padding: 3% 2%;
+        width: 100%;
+        text-align: center;
+    }
+
+    .password label{
+        display: block;
+        text-align: center;
+        font-size: 18px;
+    }
+
+    .buttons{
+        display: flex;
+        justify-content: center;
+        padding: 4%;
+        width: 100%;
+        gap: 15%;
+    }
+    .btn{
+        padding: 2% 6%;
+        border-radius: 8px;
+        font-size: 14px;
+        font-weight: bold;
+        cursor: pointer;
+        border: 2px solid #00ADB5;
+        background-color: #00ADB5;
+        color: #EEEEEE;  
+    }
+
+
+@media (max-width: 1000px) {
+	.change {
+		margin-top: 18%;
+	}
+}
+
+@media (max-width: 680px) {
+
+    .navbar{
+        padding: 3% 4%;
+        margin-bottom: 20%;
+    }
+
+    .card-wrap {
+        margin-top: 120px;
+        max-width: 100%;
+        height: auto;
+    }
+
+    .profile_img {
+    	display: flex;
+    	align-items: center;
+        top: -80px;
+    }
+
+
+    .card-title {
+        margin-top: 20px;
+        font-size: 20px;
+    }
+
+    .change {
+        font-size: 12px;
+        margin-top: 23%;
+    }
+
+    .profile-section {
+        grid-template-columns: 1fr;
+        gap: 14px;
+    }
+
+    .profile-section input {
+        width: 100%;
+    }
+
+    .bio textarea {
+        width: 80%;
+        height: auto;
+        font-family: Arial, sans-serif;
+        margin-bottom: 5%;
+    }
+
+    .DOB input {
+        width: 80%;
+         margin-bottom: 5%;
+    }
+
+    .password input {
+        width: 80%;
+         margin-bottom: 5%;
+    }
+
+    .buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .btn {
+        width: 80%;
+        text-align: center;
+        margin-bottom: 5%;
+    }
+
+}

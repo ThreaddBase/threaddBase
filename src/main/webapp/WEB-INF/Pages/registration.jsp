@@ -38,7 +38,7 @@
         </div>
 
         <div class="terms">
-            <input type="checkbox" id="terms" name="terms" />
+            <input type="checkbox" id="terms" name="terms" checked="checked"/>
             <label for="terms">
                 I agree to the <a href="#">Terms & Conditions</a> and <a href="#">Privacy Policy</a>
             </label>
@@ -47,7 +47,7 @@
         <button type="submit" class="btn-submit">Create Account</button>
 
         <div class="login-link">
-            Already have an account? <a href="#">Sign in</a>
+            Already have an account? <a href="<%=request.getContextPath()%>/login">Sign in</a>
         </div>
     </form>
 </div>
