@@ -29,36 +29,40 @@
     <div class="profile-section">
       <div>
         <label>Username</label>
-        <input type="text" value="Harry_Newgate3290">
+        <input type="text" name="username" value="Harry_Newgate3290">
       </div>
       <div>
-        <label>Full Name</label>
-        <input type="text" value="Harry Newgate">
+        <label>First Name</label>
+        <input type="text" name="f-name" value="Newgate">
+      </div>
+      <div>
+        <label>Last Name</label>
+        <input type="text" name="l-name" value="Newgate">
       </div>
     </div>
 
-    <div class="bio">
+    <div name ="bio" class="bio">
       <label>Bio</label>
       <textarea>Lorem ipsum dolor, sit amet consectetur  adipisicing elit. Laboriosam rerum explicabo consequatur eligendi  excepturi sit praesentium ex. </textarea>
     </div>
 
     <div class="DOB">
       <label>Date of Birth</label>
-      <input type="text" value="21-09-1999">
+      <input name = "dob" type="text" value="21-09-1999">
     </div>
 
     <div class="password">
       <label>Current Password</label>
-      <input type="password" value="">
+      <input name="c-pass"type="password" value="">
       <label>New Password</label>
-      <input type="password" value="">
+      <input name="n-pass"type="password" value="">
       <label>Retype Password</label>
-      <input type="password" value="">
+      <input name = "r-pass" type="password" value="">
     </div>
 
     <div class="buttons">
       <button class="btn"> Discard Change</button>
-      <button class="btn">Save Changes</button>
+      <button class="btn" type="submit">Save Changes</button>
   </div>
   
 </div>

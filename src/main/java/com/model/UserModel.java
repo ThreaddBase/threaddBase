@@ -1,124 +1,122 @@
 package com.model;
 
-import java.util.Date;
-
 public class UserModel {
-	
-	// initialization
-	private int userId;
-    private String userFirstName;
-    private String userLastName;
+
     private String username;
+    private String firstName;
+    private String lastName;
+    private String bio;
+    private String dob;
+    private String email;
     private String password;
-    private String userDob;
-    private String userRole;
-    private String userEmail;
-    private String userBio;
-    private String image;
-    private String createdAt;
-    
-    // constructor
-    public UserModel(int userId, String userFirstName, String userLastName, String username, String userDob, String userRole, String userEmail,
-    String userBio, String createdAt) {
+    private String profileImage;
+    private String role;
 
-	    this.userId = userId;
-	    this.userFirstName = userFirstName;
-	    this.userLastName = userLastName;
-	    this.username = username;
-	    this.userDob = userDob;
-	    this.userRole = userRole;
-	    this.userEmail = userEmail;
-	    this.userBio = userBio;
-	    this.createdAt = createdAt;
-    }
-    
-    // Getter
-    public int getUserId() {
-        return userId;
+    // ─── Constructors ───────────────────────────────────────────
+
+    public UserModel() {}
+
+    public UserModel(String username, String firstName, String lastName,
+                     String bio, String dob, String email,
+                     String password, String profileImage, String role) {
+        this.username     = username;
+        this.firstName    = firstName;
+        this.lastName     = lastName;
+        this.bio          = bio;
+        this.dob          = dob;
+        this.email        = email;
+        this.password     = password;
+        this.profileImage = profileImage;
+        this.role         = role;
     }
 
-    public String getUserFirstName() {
-        return userFirstName;
-    }
-
-    public String getUserLastName() {
-        return userLastName;
-    }
+    // ─── Getters & Setters ──────────────────────────────────────
 
     public String getUsername() {
         return username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public String getUserDob() {
-        return userDob;
-    }
-
-    public String getUserRole() {
-        return userRole;
-    }
-
-    public String getUserEmail() {
-        return userEmail;
-    }
-
-    public String getUserBio() {
-        return userBio;
-    }
-
-    public String getUserProfilePicture() {
-        return image;
-    }
-
-    public String getCreatedAt() {
-        return createdAt;
-    }
-    
-    // Setter
-    public void setUserId(int userId) {
-        this.userId = userId;
-    }
-
-    public void setUserFirstName(String userFirstName) {
-        this.userFirstName = userFirstName;
-    }
-
-    public void setUserLastName(String userLastName) {
-        this.userLastName = userLastName;
     }
 
     public void setUsername(String username) {
         this.username = username;
     }
 
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getBio() {
+        return bio;
+    }
+
+    public void setBio(String bio) {
+        this.bio = bio;
+    }
+
+    public String getDob() {
+        return dob;
+    }
+
+    public void setDob(String dob) {
+        this.dob = dob;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
     public void setPassword(String password) {
         this.password = password;
     }
 
-    public void setUserDob(String userDob) {
-        this.userDob = userDob;
+    public String getProfileImage() {
+        return profileImage;
     }
 
-    public void setUserRole(String userRole) {
-        this.userRole = userRole;
+    public void setProfileImage(String profileImage) {
+        this.profileImage = profileImage;
     }
 
-    public void setUserEmail(String userEmail) {
-        this.userEmail = userEmail;
+    public String getRole() {
+        return role;
     }
 
-    public void setUserBio(String userBio) {
-        this.userBio = userBio;
+    public void setRole(String role) {
+        this.role = role;
     }
 
-    public void setUserProfilePicture(String image) {
-        this.image = image;
-    }
+    // ─── toString (useful for debugging) ────────────────────────
 
-    public void setCreatedAt(String createdAt) {
-        this.createdAt = createdAt;
+    @Override
+    public String toString() {
+        return "UserModel{" +
+                "username='" + username + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", bio='" + bio + '\'' +
+                ", dob='" + dob + '\'' +
+                ", email='" + email + '\'' +
+                ", role='" + role + '\'' +
+                ", profileImage='" + profileImage + '\'' +
+                '}';
     }
 }

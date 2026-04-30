@@ -19,7 +19,7 @@ public class UserDAO {
         Connection conn = DBConfig.getConnection();
         PreparedStatement ps = conn.prepareStatement(sql);
         
-        ArrayList<UserModel> userList = new ArrayList();
+        ArrayList<UserModel> userList = new ArrayList<>();
         
         ResultSet resultSet = ps.executeQuery();
         while(resultSet.next()) {
@@ -33,8 +33,6 @@ public class UserDAO {
         	String role = resultSet.getString("user_Role");
         	String createdAt = resultSet.getString("Created_AT");
         	
-        	UserModel user = new UserModel(id, fname, lname, username, DOB, role, email, bio, createdAt);
-        	userList.add(user);
         }
         return userList;
     }
