@@ -1,16 +1,15 @@
-<div class="post-card">
+ <div class="post-card">
     <div class="post-left">
         <div class="post-header">
-            <div class="avatar">
-            </div>
+            <div class="avatar"></div>
             <div>
                 <p class="username">Harry Newgate</p>
                 <p class="post-date">2023-10-28</p>
             </div>
         </div>
         <p class="community-name">Community Name</p>
-        <p class="post-body">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laboriosam rerum explicabo
-            consequatur ex...</p>
+        <p class="post-body">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laboriosam rerum
+            explicabo consequatur ex...</p>
         <p class="post-tags">#Tag #anothertag</p>
         <div class="post-actions">
             <span><i class="fa-regular fa-circle-check"></i> 101</span>
@@ -20,9 +19,6 @@
         </div>
     </div>
     <div class="post-image">
-        <img src="your-image.jpg" alt="post image">
+        <img src="../Badminton.jpeg" alt="post image">
     </div>
 </div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/js/all.min.js"
-    integrity="sha512-6BTOlkauINO65nLhXhthZMtepgJSghyimIalb+crKRPhvhmsCdnIuGcVbR5/aQY2A+260iC1OPy1oCdB6pSSwQ=="
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>

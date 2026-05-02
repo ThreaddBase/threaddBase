@@ -1,0 +1,330 @@
+@charset "UTF-8";
+
+.community-profile {
+    margin-left: 250px;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    padding: 2% 5%;
+}
+
+.community-left {
+    display: flex;
+    gap: 20px;
+}
+
+.community-desc {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    justify-content: flex-end;
+}
+
+.community-desc > :first-child {
+    font-size: 28px;
+    font-weight: bolder;
+    color: #00adb5;
+}
+
+.community-desc > *:nth-child(2) {
+    margin-right: 2px;
+    color: rgb(170, 176, 188);
+    line-height: 1.6;
+
+}
+
+.community-profile img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: #eee;
+    border: 1px solid #ddd;
+    background-position: center;
+    background-size: cover;
+}
+
+.add-btn {
+    width: 150px;
+    padding: 10px 20px;
+    border: none;
+    background-color: #00adb5;
+    color: white;
+    cursor: pointer;
+    border-radius: 30px;
+}
+
+.add-btn:hover {
+    background-color: #00acb5a4;
+}
+
+.community-tag {
+    padding: 5px 90px;
+    border-top: 1px solid #aaa;
+    border-bottom: 1px solid #aaa;
+    color: #eee;
+    margin-left: 250px;
+    display: flex;
+    flex-direction: column;
+}
+
+.community-tag p {
+    color: #00adb5;
+    font-size: 1.4rem;
+    padding: 4px 0px 10px 0px;
+}
+
+.tag-list {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    padding-bottom: 4px;
+}
+
+.community-tag span {
+    display: inline-block;
+    padding: 5px 10px;
+    background-color: #393E46;
+    color: #eee;
+    border-radius: 8px;
+    margin-right: 10px;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.community-tag span:hover {
+    background-color: #1a6fb5;
+    color: white;
+}
+
+section {
+    display: flex;
+    justify-content: flex-start;
+    gap: 24px;
+    padding: 20px 20px 20px 250px;
+    flex-wrap: wrap;
+    align-items: flex-start;
+}
+
+.community-list {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px;
+    background-color: #222831;
+    justify-content: center;
+}
+
+.about-community {
+    width: 260px;
+    flex-shrink: 0;
+    background-color: #1a1f27;
+    color: #eee;
+    border-radius: 14px;
+    border: 1px solid #2e3440;
+    padding: 0;
+    overflow: hidden;
+    align-self: flex-start;
+    position: sticky;
+    top: 20px;
+}
+
+/* .about-community::before {
+    content: '';
+    display: block;
+    height: 6px;
+    background-color: #00adb5;
+} */
+
+.about-community > p:first-of-type {
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #00adb5;
+    padding: 16px 20px 4px;
+    margin: 0;
+}
+
+.about-community > p:nth-of-type(2) {
+    font-size: 13px;
+    color: #aab0bc;
+    line-height: 1.6;
+    padding: 0 20px 16px;
+    margin: 0;
+    border-bottom: 1px solid #2e3440;
+}
+
+.about-community > p:nth-of-type(3) {
+    font-size: 13px;
+    color: #aab0bc;
+    line-height: 1.6;
+    padding: 0 20px 16px;
+    margin: 0;
+    border-bottom: 1px solid #2e3440;
+}
+
+.member-status {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 16px 20px;
+    border-bottom: 1px solid #2e3440;
+}
+
+.member-status span {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    color: #cdd3de;
+}
+
+.member-status span i {
+    font-size: 1rem;
+    width: 18px;
+    text-align: center;
+    color: #00adb5;
+}
+
+.join-community {
+    display: block;
+    width: calc(100% - 40px);
+    margin: 16px 20px;
+    padding: 10px 0;
+    background-color: #00adb5;
+    color: white;
+    font-size: 14px;
+    font-weight: 600;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: background-color 0.15s ease, transform 0.1s ease;
+    text-align: center;
+}
+
+.join-community:hover {
+    background-color: #008f96;
+}
+
+.join-community:active {
+    transform: scale(0.97);
+}
+
+/* ── 950px: about community goes above the list ── */
+@media (max-width: 950px) {
+    section {
+        flex-direction: column-reverse;
+        padding: 20px 20px 20px 270px;
+        gap: 0;
+    }
+
+    .about-community {
+        width: 100%;
+    }
+
+    .community-list {
+        width: 100%;
+    }
+
+    .about-community {
+        position:static;
+    }
+}
+
+/* ── 800px: sidebar collapses to 80px ── */
+@media (max-width: 800px) {
+    .top-bar {
+        margin-left: 80px;
+        padding: 20px 16px;
+    }
+
+    .search-container {
+        position: relative;
+        left: auto;
+        transform: none;
+        width: auto;
+        flex: 1;
+        max-width: none;
+    }
+
+    .user-profile .username {
+        display: none;
+    }
+
+    .community-profile {
+        margin-left: 80px;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .community-right {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .add-btn {
+        width: 100%;
+    }
+
+    .community-tag {
+        margin-left: 80px;
+    }
+
+    section {
+        padding: 20px 20px 20px 80px;
+    }
+
+    .about-community {
+        margin-left: 0;
+    }
+
+    .community-list {
+        margin-left: 0;
+    }
+}
+
+/* ── 600px ── */
+@media (max-width: 600px) {
+    .community-tag {
+        padding: 5px 20px;
+    }
+
+    .top-bar {
+        padding: 0 12px;
+    }
+}
+
+/* ── 480px: small phones ── */
+@media (max-width: 480px) {
+    .top-bar {
+        margin-left: 70px;
+        padding: 10px 10px;
+    }
+
+    .community-profile {
+        margin-left: 70px;
+        padding: 2% 3%;
+    }
+
+    .community-tag {
+        margin-left: 70px;
+        padding: 5px 12px;
+    }
+
+    section {
+        padding: 12px 10px 12px 70px;
+    }
+
+    .community-list {
+        padding: 10px;
+        gap: 12px;
+    }
+
+    .about-community {
+        width: 100%;
+    }
+}
