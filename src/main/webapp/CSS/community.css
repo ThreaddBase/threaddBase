@@ -1,13 +1,105 @@
 @charset "UTF-8";
 
-.category-list {
-    height: max-content;
-    width: 60%;
-    margin-left: 250px;
+section {
     display: flex;
-    flex-wrap: wrap;
+    padding: 2%;
+    margin-left: 250px;
+    background-color: rgb(5, 21, 36);
+    flex-direction: column;
+}
+
+section p {
+	font-size: 2rem;
+    font-weight: bolder;
+    padding: 30px;
+}
+
+section p span {
+	color: #00ADB5;
+}
+
+.community-list {
+	width: 100%;
+    padding: 0 30px 30px 30px;
+    display: flex;
+    flex-direction: column;
     gap: 20px;
-    padding: 20px;
-    background-color: antiquewhite;
-    justify-content: flex-end;
+}
+
+.community-card {
+    background-color: #c8c8c8;
+    border-radius: 16px;
+    display: flex;
+    overflow: hidden;
+    min-height: 180px;
+}
+
+
+.community-thumb {
+    width: 260px;
+    flex-shrink: 0;
+    object-fit: cover;
+    display: block;
+}
+
+
+.card-details {
+    flex: 1;
+    padding: 20px 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.card-title {
+    font-size: 19px;
+    font-weight: 800;
+    color: #111;
+}
+
+.card-created {
+    font-size: 13px;
+    color: #555;
+}
+
+.card-desc {
+    font-size: 14px;
+    color: #333;
+    line-height: 1.55;
+}
+
+.card-tags {
+    font-size: 13px;
+    color: #444;
+}
+
+.card-action-btns {
+    display: flex;
+    gap: 10px;
+    margin-top: auto;
+    padding-top: 8px;
+}
+
+.view-btn,
+.join-btn {
+    background-color: #2b2b2b;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 9px 20px;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.view-btn a {
+	text-decoration: none;
+	color: #fff;
+}
+
+.view-btn:hover {
+    background-color: #444;
+}
+
+.join-btn:hover {
+    background-color: #555;
 }

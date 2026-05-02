@@ -256,7 +256,7 @@
             <div class="post-avatar-wrap">
               <img src="https://api.dicebear.com/7.x/thumbs/svg?seed=sujal" alt="sujal_p" class="post-avatar"/>
             </div>
-            <h4 class="post-author">sujal_</h4>
+            <h4 class="post-author">Sudhanshu_</h4>
             <p class="post-desc">Dropped a hot take on remote work vs office culture — 200+ upvotes and the most civil back-and-forth seen on the platform.</p>
           </div>
         </div>

@@ -5,17 +5,17 @@
         <div class="bar"></div>
         <ul class="nav-links">
             <li>
-                <a href="#">
+                <a href="<%=request.getContextPath()%>/user/home">
                     <i class="fas fa-home"></i> <span>Home</span>
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a href="<%=request.getContextPath()%>/community">
                     <i class="fa-solid fa-user-group"></i> <span>Community</span>
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a href="<%=request.getContextPath()%>/notification">
                     <i class="fa-solid fa-bell"></i> <span>Notification</span>
                 </a>
             </li>
