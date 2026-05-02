@@ -11,13 +11,15 @@
 <link rel="stylesheet" href="<%=request.getContextPath()%>/CSS/sidebar.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/CSS/topSearchbar.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/CSS/userHome.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" 
+integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" 
+crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
 	<%@ include file="sidebar.jsp" %>
 	<%@ include file="topSearchbar.jsp" %>
 	
-<div class="tag">
+	<div class="tag">
         <button class="tag-arrow hidden" id="arrowLeft">
             <i class="fas fa-chevron-left"></i>
         </button>
@@ -40,6 +42,45 @@
             <i class="fas fa-chevron-right"></i>
         </button>
     </div>
+    
+    <section id="main-section">
+        <section class="section1">
+                <div class="new-thread-container">
+                <p>What's on your mind? Start a Thread...</p>
+                <div class="thread-option">
+                    <a href="#">
+                        <i class="fas fa-image"></i>
+                        <span>Photo</span>
+                    </a>
+                    <a href="#">
+                        <i class="fa-brands fa-shoelace fa-rotate-270"></i>
+                        <span>Thread</span>
+                    </a>
+                </div>
+            </div>
+
+            <%@ include file="post.jsp" %>
+            <%@ include file="post.jsp" %>
+            <%@ include file="post.jsp" %>
+            <%@ include file="post.jsp" %>
+        </section>
+                <section class="section2">
+                	<p>Discover Communities</p>
+		            <a href="<%=request.getContextPath()%>/community/view" class="discover-communities">
+		                <img src="" alt="Logo" class="community-profile">
+		                <p>Community Name</p>
+		            </a>
+		            <a href="<%=request.getContextPath()%>/community/view" class="discover-communities">
+		                <img src="" alt="Logo" class="community-profile">
+		                <p>Community Name</p>
+		            </a>
+		            <a href="<%=request.getContextPath()%>/community/view" class="discover-communities">
+		                <img src="" alt="Logo" class="community-profile">
+		                <p>Community Name</p>
+		            </a>
+        </section>
+    </section>
+    
     
 <script>
 	const tagList = document.querySelector('.tag-list');
