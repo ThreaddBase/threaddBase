@@ -1,24 +1,24 @@
 @charset "UTF-8";
 
 .post-card {
-    height: 43ch;
-    width: 50%;
+    min-width: 280px;
+    width: 100%;
     display: flex;
     border: 0.5px solid #ccc;
     border-radius: 12px;
     overflow: hidden;
-    max-width: 520px;
     background: #fff;
 }
 
 .post-left {
     color: white;
-    flex: 1;
-    padding: 1.25rem;
+    flex: 1.4;
+    padding: 1.5rem;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 12px;
     background-color: #393E46;
+    min-width: 0;
 }
 
 .post-header {
@@ -33,6 +33,7 @@
     border-radius: 50%;
     background: #eee;
     border: 1px solid #ddd;
+    flex-shrink: 0;
 }
 
 .username {
@@ -49,15 +50,16 @@
 
 .community-name {
     margin: 0;
-    font-size: 13px;
+    font-size: 15px;
     font-weight: 600;
 }
 
 .post-body {
     margin: 0;
-    font-size: 13px;
+    font-size: 15px;
     color: #eeeeee;
-    line-height: 1.6;
+    line-height: 1.7;
+    flex: 1;
 }
 
 .post-tags {
@@ -68,45 +70,146 @@
 
 .post-actions {
     display: flex;
-    gap: 16px;
+    gap: 6px;
     padding-top: 10px;
-    border-top: 0.5px solid #eee;
-    font-size: 13px;
-    color: #666;
+    border-top: 0.5px solid rgba(255,255,255,0.15);
     align-items: center;
-    justify-items: flex-end;
-    /* align-items: self-end; */
-    /* justify-self: flex-end; */
     color: white;
+    flex-wrap: wrap;
 }
 
+/* each action button */
+.post-actions span {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 10px;
+    border-radius: 8px;
+    font-size: 13px;
+    cursor: pointer;
+    user-select: none;
+    transition: background-color 0.15s ease, color 0.15s ease, transform 0.15s ease;
+}
+
+.post-actions span i {
+    font-size: 1.1rem;
+    transition: transform 0.2s ease, color 0.15s ease;
+    pointer-events: none;
+}
+
+/* upvote / check */
+.post-actions span:nth-child(1):hover {
+    /* background-color: rgba(0, 200, 100, 0.12); */
+    color: #00c864;
+}
+.post-actions span:nth-child(1):hover i {
+    transform: scale(1.25);
+    color: #00c864;
+}
+.post-actions span:nth-child(1):active i {
+    transform: scale(0.9);
+}
+
+/* comment */
+.post-actions span:nth-child(2):hover {
+    /* background-color: rgba(0, 173, 181, 0.12); */
+    color: #00adb5;
+}
+.post-actions span:nth-child(2):hover i {
+    transform: scale(1.25);
+    color: #00adb5;
+}
+.post-actions span:nth-child(2):active i {
+    transform: scale(0.9);
+}
+
+/* bookmark */
+.post-actions span:nth-child(3):hover {
+    color: #ffc800;
+}
+.post-actions span:nth-child(3):hover i {
+    transform: scale(1.25);
+    color: #ffc800;
+}
+.post-actions span:nth-child(3):active i {
+    transform: scale(0.9);
+}
+
+/* report */
 .post-actions .report {
     margin-left: auto;
 }
+.post-actions .report:hover {
+    color: #e24b4a;
+}
+.post-actions .report:hover i {
+    transform: scale(1.25);
+    color: #e24b4a;
+}
+.post-actions .report:active i {
+    transform: scale(0.9);
+}
 
 .post-image {
-    width: 53%;
+    width: 40%;
     flex-shrink: 0;
-    background: #ddd;
+    background: #393E46;
 }
 
 .post-image img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
 }
 
+/* ── 800px: stack card vertically ── */
 @media (max-width: 800px) {
     .post-card {
-        width: 80%;
+        width: 100%;
         height: auto;
         flex-direction: column;
     }
 
     .post-image {
         width: 100%;
-        height: 250px;
+        height: clamp(160px, 40vw, 280px);
     }
 }
 
- 
+/* ── 600px ── */
+@media (max-width: 600px) {
+    .post-card {
+        width: 100%;
+        margin-left: 0;
+    }
+}
+
+/* ── 480px: small phones ── */
+@media (max-width: 480px) {
+    .post-card {
+        min-width: 100%;
+        border-radius: 8px;
+    }
+
+    .post-left {
+        padding: 0.8rem;
+        gap: 7px;
+    }
+
+    .post-actions {
+        gap: 4px;
+    }
+
+    .post-actions span {
+        padding: 5px 7px;
+        font-size: 12px;
+    }
+
+    .post-actions span i {
+        font-size: 1rem;
+    }
+
+    .post-image {
+        height: clamp(130px, 35vw, 200px);
+    }
+}

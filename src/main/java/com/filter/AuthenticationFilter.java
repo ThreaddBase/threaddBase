@@ -70,7 +70,7 @@ public class AuthenticationFilter extends HttpFilter implements Filter {
             }
         } else {
             if (isAccessed) {
-                res.sendRedirect(contextPath + "/main");
+                res.sendRedirect(contextPath + "/user/home");
             } else {
                 chain.doFilter(request, response);
             }

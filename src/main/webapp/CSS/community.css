@@ -1,0 +1,13 @@
+@charset "UTF-8";
+
+.category-list {
+    height: max-content;
+    width: 60%;
+    margin-left: 250px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px;
+    background-color: antiquewhite;
+    justify-content: flex-end;
+}
