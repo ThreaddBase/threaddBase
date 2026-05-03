@@ -13,6 +13,7 @@
 <link rel="stylesheet" href="<%=request.getContextPath()%>/CSS/sidebar.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/CSS/topSearchbar.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/CSS/viewCommunity.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/CSS/notificationModel.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
@@ -60,5 +61,6 @@
             <button class="join-community">Join Community</button>
         </div>
     </section>
+    <%@ include file="notificationModel.jsp" %>
 </body>
 </html>

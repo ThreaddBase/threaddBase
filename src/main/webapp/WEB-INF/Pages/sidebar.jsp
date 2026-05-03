@@ -15,7 +15,7 @@
                 </a>
             </li>
             <li>
-                <a href="<%=request.getContextPath()%>/notification">
+                <a onclick="showNotification()">
                     <i class="fa-solid fa-bell"></i> <span>Notification</span>
                 </a>
             </li>
