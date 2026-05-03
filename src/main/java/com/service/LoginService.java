@@ -9,23 +9,24 @@ public class LoginService {
 	
 	private LoginDAO loginDAO = new LoginDAO();
 
-    public boolean authenticate(String username, String password) throws Exception {
+    public String authenticate(String username, String password) throws Exception {
     	
     	// validation
         if (username == null || username.trim().isEmpty()) {
-            return false;
+        	return null;
         }
+        
         if (password == null || password.trim().isEmpty()) {
-            return false;
+        	return null;
         }
 
         LoginModel user = loginDAO.getUser(username.trim());
-
+        
         if (user == null) {
-            return false;
+        	return null;
         }
 
         boolean passwordMatches = BCrypt.checkpw(password, user.getPassword());
-        return passwordMatches;
+        return passwordMatches ? user.getUserRole() : null;
     }
 }

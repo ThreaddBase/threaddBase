@@ -31,6 +31,7 @@ public class LoginController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		
 		request.getRequestDispatcher("/WEB-INF/Pages/login.jsp").include(request, response);
 	}
 
@@ -42,29 +43,35 @@ public class LoginController extends HttpServlet {
 		
 		// get username and password from Login form from LoginUI
 		String username = request.getParameter("Username");
-		String password = request.getParameter("Password");
-		
-		
-		try {
-			LoginService service = new LoginService();
-			boolean userStatus = service.authenticate(username, password); // return true if user exists
+        String password = request.getParameter("Password");
 
-			if (userStatus) {
-				
-				// Session 
-				// calling SetAttribute method from SessionUtil package
-				SessionUtil.setAttribute(request, "loggedUser", username);
-	            response.sendRedirect(request.getContextPath() + "/home");
-	            
-	        } else {
-	            request.setAttribute("errorMessage", "Invalid username or password.");
-	            request.getRequestDispatcher("/WEB-INF/Pages/login.jsp").forward(request, response);
-	        }
-			
-		} catch (Exception e) { 
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+        try {
+            LoginService service = new LoginService();
+            String role = service.authenticate(username, password); // null if invalid
+
+            if (role != null) {
+                SessionUtil.setLoggedUser(request, username, role);
+                redirectByRole(request, response);
+            } else {
+                request.setAttribute("errorMessage", "Invalid username or password.");
+                request.getRequestDispatcher("/WEB-INF/Pages/login.jsp").forward(request, response);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            request.setAttribute("errorMessage", "Something went wrong. Please try again.");
+            request.getRequestDispatcher("/WEB-INF/Pages/login.jsp").forward(request, response);
+        }
 	}
+	
+	private void redirectByRole(HttpServletRequest request, HttpServletResponse response)
+            throws IOException {
+        String base = request.getContextPath();
+        if (SessionUtil.hasRole(request, SessionUtil.ROLE_ADMIN)) {
+            response.sendRedirect(base + "/admin");
+        } else {
+            response.sendRedirect(base + "/user/home");
+        }
+    }
 
 }
