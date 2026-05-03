@@ -44,7 +44,7 @@
     <!--Image and text Section-->
     <div class="story">
     <div class="story-image">
-        <div class="image-placeholder"></div>
+        <img src="<%=request.getContextPath()%>/Assets/group_photo.jpg" class="image-placeholder"></img>
     </div>
     <div class="story-text">
         <h2 style="color: #00ADB5;">Our Story</h2>
@@ -60,7 +60,7 @@
     <h2>Meet the Team</h2>
     <div class="team-slider">
         <div class="team-card">
-            <div class="team-img"></div>
+            <img src="<%=request.getContextPath()%>/Assets/photo.jpg" class="team-img"></img>
             <h3>Gaurab Tandukar</h3>
             <p style="color: #00ADB5;">Fullstack Developer</p>
             <article>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam, est ab? Laudantium, voluptatem exercitationem quaerat ab sequi iure quod, nesciunt et illum molestiae voluptatum dignissimos! Libero inventore ducimus minus explicabo.</article>
