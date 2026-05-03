@@ -24,7 +24,8 @@ public class LoginDAO {
                 if (rs.next()) {
                     return new LoginModel(
                         rs.getString("Username"),
-                        rs.getString("Password")
+                        rs.getString("Password"),
+                        rs.getString("user_Role")
                     );
                 }
             }
