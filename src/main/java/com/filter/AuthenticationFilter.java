@@ -23,7 +23,7 @@ public class AuthenticationFilter extends HttpFilter implements Filter {
        
 	
     private static final String LOGIN = "/login";
-    private static final String REGISTER = "/register";
+    private static final String REGISTER = "/regis ter";
     private static final String HOME = "/home";
     private static final String CONTACT = "/contact";
     private static final String ABOUTUS = "/aboutUS";
