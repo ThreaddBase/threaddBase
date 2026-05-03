@@ -10,6 +10,7 @@
 <link rel="stylesheet" href="<%=request.getContextPath()%>/CSS/sidebar.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/CSS/topSearchbar.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/CSS/community.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/CSS/notificationModel.css">
 </head>
 <body>
     <%@ include file="sidebar.jsp" %>
@@ -83,7 +84,7 @@
         </div>
     </div>
     </section>
-    
+    <%@ include file="notificationModel.jsp" %>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/js/all.min.js" 
 integrity="sha512-6BTOlkauINO65nLhXhthZMtepgJSghyimIalb+crKRPhvhmsCdnIuGcVbR5/aQY2A+260iC1OPy1oCdB6pSSwQ==" 
 crossorigin="anonymous" referrerpolicy="no-referrer">

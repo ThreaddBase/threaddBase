@@ -10,6 +10,7 @@
 <link rel="stylesheet" href="<%=request.getContextPath()%>/CSS/post.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/CSS/sidebar.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/CSS/topSearchbar.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/CSS/notificationModel.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/CSS/userHome.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" 
 integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" 
@@ -82,6 +83,7 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
     </section>
     
     
+    <%@ include file="notificationModel.jsp" %>
 <script>
 	const tagList = document.querySelector('.tag-list');
 	const arrowLeft = document.getElementById('arrowLeft');
