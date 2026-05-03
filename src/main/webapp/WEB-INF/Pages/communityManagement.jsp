@@ -7,6 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/CSS/communityManagement.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/CSS/util.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/CSS/sidebar.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" 
 integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" 
 crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -14,44 +15,7 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
  <!-- SIDEBAR -->
-    <div class="side-navbar">
-        <div class="bar"></div>
-        <a href="#" class="logo-container">
-            <img src="images/logo_white.png" alt="threadbase logo" class="logo">
-   
-        </a>
-         <ul class="nav-links">
-
-      <li>
-        <a href="dashboard.html" class="active">
-          <i class="fas fa-chart-line"></i>
-          <span class="link-text">Dashboard</span>
-        </a>
-      </li>
-
-      <li>
-        <a href="community.html">
-          <i class="fa-solid fa-user-group"></i>
-          <span class="link-text">Community</span>
-        </a>
-      </li>
-
-      <li>
-        <a href="monitor.html" class="active">
-          <i class="fas fa-users-cog"></i>
-          <span class="link-text">User Management</span>
-        </a>
-      </li>
-
-      <li>
-        <a href="#">
-          <i class="fas fa-sign-out-alt"></i>
-          <span class="link-text">Logout</span>
-        </a>
-      </li>
-
-    </ul>
-    </div>
+    <%@ include file="adminSidebar.jsp" %>
 
     <!-- MAIN CONTENT -->
     <div class="main-content">
