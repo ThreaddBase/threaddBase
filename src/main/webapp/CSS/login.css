@@ -1,0 +1,191 @@
+@charset "UTF-8";
+
+#overlay {
+    transition: filter 0.2s ease;
+}
+
+#overlay.dimmed {
+    filter: brightness(0.7);
+    pointer-events: none; /* prevent clicking page elements behind popup */
+}
+
+/* ── Card ── */
+.login_page {
+    display: none;
+    width: 100%;
+    max-width: 480px;
+    background-color: white;
+    color: black;
+    padding: 40px 45px;
+    border-radius: 30px;
+    position: relative;
+    border: 2px solid black;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 100;
+}
+
+/* ── Close icon ── */
+.fa-xmark {
+    position: absolute;
+    top: -12px;
+    right: 19px;
+    font-size: 3rem;
+    color: #ff0000;
+    cursor: pointer;
+    transition: transform 0.2s ease, color 0.2s ease;
+    border: none;
+    background: none;
+}
+
+.fa-xmark:hover {     
+    color: #008080;
+}
+
+/* ── Heading ── */
+.login_page h1 {
+    font-size: 28px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.login_page h1 span {
+	color: var(--color-highlight);
+}
+
+/* ── Input Box ── */
+.login_page .input-box {
+    position: relative;
+    width: 100%;
+    margin: 15px 0;
+    padding: 10px 0px;
+}
+
+.input-box label {
+    display: block;
+    font-size: 16px;
+    margin-bottom: 6px;
+}
+
+.input-box input {
+    width: 100%;
+    height: 45px;
+    border: 2px solid black;
+    border-radius: 10px;
+    font-size: 18px;
+    padding: 0 15px;
+    transition: border-color 0.2s ease;
+}
+
+.input-box input::placeholder {
+    color: black;
+}
+
+.input-box input:focus {
+    border-color: #008080;         /* teal focus to match theme */
+    outline: none;
+}
+
+/* ── Password Wrapper ── */
+.wrapper {
+    position: relative;
+}
+
+.wrapper input {
+    width: 100%;
+    height: 45px;
+    border: 2px solid black;
+    border-radius: 10px;
+    padding: 0px 44px 0px 15px;   /* FIX: right padding for icon room */
+    font-size: 18px;
+    transition: border-color 0.2s ease;
+}
+
+.wrapper input:focus {
+    border-color: #008080;         /* FIX: was #1e5bb8, now matches teal theme */
+    outline: none;
+}
+
+.wrapper span {
+	position: relative;
+    top: -31px;
+    left: 87%;
+}
+
+
+.material-symbols-outlined:hover {
+	cursor: pointer;
+    color: #008080;                /* teal hover matches theme */
+}
+
+
+
+/* ── Forgot Password ── */
+.login_page .forget {
+    display: flex;
+    font-size: 14px;
+    margin: 5px 0 15px;
+    justify-content: end;
+}
+
+.forget a {
+    color: black;
+    text-decoration: none;
+}
+
+.forget a:hover {
+    text-decoration: underline;
+    color: #008080;                /* teal hover matches theme */
+}
+
+/* ── Submit Button ── */
+.login_page .btn {
+    width: 100%;
+    height: 50px;
+    background: #008080;
+    border: none;
+    border-radius: 25px;
+    font-size: 15px;
+    color: #fff;
+    font-weight: 600;
+    margin-top: 20px;
+    display: block;
+    cursor: pointer;               /* FIX: was missing */
+    transition: background 0.2s ease, transform 0.1s ease;  /* FIX: was missing */
+}
+
+.login_page .btn:hover {
+    background: #006666;           /* FIX: was missing — darker teal on hover */
+}
+
+.login_page .btn:active {
+    transform: scale(0.98);
+}
+
+/* ── Responsive ── */
+@media (max-width: 480px) {
+    .login_page {
+        padding: 20px;
+        border-radius: 20px;
+    }
+
+    .login_page h1 {
+        font-size: 22px;
+    }
+
+    .input-box label {
+        font-size: 14px;
+    }
+
+    .input-box input {
+        height: 40px;
+        font-size: 13px;
+    }
+
+    .login_page .btn {             /* FIX: was .login-page (dash typo) */
+        height: 42px;
+        font-size: 14px;
+    }
+}
