@@ -117,7 +117,7 @@ nav {
   opacity: 1;
 }
 
-/* ── TOP SECTION ── */
+
 .toplogo {
   justify-content: center;
   display: flex;
@@ -143,7 +143,7 @@ nav {
   margin: 0 auto;
   word-spacing: 3px;
   letter-spacing: 1px;
-  line-height: 1.25; /* FIX: was 70px absolute — breaks at smaller font sizes */
+  line-height: 1.25; 
   font-weight: 500;
 }
 
@@ -159,13 +159,13 @@ nav {
 .toptext .p2 {
   text-align: center;
   font-size: 1.25rem;
-  margin-top: 0.5rem; /* FIX: was -0.9rem, causing text overlap */
+  margin-top: 0.5rem; 
   letter-spacing: 0.5px;
   word-spacing: 2px;
   font-weight: 200;
 }
 
-/* ── STATS CARD SECTION ── */
+
 .stats {
   display: flex;
   gap: 2rem;
@@ -173,8 +173,8 @@ nav {
   margin: 3rem auto;
   max-width: 90rem;
   width: 100%;
-  /* FIX: removed fixed height: 12rem — caused overflow/clipping */
-  padding: 0 2rem; /* FIX: added horizontal padding — cards were touching viewport edges */
+  
+  padding: 0 2rem; 
 }
 
 .stats-card {
@@ -294,13 +294,12 @@ nav {
 .team-card {
   flex-shrink: 0;
   width: calc(33.333% - 1.333rem);
-  min-height: 450px; /* FIX: was fixed height: 450px — content could overflow */
-  height: auto;
+  min-height: 450px; 
   background-color: var(--color-secondary);
   border-radius: 20px;
   padding: 2rem 1.5rem;
   scroll-snap-align: start;
-  text-align: center; /* FIX: removed double semicolon */
+  text-align: center; 
 }
 
 .team-img {
@@ -345,13 +344,13 @@ nav {
   margin: 0;
 }
 
-/* ── SCROLLBAR SLIDER ── */
+
 .team-scrollbar {
   display: block;
   margin: 1.5rem auto 1rem;
   width: 25%;
   appearance: none;
-  height: 8px; /* FIX: was 15px, looks cleaner thinner */
+  height: 8px; 
   border-radius: 999px;
   background: var(--color-secondary);
   outline: none;
@@ -360,7 +359,7 @@ nav {
 
 .team-scrollbar::-webkit-slider-thumb {
   appearance: none;
-  width: 60px; /* FIX: was 120px — too wide, overshoots track */
+  width: 60px; 
   height: 8px;
   border-radius: 999px;
   background: #AAB4BE;
@@ -376,16 +375,16 @@ nav {
   border: none;
 }
 
-/* ── FINAL SECTION ── */
+
 .final {
   display: flex;
   align-items: center;
-  justify-content: center; /* FIX: was space-between with gap:0, inconsistent */
+  justify-content: center; 
   margin: 6rem auto 4rem;
   max-width: 90rem;
   width: 100%;
   padding: 0 4rem;
-  gap: 4rem; /* FIX: was 0rem */
+  gap: 4rem; 
 }
 
 .final-left,
@@ -399,13 +398,13 @@ nav {
 
 .final-left {
   align-items: flex-start;
-  /* FIX: removed margin-top: -12rem — caused severe layout overlap */
+  
   padding: 0;
 }
 
 .final-right {
   align-items: flex-start;
-  /* FIX: removed padding-left/right: 10rem on a max-width: 380px container — padding > container */
+  
   padding: 0;
 }
 
@@ -441,21 +440,13 @@ nav {
   width: 2px;
   height: 300px;
   background: linear-gradient(180deg, transparent, #aaa 30%, #aaa 70%, transparent);
-  transform: rotate(0deg); /* FIX: was rotate(45deg) — made it a diagonal slash, not a divider */
+  transform: rotate(0deg); 
   flex-shrink: 0;
   align-self: center;
 }
 
 
-/* ============================================================
-   MEDIA QUERIES
-   xl  → max-width: 1400px
-   lg  → max-width: 1200px
-   md  → max-width: 992px
-   sm  → max-width: 768px
-   xs  → max-width: 480px
-   xxs → max-width: 360px
-   ============================================================ */
+
 
 /* ── XL ── */
 @media (max-width: 1400px) {
@@ -858,7 +849,7 @@ nav {
   }
 
   nav {
-    padding: 0.9rem 1rem;
+    padding: 0.9rem 1rem; 
   }
 }
 
