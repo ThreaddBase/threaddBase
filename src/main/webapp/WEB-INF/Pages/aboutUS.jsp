@@ -109,9 +109,6 @@
     </div>
 </div>
 
-
-
-
 <script>
     const slider = document.querySelector('.team-slider');
     const scrollbar = document.querySelector('.team-scrollbar');
