@@ -1,0 +1,282 @@
+@charset "UTF-8";
+*{  
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+:root {
+  /* Base Theme */
+  --color-primary: #222831;
+  --color-secondary: #393E46;
+  --color-highlight: #00ADB5;
+  --color-font: #EEEEEE;
+
+  /* Accent Colors */
+  --color-rose: #FF6B8A;
+  --color-amber-gold: #F0A500;
+  --color-mint: #00C9A7;
+  --color-lavender: #A78BFA;
+  --color-peach: #FF8C69;
+  --color-slate: #AAB4BE;
+
+  /* Semantic Aliases */
+  --color-success: #00C9A7;
+  --color-warning: #F0A500;
+  --color-error: #FF6B8A;
+  --color-info: #00ADB5;
+
+  /* Gradient Presets */
+  --gradient-aqua: linear-gradient(90deg, #00ADB5, #00C9A7);
+  --gradient-dreamy: linear-gradient(90deg, #00ADB5, #A78BFA);
+  --gradient-energetic: linear-gradient(90deg, #00ADB5, #F0A500);
+  --gradient-warm-cool: linear-gradient(90deg, #FF6B8A, #A78BFA);
+}
+
+body{
+    font-family: Arial, sans-serif;
+    background-color: #222831;
+    color: #EEEEEE;
+}
+
+.navbar {
+    background-color: transparent;
+    padding: 4% 8%;
+    margin-bottom: 6%;
+    display: flex;
+    align-items: center;
+}
+
+.profile_img img{
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    border: 3px solid white;
+    object-fit: cover;
+
+} 
+
+.profile_img {
+    position: absolute;
+    top: -7%;
+    z-index: 10;
+    left: 50%;
+    transform: translate(-50%);
+    max-width: 200px;
+    min-width: 130px;
+    width: 20%;
+}
+.card-wrap{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position :relative;
+    padding: 2% 2%;
+    border-radius: 20px;
+    margin: 4% 20% 8% 20%;
+    background-color: #393E46;
+}
+.card-title{
+    align-self: flex-start;
+    margin-top: 10%;
+    padding-right: 5%;
+    font-size: 25px;
+}
+.change{
+    font-size: 18px;
+    padding: 5% 2%;
+    margin: 3%;
+}
+.profile-section{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin: 1% 0 10%;
+    padding: 1% 2%;
+    width: 100%;
+    text-align: center;
+}
+
+.profile-section label{
+    display: block;
+    text-align: center;
+    margin-bottom: 8px;
+    font-size: 18px;
+}
+.profile-section input{
+    width: 80%;
+    height: 55%;
+    border: none;
+    padding: 3%;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 14px;
+    outline: none;
+    box-sizing: border-box;
+}
+
+.bio label{
+    display: block;
+    text-align: center;
+    margin-bottom: 8px;
+    font-size: 18px;
+}
+
+.bio{
+    margin-bottom: 8%;
+    width: 100%;
+    text-align: center;
+}
+
+.bio textarea{
+    width: 50%;
+    height: 140px;
+    border: none;
+    padding: 3% 3%;
+    border-radius: 8px;
+    font-size: 14px;
+    outline: none;
+    text-align: center;
+    box-sizing: border-box;
+    resize: vertical;
+}
+
+.DOB label{
+    display: block;
+    text-align: center;
+    margin-bottom: 8px;
+    font-size: 18px;
+} 
+.DOB input{
+    width: 40%;
+    height: 60px;
+    border: none;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 14px;
+    outline: none;
+    box-sizing: border-box;
+}
+
+.password input{
+    width: 40%;
+    height: 50px;
+    border: none;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 14px;
+    outline: none;
+    box-sizing: border-box;
+}
+
+    .DOB{
+        margin-bottom: 2%;
+        width: 100%;
+        text-align: center;
+    }
+    .password{
+        margin-bottom: 3%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+        padding: 3% 2%;
+        width: 100%;
+        text-align: center;
+    }
+
+    .password label{
+        display: block;
+        text-align: center;
+        margin-bottom: 8px;
+        font-size: 18px;
+    }
+
+    .buttons{
+        display: flex;
+        justify-content: center;
+        padding: 4%;
+        width: 100%;
+        gap: 15%;
+    }
+    .btn{
+        padding: 2% 6%;
+        margin-bottom: 10%;
+        border-radius: 8px;
+        font-size: 14px;
+        font-weight: bold;
+        cursor: pointer;
+        border: 2px solid #00ADB5;
+        background-color: #00ADB5;
+        color: #EEEEEE;  
+    }
+
+
+@media (max-width: 680px) {
+
+    .navbar{
+        padding: 3% 4%;
+        margin-bottom: 20%;
+    }
+
+    .card-wrap {
+        margin-top: 120px;
+        max-width: 100%;
+        height: auto;
+    }
+
+    .profile_img {
+        top: -80px;
+    }
+
+    .profile_img img {
+        width: 110px;
+        height: 110px;
+    }
+
+    .card-title {
+        margin-top: 20px;
+        font-size: 20px;
+    }
+
+    .change {
+        font-size: 12px;
+        margin-top: 10px;
+    }
+
+    .profile-section {
+        grid-template-columns: 1fr;
+        gap: 14px;
+    }
+
+    .profile-section input {
+        width: 100%;
+    }
+
+    .bio textarea {
+        width: 80%;
+        height: auto;
+        font-family: Arial, sans-serif;
+    }
+
+    .DOB input {
+        width: 80%;
+    }
+
+    .password input {
+        width: 80%;
+    }
+
+    .buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .btn {
+        width: 80%;
+        text-align: center;
+    }
+
+}
+
