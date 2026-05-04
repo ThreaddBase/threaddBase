@@ -53,9 +53,3 @@ nav {
     gap: 16px;
   }
 }
-
-@media (max-width: 400px) {
-  .nav-links {
-    display: none;
-  }
-}

@@ -4,16 +4,23 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ThreaddBase</title>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/CSS/util.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/CSS/home.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/CSS/login.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/CSS/registration.css">
-
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet" />
-  <!-- iconify -->
-  <script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap"/>
+<style>
+	.fa-xmark {
+		display: block;
+	}
+</style>
 </head>
 <body>
+	<div id="overlay">
   <!-- navigation starts -->
   <%@ include file="nav.jsp" %>
 
@@ -22,36 +29,49 @@
 
     <div class="hero-left">
       <h1>The best community for
-        <br>
         <span>your discussions.</span>
       </h1>
 
       <div class="buttons-container">
-        <a href="#" class="btn-login">Log In</a>
-        <a href="#" class="btn-signup">Sign Up</a>
+        <button class="btn-login" onclick="loginPopup()">Log In</button>
+        <button class="btn-signup" onclick="scrollToRegister()">Sign Up</button>
       </div>
     </div>
 
     <div class="hero-right">
-
-      <div class="card">
-        <img src="https://images.pexels.com/photos/2161449/pexels-photo-2161449.jpeg?auto=compress&cs=tinysrgb&w=400"
-          alt="Southeast Asia street" />
-        <div class="card-info">
-          <p>10 days left</p>
-          <h3>Mainland Southeast</h3>
-          <a href="#">Join</a>
+      <div class="community-box">
+        <div class="search-community"><i class="fa-solid fa-magnifying-glass"></i>Search community</div>
+        <div class="community-container">
+          <div class="community-1">
+            <i class="fa-brands fa-steam"></i>
+            <span>/videoGames</span>
+          </div>
+          <div class="community-1">
+            <i class="fa-solid fa-music"></i>
+            <span>/songs</span>
+          </div>
+          <div class="community-1">
+            <i class="fa-solid fa-play"></i>
+            <span>/anime</span>
+          </div>
+          <div class="community-1">
+            <i class="fa-solid fa-code"></i>
+            <span>/cooding</span>
+          </div>
         </div>
       </div>
-
-      <div class="card">
-        <img src="https://images.pexels.com/photos/3756679/pexels-photo-3756679.jpeg?auto=compress&cs=tinysrgb&w=400"
-          alt="Modern headshot" />
-        <div class="card-info">
-          <p class="tag">10 days left</p>
-          <h3>The Modern Headshot</h3>
-          <a href="#">Join</a>
+      <div class="about-box">
+        <div class="context">
+          <span>Context</span>
+          <i class="fa-solid fa-angle-down"></i>
         </div>
+        <ul>
+          <li>User-generated content</li>
+          <li>Voting system</li>
+          <li>Threaded comments</li>
+          <li>Community-based feeds</li>
+          <li>Post & share</li>
+        </ul>
       </div>
     </div>
   </section>
@@ -236,7 +256,7 @@
             <div class="post-avatar-wrap">
               <img src="https://api.dicebear.com/7.x/thumbs/svg?seed=sujal" alt="sujal_p" class="post-avatar"/>
             </div>
-            <h4 class="post-author">sujal_</h4>
+            <h4 class="post-author">Sudhanshu_</h4>
             <p class="post-desc">Dropped a hot take on remote work vs office culture — 200+ upvotes and the most civil back-and-forth seen on the platform.</p>
           </div>
         </div>
@@ -263,5 +283,58 @@
     </div>
   </div>
   <!-- CTA section ends -->
+
+	</div>
+  <!-- Login popup -->
+
+   <%@ include file="loginModel.jsp" %>
+   
+   <!-- Toast popup -->
+    <div class="toast">
+    <span class="toast-dot"></span>
+    Community
+  </div>   
+   
+	<script type="text/javascript">
+		function scrollToRegister() {
+		    document.querySelector('.register-container').scrollIntoView({ behavior: 'smooth' });
+		}
+		
+	    const toast = document.querySelector('.toast');
+	    const communityBox = document.querySelector('.community-box');
+	    const aboutBox = document.querySelector('.about-box');
+
+	    document.addEventListener('mousemove', (e) => {
+	      setTimeout(() => {
+	        toast.style.left = e.clientX + 16 + 'px';
+	        toast.style.top = e.clientY + 16 + 'px';
+	      }, 200);
+
+	    });
+
+	    communityBox.addEventListener('mousemove', () => {
+	      toast.textContent = 'Search Community';
+	      toast.classList.add('visible');
+	      aboutBox.style.opacity = '0.5';
+	    });
+
+	    communityBox.addEventListener('mouseout', () => {
+	      toast.classList.remove('visible');
+	      aboutBox.style.opacity = '1';
+	    });
+
+	    aboutBox.addEventListener('mousemove', () => {
+	      toast.textContent = 'Know Threadbase';
+	      toast.classList.add('visible');
+	      communityBox.style.opacity = '0.5';
+	    });
+
+	    aboutBox.addEventListener('mouseout', () => {
+	      toast.classList.remove('visible');
+	      communityBox.style.opacity = '1';
+	    });
+
+	</script>
+  <script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
 </body>
 </html>

@@ -1,0 +1,135 @@
+@charset "UTF-8";
+
+.page-title {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 24px 40px;
+}
+
+.page-title h1 {
+  font-size: 2rem;
+}
+
+.posts {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 0 40px 32px;
+}
+
+.post {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 18px 20px;
+  background: var(--color-secondary);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 18px;
+}
+
+.post-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex: 1;
+}
+
+.mini-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--color-slate);
+  flex-shrink: 0;
+}
+
+.post-left h4 {
+  margin-bottom: 6px;
+}
+
+.post-left p {
+  color: var(--color-slate);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.post-buttons {
+  display: flex;
+  gap: 12px;
+}
+
+.view-btn,
+.leave-btn {
+  padding: 10px 16px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--color-font);
+  cursor: pointer;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.view-btn:hover,
+.leave-btn:hover {
+  transform: translateY(-1px);
+  opacity: 0.95;
+}
+
+.more-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 22px 28px;
+}
+
+.more-section h2 {
+  font-size: 1rem;
+  text-transform: uppercase;
+  color: var(--color-font);
+  letter-spacing: 0.12em;
+}
+
+.load-more-btn {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 999px;
+  background: var(--gradient-aqua);
+  color: #111;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.recommended-section {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 0 40px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.recommended-section h2 {
+  font-size: 1.2rem;
+  margin-bottom: 12px;
+}
+
+@media (max-width: 760px) {
+  .profile-header,
+  .post {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .tabs {
+    padding: 14px 18px;
+    gap: 12px;
+  }
+
+  .post-buttons {
+    justify-content: flex-end;
+    width: 100%;
+  }
+}
