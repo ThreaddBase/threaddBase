@@ -13,6 +13,7 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
+import com.util.CookieUtil;
 import com.util.SessionUtil;
 
 /**
@@ -24,7 +25,7 @@ public class AuthenticationFilter extends HttpFilter implements Filter {
 	// Public pages
     private static final String LOGIN   = "/login";
     private static final String REGISTER = "/register";
-    private static final String HOME    = "/home";
+    private static final String HOME = "/home";
     private static final String CONTACT = "/contact";
     private static final String ABOUTUS = "/aboutUS";
     private static final String LOGOUT = "/logout";
@@ -36,7 +37,7 @@ public class AuthenticationFilter extends HttpFilter implements Filter {
     	"/admin/edit",
         "/admin/dashboard",
         "/admin/community",
-        "/admin/userManagement"
+        "/admin/userManagement"        
     };
 
     // USER allowed URIs
@@ -48,7 +49,8 @@ public class AuthenticationFilter extends HttpFilter implements Filter {
         "/user/notification",
         "/user",
         "/user/setting",
-        "/community/view"
+        "/community/view",
+        "/user/edit"
     };
     
     /**

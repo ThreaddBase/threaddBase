@@ -1,45 +1,35 @@
 package com.controller;
 
+import java.io.File;
+import java.io.IOException;
+
+import com.service.RegisterService;
+import com.util.ImageUtil;
+
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.io.IOException;
+import jakarta.servlet.http.Part;
 
-import com.service.RegisterService;
-
-/**
- * Servlet implementation class RegisterController
- */
-@WebServlet(asyncSupported = true, urlPatterns = { "/register" })
+@WebServlet("/register")
+@MultipartConfig(
+    fileSizeThreshold = 1024 * 1024,      // 1MB
+    maxFileSize = 5 * 1024 * 1024,  // 5MB
+    maxRequestSize = 10 * 1024 * 1024  // 10MB
+)
 public class RegisterController extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public RegisterController() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		request.getRequestDispatcher("/WEB-INF/Pages/home.jsp").forward(request, response);
-	}
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		try {
-			System.out.println("do post reached");
-            // Get form parameters
+        System.out.println("--- RegisterController doPost reached ---");
+
+        try {
+            // Text fields
             String firstName = request.getParameter("first_name");
             String lastName = request.getParameter("last_name");
             String dob = request.getParameter("dob");
@@ -47,19 +37,41 @@ public class RegisterController extends HttpServlet {
             String email = request.getParameter("email");
             String password = request.getParameter("password");
 
-            RegisterService service = new RegisterService();
-            service.registerUser(firstName, lastName, dob, username, email, password);
 
+            // Profile picture upload
+            String profilePicPath = null;
+            Part filePart = request.getPart("profile_pic");
+
+            if (filePart != null && filePart.getSize() > 0) {
+                ImageUtil imageUtil = new ImageUtil();
+                String rootPath  = getServletContext().getRealPath("/uploads");
+                String saveFolder = "profile_pics";
+
+                // uploadImage now returns the saved filename, or null on failure
+                String savedFileName = imageUtil.uploadImage(filePart, rootPath, saveFolder);
+
+                if (savedFileName == null) {
+                    throw new Exception("Image upload failed");
+                }
+
+                // Build the relative path to store in DB
+                profilePicPath = "uploads/" + saveFolder + "/" + savedFileName;
+            }
+
+            System.out.println("profilePicPath: " + profilePicPath);
+
+            // Register the user
+            RegisterService service = new RegisterService();
+            service.registerUser(firstName, lastName, dob, username, email, password, profilePicPath);
+
+            System.out.println("registerUser done — redirecting to home");
             response.sendRedirect(request.getContextPath() + "/home");
-            System.out.println("registerUser done");
 
         } catch (Exception e) {
-            // TODO: Handle exception properly (currently missing in the image)
             e.printStackTrace();
-            System.out.println("Registation Failed");
+            System.out.println("Registration Failed");
             request.setAttribute("errorMessage", "Registration failed. Please try again.");
             request.getRequestDispatcher("/WEB-INF/Pages/home.jsp").forward(request, response);
         }
-	}
-
+    }
 }
