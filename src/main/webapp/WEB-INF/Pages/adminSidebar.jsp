@@ -5,7 +5,7 @@
     <div class="bar"></div>
     <ul class="nav-links">
         <li>
-            <a href="<%=request.getContextPath()%>/admin/home">
+            <a href="<%=request.getContextPath()%>/admin/dashboard">
                 <i class="fas fa-chart-line"></i> <span>Dashboard</span>
             </a>
         </li>
