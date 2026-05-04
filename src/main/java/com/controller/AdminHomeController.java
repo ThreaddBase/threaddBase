@@ -6,6 +6,14 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.SQLException;
+import java.util.List;
+
+import com.model.CommunityModel;
+import com.service.DashboardService;
+
+import java.time.LocalDate;
+
 
 /**
  * Servlet implementation class AdminHomeController
@@ -21,13 +29,40 @@ public class AdminHomeController extends HttpServlet {
         super();
         // TODO Auto-generated constructor stub
     }
+    
+    // object of DashboardService
+    private DashboardService dashboardService = new DashboardService();
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		request.getRequestDispatcher("/WEB-INF/Pages/adminHome.jsp").forward(request, response);
+		try {
+			// get data from service
+			int totalUser = dashboardService.getTotalUser();
+			int totalCommunity = dashboardService.getTotalCommunities();
+			List<CommunityModel> topCommunity = dashboardService.getTopCommunities();
+			List<CommunityModel> allCommunity = dashboardService.getAllCommunities();
+			
+			// set data in key pair value
+			request.setAttribute("totalUser", totalUser);
+			request.setAttribute("totalCommunity", totalCommunity);
+			request.setAttribute("topCommunity", topCommunity);
+			request.setAttribute("allCommunity", allCommunity);
+			request.setAttribute("today", LocalDate.now().toString());
+			
+			
+			request.getRequestDispatcher("/WEB-INF/Pages/adminHome.jsp").forward(request, response);
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			throw new ServletException("Database error in AdminController", e);
+		}
+		
+		
+		
 	}
 
 	/**

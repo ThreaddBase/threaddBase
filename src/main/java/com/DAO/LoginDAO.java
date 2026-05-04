@@ -15,8 +15,10 @@ public class LoginDAO {
         String sql = "SELECT * FROM user WHERE username = ?";
 
         // All three closed automatically — even if an exception occurs
-        try (Connection con = DBConfig.getConnection();
-             PreparedStatement ps = con.prepareStatement(sql)) {
+        try (
+        		Connection con = DBConfig.getConnection();
+        		PreparedStatement ps = con.prepareStatement(sql)
+            ) {
 
             ps.setString(1, username);
 

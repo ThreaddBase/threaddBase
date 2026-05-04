@@ -50,7 +50,8 @@ public class AuthenticationFilter extends HttpFilter implements Filter {
         "/user",
         "/user/setting",
         "/community/view",
-        "/user/edit"
+        "/user/edit",
+        "/comment"
     };
     
     /**
@@ -126,7 +127,7 @@ public class AuthenticationFilter extends HttpFilter implements Filter {
             return;
         }
         
-        // Step 4: Role-based access check
+        // Role-based access check
         if ("ADMIN".equals(role)) { // admin role check
             if (isAllowed(path, adminURIs)) {
                 chain.doFilter(request, response);  // admin allowed
@@ -145,7 +146,7 @@ public class AuthenticationFilter extends HttpFilter implements Filter {
             // Unknown role → logout and go home
             res.sendRedirect(contextPath + "/logout");
         }
-        System.out.println(">>> PATH: [" + path + "] | ROLE: [" + role + "] | LOGGED IN: [" + isLoggedIn + "]");
+        System.out.println(">>> PATH: [" + path + "] | ROLE: [" + role + "] | LOGGED IN: [" + isLoggedIn + "]"); // check user path, role and islogged or not
 	}
 
 	/**
