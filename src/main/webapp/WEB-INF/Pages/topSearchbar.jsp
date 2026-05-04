@@ -3,8 +3,8 @@
         <input type="text" placeholder="Search...">
         <button><i class="fas fa-search"></i></button>
     </div>
-    <div class="user-profile">
+    <a href="<%=request.getContextPath()%>/user" class="user-profile">
         <div class="avatar"></div>
         <span class="username">John Doe</span>
-    </div>
+    </a>
 </div>

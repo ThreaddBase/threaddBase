@@ -23,7 +23,7 @@
       <h2>Harry Newgate</h2>
       <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
     </div>
-    <button class="edit-btn">Edit Profile</button>
+    <button class="edit-btn"><a a href="<%=request.getContextPath()%>/admin/edit">Edit Profile</a></button>
   </section>
 
 

@@ -15,7 +15,7 @@
     <!--TOP Section-->
     <div class="TOP">
         <div class="toplogo">
-            <div class="topimagelogo"> <h3 style="justify-self: center; font-size: 25px; margin: 1.2rem auto;">LOGO</h3></div>
+            <img src="<%=request.getContextPath()%>/Assets/logo_white.png" class="topimagelogo"></img>
         </div>
         <div class="toptext">
             <h1>Discover a new <span style="color: #00ADB5;">base</span> for your  <span style="color: #00ADB5;">threads.</span></h1>
@@ -60,34 +60,34 @@
     <h2>Meet the Team</h2>
     <div class="team-slider">
         <div class="team-card">
-            <img src="<%=request.getContextPath()%>/Assets/photo.jpg" class="team-img"></img>
+            <img src="<%=request.getContextPath()%>/Assets/gaurab.jpg" class="team-img"></img>
             <h3>Gaurab Tandukar</h3>
-            <p style="color: #00ADB5;">Fullstack Developer</p>
+            <p style="color: #00ADB5;">CEO</p>
             <article>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam, est ab? Laudantium, voluptatem exercitationem quaerat ab sequi iure quod, nesciunt et illum molestiae voluptatum dignissimos! Libero inventore ducimus minus explicabo.</article>
         </div>
         <div class="team-card">
-            <div class="team-img"></div>
+            <img src="<%=request.getContextPath()%>/Assets/suva.jpg" class="team-img"></img>
             <h3>Suvashish Shrestha</h3>
-            <p style="color: #00ADB5;">Backend Developer</p>
+            <p style="color: #00ADB5;">Product Manager</p>
             <article>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam, est ab? Laudantium, voluptatem exercitationem quaerat ab sequi iure quod, nesciunt et illum molestiae voluptatum dignissimos! Libero inventore ducimus minus explicabo.</article>
         </div>
         <div class="team-card">
-            <div class="team-img"></div>
+            <img src="<%=request.getContextPath()%>/Assets/samundra.jpg" class="team-img"></img>
             <h3>Samundra Adhikari</h3>
-            <p style="color: #00ADB5;">UI/UX Designer</p>
+            <p style="color: #00ADB5;">Managing Director</p>
             <article>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam, est ab? Laudantium, voluptatem exercitationem quaerat ab sequi iure quod, nesciunt et illum molestiae voluptatum dignissimos! Libero inventore ducimus minus explicabo.</article>
         </div>
         <div class="team-card">
-            <div class="team-img"></div>
+            <img src="<%=request.getContextPath()%>/Assets/sudhanshu.jpg" class="team-img"></img>
             <h3>Sudhaanshu Shamsher Thapa</h3>
-            <p style="color: #00ADB5;">Frontend Developer</p>
+            <p style="color: #00ADB5;">Executive Assistant</p>
             <article>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam, est ab? Laudantium, voluptatem exercitationem quaerat ab sequi iure quod, nesciunt et illum molestiae voluptatum dignissimos! Libero inventore ducimus minus explicabo.</article>
 
         </div>
         <div class="team-card">
-            <div class="team-img"></div>
+            <img src="<%=request.getContextPath()%>/Assets/sujal.jpg" class="team-img"></img>
             <h3>Sujal Pokhrel</h3>
-            <p style="color: #00ADB5;">Database Architecture</p>
+            <p style="color: #00ADB5;">HR</p>
             <article>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam, est ab? Laudantium, voluptatem exercitationem quaerat ab sequi iure quod, nesciunt et illum molestiae voluptatum dignissimos! Libero inventore ducimus minus explicabo.</article>
 
         </div>
@@ -100,12 +100,12 @@
 <div class="final">
     <div class="final-left">
         <h2>Bored? Don't wanna stay here anymore?</h2>
-        <button class="final-btn">Home</button>
+        <button class="final-btn"><a href="<%=request.getContextPath()%>/home">Home</a></button>
     </div>
     <div class="final-divider"></div>
     <div class="final-right">
         <h2>Feeling like an extrovert? Wanna grab a digital coffee with us?</h2>
-        <button class="final-btn">Contact Us</button>
+        <button class="final-btn"><a href="<%=request.getContextPath()%>/contact">Contact Us</a></button>
     </div>
 </div>
 

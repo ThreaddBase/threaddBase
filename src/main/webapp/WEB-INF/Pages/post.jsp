@@ -1,4 +1,4 @@
- <div class="post-card">
+<div class="post-card">
     <div class="post-left">
         <div class="post-header">
             <div class="avatar"></div>
