@@ -10,7 +10,7 @@ import java.io.IOException;
 /**
  * Servlet implementation class AdminHomeController
  */
-@WebServlet(asyncSupported = true, urlPatterns = { "/admin/home" })
+@WebServlet(asyncSupported = true, urlPatterns = { "/admin/dashboard" })
 public class AdminHomeController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

@@ -68,7 +68,7 @@ public class LoginController extends HttpServlet {
             throws IOException {
         String base = request.getContextPath();
         if (SessionUtil.hasRole(request, SessionUtil.ROLE_ADMIN)) {
-            response.sendRedirect(base + "/admin");
+            response.sendRedirect(base + "/admin/dashboard");
         } else {
             response.sendRedirect(base + "/user/home");
         }

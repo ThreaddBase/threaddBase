@@ -19,7 +19,7 @@ import com.util.SessionUtil;
 /**
  * Servlet implementation class AdminEditController
  */
-@WebServlet(asyncSupported = true, urlPatterns = { "/adminEdit" })
+@WebServlet(asyncSupported = true, urlPatterns = { "/admin/edit" })
 public class AdminEditController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
