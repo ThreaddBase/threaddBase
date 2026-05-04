@@ -128,6 +128,6 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
 	        tag.classList.add('active');
 	    });
 	});
-</script> 
+</script> 	
 </body>
 </html>

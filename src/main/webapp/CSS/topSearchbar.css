@@ -13,6 +13,19 @@
     position: relative;
 }
 
+
+.comment-bar {
+    margin-right: 250px;
+    height: 66px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 0 30px;
+    background-color: transparent;
+    border-bottom: 2px solid #333;
+    position: relative;
+}
+
 .search-container {
     position: absolute;
     left: 50%;
