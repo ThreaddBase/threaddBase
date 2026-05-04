@@ -13,11 +13,19 @@
 
 .register-text {
     font-size: 3rem;
+    max-width: 300px;
 }
 
 .register-text span {
     display: block;
     color: var(--color-highlight);
+}
+
+.register-text p {
+    font-size: 1rem;
+    color: var(--color-slate);
+    margin-top: 0.75rem;
+    line-height: 1.5;
 }
 
 .register-tab {
@@ -77,15 +85,50 @@
     width: 100%;
     transition: border-color 0.2s, box-shadow 0.2s;
     outline: none;
+    box-sizing: border-box;
 }
 
-.input-group input::placeholder {
+.input-section input::placeholder {
     color: #555c66;
 }
 
-.input-group input:focus {
+.input-section input:focus {
     border-color: var(--color-highlight);
     box-shadow: 0 0 0 3px rgba(0, 173, 181, 0.15);
+}
+
+/* Profile picture upload */
+.profile-upload-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    background-color: var(--color-primary);
+    border: 1.5px solid rgba(255, 255, 255, 0.08);
+    border-radius: 6px;
+    padding: 0.6rem 0.85rem;
+    color: var(--color-slate);
+    font-size: 0.9rem;
+    font-family: 'Outfit', sans-serif;
+    cursor: pointer;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.profile-upload-btn:hover {
+    border-color: var(--color-highlight);
+    box-shadow: 0 0 0 3px rgba(0, 173, 181, 0.15);
+}
+
+.profile-upload-btn i {
+    font-size: 1rem;
+    color: var(--color-highlight);
+    flex-shrink: 0;
+}
+
+.profile-upload-btn.file-selected {
+    border-color: var(--color-highlight);
+    color: var(--color-font);
 }
 
 .terms {
@@ -152,8 +195,7 @@
     text-decoration: underline;
 }
 
-/* Media making webpage responsive */
-
+/* Responsive */
 @media (max-width: 800px) {
     .register-container {
         flex-direction: column;
@@ -191,15 +233,10 @@
 @media (max-width: 500px) {
     .register-tab {
         width: 80%;
-        height: 60%;
     }
 
     .register-text {
         font-size: 2.3rem;
-    }
-
-    .register-container {
-        gap: 1.3 rem;
     }
 }
 

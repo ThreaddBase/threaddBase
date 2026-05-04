@@ -45,11 +45,11 @@ public class AdminEditController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 	        throws ServletException, IOException {
 	    try {
-	        String username  = request.getParameter("username");
+	        String username = request.getParameter("username");
 	        String firstname = request.getParameter("f-name");
-	        String lastname  = request.getParameter("l-name");
-	        String bio       = request.getParameter("bio");
-	        String dob       = request.getParameter("dob");
+	        String lastname = request.getParameter("l-name");
+	        String bio = request.getParameter("bio");
+	        String dob = request.getParameter("dob");
 
 	        UpdateService userService = new UpdateService();
 	        String error = userService.updateProfile(username, firstname, lastname, bio, dob);

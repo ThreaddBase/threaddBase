@@ -8,6 +8,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 import com.util.SessionUtil;
+import com.model.UserModel;
 import com.service.LoginService;
 
 
@@ -31,7 +32,7 @@ public class LoginController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
+		SessionUtil.getAttribute(request, "loggeduser");
 		request.getRequestDispatcher("/WEB-INF/Pages/login.jsp").include(request, response);
 	}
 

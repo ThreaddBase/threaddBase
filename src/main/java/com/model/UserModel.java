@@ -19,15 +19,15 @@ public class UserModel {
     public UserModel(String username, String firstName, String lastName,
                      String bio, String dob, String email,
                      String password, String profileImage, String role) {
-        this.username     = username;
-        this.firstName    = firstName;
-        this.lastName     = lastName;
-        this.bio          = bio;
-        this.dob          = dob;
-        this.email        = email;
-        this.password     = password;
+        this.username = username;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.bio = bio;
+        this.dob = dob;
+        this.email = email;
+        this.password = password;
         this.profileImage = profileImage;
-        this.role         = role;
+        this.role = role;
     }
 
     // ─── Getters & Setters ──────────────────────────────────────
@@ -102,21 +102,5 @@ public class UserModel {
 
     public void setRole(String role) {
         this.role = role;
-    }
-
-    // ─── toString (useful for debugging) ────────────────────────
-
-    @Override
-    public String toString() {
-        return "UserModel{" +
-                "username='" + username + '\'' +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", bio='" + bio + '\'' +
-                ", dob='" + dob + '\'' +
-                ", email='" + email + '\'' +
-                ", role='" + role + '\'' +
-                ", profileImage='" + profileImage + '\'' +
-                '}';
     }
 }
