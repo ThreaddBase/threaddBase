@@ -1,5 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -45,40 +47,26 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
         <div class="left-stats">
           <div class="stat-card">
             <div class="stat-card-title">Total Users</div>
-            <div class="stat-card-number">500</div>
+            <div class="stat-card-number">${totalUser}</div>
           </div>
           <div class="stat-card">
             <div class="stat-card-title">Communities</div>
-            <div class="stat-card-number">07</div>
+            <div class="stat-card-number">${totalCommunity}</div>
           </div>
         </div>
 
         <div class="communities-card">
           <div class="communities-card-title">Top Communities</div>
-          <div class="community-list-item">
-            <span class="community-rank">1.</span>
-            <span class="community-name">Community number 1</span>
-            <span class="community-dash">–</span>
-            <span class="community-count">109 Users</span>
-          </div>
-          <div class="community-list-item">
-            <span class="community-rank">2.</span>
-            <span class="community-name">Community number 2</span>
-            <span class="community-dash">–</span>
-            <span class="community-count">99 Users</span>
-          </div>
-          <div class="community-list-item">
-            <span class="community-rank">3.</span>
-            <span class="community-name">Community number 3</span>
-            <span class="community-dash">–</span>
-            <span class="community-count">90 Users</span>
-          </div>
-          <div class="community-list-item">
-            <span class="community-rank">4.</span>
-            <span class="community-name">Community number 4</span>
-            <span class="community-dash">–</span>
-            <span class="community-count">88 Users</span>
-          </div>
+          <!-- dynamically change community numebr -->
+          
+          <c:forEach var="c" items="${topCommunity}" varStatus="count">
+          		<div class="community-list-item">
+          			<span class="community-rank">${count.index + 1}</span>
+            		<span class="community-name">${c.name}</span>
+            		<span class="community-dash">–</span>
+            		<span class="community-count">${c.userCount}</span>
+          		</div>
+          </c:forEach>
         </div>
       </div>
 
@@ -113,19 +101,12 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
           </div>
 
           <div class="legend-card">
-            <div class="legend-title">legends</div>
-            <div class="legend-item">
-              <span class="legend-icon" style="color: #4ecdc4;">C</span>
-              <span class="legend-label">Community 1</span>
-            </div>
-            <div class="legend-item">
-              <span class="legend-icon" style="color: #d4a574;">C</span>
-              <span class="legend-label">Community 2</span>
-            </div>
-            <div class="legend-item">
-              <span class="legend-icon" style="color: #e05555;">C</span>
-              <span class="legend-label">Community 3</span>
-            </div>
+            <c:forEach var="community" items="${allCommunity}">
+			    <div class="legend-item">
+			        <span class="legend-icon">C</span>
+			        <span class="legend-label">${community.name}</span>
+			    </div>
+			</c:forEach>
           </div>
 
         </div>
@@ -137,34 +118,18 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
           </div>
           <div class="report-admin-row">
             <span>Admin Name</span>
-            <span>2026-09-11</span>
+            <span>${today}</span>
           </div>
-          <div class="community-report-item">
-            <span class="report-community-name">Community One</span>
-            <button class="expand-btn">Expand</button>
-          </div>
-          <div class="community-report-item">
-            <span class="report-community-name">Community Two</span>
-            <button class="expand-btn">Expand</button>
-          </div>
-          <div class="community-report-item">
-            <span class="report-community-name">Community Three</span>
-            <button class="expand-btn">Expand</button>
-          </div>
-          <div class="community-report-item">
-            <span class="report-community-name">Community Four</span>
-            <button class="expand-btn">Expand</button>
-          </div>
-          <div class="community-report-item">
-            <span class="report-community-name">Community Five</span>
-            <button class="expand-btn">Expand</button>
-          </div>
+          
+          <c:forEach var="c" items="${allCommunity}">
+	          <div class="community-report-item">
+	            <span class="report-community-name">${c.name}</span>
+	            <button class="expand-btn">Expand</button>
+	          </div>
+          </c:forEach>
         </div>
-
       </div>
-
     </main>
   </div>
-
 </body>
 </html>
