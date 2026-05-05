@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"  isELIgnored="false"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -46,226 +47,76 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
 
             <!-- Column headers -->
             <div class="table-headers">
-                <span>User</span>
-                <span>Email Address</span>
-                <span>Post</span>
-                <span>Comment</span>
-                <span></span>
-            </div>
+			    <span>User</span>
+			    <span>Email Address</span>
+			    <span>Post</span>
+			    <span>Comment</span>
+			    <span>Reports</span>
+			    <span>Status</span>
+			    <span></span>
+			</div>
 
             <!-- User row 1 -->
-            <div class="user-row">
-                <div class="user-name-cell">
-                    <div class="user-avatar"></div>
-                    <span>Jhon DOE</span>
-                </div>
-                <div class="user-email">DoetheJhon122@gmail.com</div>
-                <div class="user-post">103</div>
-                <div class="user-comment">921</div>
-                <div class="user-actions">
-                    <button class="actions-btn">Actions</button>
-                    <span class="three-dots">&#8942;</span>
-                </div>
-            </div>
+            <c:forEach var="user" items="${userList}">
+            	<div class="user-row">
 
-            <!-- User row 2 -->
-            <div class="user-row">
-                <div class="user-name-cell">
-                    <div class="user-avatar"></div>
-                    <span>Jhon DOE</span>
-                </div>
-                <div class="user-email">DoetheJhon122@gmail.com</div>
-                <div class="user-post">103</div>
-                <div class="user-comment">921</div>
-                <div class="user-actions">
-                    <button class="actions-btn">Actions</button>
-                    <span class="three-dots">&#8942;</span>
-                </div>
-            </div>
+                    <%-- Profile Picture --%>
+                    <div class="user-name-cell">
+                        <c:choose>
+                            <c:when test="${user.profilePicture != null}">
+                                <img class="user-avatar"
+                                     src="data:image/jpeg;base64,
+                                     <%= java.util.Base64.getEncoder().encodeToString(
+                                         ((com.model.UserModel) pageContext.getAttribute("user"))
+                                         .getProfilePicture()
+                                     ) %>"
+                                     alt="avatar"/>
+                            </c:when>
+                            <c:otherwise>
+                                <div class="user-avatar"></div>
+                            </c:otherwise>
+                        </c:choose>
+                        <span>${user.firstName} ${user.lastName}</span>
+                    </div>
 
-            <!-- User row 3 -->
-            <div class="user-row">
-                <div class="user-name-cell">
-                    <div class="user-avatar"></div>
-                    <span>Jhon DOE</span>
-                </div>
-                <div class="user-email">DoetheJhon122@gmail.com</div>
-                <div class="user-post">103</div>
-                <div class="user-comment">921</div>
-                <div class="user-actions">
-                    <button class="actions-btn">Actions</button>
-                    <span class="three-dots">&#8942;</span>
-                </div>
-            </div>
+                    <%-- Email --%>
+                    <div class="user-email">${user.email}</div>
 
-            <!-- User row 4 -->
-            <div class="user-row">
-                <div class="user-name-cell">
-                    <div class="user-avatar"></div>
-                    <span>Jhon DOE</span>
-                </div>
-                <div class="user-email">DoetheJhon122@gmail.com</div>
-                <div class="user-post">103</div>
-                <div class="user-comment">921</div>
-                <div class="user-actions">
-                    <button class="actions-btn">Actions</button>
-                    <span class="three-dots">&#8942;</span>
-                </div>
-            </div>
+                    <%-- Post Count --%>
+                    <div class="user-post">${user.postCount}</div>
 
-            <!-- User row 5 -->
-            <div class="user-row">
-                <div class="user-name-cell">
-                    <div class="user-avatar"></div>
-                    <span>Jhon DOE</span>
-                </div>
-                <div class="user-email">DoetheJhon122@gmail.com</div>
-                <div class="user-post">103</div>
-                <div class="user-comment">921</div>
-                <div class="user-actions">
-                    <button class="actions-btn">Actions</button>
-                    <span class="three-dots">&#8942;</span>
-                </div>
-            </div>
+                    <%-- Comment Count --%>
+                    <div class="user-comment">${user.commentCount}</div>
 
-            <!-- User row 6 -->
-            <div class="user-row">
-                <div class="user-name-cell">
-                    <div class="user-avatar"></div>
-                    <span>Jhon DOE</span>
-                </div>
-                <div class="user-email">DoetheJhon122@gmail.com</div>
-                <div class="user-post">103</div>
-                <div class="user-comment">921</div>
-                <div class="user-actions">
-                    <button class="actions-btn">Actions</button>
-                    <span class="three-dots">&#8942;</span>
-                </div>
-            </div>
+                    <%-- Report Count --%>
+                    <div class="user-report">${user.reportCount}</div>
 
-            <!-- User row 7 -->
-            <div class="user-row">
-                <div class="user-name-cell">
-                    <div class="user-avatar"></div>
-                    <span>Jhon DOE</span>
-                </div>
-                <div class="user-email">DoetheJhon122@gmail.com</div>
-                <div class="user-post">103</div>
-                <div class="user-comment">921</div>
-                <div class="user-actions">
-                    <button class="actions-btn">Actions</button>
-                    <span class="three-dots">&#8942;</span>
-                </div>
-            </div>
+                    <%-- Status Badge --%>
+                    <div class="user-status">
+                        <c:choose>
+                            <c:when test="${user.status == 'Active'}">
+                                <span class="status-badge active">Active</span>
+                            </c:when>
+                            <c:otherwise>
+                                <span class="status-badge banned">Banned</span>
+                            </c:otherwise>
+                        </c:choose>
+                    </div>
 
-            <!-- User row 8 -->
-            <div class="user-row">
-                <div class="user-name-cell">
-                    <div class="user-avatar"></div>
-                    <span>Jhon DOE</span>
-                </div>
-                <div class="user-email">DoetheJhon122@gmail.com</div>
-                <div class="user-post">103</div>
-                <div class="user-comment">921</div>
-                <div class="user-actions">
-                    <button class="actions-btn">Actions</button>
-                    <span class="three-dots">&#8942;</span>
-                </div>
-            </div>
+                    <%-- Actions --%>
+                    <div class="user-actions">
+                        <button class="actions-btn">Banned</button>
+                        <span class="three-dots">&#8942;</span>
+                    </div>
 
-            <!-- User row 9 -->
-            <div class="user-row">
-                <div class="user-name-cell">
-                    <div class="user-avatar"></div>
-                    <span>Jhon DOE</span>
                 </div>
-                <div class="user-email">DoetheJhon122@gmail.com</div>
-                <div class="user-post">103</div>
-                <div class="user-comment">921</div>
-                <div class="user-actions">
-                    <button class="actions-btn">Actions</button>
-                    <span class="three-dots">&#8942;</span>
-                </div>
-            </div>
-
-            <!-- User row 10 -->
-            <div class="user-row">
-                <div class="user-name-cell">
-                    <div class="user-avatar"></div>
-                    <span>Jhon DOE</span>
-                </div>
-                <div class="user-email">DoetheJhon122@gmail.com</div>
-                <div class="user-post">103</div>
-                <div class="user-comment">921</div>
-                <div class="user-actions">
-                    <button class="actions-btn">Actions</button>
-                    <span class="three-dots">&#8942;</span>
-                </div>
-            </div>
-
-            <!-- User row 11 -->
-            <div class="user-row">
-                <div class="user-name-cell">
-                    <div class="user-avatar"></div>
-                    <span>Jhon DOE</span>
-                </div>
-                <div class="user-email">DoetheJhon122@gmail.com</div>
-                <div class="user-post">103</div>
-                <div class="user-comment">921</div>
-                <div class="user-actions">
-                    <button class="actions-btn">Actions</button>
-                    <span class="three-dots">&#8942;</span>
-                </div>
-            </div>
-
-            <!-- User row 12 -->
-            <div class="user-row">
-                <div class="user-name-cell">
-                    <div class="user-avatar"></div>
-                    <span>Jhon DOE</span>
-                </div>
-                <div class="user-email">DoetheJhon122@gmail.com</div>
-                <div class="user-post">103</div>
-                <div class="user-comment">921</div>
-                <div class="user-actions">
-                    <button class="actions-btn">Actions</button>
-                    <span class="three-dots">&#8942;</span>
-                </div>
-            </div>
-
-            <!-- User row 13 -->
-            <div class="user-row">
-                <div class="user-name-cell">
-                    <div class="user-avatar"></div>
-                    <span>Jhon DOE</span>
-                </div>
-                <div class="user-email">DoetheJhon122@gmail.com</div>
-                <div class="user-post">103</div>
-                <div class="user-comment">921</div>
-                <div class="user-actions">
-                    <button class="actions-btn">Actions</button>
-                    <span class="three-dots">&#8942;</span>
-                </div>
-            </div>
-
-            <!-- User row 14 -->
-            <div class="user-row">
-                <div class="user-name-cell">
-                    <div class="user-avatar"></div>
-                    <span>Jhon DOE</span>
-                </div>
-                <div class="user-email">DoetheJhon122@gmail.com</div>
-                <div class="user-post">103</div>
-                <div class="user-comment">921</div>
-                <div class="user-actions">
-                    <button class="actions-btn">Actions</button>
-                    <span class="three-dots">&#8942;</span>
-                </div>
-            </div>
-
-        </div>
+            </c:forEach>
+            
+            <c:if test="${empty userList}">
+                <div class="no-data">No users found.</div>
+            </c:if>
         <!-- end table area -->
-
+		</div>
     </div>
     <!-- end main content -->
 </body>
