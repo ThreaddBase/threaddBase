@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" isELIgnored="false"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -44,55 +45,37 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
 
         <!-- COMMUNITY CARDS -->
         <div class="community-list">
-
-            <div class="community-card">
-                <img class="community-thumb"
-                    src="https://images.pexels.com/photos/1595385/pexels-photo-1595385.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop"
-                    alt="Community image" />
+			
+			<c:forEach var="community" items="${communityList}">
+				<div class="community-card">
+                	<c:choose>
+				        <c:when test="${not empty community.communityProfileBase64}">
+				            <img class="community-thumb"
+				                 src="data:image/jpeg;base64,${community.communityProfileBase64}"
+				                 alt="avatar"/>
+				        </c:when>
+				        <c:otherwise>
+				            <img class="community-thumb"
+				                 src="<%=request.getContextPath()%>/Assets/default-community.jpg"
+				                 alt="avatar"/>
+				        </c:otherwise>
+				    </c:choose>
                 <div class="card-details">
-                    <div class="card-title">Community Name</div>
-                    <div class="card-created">Created at - 2023-10-28</div>
-                    <div class="card-desc">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laboriosam rerum
-                        explicabo consequatur ex...</div>
+                    <div class="card-title">${community.name}</div>
+                    <div class="card-created">Created at - ${community.createdAt}</div>
+                    <div class="card-desc">${community.description}</div>
                     <div class="card-action-btns">
                         <button class="view-btn">View Community</button>
                         <button class="delete-btn">Delete Community</button>
                     </div>
                 </div>
             </div>
-
-            <div class="community-card">
-                <img class="community-thumb"
-                    src="https://images.pexels.com/photos/1181406/pexels-photo-1181406.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop"
-                    alt="Community image" />
-                <div class="card-details">
-                    <div class="card-title">Community Name</div>
-                    <div class="card-created">Created at - 2023-10-28</div>
-                    <div class="card-desc">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laboriosam rerum
-                        explicabo consequatur ex...</div>
-                    <div class="card-action-btns">
-                        <button class="view-btn">View Community</button>
-                        <button class="delete-btn">Delete Community</button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="community-card">
-                <img class="community-thumb"
-                    src="https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop"
-                    alt="Community image" />
-                <div class="card-details">
-                    <div class="card-title">Community Name</div>
-                    <div class="card-created">Created at - 2023-10-28</div>
-                    <div class="card-desc">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laboriosam rerum
-                        explicabo consequatur ex...</div>
-                    <div class="card-action-btns">
-                        <button class="view-btn">View Community</button>
-                        <button class="delete-btn">Delete Community</button>
-                    </div>
-                </div>
-            </div>
-
+				
+			</c:forEach>
+			
+			<c:if test="${empty communityList}">
+                <div class="no-data">No Community found.</div>
+            </c:if>
         </div>
     </div>
 </body>

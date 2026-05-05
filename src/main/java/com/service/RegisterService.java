@@ -5,7 +5,7 @@ import com.util.PasswordUtil;
 
 public class RegisterService {
 	public void registerUser(String firstName, String lastName, String dob, String username,
-            String email, String password, String profilePicPath) throws Exception {
+            String email, String password, byte[] profilePic) throws Exception {
 
 		System.out.println("--- register service ---");
 
@@ -13,6 +13,6 @@ public class RegisterService {
         String hashedPassword = PasswordUtil.getHashPassword(password);
 
         RegisterDAO dao = new RegisterDAO();
-        dao.registerUser(firstName, lastName, dob, username, email, hashedPassword, profilePicPath);
+        dao.registerUser(firstName, lastName, dob, username, email, hashedPassword, profilePic);
     }
 }

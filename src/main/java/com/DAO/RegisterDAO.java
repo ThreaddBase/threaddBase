@@ -6,7 +6,7 @@ import com.util.DBConfig;
 
 
 public class RegisterDAO {
-	public void registerUser(String firstName, String lastName, String dob, String username, String email, String password, String profilePicPath)
+	public void registerUser(String firstName, String lastName, String dob, String username, String email, String password, byte[] profilePic)
 	throws Exception {
 		System.out.println("Reached register dao");
 		Connection con = DBConfig.getConnection();
@@ -21,7 +21,13 @@ public class RegisterDAO {
 		pst.setString(4, username);
 		pst.setString(5, email);
 		pst.setString(6, password);
-		pst.setString(7, profilePicPath);
+		
+		// ─── save image bytes to BLOB ──────────────────
+        if (profilePic != null && profilePic.length > 0) {
+            pst.setBytes(7, profilePic);  //  bytes go into MEDIUMBLOB
+        } else {
+            pst.setNull(7, java.sql.Types.BLOB); //  null if no image
+        }
 		
 		pst.executeUpdate();
 		System.out.println("register data added to database");

@@ -1,106 +1,116 @@
 package com.model;
 
+import java.util.Base64;
+
 public class UserModel {
 
-    private String username;
+    private int id;
     private String firstName;
     private String lastName;
-    private String bio;
-    private String dob;
     private String email;
-    private String password;
-    private String profileImage;
-    private String role;
+    private String status;
+    private int postCount;
+    private int commentCount;
+    private int reportCount;
+    private byte[] profilePicture;
 
-    // ─── Constructors ───────────────────────────────────────────
+    // No-arg constructor
+    public UserModel() {
+    }
 
-    public UserModel() {}
-
-    public UserModel(String username, String firstName, String lastName,
-                     String bio, String dob, String email,
-                     String password, String profileImage, String role) {
-        this.username = username;
+    // All-arg constructor
+    public UserModel(int id, String firstName, String lastName, String email,
+            String status, int postCount, int commentCount,
+            int reportCount, byte[] profilePicture) {
+        this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.bio = bio;
-        this.dob = dob;
         this.email = email;
-        this.password = password;
-        this.profileImage = profileImage;
-        this.role = role;
+        this.status = status;
+        this.postCount = postCount;
+        this.commentCount = commentCount;
+        this.reportCount = reportCount;
+        this.profilePicture = profilePicture;
     }
 
-    // ─── Getters & Setters ──────────────────────────────────────
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
+    // Getters
+    public int getId() {
+        return id;
     }
 
     public String getFirstName() {
         return firstName;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
     public String getLastName() {
         return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getBio() {
-        return bio;
-    }
-
-    public void setBio(String bio) {
-        this.bio = bio;
-    }
-
-    public String getDob() {
-        return dob;
-    }
-
-    public void setDob(String dob) {
-        this.dob = dob;
     }
 
     public String getEmail() {
         return email;
     }
 
+    public String getStatus() {
+        return status;
+    }
+
+    public int getPostCount() {
+        return postCount;
+    }
+
+    public int getCommentCount() {
+        return commentCount;
+    }
+
+    public int getReportCount() {
+        return reportCount;
+    }
+
+    public byte[] getProfilePicture() {
+        return profilePicture;
+    }
+
+    public String getProfilePictureBase64() {
+        if (profilePicture != null && profilePicture.length > 1000) {
+            return Base64.getEncoder().encodeToString(profilePicture);
+        }
+        return null;
+    }
+    
+    // Setters
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
     public void setEmail(String email) {
         this.email = email;
     }
 
-    public String getPassword() {
-        return password;
+    public void setStatus(String status) {
+        this.status = status;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setPostCount(int postCount) {
+        this.postCount = postCount;
     }
 
-    public String getProfileImage() {
-        return profileImage;
+    public void setCommentCount(int commentCount) {
+        this.commentCount = commentCount;
     }
 
-    public void setProfileImage(String profileImage) {
-        this.profileImage = profileImage;
+    public void setReportCount(int reportCount) {
+        this.reportCount = reportCount;
     }
 
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
+    public void setProfilePicture(byte[] profilePicture) {
+        this.profilePicture = profilePicture;
     }
 }

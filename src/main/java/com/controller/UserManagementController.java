@@ -6,6 +6,11 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.SQLException;
+import java.util.List;
+
+import com.model.UserModel;
+import com.service.UserManagementService;
 
 /**
  * Servlet implementation class UserManagementController
@@ -21,13 +26,28 @@ public class UserManagementController extends HttpServlet {
         super();
         // TODO Auto-generated constructor stub
     }
+    
+    public UserManagementService userMangementService = new UserManagementService();
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		try {
+			
+			List<UserModel> userList = userMangementService.getAllUsers();
+			request.setAttribute("userList", userList);
+			
+			request.getRequestDispatcher("/WEB-INF/Pages/userMonitor.jsp").forward(request, response);
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			throw new ServletException("Database error in UserManagementController", e);
+		}
+		
+		
 		// TODO Auto-generated method stub
-		request.getRequestDispatcher("/WEB-INF/Pages/userMonitor.jsp").forward(request, response);
 	}
 
 	/**
