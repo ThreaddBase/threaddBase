@@ -39,30 +39,20 @@ public class RegisterController extends HttpServlet {
 
 
             // Profile picture upload
-            String profilePicPath = null;
+            byte[] profilePic = null;
             Part filePart = request.getPart("profile_pic");
-
+            
             if (filePart != null && filePart.getSize() > 0) {
-                ImageUtil imageUtil = new ImageUtil();
-                String rootPath  = getServletContext().getRealPath("/uploads");
-                String saveFolder = "profile_pics";
-
-                // uploadImage now returns the saved filename, or null on failure
-                String savedFileName = imageUtil.uploadImage(filePart, rootPath, saveFolder);
-
-                if (savedFileName == null) {
-                    throw new Exception("Image upload failed");
-                }
-
-                // Build the relative path to store in DB
-                profilePicPath = "uploads/" + saveFolder + "/" + savedFileName;
+            	
+                // reads raw binary from HTTP request
+            	profilePic = filePart.getInputStream().readAllBytes();
+                System.out.println("Received image: " + profilePic.length + " bytes");
             }
-
-            System.out.println("profilePicPath: " + profilePicPath);
+            
 
             // Register the user
             RegisterService service = new RegisterService();
-            service.registerUser(firstName, lastName, dob, username, email, password, profilePicPath);
+            service.registerUser(firstName, lastName, dob, username, email, password, profilePic);
 
             System.out.println("registerUser done — redirecting to home");
             response.sendRedirect(request.getContextPath() + "/home");

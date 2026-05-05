@@ -37,7 +37,8 @@ public class AuthenticationFilter extends HttpFilter implements Filter {
     	"/admin/edit",
         "/admin/dashboard",
         "/admin/community",
-        "/admin/userManagement"        
+        "/admin/userManagement",
+        "/admin/userImage"
     };
 
     // USER allowed URIs

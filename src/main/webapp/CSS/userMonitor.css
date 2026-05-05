@@ -35,7 +35,6 @@ body {
   overflow: hidden;
 }
 
-/* Decorative light strip on the left edge */
 .bar {
   top: 30%;
   width: 32%;
@@ -47,7 +46,6 @@ body {
   pointer-events: none;
 }
 
-/* Logo area */
 .logo-container {
   width: 100%;
   display: flex;
@@ -66,7 +64,6 @@ body {
   object-position: center;
 }
 
-/* Fallback text logo if image not found */
 .logo-text {
   color: white;
   font-size: 20px;
@@ -74,7 +71,6 @@ body {
   letter-spacing: 2px;
 }
 
-/* Nav links list */
 .nav-links {
   list-style: none;
   width: 100%;
@@ -95,7 +91,6 @@ body {
   border-radius: 14px;
 }
 
-/* Only the icon has a dark box — not the text, not the sidebar background */
 .nav-links li a i {
   width: 38px;
   height: 38px;
@@ -126,11 +121,11 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-    background: var(--color-primary);
+  background: var(--color-primary);
 }
 
 /* ================================
-   TOP BAR: Search + Profile
+   TOP BAR
 ================================ */
 
 .top-bar {
@@ -142,7 +137,6 @@ body {
   position: relative;
 }
 
-/* Search bar in the center */
 .search-box {
   display: flex;
   align-items: center;
@@ -172,7 +166,6 @@ body {
   font-size: 15px;
 }
 
-/* Profile button top right */
 .profile-btn {
   position: absolute;
   right: 30px;
@@ -213,7 +206,7 @@ body {
 }
 
 .filter-btn {
-  background-color: #2b2b2b;
+  background-color: var(--color-rose);
   color: white;
   border: none;
   border-radius: 20px;
@@ -225,7 +218,11 @@ body {
 }
 
 .filter-btn:hover {
-  background-color: #444;
+    background-color: ff6b8bc8;
+}
+
+.filter-btn:active {
+    transform: scale(0.97);
 }
 
 /* ================================
@@ -234,13 +231,11 @@ body {
 
 .table-area {
   padding: 0 30px 30px 100px;
- 
 }
 
-/* Column headers row */
 .table-headers {
   display: grid;
-  grid-template-columns: 2fr 2.5fr 1fr 1fr 160px;
+  grid-template-columns: 2fr 2.5fr 0.7fr 0.7fr 0.7fr 1fr 160px;
   padding: 0 16px 8px 16px;
   gap: 10px;
 }
@@ -252,10 +247,9 @@ body {
   text-underline-offset: 3px;
 }
 
-/* Each user row card */
 .user-row {
   display: grid;
-  grid-template-columns: 2fr 2.5fr 1fr 1fr 160px;
+  grid-template-columns: 2fr 2.5fr 0.7fr 0.7fr 0.7fr 1fr 160px;
   align-items: center;
   background-color: #2b2b2b;
   border-radius: 50px;
@@ -264,7 +258,6 @@ body {
   gap: 10px;
 }
 
-/* User name cell with avatar */
 .user-name-cell {
   display: flex;
   align-items: center;
@@ -277,6 +270,7 @@ body {
   border-radius: 50%;
   background-color: #c0c0c0;
   flex-shrink: 0;
+  object-fit: cover;
 }
 
 .user-name-cell span {
@@ -285,45 +279,79 @@ body {
   font-weight: 500;
 }
 
-/* Email cell */
 .user-email {
   color: #dddddd;
   font-size: 14px;
 }
 
-/* Post count */
 .user-post {
   color: #dddddd;
   font-size: 14px;
 }
 
-/* Comment count */
 .user-comment {
   color: #dddddd;
   font-size: 14px;
 }
 
-/* Actions cell: button + three dots */
-.user-actions {
+/* ✅ New report count cell */
+.user-report {
+  color: #dddddd;
+  font-size: 14px;
+}
+
+/* ✅ New status cell */
+.user-status {
   display: flex;
   align-items: center;
-  gap: 8px;
-  justify-content: flex-end;
+}
+
+.status-badge {
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.status-badge.active {
+  background-color: #2ecc71;
+  color: #fff;
+}
+
+.status-badge.banned {
+  background-color: #e05555;
+  color: #fff;
+}
+
+.user-actions {
+   display: flex;
+   align-items: center;
+   gap: 22px;
+   justify-content: center;
 }
 
 .actions-btn {
-  background-color: #f0f0f0;
-  color: #111;
+  display: block;
+  width: calc(100% - 40px);
+  margin: 16px 20px;
+  padding: 10px 0;
+  background-color: #00adb5;
+  color: white;
+  font-size: 14px;
+  font-weight: 600;
   border: none;
-  border-radius: 20px;
-  padding: 7px 18px;
-  font-size: 13px;
+  border-radius: 30px;
   cursor: pointer;
-  font-weight: 500;
+  transition: background-color 0.15s ease, transform 0.1s ease;
+  text-align: center;
 }
 
 .actions-btn:hover {
-  background-color: #e0e0e0;
+    background-color: #008f96;
+}
+
+.actions-btn:active {
+    transform: scale(0.97);
 }
 
 .three-dots {
@@ -333,30 +361,36 @@ body {
   padding: 0 4px;
 }
 
+.no-data {
+  color: #aaa;
+  text-align: center;
+  padding: 40px;
+  font-size: 16px;
+}
+
 /* ================================
    MOBILE RESPONSIVE
 ================================ */
+
 @media (max-width: 875px) {
-    .bar{
-       display: none;
-    }    
+  .bar {
+    display: none;
+  }
 }
+
 @media (max-width: 768px) {
 
-  /* --- SIDEBAR: shrink to icon-only strip --- */
   .side-navbar {
-    width: 60px;          /* narrow strip — just enough for the icon boxes */
+    width: 60px;
     gap: 8%;
     padding: 14px 0;
     align-items: center;
   }
 
-  /* Hide the decorative highlight strip on mobile so it doesn't overlay icons */
   .bar {
     display: none;
   }
 
-  /* Logo text shrinks and centers */
   .logo-container {
     padding: 8px 4px;
     justify-content: center;
@@ -374,7 +408,6 @@ body {
     line-height: 1.2;
   }
 
-  /* Nav list: centered, no padding */
   .nav-links {
     padding: 0;
     width: 100%;
@@ -384,7 +417,6 @@ body {
     gap: 6px;
   }
 
-  /* Each link: centered, no gap (text is hidden) */
   .nav-links li {
     width: 100%;
     display: flex;
@@ -398,12 +430,10 @@ body {
     width: 100%;
   }
 
-  /* Hide only the text label — icon box stays */
   .nav-links li a .link-text {
     display: none;
   }
 
-  /* Icon box fits inside the narrow sidebar */
   .nav-links li a i {
     width: 38px;
     height: 38px;
@@ -411,31 +441,25 @@ body {
     font-size: 15px;
   }
 
-  /* --- MAIN CONTENT: push right by exact sidebar width --- */
   .main-content {
     margin-left: 60px;
-    /* Stop content from ever going wider than its container */
     width: calc(100vw - 60px);
     overflow-x: hidden;
   }
 
-  /* --- TOP BAR --- */
   .top-bar {
     padding: 12px 10px;
     gap: 8px;
     justify-content: flex-start;
-    /* profile button is absolute — bring it into normal flow on mobile */
     position: relative;
   }
 
-  /* Search box fills remaining space */
   .search-box {
     width: 100%;
     flex: 1;
-    min-width: 0;        /* lets flex children shrink below their content size */
+    min-width: 0;
   }
 
-  /* Profile button: stop being absolute, sit inline */
   .profile-btn {
     position: static;
     padding: 8px 10px;
@@ -444,12 +468,10 @@ body {
     white-space: nowrap;
   }
 
-  /* Hide "Profile" text, just show the icon */
   .profile-btn span {
     display: none;
   }
 
-  /* --- HEADING ROW --- */
   .heading-row {
     flex-direction: column;
     align-items: flex-start;
@@ -461,19 +483,16 @@ body {
     font-size: 22px;
   }
 
-  /* --- TABLE AREA: switch from grid to stacked cards --- */
   .table-area {
     padding: 0 10px 20px 10px;
-    /* No overflow-x scroll — we reflow into cards instead */
     overflow-x: hidden;
   }
 
-  /* Hide the desktop column headers completely on mobile */
   .table-headers {
     display: none;
   }
 
-  /* Each row becomes a vertical card that wraps */
+  /* Stacked card layout on mobile */
   .user-row {
     display: flex;
     flex-direction: column;
@@ -481,31 +500,36 @@ body {
     border-radius: 16px;
     padding: 12px 14px;
     gap: 6px;
-    /* Remove any min-width that was forcing horizontal scroll */
     min-width: unset;
     width: 100%;
   }
 
-  /* Name + avatar row stays horizontal inside the card */
   .user-name-cell {
     width: 100%;
   }
 
-  /* Email wraps if needed */
   .user-email {
     font-size: 12px;
     color: #bbb;
     word-break: break-all;
   }
 
-  /* Post and comment sit side by side */
   .user-post,
-  .user-comment {
+  .user-comment,
+  .user-report {
     font-size: 12px;
     color: #bbb;
   }
 
-  /* Actions row sits at the bottom of the card, right-aligned */
+  .user-status {
+    width: 100%;
+  }
+
+  .status-badge {
+    font-size: 0.75rem;
+    padding: 3px 10px;
+  }
+
   .user-actions {
     width: 100%;
     justify-content: flex-end;

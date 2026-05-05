@@ -9,10 +9,8 @@ import jakarta.servlet.http.Part;
 
 import java.io.IOException;
 
-import com.DAO.UpdateDAO;
 import com.model.UserModel;
 import com.service.RegisterService;
-import com.service.UpdateService;
 import com.util.SessionUtil;
 
 
@@ -44,29 +42,8 @@ public class AdminEditController extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 	        throws ServletException, IOException {
-	    try {
-	        String username = request.getParameter("username");
-	        String firstname = request.getParameter("f-name");
-	        String lastname = request.getParameter("l-name");
-	        String bio = request.getParameter("bio");
-	        String dob = request.getParameter("dob");
-
-	        UpdateService userService = new UpdateService();
-	        String error = userService.updateProfile(username, firstname, lastname, bio, dob);
-
-	        if (error != null) {
-	            request.setAttribute("errorMessage", error);
-	            request.getRequestDispatcher("/WEB-INF/Pages/adminEdit.jsp").forward(request, response);
-	        } else {
-	            request.setAttribute("successMessage", "Profile updated successfully.");
-	            request.getRequestDispatcher("/WEB-INF/Pages/adminEdit.jsp").forward(request, response);
-	        }
-
-	    } catch (Exception e) {
-	        e.printStackTrace();
-	        request.setAttribute("errorMessage", "Error: Update failed. Please try again.");
 	        request.getRequestDispatcher("/WEB-INF/Pages/adminEdit.jsp").forward(request, response);
-	    }
+	    
 	}
 
 }
