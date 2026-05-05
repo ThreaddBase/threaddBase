@@ -55,29 +55,24 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
 			    <span>Status</span>
 			    <span></span>
 			</div>
-
-            <!-- User row 1 -->
+			
             <c:forEach var="user" items="${userList}">
-            	<div class="user-row">
-
-                    <%-- Profile Picture --%>
-                    <div class="user-name-cell">
-                        <c:choose>
-                            <c:when test="${user.profilePicture != null}">
-                                <img class="user-avatar"
-                                     src="data:image/jpeg;base64,
-                                     <%= java.util.Base64.getEncoder().encodeToString(
-                                         ((com.model.UserModel) pageContext.getAttribute("user"))
-                                         .getProfilePicture()
-                                     ) %>"
-                                     alt="avatar"/>
-                            </c:when>
-                            <c:otherwise>
-                                <div class="user-avatar"></div>
-                            </c:otherwise>
-                        </c:choose>
-                        <span>${user.firstName} ${user.lastName}</span>
-                    </div>
+            <div class="user-row">
+			    <div class="user-name-cell">
+				    <c:choose>
+				        <c:when test="${not empty user.profilePictureBase64}">
+				            <img class="user-avatar"
+				                 src="data:image/jpeg;base64,${user.profilePictureBase64}"
+				                 alt="avatar"/>
+				        </c:when>
+				        <c:otherwise>
+				            <img class="user-avatar"
+				                 src="<%=request.getContextPath()%>/Assets/default-avatar.jpg"
+				                 alt="avatar"/>
+				        </c:otherwise>
+				    </c:choose>
+				    <span>${user.firstName} ${user.lastName}</span>
+				</div>
 
                     <%-- Email --%>
                     <div class="user-email">${user.email}</div>
@@ -105,8 +100,7 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
 
                     <%-- Actions --%>
                     <div class="user-actions">
-                        <button class="actions-btn">Banned</button>
-                        <span class="three-dots">&#8942;</span>
+                        <button class="actions-btn">Action</button>
                     </div>
 
                 </div>
