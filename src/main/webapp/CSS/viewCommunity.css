@@ -40,7 +40,7 @@
     background: #eee;
     border: 1px solid #ddd;
     background-position: center;
-    background-size: cover;
+    background-size: contain;
 }
 
 .add-btn {

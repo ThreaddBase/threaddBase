@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" isELIgnored="false"%>
     
 <%@ taglib uri="jakarta.tags.core" prefix="c" %>
 <!DOCTYPE html>
@@ -17,19 +17,47 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-	<%@ include file="sidebar.jsp" %>
+
+	<c:choose>
+		<c:when test="${role.equals('Admin')}">
+	         	<%@ include file="adminSidebar.jsp" %>
+		</c:when>
+		<c:otherwise>
+				<%@ include file="sidebar.jsp" %>
+		</c:otherwise>
+	</c:choose>
+
 	<%@ include file="topSearchbar.jsp" %>
 
     <div class="community-profile">
         <div class="community-left">
-            <img src="../frog.jpg" class="community-pic">
+        	<c:choose>
+		        <c:when test="${not empty community.communityProfileBase64}">
+		            <img class="community-pic"
+		                 src="data:image/jpeg;base64,${community.communityProfileBase64}"
+		                 alt="avatar"/>
+		        </c:when>
+		        <c:otherwise>
+		            <img class="community-pic"
+		                 src="<%=request.getContextPath()%>/Assets/default-community.jpg"
+		                 alt="avatar"/>
+		        </c:otherwise>
+		    </c:choose>
             <div class="community-desc">
-                <span>Community name</span>
-                <span>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iste recusanda ur adipisicing elit. Iste recusanda ur adipisicing elit. Iste recusanda</span>
+                <span>${community.name}</span>
+                <span>${community.description }</span>
             </div>
         </div>
         <div class="community-right">
-            <button class="add-btn">Create Thread</button>
+        	<c:choose>
+				<c:when test="${role.equals('Admin')}">
+            		<button class="add-btn">Edit Community</button>		
+				</c:when>
+				<c:otherwise>
+					<button class="add-btn">Create Thread</button>
+				</c:otherwise>
+        	</c:choose>
+        		
         </div>
     </div>
 
@@ -45,20 +73,26 @@
     </div>
 
     <section>
+    
         <div class="community-list">
-        	<%@ include file="post.jsp" %>
-        	<%@ include file="post.jsp" %>
+        	
+        	<c:forEach var="post" items="${ postList }">
+        		<%@ include file="post.jsp" %>
+        	</c:forEach>
         	<%@ include file="post.jsp" %>
         </div>
         <div class="about-community">
             <p>About Community</p>
-            <p>This is a brief description of the community and its purpose.</p>
-            <p>Created At: 2023-10-28</p>
+            <p>${community.description }</p>
+            <p>Created At: ${community.createdAt }</p>
             <div class="member-status">
-                <span><i class="fa-solid fa-users"></i> 101 Members</span>
+                <span><i class="fa-solid fa-users"></i> ${community.userCount} Members</span>
                 <span><i class="fa-solid fa-user-check"></i> 10 Online</span>
             </div>
-            <button class="join-community">Join Community</button>
+         <c:if test="${role.equals('Member')}">
+            <button class="join-community">Join Community</button>	
+		 </c:if>
+
         </div>
     </section>
     <%@ include file="notificationModel.jsp" %>
