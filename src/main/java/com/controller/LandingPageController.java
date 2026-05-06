@@ -16,7 +16,7 @@ public class LandingPageController extends HttpServlet {
 
     /**
      * Default constructor. 
-     */
+     */	
     public LandingPageController() {
         // TODO Auto-generated constructor stub
     }

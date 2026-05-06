@@ -15,9 +15,10 @@
 <body>
     <%@ include file="sidebar.jsp" %>
     <%@ include file="topSearchbar.jsp" %>
-    
     <section>
+    
     <p>Discover More <span>Communities</span></p>
+    
     <div class="community-list">
     	<div class="community-card">
             <img class="community-thumb"
