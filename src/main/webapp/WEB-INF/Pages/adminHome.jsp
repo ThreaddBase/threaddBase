@@ -29,6 +29,7 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <!-- Top bar: Search + Profile -->
      <%@ include file="topSearchbar.jsp" %>
+     
     <div class="heading-row">
             <h1 class="page-heading">Track &amp; Review<br>the Platform</h1>
             

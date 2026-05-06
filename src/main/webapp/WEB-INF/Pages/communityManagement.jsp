@@ -9,30 +9,22 @@
 <link rel="stylesheet" href="<%=request.getContextPath()%>/CSS/communityManagement.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/CSS/util.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/CSS/sidebar.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/CSS/topSearchbar.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" 
 integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" 
 crossorigin="anonymous" referrerpolicy="no-referrer" />
 <title>Community Management</title>
 </head>
 <body>
+
  <!-- SIDEBAR -->
     <%@ include file="adminSidebar.jsp" %>
+    
+    <%@ include file="topSearchbar.jsp" %>
 
     <!-- MAIN CONTENT -->
     <div class="main-content">
-
-        <!-- Search centered + Profile pinned right -->
-        <div class="top-bar">
-            <div class="search-box">
-                <input type="text" placeholder="Search" />
-                <i class="fas fa-magnifying-glass"></i>
-            </div>
-            <button class="profile-btn">
-                <i class="fas fa-circle-user"></i>
-                <span>Profile</span>
-            </button>
-        </div>
-
+    
         <!-- Title on left, Create + Filter buttons on right -->
         <div class="heading-row">
             <h1 class="page-heading">Manage, Monitor &amp;<br>Moderate the<br>Communities</h1>
