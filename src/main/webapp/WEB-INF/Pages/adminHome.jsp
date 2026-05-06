@@ -10,6 +10,7 @@
 <link rel="stylesheet" href="<%=request.getContextPath()%>/CSS/adminHome.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/CSS/util.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/CSS/sidebar.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/CSS/topSearchbar.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" 
 integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" 
 crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -27,16 +28,7 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
  <div class="main-content">
 
     <!-- Top bar: Search + Profile -->
-    <div class="top-bar">
-      <div class="search-box">
-        <input type="text" placeholder="Search" />
-        <i class="fas fa-magnifying-glass"></i>
-      </div>
-      <button class="profile-btn">
-        <i class="fas fa-circle-user"></i>
-        <a href="<%=request.getContextPath()%>/admin">Profile</a>
-      </button>
-    </div>
+     <%@ include file="topSearchbar.jsp" %>
     <div class="heading-row">
             <h1 class="page-heading">Track &amp; Review<br>the Platform</h1>
             
@@ -95,7 +87,7 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
                   stroke-dasharray="35 65"
                   stroke-dashoffset="-65"
                   transform="rotate(-90 21 21)" />
-                <circle cx="21" cy="21" r="11" fill="#e0e0e0" />
+                <circle cx="21" cy="21" r="11" fill="#393E46" />
               </svg>
             </div>
           </div>
