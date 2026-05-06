@@ -37,7 +37,9 @@ public class AuthenticationFilter extends HttpFilter implements Filter {
     	"/admin/edit",
         "/admin/dashboard",
         "/admin/community",
+        "/community/view",
         "/admin/userManagement",
+        "/comment",
         "/admin/userImage"
     };
 

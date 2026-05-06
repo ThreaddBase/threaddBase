@@ -65,7 +65,7 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
                     <div class="card-created">Created at - ${community.createdAt}</div>
                     <div class="card-desc">${community.description}</div>
                     <div class="card-action-btns">
-                        <button class="view-btn">View Community</button>
+                        <button class="view-btn"><a href="<%=request.getContextPath()%>/community/view?id=${community.id}">View Community</a></button>
                         <button class="delete-btn">Delete Community</button>
                     </div>
                 </div>

@@ -274,7 +274,6 @@ body {
     background: var(--color-primary);
 }
 
-/* Card: no padding so image goes edge-to-edge on the left */
 .community-card {
     background-color: #c8c8c8;
     border-radius: 16px;
@@ -283,13 +282,19 @@ body {
     min-height: 180px;
 }
 
-/* Image fills the entire left portion of the card */
 .community-thumb {
     width: 260px;
     flex-shrink: 0;
     object-fit: cover;
     display: block;
 }
+
+.no-data {
+  color: #aaa;
+  text-align: center;
+  padding: 40px;
+  font-size: 16px;
+}s
 
 /* Text content on the right has its own padding */
 .card-details {
