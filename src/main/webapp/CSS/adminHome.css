@@ -13,11 +13,6 @@ body {
     min-height: 100vh;
 }
 
-/* =====================
-   LEFT SIDEBAR COLUMN
-   The whole column is the same light grey as the page.
-   Only the icon pill inside is dark.
-===================== */
 .side-navbar {
     background-color: #222;
     color: white;
@@ -109,10 +104,6 @@ body {
   color: #00ADB5;
 }
 
-/* =====================
-   MAIN CONTENT AREA
-===================== */
-
 .main-content {
     margin-left: 200px;
     flex: 1;
@@ -122,10 +113,6 @@ body {
     background: var(--color-primary);
 }
 
-
-/* ================================
-   TOP BAR: Search + Profile
-================================ */
 .top-bar {
     display: flex;
     align-items: center;
@@ -196,7 +183,10 @@ body {
 .page-heading {
   font-size: 32px;
   font-weight: 900;
-  color: #fff;
+  background: var(--gradient-warm-cool);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
   line-height: 1.15;
 }
 
@@ -220,35 +210,35 @@ body {
 }
 
 .stat-card {
-    background-color: #e0e0e0;
+    background-color: #393E46;
     border-radius: 16px;
     padding: 20px;
 }
 
 .stat-card-title {
-    font-size: 15px;
+    font-size: 20px;
     font-weight: 600;
-    color: #333;
+    color: turquoise;
     margin-bottom: 12px;
 }
 
 .stat-card-number {
     font-size: 28px;
     font-weight: 400;
-    color: #333;
+    color: #eeeeee;
     text-align: right;
 }
 
 .communities-card {
-    background-color: #e0e0e0;
+    background-color: #393E46;
     border-radius: 16px;
     padding: 20px;
 }
 
 .communities-card-title {
-    font-size: 15px;
+    font-size: 20px;
     font-weight: 600;
-    color: #333;
+    color: turquoise;
     margin-bottom: 16px;
 }
 
@@ -257,7 +247,7 @@ body {
     align-items: center;
     padding: 10px 0;
     font-size: 14px;
-    color: #333;
+    color: #eee;
     border-bottom: 1px solid #ccc;
 }
 
@@ -268,7 +258,7 @@ body {
 .community-rank {
     width: 20px;
     font-weight: 600;
-    color: #555;
+    color: #eee;
 }
 
 .community-name {
@@ -283,7 +273,7 @@ body {
 
 .community-count {
     font-weight: 500;
-    color: #333;
+    color: #eee;
 }
 
 .section-divider {
@@ -305,15 +295,15 @@ body {
 }
 
 .status-card {
-    background-color: #e0e0e0;
+    background-color: #393E46;
     border-radius: 16px;
     padding: 20px;
 }
 
 .status-card-title {
-    font-size: 15px;
+    font-size: 20px;
     font-weight: 600;
-    color: #333;
+    color: turquoise;
     margin-bottom: 16px;
 }
 
@@ -328,7 +318,7 @@ body {
 }
 
 .legend-card {
-    background-color: #e0e0e0;
+    background-color: #393E46;
     border-radius: 16px;
     padding: 20px;
 }
@@ -356,12 +346,12 @@ body {
 }
 
 .legend-label {
-    font-size: 13px;
-    color: #333;
+    font-size: 20px;
+    color: #eee;
 }
 
 .report-card {
-    background-color: #e0e0e0;
+    background-color: #393E46;
     border-radius: 16px;
     padding: 20px;
 }
@@ -374,30 +364,31 @@ body {
 }
 
 .report-card-title {
-    font-size: 15px;
+    font-size: 20px;
     font-weight: 600;
-    color: #333;
+    color: turquoise;
 }
 
 .generate-btn {
-    background-color: #2b2b2b;
-    color: white;
+    background-color: #00ADB5;
+    color: #000;
     border: none;
     border-radius: 20px;
     padding: 8px 16px;
-    font-size: 13px;
+    font-size: 17px;
     cursor: pointer;
 }
 
 .generate-btn:hover {
-    background-color: #444;
+    background-color: #017075;
+    color: #eee;
 }
 
 .report-admin-row {
     display: flex;
     justify-content: space-between;
-    font-size: 13px;
-    color: #555;
+    font-size: 17px;
+    color: #eee;
     padding-bottom: 12px;
     border-bottom: 1px solid #bbb;
     margin-bottom: 12px;
@@ -419,27 +410,23 @@ body {
 
 .report-community-name {
     color: white;
-    font-size: 14px;
+    font-size: 17px;
 }
 
 .expand-btn {
-    background-color: #e0e0e0;
-    color: #333;
+    background: var(--gradient-aqua);
+    color: #000;
     border: none;
     border-radius: 20px;
     padding: 5px 14px;
-    font-size: 13px;
+    font-size: 15px;
     cursor: pointer;
 }
 
 .expand-btn:hover {
-    background-color: #ccc;
+    background: #01947b;
+    color: #eee;
 }
-
-
-/* ===========================
-   MOBILE RESPONSIVE
-=========================== */
 
     @media (max-width: 875px) {
         .bar{

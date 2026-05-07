@@ -1,6 +1,8 @@
 package com.model;
 
+import java.util.Base64;
 import java.util.Date;
+import java.util.List;
 
 public class PostModel {
 	// Post 
@@ -21,7 +23,11 @@ public class PostModel {
     private String userLastName;
     private byte[] userProfilePic;
     
-    // constructor
+    // Tag
+    private List<String> tags;
+    
+
+	// constructor
     public PostModel() {}
     
     // Getter and setter
@@ -97,4 +103,26 @@ public class PostModel {
 	public void setUserProfilePic(byte[] userProfilePic) {
 		this.userProfilePic = userProfilePic;
 	}
+	
+    public List<String> getTags() {
+		return tags;
+	}
+
+	public void setTags(List<String> tags) {
+		this.tags = tags;
+	}
+	
+    public String getPostImageBase64() {
+        if (postImage != null && postImage.length > 1000) {
+            return Base64.getEncoder().encodeToString(postImage);
+        }
+        return null;
+    }
+	
+    public String getUserProfilePicBase64() {
+        if (userProfilePic != null && userProfilePic.length > 1000) {
+            return Base64.getEncoder().encodeToString(userProfilePic);
+        }
+        return null;
+    }
 }

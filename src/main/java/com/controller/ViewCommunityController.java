@@ -12,8 +12,10 @@ import java.util.List;
 
 import com.model.CommunityModel;
 import com.model.PostModel;
+import com.model.TagModel;
 import com.service.CommunityService;
 import com.service.PostService;
+import com.service.TagService;
 import com.util.SessionUtil;
 
 @WebServlet(asyncSupported = true, urlPatterns = { "/community/view" })
@@ -24,6 +26,7 @@ public class ViewCommunityController extends HttpServlet {
     // Service Ibjects
     private CommunityService communityService = new CommunityService();
     private PostService postService = new PostService();
+    private TagService tagService = new TagService();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -58,10 +61,13 @@ public class ViewCommunityController extends HttpServlet {
             System.out.println("Posts found: " + postList.size());
             
             // fetch tags
-
+            List<TagModel> tagList = tagService.getCommunityByID(communityId);
+            
+            
             // pass to JSP
             request.setAttribute("community", community);
             request.setAttribute("postList", postList);
+            request.setAttribute("tagList", tagList);
             request.setAttribute("role", role);
 
             request.getRequestDispatcher("/WEB-INF/Pages/viewCommunity.jsp")

@@ -64,11 +64,9 @@
     <div class="community-tag">
         <p>Popular Tags</p>
         <div class="tag-list">
-            <span>All</span>
-            <span>#Tag1</span>
-            <span>#Tag3</span>
-            <span>#Tag4</span>
-            <span>#Tag5</span>
+            <c:forEach var="tag" items="${tagList}">
+            	<span># ${ tag.name }</span>
+            </c:forEach>
         </div>
     </div>
 
