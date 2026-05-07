@@ -10,6 +10,8 @@
 <link rel="stylesheet" href="<%=request.getContextPath()%>/CSS/profile.css">
 </head>
 <body>
+<header class="Top-section">
+</header>
 <%@ include file="userPortal.jsp" %>
 
   <nav class="tabs">

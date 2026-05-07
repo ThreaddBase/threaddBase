@@ -3,6 +3,7 @@
 body{
     background-color: #222831;
     color: #EEEEEE;
+    font-family: 'Outfit', sans-serif;
 }
 
 .navbar {
@@ -13,10 +14,8 @@ body{
     align-items: center;
 }
 
-.menu {
-  font-size: 22px;
-  cursor: pointer;
-}
+
+
 .profile_img img{
     width: 100%;
     height: auto;
@@ -51,8 +50,9 @@ body{
     align-self: flex-start;
     margin:4% 4%;
     padding-right: 10%;
-    font-size: 25px;
 }
+
+
 .change {
 	margin-top: 10%;
     font-size: 18px;
@@ -60,9 +60,9 @@ body{
 }
 
 .profile-section{
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    margin: 1% 0 4%;
+    display: flex;
+    flex-direction: column;
+    margin: 4% 0 2%;
     padding: 1% 2%;
     width: 100%;
     text-align: center;
@@ -75,10 +75,11 @@ body{
     font-size: 18px;
 }
 .profile-section input{
-    width: 80%;
+	width: 80%;
     height: 40px;
     border: none;
     padding: 3%;
+    margin-bottom: 6%;
     border-radius: 8px;
     text-align: center;
     font-size: 14px;
@@ -165,12 +166,12 @@ body{
     .buttons{
         display: flex;
         justify-content: center;
-        padding: 4%;
+        padding: 2%;
         width: 100%;
-        gap: 15%;
+        gap: 10%;
     }
     .btn{
-        padding: 2% 6%;
+        padding: 2% 4%;
         border-radius: 8px;
         font-size: 14px;
         font-weight: bold;
@@ -179,6 +180,22 @@ body{
         background-color: #00ADB5;
         color: #EEEEEE;  
     }
+    
+    
+    .back_btn{
+        padding: 2% 6%;
+        border-radius: 8px;
+        font-size: 14px;
+        font-weight: bold;
+        cursor: pointer;
+        border: 2px solid #00ADB5;
+        background-color: #00ADB5;
+        color: #EEEEEE;
+        width: 50%;
+    
+    }
+    
+
 
 
 @media (max-width: 1000px) {
@@ -250,6 +267,12 @@ body{
 
     .btn {
         width: 80%;
+        text-align: center;
+        margin-bottom: 5%;
+    }
+    
+    .back_btn{
+   		width: 80%;
         text-align: center;
         margin-bottom: 5%;
     }

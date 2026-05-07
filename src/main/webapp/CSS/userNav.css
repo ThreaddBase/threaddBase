@@ -3,23 +3,25 @@
 body {
   background: var(--color-primary);
   color: var(--color-font);
+  
+}
+.navbar{
+	width: 100px;
+	height: 100px;
 }
 
 .profile-header {
   display: flex;
-  align-items: end;
   justify-content: center;
   padding: 22px 40px;
-  background: var(--color-secondary);
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  background-color: #222;
 }
 
 .profile-inner {
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  gap: 0px;
   width: 91%;
   max-width: 645px;
   margin: 0 auto;
@@ -31,27 +33,40 @@ body {
   height: 144px;
   border-radius: 50%;
   background: var(--color-slate);
+  margin: -70px;
 }
 
 .user-info {
   /* flex: 1; */
   min-width: 220px;
+  padding-left: 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-top: 20px;
+  margin-bottom: 8px;
+  gap: 4px;
   /* align-self: end; */
 }
 
 .user-info h2 {
   font-size: 1.4rem;
-  margin-bottom: 6px;
+  margin-bottom: 8px;
+  padding-left: 10px;
 }
 
 .user-info p {
   color: var(--color-slate);
   font-size: 0.95rem;
+  align-items: left;
+  padding-left: 10px;
+  margin-bottom: 20px;
 }
 
 .edit-btn {
-  align-self: end;
-  padding: 10px 18px;
+  align-self: center;
+  margin: 30px 0px 0px 20px;
+  padding: 10px 20px;
   border: none;
   border-radius: 999px;
   background: var(--gradient-aqua);
