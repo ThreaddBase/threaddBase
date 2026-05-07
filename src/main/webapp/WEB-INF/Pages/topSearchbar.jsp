@@ -5,6 +5,6 @@
     </div>
     <div class="user-profile">
         <div class="avatar"></div>
-        <span class="username">John Doe</span>
+        <span class="username"><a a href="<%=request.getContextPath()%>/user">John Doe</a></span>
     </div>
 </div>
