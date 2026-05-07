@@ -1,46 +1,40 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Post Image</title>
-<link rel="stylesheet" href="<%=request.getContextPath()%>/CSS/util.css">
-<link rel="stylesheet" href="<%=request.getContextPath()%>/CSS/PostImage.css">
-</head>
-<body>
-<div class="post">
-    <div class="post-right">
-        <div class="upload">
-        <span class="material-symbols-light--upload-rounded"> </span>
-            <button class="up">Upload an Image</button>
-        </div>
-        <div class="text">
+<div class="postImage">
+        <h2 class="form-heading">Create <span>New Post</span></h2>
 
-            <input type="text" class="title" placeholder= "Title for the post">
+        <div class="postImage-right">
+            <div class="upload">
+                <span class="material-symbols-light--upload-rounded"></span>
+                <button class="up" type="button">Upload an Image</button>
+                <p class="upload-hint">PNG, JPG or GIF · Max 10MB</p>
+            </div>
 
-            <textarea placeholder="Description for the
-            post..."></textarea>
-        <div class="selcect_comm">
-            <select>
-                <option value="" disabled selected hidden> Select community</option>
+            <div class="text">
+                <div class="field-wrap">
+                    <label class="field-label">Title</label>
+                    <input type="text" class="title" placeholder="Title for the post">
+                </div>
 
-            </select>
-        </div>
-        </div>
+                <div class="field-wrap">
+                    <label class="field-label">Description</label>
+                    <textarea placeholder="Description for the post..."></textarea>
+                </div>
 
+                <div class="field-wrap">
+                    <label class="field-label">Community</label>
+                    <div class="select-wrap">
+                        <select>
+                            <option value="" disabled selected hidden>Select community</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <div class="end_section">
-        <div class="has">
-            # For the post
-        </div>
-        <div class="confirm_post">
-            Sure you wanna post it?
-            <button class="confirm">Post Thread</button>
-        </div>
+            <div class="has"># For the post</div>
+            <div class="confirm_post">
+                <p>Sure you wanna post it?</p>
+                <button class="confirm" type="button">Post Thread</button>
+            </div>
         </div>
     </div>
-    </div>
-</body>
-</html>
