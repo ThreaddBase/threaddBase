@@ -40,7 +40,9 @@ public class AuthenticationFilter extends HttpFilter implements Filter {
         "/community/view",
         "/admin/userManagement",
         "/comment",
-        "/admin/userImage"
+        "/admin/userImage",
+        "/vote",
+        "/bookmark"
     };
 
     // USER allowed URIs
@@ -54,7 +56,9 @@ public class AuthenticationFilter extends HttpFilter implements Filter {
         "/user/setting",
         "/community/view",
         "/user/edit",
-        "/comment"
+        "/comment",
+        "/vote",
+        "/bookmark"
     };
     
     /**
