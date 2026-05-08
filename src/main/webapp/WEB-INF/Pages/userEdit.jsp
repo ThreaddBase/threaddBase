@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,8 +14,7 @@
 integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" 
 crossorigin="anonymous" referrerpolicy="no-referrer" />
 <body>
-<form action="<%=request.getContextPath()%>/user/edit" method="post"  enctype="multipart/form-data">
-   <div class="card-title"><i class="fa-solid fa-backward"> </i><a a href="<%=request.getContextPath()%>/user">Edit Profile</a>
+   <div class="card-title"><i class="fa-solid fa-circle-arrow-left"></i><a a href="<%=request.getContextPath()%>/user">Edit Profile</a>
 
    </div>
 	<div class="card-wrap">
@@ -46,6 +47,7 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
       </div>
     </div>
 
+	<div class ="second-section"></div>
     <div name ="bio" class="bio">
       <label>Bio</label>
       <textarea>Lorem ipsum dolor, sit amet consectetur  adipisicing elit. Laboriosam rerum explicabo consequatur eligendi  excepturi sit praesentium ex. </textarea>
