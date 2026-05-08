@@ -16,10 +16,6 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
 <title>Admin Home</title>
 </head>
 <body>
-
- <!-- ========================
-       LEFT SIDEBAR
-  ========================= -->
   <%@ include file="adminSidebar.jsp" %>
 
 
@@ -37,6 +33,7 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
         <a href="<%=request.getContextPath()%>/admin">Profile</a>
       </button>
     </div>
+    
     <div class="heading-row">
             <h1 class="page-heading">Track &amp; Review<br>the Platform</h1>
             

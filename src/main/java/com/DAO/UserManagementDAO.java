@@ -1,6 +1,5 @@
 package com.DAO;
 
-import java.io.File;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -12,6 +11,23 @@ import com.model.UserModel;
 import com.util.DBConfig;
 
 public class UserManagementDAO {
+	
+	// get userID by userName
+	public int getUserIdByUsername(String username) throws SQLException {
+	    String query = "SELECT user_ID FROM user WHERE Username = ?";
+	    try (
+	        Connection con = DBConfig.getConnection();
+	        PreparedStatement ps = con.prepareStatement(query);
+	    ) {
+	        ps.setString(1, username);
+	        try (ResultSet rs = ps.executeQuery()) {
+	            if (rs.next()) {
+	                return rs.getInt("user_ID");
+	            }
+	        }
+	    }
+	    return -1; // user not found
+	}
 	
 	// mthod to get all user information and return a list containing obj of userModel
 	public List<UserModel> getAllUsers() throws SQLException {

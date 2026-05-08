@@ -113,6 +113,8 @@ body {
     background: var(--color-primary);
 }
 
+/* ---- TOP BAR: search centered, profile right ---- */
+
 .top-bar {
     display: flex;
     align-items: center;
@@ -120,18 +122,18 @@ body {
     padding: 20px 30px;
     gap: 20px;
     position: relative;
+    background: var(--color-primary);
 }
 
-/* Search bar in the center */
 .search-box {
     display: flex;
     align-items: center;
-    background-color: #c8c8c8;
+    background-color: #222831;
     border-radius: 30px;
     padding: 10px 20px;
     gap: 10px;
     width: 480px;
-    border: 1px solid #bbbbbb;
+    border: 3px solid #00ADB5;
 }
 
 .search-box input {
@@ -152,27 +154,39 @@ body {
     font-size: 15px;
 }
 
-/* Profile button top right */
 .profile-btn {
     position: absolute;
     right: 30px;
     display: flex;
     align-items: center;
     gap: 8px;
-    background-color: #c8c8c8;
-    border: 2px solid #aaaaaa;
+    background-color: #393E46;
+    border: 2px solid #393E46;
     border-radius: 30px;
     padding: 8px 18px;
     cursor: pointer;
     font-size: 14px;
-    color: #333;
+    color: #eee;
     font-weight: 500;
+}
+
+.profile-btn a {
+	text-decoration: none;
+	color: #eee;
 }
 
 .profile-btn i {
     font-size: 16px;
-    color: #444;
+    color: #eee;
+
 }
+
+.profile-btn:hover {
+  background: #212429;
+  border: 2px solid #aaa;
+}
+
+
 .heading-row {
   display: flex;
   align-items: flex-end;

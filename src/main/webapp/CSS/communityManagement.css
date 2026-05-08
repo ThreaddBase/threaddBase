@@ -18,10 +18,6 @@ body {
     min-height: 100vh;
 }
 
-/* =====================
-       SIDEBAR
-    ===================== */
-
 .side-navbar {
   background-color: #222;
   color: white;
@@ -270,11 +266,6 @@ body {
     background-color: #444;
 }
 
-/* =====================
-       COMMUNITY CARDS
-       Image covers the full left side, text on right
-    ===================== */
-
 .community-list {
     padding: 0 30px 30px 100px;
     display: flex;
@@ -450,7 +441,7 @@ body {
     .heading-row {
         flex-direction: column;
         align-items: flex-start;
-        padding: 10px 14px 16px 14px;
+        padding: 10px 14px 16px 36px;
         gap: 14px;
     }
 
@@ -463,7 +454,7 @@ body {
     }
 
     .community-list {
-        padding: 0 14px 24px 14px;
+        padding: 0 14px 24px 36px;
     }
 
     /* Cards stack on mobile */
