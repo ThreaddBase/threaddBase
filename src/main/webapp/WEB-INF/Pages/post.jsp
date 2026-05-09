@@ -46,11 +46,11 @@
                 </button>
             </form>
 
-            <%-- Comment Count — no action yet --%>
-            <span class="action-btn">
-                <i class="fa-regular fa-comment"></i>
-                ${post.commentCount}
-            </span>
+            <%-- Comment Count --%>
+            <a href="<%=request.getContextPath()%>/comment" class="action-btn">
+	                <i class="fa-regular fa-comment"></i>
+	                ${post.commentCount}
+            </a>
 
             <%-- Bookmark Button --%>
             <form action="<%=request.getContextPath()%>/bookmark"
