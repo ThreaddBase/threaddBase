@@ -153,9 +153,16 @@
     color: white;
 }
 
+.section2wrapper {
+	display: flex;
+	flex-direction: column;
+	width: 30%;
+	gap: 12px;	
+}
+
 .section2 {
 	height: max-content;
-    width: 30%;
+    width: 100%;
     background-color: #393E46;
     border-radius: 10px;
     padding: 20px;
