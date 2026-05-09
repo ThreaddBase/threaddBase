@@ -653,7 +653,7 @@ Actions row - spans both columns
     padding: 14px 32px;
     font-size: 15px;
     font-weight: 700;
-    cursor: pointer;
+    cursor: pointer;	
     transition: background 0.2s;
     font-family: inherit;
     display: flex;

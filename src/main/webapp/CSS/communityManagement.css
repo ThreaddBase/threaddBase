@@ -1,11 +1,12 @@
-@charset "UTF-8";
+/* @charset "UTF-8";
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* Make html and body fill the full height so nothing shows behind sidebar */
+
+Make html and body fill the full height so nothing shows behind sidebar
 html,
 body {
     height: 100%;
@@ -18,9 +19,9 @@ body {
     min-height: 100vh;
 }
 
-/* =====================
+=====================
        SIDEBAR
-    ===================== */
+    =====================
 
 .side-navbar {
   background-color: #222;
@@ -40,7 +41,7 @@ body {
   overflow: hidden;
 }
 
-/* Decorative light strip on the left edge */
+Decorative light strip on the left edge
 .bar {
   top: 30%;
   width: 32%;
@@ -52,7 +53,7 @@ body {
   pointer-events: none;
 }
 
-/* Logo area */
+Logo area
 .logo-container {
   width: 100%;
   display: flex;
@@ -71,7 +72,7 @@ body {
   object-position: center;
 }
 
-/* Fallback text logo if image not found */
+Fallback text logo if image not found
 .logo-text {
   color: white;
   font-size: 20px;
@@ -79,7 +80,7 @@ body {
   letter-spacing: 2px;
 }
 
-/* Nav links list */
+Nav links list
 .nav-links {
   list-style: none;
   width: 100%;
@@ -100,7 +101,7 @@ body {
   border-radius: 14px;
 }
 
-/* Only the icon has a dark box — not the text, not the sidebar background */
+Only the icon has a dark box — not the text, not the sidebar background
 .nav-links li a i {
   width: 38px;
   height: 38px;
@@ -122,9 +123,9 @@ body {
 }
 
 
-/* =====================
+=====================
        MAIN CONTENT
-    ===================== */
+    =====================
 
 .main-content {
     margin-left: 200px;
@@ -135,7 +136,7 @@ body {
     background-color: #d0d0d0;
 }
 
-/* ---- TOP BAR: search centered, profile right ---- */
+---- TOP BAR: search centered, profile right ----
 
 .top-bar {
     display: flex;
@@ -204,7 +205,7 @@ body {
 }
 
 
-/* ---- HEADING ROW: title left, buttons right ---- */
+---- HEADING ROW: title left, buttons right ----
 
 .heading-row {
     display: flex;
@@ -224,7 +225,7 @@ body {
     line-height: 1.2;
 }
 
-/* Buttons sit together on the right of the title */
+Buttons sit together on the right of the title
 .heading-buttons {
     display: flex;
     align-items: center;
@@ -247,7 +248,7 @@ body {
     background-color: #444;
 }
 
-/* Thin vertical line between the two buttons */
+Thin vertical line between the two buttons
 .btn-sep {
     width: 1px;
     height: 28px;
@@ -270,10 +271,146 @@ body {
     background-color: #444;
 }
 
-/* =====================
+.sort-cycle-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--color-highlight);
+    color: #1a2a2a;
+    border: none;
+    border-radius: 30px;
+    padding: 11px 24px;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    white-space: nowrap;
+    font-family: inherit;
+    transition: background-color 0.2s, transform 0.15s;
+    box-shadow: 0 4px 14px rgba(0, 173, 181, 0.35);
+}
+
+.sort-cycle-btn:hover {
+    background-color: #00c4cc;
+    transform: translateY(-1px);
+}
+
+.sort-cycle-btn:active {
+    transform: scale(0.96);
+}
+
+.sort-cycle-btn i {
+    font-size: 14px;
+    color: #1a2a2a;
+}
+── Sort dropdown wrapper ──
+.sort-dropdown-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.sort-cycle-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background-color: var(--color-highlight);
+    color: #1a2a2a;
+    border: none;
+    border-radius: 30px;
+    padding: 11px 24px;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    white-space: nowrap;
+    font-family: inherit;
+    transition: background-color 0.2s, transform 0.15s;
+    box-shadow: 0 4px 14px rgba(0, 173, 181, 0.35);
+}
+
+.sort-cycle-btn:hover {
+    background-color: #00c4cc;
+    transform: translateY(-1px);
+}
+
+.sort-cycle-btn:active {
+    transform: scale(0.96);
+}
+
+.sort-cycle-btn i {
+    font-size: 14px;
+    color: #1a2a2a;
+}
+
+.sort-chevron {
+    font-size: 12px !important;
+    transition: transform 0.2s ease;
+}
+
+.sort-chevron.flipped {
+    transform: rotate(180deg);
+}
+
+── Dropdown menu ──
+.sort-dropdown {
+    display: none;
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    background: #1e2330;
+    border: 1px solid #2e3440;
+    border-radius: 12px;
+    overflow: hidden;
+    min-width: 180px;
+    z-index: 1000;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+    animation: dropdownFade 0.15s ease;
+}
+
+.sort-dropdown.open {
+    display: block;
+}
+
+@keyframes dropdownFade {
+    from { opacity: 0; transform: translateY(-6px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.sort-option {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 18px;
+    color: #ccc;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: background 0.15s, color 0.15s;
+    border-bottom: 1px solid #2e3440;
+}
+
+.sort-option:last-child {
+    border-bottom: none;
+}
+
+.sort-option:hover {
+    background: #2a2f3e;
+    color: var(--color-highlight);
+}
+
+.sort-option i {
+    width: 16px;
+    color: var(--color-highlight);
+    font-size: 13px;
+}
+
+.sort-option.active {
+    background: #2a2f3e;
+    color: var(--color-highlight);
+    font-weight: 700;
+}
+=====================
        COMMUNITY CARDS
        Image covers the full left side, text on right
-    ===================== */
+    =====================
 
 .community-list {
     padding: 0 30px 30px 100px;
@@ -305,7 +442,7 @@ body {
   font-size: 16px;
 }
 
-/* Text content on the right has its own padding */
+Text content on the right has its own padding
 .card-details {
     flex: 1;
     padding: 20px 22px;
@@ -388,15 +525,15 @@ body {
 }
 
 
-/* =====================
+=====================
        MOBILE RESPONSIVE
-    ===================== */
+    =====================
     @media (max-width: 875px) {
     .bar{
        display: none;
     }    
 }
-/* Sidebar icon-only — top+bottom keeps it full height on mobile too */
+Sidebar icon-only — top+bottom keeps it full height on mobile too
 @media (max-width: 768px) {
 
     
@@ -421,7 +558,7 @@ body {
         gap: 0;
         padding: 14px 0;
         font-size: 0;
-        /* hides label, keeps icon */
+        hides label, keeps icon
     }
 
     .nav-links li a i {
@@ -466,7 +603,7 @@ body {
         padding: 0 14px 24px 14px;
     }
 
-    /* Cards stack on mobile */
+    Cards stack on mobile
     .community-card {
         flex-direction: column;
     }
@@ -475,4 +612,538 @@ body {
         width: 100%;
         height: 200px;
     }
+} */
+@charset "UTF-8";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  background: var(--color-primary);
+  display: flex;
+  min-height: 100vh;
+}
+
+/* =====================
+       SIDEBAR
+   ===================== */
+
+.side-navbar {
+  background-color: #222;
+  color: white;
+  width: 200px;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 24px 0;
+  gap: 18%;
+  box-shadow: 4px 0 24px rgba(0, 0, 0, 0.25);
+  z-index: 10;
+  overflow: hidden;
+}
+
+.bar {
+  top: 30%;
+  width: 32%;
+  height: 55%;
+  border-top-right-radius: 65px;
+  border-bottom-right-radius: 65px;
+  position: absolute;
+  background-color: rgba(255, 255, 255, 0.12);
+  pointer-events: none;
+}
+
+.logo-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 16px 20px;
+  text-decoration: none;
+  position: relative;
+  z-index: 1;
+}
+
+.logo {
+  width: 180px;
+  height: 70px;
+  object-fit: contain;
+  object-position: center;
+}
+
+.nav-links {
+  list-style: none;
+  width: 100%;
+  padding: 0 12px;
+  position: relative;
+  z-index: 1;
+}
+
+.nav-links li a {
+  display: flex;
+  align-items: center;
+  gap: 19px;
+  color: white;
+  text-decoration: none;
+  font-size: 1.2rem;
+  font-weight: 600;
+  padding: 25px 3px;
+  border-radius: 14px;
+}
+
+.nav-links li a i {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  color: white;
+  flex-shrink: 0;
+}
+
+.nav-links li a:hover {
+  color: #00ADB5;
+}
+
+.nav-links li a:hover i {
+  color: #00ADB5;
+}
+
+/* =====================
+       MAIN CONTENT
+   ===================== */
+
+.main-content {
+  margin-left: 200px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #d0d0d0;
+}
+
+/* ── TOP BAR ── */
+
+.top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 30px;
+  gap: 20px;
+  position: relative;
+  background: var(--color-primary);
+}
+
+.search-box {
+  display: flex;
+  align-items: center;
+  background-color: #222831;
+  border-radius: 30px;
+  padding: 10px 20px;
+  gap: 10px;
+  width: 480px;
+  border: 3px solid #00ADB5;
+}
+
+.search-box input {
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 15px;
+  color: #444;
+  width: 100%;
+}
+
+.search-box input::placeholder {
+  color: #888;
+}
+
+.search-box i {
+  color: #666;
+  font-size: 15px;
+}
+
+.profile-btn {
+  position: absolute;
+  right: 30px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: #393E46;
+  border: 2px solid #393E46;
+  border-radius: 30px;
+  padding: 8px 18px;
+  cursor: pointer;
+  font-size: 14px;
+  color: #eee;
+  font-weight: 500;
+}
+
+.profile-btn i {
+  font-size: 16px;
+  color: #eee;
+}
+
+.profile-btn:hover {
+  background: #212429;
+  border: 2px solid #aaa;
+}
+
+/* ── HEADING ROW ── */
+
+.heading-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 30px 20px 100px;
+  gap: 20px;
+  background: var(--color-primary);
+}
+
+.page-heading {
+  font-size: 28px;
+  font-weight: 900;
+  background: var(--gradient-warm-cool);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  line-height: 1.2;
+}
+
+.heading-buttons {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+/* ── CREATE BUTTON ── */
+
+.create-community-btn {
+  background-color: #2b2b2b;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 11px 22px;
+  font-size: 14px;
+  cursor: pointer;
+  white-space: nowrap;
+  font-family: inherit;
+}
+
+.create-community-btn:hover {
+  background-color: #444;
+}
+
+.btn-sep {
+  width: 1px;
+  height: 28px;
+  background-color: #888;
+  margin: 0 14px;
+}
+
+/* ── PURE CSS DROPDOWN ── */
+
+.css-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Hide the default marker */
+.css-dropdown summary {
+  list-style: none;
+}
+
+.css-dropdown summary::-webkit-details-marker {
+  display: none;
+}
+
+.css-dropdown-summary {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background-color: #00adb5;
+  color: #1a2a2a;
+  border: none;
+  border-radius: 30px;
+  padding: 11px 24px;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+  font-family: inherit;
+  box-shadow: 0 4px 14px rgba(0, 173, 181, 0.35);
+  user-select: none;
+}
+
+.css-dropdown-summary:hover {
+  background-color: #00c4cc;
+}
+
+.css-dropdown-summary i {
+  font-size: 14px;
+  color: #1a2a2a;
+}
+
+.css-dropdown-chevron {
+  font-size: 12px !important;
+  transition: transform 0.2s ease;
+}
+
+/* Rotate chevron when open */
+.css-dropdown[open] .css-dropdown-chevron {
+  transform: rotate(180deg);
+}
+
+.css-dropdown-menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  background: #1e2330;
+  border: 1px solid #2e3440;
+  border-radius: 12px;
+  overflow: hidden;
+  min-width: 180px;
+  z-index: 1000;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  list-style: none;
+  padding: 0;
+  animation: dropdownFade 0.15s ease;
+}
+
+@keyframes dropdownFade {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.css-drop-option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 18px;
+  color: #ccc;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  transition: background 0.15s, color 0.15s;
+  border-bottom: 1px solid #2e3440;
+}
+
+.css-dropdown-menu li:last-child .css-drop-option {
+  border-bottom: none;
+}
+
+.css-drop-option:hover {
+  background: #2a2f3e;
+  color: #00adb5;
+}
+
+.css-drop-option i {
+  width: 16px;
+  color: #00adb5;
+  font-size: 13px;
+}
+
+/* =====================
+       COMMUNITY CARDS
+   ===================== */
+
+.community-list {
+  padding: 0 30px 30px 100px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  background: var(--color-primary);
+}
+
+.community-card {
+  background-color: #c8c8c8;
+  border-radius: 16px;
+  display: flex;
+  overflow: hidden;
+  min-height: 180px;
+}
+
+.community-thumb {
+  width: 260px;
+  flex-shrink: 0;
+  object-fit: cover;
+  display: block;
+}
+
+.no-data {
+  color: #aaa;
+  text-align: center;
+  padding: 40px;
+  font-size: 16px;
+}
+
+.card-details {
+  flex: 1;
+  padding: 20px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  background: #212429;
+}
+
+.card-title {
+  font-size: 22px;
+  font-weight: 800;
+  color: turquoise;
+}
+
+.card-created {
+  font-size: 12px;
+  color: #ccc;
+}
+
+.card-desc {
+  font-size: 14px;
+  color: #ddd;
+  line-height: 1.55;
+}
+
+.card-action-btns {
+  display: flex;
+  gap: 10px;
+  margin-top: auto;
+  padding-top: 8px;
+}
+
+.view-btn,
+.delete-btn {
+  color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 9px 20px;
+  font-size: 13px;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.view-btn {
+  background: #18ad59;
+}
+
+.delete-btn {
+  background: #b30b0b;
+}
+
+.view-btn a {
+  text-decoration: none;
+  color: #eee;
+  font-weight: 600;
+  font-size: 13px;
+}
+
+.view-btn:hover {
+  background-color: #057335;
+}
+
+.delete-btn:hover {
+  background-color: #730606;
+}
+
+/* =====================
+       MOBILE RESPONSIVE
+   ===================== */
+
+@media (max-width: 875px) {
+  .bar {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .side-navbar {
+    width: 62px;
+    padding: 20px 0;
+    gap: 10%;
+  }
+
+  .logo {
+    width: 76px;
+    height: 36px;
+  }
+
+  .nav-links {
+    padding: 0 6px;
+  }
+
+  .nav-links li a {
+    justify-content: center;
+    gap: 0;
+    padding: 14px 0;
+    font-size: 0;
+  }
+
+  .nav-links li a i {
+    font-size: 16px;
+    width: 34px;
+    height: 34px;
+  }
+
+  .main-content {
+    margin-left: 62px;
+  }
+
+  .top-bar {
+    padding: 14px;
+  }
+
+  .search-box {
+    width: 100%;
+  }
+
+  .profile-btn {
+    position: static;
+    padding: 8px 12px;
+  }
+
+  .heading-row {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10px 14px 16px 14px;
+    gap: 14px;
+  }
+
+  .heading-buttons {
+    width: 100%;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .community-list {
+    padding: 0 14px 24px 14px;
+  }
+
+  .community-card {
+    flex-direction: column;
+  }
+
+  .community-thumb {
+    width: 100%;
+    height: 200px;
+  }
 }
