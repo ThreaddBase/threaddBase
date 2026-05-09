@@ -13,6 +13,8 @@
 <link rel="stylesheet" href="<%=request.getContextPath()%>/CSS/topSearchbar.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/CSS/notificationModel.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/CSS/userHome.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/CSS/newPostImage.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/CSS/newPostMessage.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" 
 integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" 
 crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -50,14 +52,14 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
                 <div class="new-thread-container">
                 <p>What's on your mind? Start a Thread...</p>
                 <div class="thread-option">
-                    <a href="#">
-                        <i class="fas fa-image"></i>
-                        <span>Photo</span>
-                    </a>
-                    <a href="#">
-                        <i class="fa-brands fa-shoelace fa-rotate-270"></i>
-                        <span>Thread</span>
-                    </a>
+                    <a href="#" onclick="openNewPostImage(); return false;">
+					    <i class="fas fa-image"></i>
+					    <span>Photo</span>
+					</a>
+					<a href="#" onclick="openNewPostMessage(); return false;">
+					    <i class="fa-brands fa-shoelace fa-rotate-270"></i>
+					    <span>Thread</span>
+					</a>
                 </div>
             </div>
 
@@ -66,6 +68,7 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
             <%@ include file="post.jsp" %>
             <%@ include file="post.jsp" %>
         </section>
+        	<div class = "section2wrapper">
                 <section class="section2">
                 	<p>Discover Communities</p>
 		            <a href="<%=request.getContextPath()%>/community/view" class="discover-communities">
@@ -80,22 +83,28 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
 		                <img src="" alt="Logo" class="community-profile">
 		                <p>Community Name</p>
 		            </a>
-        </section>
+       			 </section>
+        		<%@ include file="miniFooterUser.jsp" %>
+        	</div>
+       
     </section>
     
     
     <%@ include file="notificationModel.jsp" %>
+    <%@ include file="newPostImage.jsp" %>
+   	<%@ include file="newPostMessage.jsp" %>
+ 
 <script>
 	const tagList = document.querySelector('.tag-list');
 	const arrowLeft = document.getElementById('arrowLeft');
 	const arrowRight = document.getElementById('arrowRight');
 	const tags = document.querySelectorAll('.tag-list span');
 	const SCROLL_AMOUNT = 200;
-	
+
 	// arrow clicks
 	arrowLeft.addEventListener('click', () => { tagList.scrollLeft -= SCROLL_AMOUNT; });
 	arrowRight.addEventListener('click', () => { tagList.scrollLeft += SCROLL_AMOUNT; });
-	
+
 	// show/hide arrows based on scroll position
 	function updateArrows() {
 	    const atStart = tagList.scrollLeft <= 0;
@@ -106,7 +115,7 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
 	tagList.addEventListener('scroll', updateArrows);
 	window.addEventListener('resize', updateArrows);
 	updateArrows();
-	
+
 	// drag-to-scroll on desktop
 	let isDown = false, startX, scrollStart;
 	tagList.addEventListener('mousedown', (e) => {
@@ -121,7 +130,7 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
 	    e.preventDefault();
 	    tagList.scrollLeft = scrollStart - (e.pageX - tagList.offsetLeft - startX);
 	});
-	
+
 	// active tag highlight
 	tags.forEach(tag => {
 	    tag.addEventListener('click', () => {
@@ -129,6 +138,45 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
 	        tag.classList.add('active');
 	    });
 	});
-</script> 
+
+	// new post image modal
+	function openNewPostImage() {
+	    document.getElementById('npiOverlay').classList.add('active');
+	}
+
+	function closeNewPostImage() {
+	    document.getElementById('npiOverlay').classList.remove('active');
+	}
+
+	function previewNpiImage(input) {
+	    if (input.files && input.files[0]) {
+	        const reader = new FileReader();
+	        reader.onload = e => {
+	            const img = document.getElementById('npiPreviewImg');
+	            img.src = e.target.result;
+	            img.style.display = 'block';
+	        };
+	        reader.readAsDataURL(input.files[0]);
+	    }
+	}
+
+	document.getElementById('npiOverlay').addEventListener('click', function(e) {
+	    if (e.target === this) closeNewPostImage();
+	});
+	
+	
+	// new post message modal
+	function openNewPostMessage() {
+	    document.getElementById('npmOverlay').classList.add('active');
+	}
+
+	function closeNewPostMessage() {
+	    document.getElementById('npmOverlay').classList.remove('active');
+	}
+
+	document.getElementById('npmOverlay').addEventListener('click', function(e) {
+	    if (e.target === this) closeNewPostMessage();
+	});
+</script>
 </body>
 </html>

@@ -9,6 +9,7 @@
 <link rel="stylesheet" href="<%=request.getContextPath()%>/CSS/communityManagement.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/CSS/util.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/CSS/sidebar.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/CSS/newCommunity.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" 
 integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" 
 crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -37,7 +38,7 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
         <div class="heading-row">
             <h1 class="page-heading">Manage, Monitor &amp;<br>Moderate the<br>Communities</h1>
             <div class="heading-buttons">
-                <button class="create-community-btn">Create a new community</button>
+                <button class="create-community-btn" onclick="openNewCommunity()">Create a new community</button>
                 <div class="btn-sep"></div>
                 <button class="filter-sort-btn">Filter/Sort</button>
             </div>
@@ -78,5 +79,33 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
             </c:if>
         </div>
     </div>
+    <%@ include file="newCommunity.jsp" %>
+    
+	    <script>
+	    function openNewCommunity() {
+	        document.getElementById('ncOverlay').classList.add('active');
+	    }
+	
+	    function closeNewCommunity() {
+	        document.getElementById('ncOverlay').classList.remove('active');
+	    }
+	
+	    function previewNcImage(input) {
+	        if (input.files && input.files[0]) {
+	            const reader = new FileReader();
+	            reader.onload = e => {
+	                const img = document.getElementById('ncPreviewImg');
+	                img.src = e.target.result;
+	                img.style.display = 'block';
+	            };
+	            reader.readAsDataURL(input.files[0]);
+	        }
+	    }
+	
+	    document.getElementById('ncOverlay').addEventListener('click', function(e) {
+	        if (e.target === this) closeNewCommunity();
+	    });
+	</script>
+    
 </body>
 </html>
