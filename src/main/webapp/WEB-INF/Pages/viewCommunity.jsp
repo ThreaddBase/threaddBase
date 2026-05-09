@@ -51,7 +51,7 @@
         <div class="community-right">
         	<c:choose>
 				<c:when test="${role.equals('Admin')}">
-            		<button class="add-btn">Edit Community</button>		
+            		<button class="add-btn" onclick="openEditCommunity()">Edit Community</button>		
 				</c:when>
 				<c:otherwise>
 					<button class="add-btn">Create Thread</button>
@@ -90,9 +90,38 @@
          <c:if test="${role.equals('Member')}">
             <button class="join-community">Join Community</button>	
 		 </c:if>
-
+		 <%@ include file="miniFooterViewCom.jsp" %>
         </div>
     </section>
     <%@ include file="notificationModel.jsp" %>
+    <%@ include file="editCommunity.jsp" %>
+    
+	   <script>
+	    function openEditCommunity() {
+	        document.getElementById('ecOverlay').classList.add('active');
+	    }
+	
+	    function closeEditCommunity() {
+	        document.getElementById('ecOverlay').classList.remove('active');
+	    }
+	
+	    function previewEcImage(input) {
+	        if (input.files && input.files[0]) {
+	            const reader = new FileReader();
+	            reader.onload = e => {
+	                const img = document.getElementById('ecPreviewImg');
+	                img.src = e.target.result;
+	                img.style.display = 'block';
+	            };
+	            reader.readAsDataURL(input.files[0]);
+	        }
+	    }
+	
+	    // Close modal when clicking outside the card
+	    document.getElementById('ecOverlay').addEventListener('click', function(e) {
+	        if (e.target === this) closeEditCommunity();
+	    });
+	</script> 
+   
 </body>
 </html>
