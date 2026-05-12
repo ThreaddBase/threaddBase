@@ -7,9 +7,11 @@ import java.sql.SQLException;
 
 import com.util.DBConfig;
 
+
 public class VoteDAO {
 	
 	// method that check ff user has already voted
+	//multiline comment
 	public boolean hasVoted(int postID, int userID) throws SQLException {
 		
 		String query = "SELECT Vote_ID FROM vote WHERE Post_ID = ? AND User_ID = ?";

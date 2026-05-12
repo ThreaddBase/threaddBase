@@ -10,6 +10,7 @@ import java.sql.SQLException;
 
 import com.DAO.UserManagementDAO;
 import com.DAO.VoteDAO;
+import com.model.LoginModel;
 import com.service.UserManagementService;
 import com.service.VoteService;
 import com.util.SessionUtil;
@@ -48,7 +49,8 @@ public class VoteController extends HttpServlet {
 		// TODO Auto-generated method stub
 		
 		// get username from session util
-		String username = SessionUtil.getLoggedUser(request);
+		LoginModel user = SessionUtil.getLoggedUser(request);
+		String username = user.getUsername();
 		
         if (username == null) {
             response.sendRedirect(request.getContextPath() + "/login");

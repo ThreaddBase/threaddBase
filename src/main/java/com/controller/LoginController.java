@@ -8,6 +8,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 import com.util.SessionUtil;
+import com.model.LoginModel;
 import com.model.UserModel;
 import com.service.LoginService;
 
@@ -44,25 +45,25 @@ public class LoginController extends HttpServlet {
 		
 		// get username and password from Login form from LoginUI
 		String username = request.getParameter("Username");
-        String password = request.getParameter("Password");
+		String password = request.getParameter("Password");
 
-        try {
-            LoginService service = new LoginService();
-            String role = service.authenticate(username, password); // null if invalid
+		try {
+		    LoginService service = new LoginService();
+		    LoginModel user = service.authenticate(username, password);
 
-            if (role != null) {
-                SessionUtil.setLoggedUser(request, username, role);
-                redirectByRole(request, response);
-            } else {
-                request.setAttribute("errorMessage", "Invalid username or password.");
-                request.getRequestDispatcher("/WEB-INF/Pages/login.jsp").forward(request, response);
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            request.setAttribute("errorMessage", "Something went wrong. Please try again.");
-            request.getRequestDispatcher("/WEB-INF/Pages/login.jsp").forward(request, response);
-        }
+		    if (user != null) {
+		        SessionUtil.setLoggedUser(request, user); // pass full object
+		        redirectByRole(request, response);
+		    } else {
+		        request.setAttribute("errorMessage", "Invalid username or password.");
+		        request.getRequestDispatcher("/WEB-INF/Pages/login.jsp").forward(request, response);
+		    }
+		    
+		} catch (Exception e) {
+		    e.printStackTrace();
+		    request.setAttribute("errorMessage", "Something went wrong. Please try again.");
+		    request.getRequestDispatcher("/WEB-INF/Pages/login.jsp").forward(request, response);
+		}
 	}
 	
 	private void redirectByRole(HttpServletRequest request, HttpServletResponse response)

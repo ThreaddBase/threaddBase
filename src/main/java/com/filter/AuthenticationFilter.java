@@ -13,6 +13,7 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
+import com.model.LoginModel;
 import com.util.CookieUtil;
 import com.util.SessionUtil;
 
@@ -103,8 +104,8 @@ public class AuthenticationFilter extends HttpFilter implements Filter {
             return;
         }
      
-        Object user = SessionUtil.getAttribute(req, "loggedUser");
-        String role = (String) SessionUtil.getRole(req);
+        LoginModel user = SessionUtil.getLoggedUser(req);
+        String role = SessionUtil.getRole(req);
         boolean isLoggedIn = (user != null);
         
         

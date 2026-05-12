@@ -1,5 +1,7 @@
 package com.util;
 
+import com.model.LoginModel;
+
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 
@@ -10,7 +12,6 @@ public class SessionUtil {
 	
 	public static void setAttribute(HttpServletRequest request, String key, Object value) {
         HttpSession session = request.getSession();
-        
         session.setAttribute(key, value);
     }
 
@@ -30,27 +31,28 @@ public class SessionUtil {
         }
     }
     
-    public static void setLoggedUser(HttpServletRequest request, String username, String role) {
-        // Invalidate old session first to prevent session fixation
+    public static void setLoggedUser(HttpServletRequest request, LoginModel user) {
         HttpSession old = request.getSession(false);
         if (old != null) old.invalidate();
-
         HttpSession session = request.getSession(true);
-        session.setAttribute("loggedUser", username);
-        session.setAttribute("userRole",   role);
-        session.setMaxInactiveInterval(30 * 60); // 30 minutes
+        session.setAttribute("loggedUser", user); // store full object
+        session.setMaxInactiveInterval(30 * 60);
     }
 
-    public static String getLoggedUser(HttpServletRequest request) {
+    public static LoginModel getLoggedUser(HttpServletRequest request) {
         HttpSession session = request.getSession(false);
         if (session == null) return null;
-        return (String) session.getAttribute("loggedUser");
+        return (LoginModel) session.getAttribute("loggedUser");
+    }
+
+    public static int getUserId(HttpServletRequest request) {
+        LoginModel user = getLoggedUser(request);
+        return user != null ? user.getId() : 0;
     }
 
     public static String getRole(HttpServletRequest request) {
-        HttpSession session = request.getSession(false);
-        if (session == null) return null;
-        return (String) session.getAttribute("userRole");
+        LoginModel user = getLoggedUser(request);
+        return user != null ? user.getUserRole() : null;
     }
 
     public static boolean isLoggedIn(HttpServletRequest request) {
@@ -58,6 +60,7 @@ public class SessionUtil {
     }
 
     public static boolean hasRole(HttpServletRequest request, String role) {
-        return role.equalsIgnoreCase(getRole(request));
+        LoginModel user = getLoggedUser(request);
+        return user != null && role.equalsIgnoreCase(user.getUserRole());
     }
 }

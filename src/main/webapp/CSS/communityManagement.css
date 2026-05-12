@@ -117,11 +117,7 @@ body {
   color: #00ADB5;
 }
 
-
-/* =====================
-       MAIN CONTENT
-    ===================== */
-
+/* main content */
 .main-content {
     margin-left: 200px;
     flex: 1;
@@ -192,6 +188,11 @@ body {
     font-size: 16px;
     color: #eee;
 
+}
+
+.profile-btn a {
+    color: #eee;
+	text-decoration: none;
 }
 
 .profile-btn:hover {
@@ -351,7 +352,7 @@ body {
 }
 
 .delete-btn {
-	background: #b30b0b;
+	background: #7a0000;
 }
 
 .view-btn a {
@@ -379,16 +380,13 @@ body {
 }
 
 
-/* =====================
-       MOBILE RESPONSIVE
-    ===================== */
     @media (max-width: 875px) {
     .bar{
        display: none;
     }    
 }
 /* Sidebar icon-only — top+bottom keeps it full height on mobile too */
-@media (max-width: 768px) {
+@media (max-width: 800px) {
 
     
     .side-navbar {

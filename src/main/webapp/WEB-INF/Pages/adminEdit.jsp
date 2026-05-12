@@ -9,15 +9,21 @@
 </head>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/CSS/adminEdit.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/CSS/utill.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" 
+integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" 
+crossorigin="anonymous" referrerpolicy="no-referrer" />
+
 <body>
-   <div class="card-title">Edit Profile</div>
+   <div class="card-title"><i class="fa-solid fa-circle-arrow-left"></i><a a href="<%=request.getContextPath()%>/admin">Edit Profile</a>
+
+   </div>
 	<div class="card-wrap">
 
   <div class="profile_img">
     <img src="https://static.vecteezy.com/system/resources/previews/046/409/821/non_2x/avatar-profile-icon-in-flat-style-male-user-profile-illustration-on-isolated-background-man-profile-sign-business-concept-vector.jpg" alt="Profile Picture">
   </div>
 
-    <form action="<%=request.getContextPath()%>/adminEdit" enctype="multipart/form-data" method="post" class="change">
+    <form action="<%=request.getContextPath()%>/userEdit" enctype="multipart/form-data" method="post" class="change">
      
      	<!-- Hide the real input, style the label as a button -->
 		<label for="file-upload" style="cursor: pointer; padding: 8px 16px; border: 1px solid #ccc; border-radius: 6px; display: inline-block;">
@@ -33,7 +39,7 @@
       </div>
       <div>
         <label>First Name</label>
-        <input type="text" name="f-name" value="Newgate">
+        <input type="text" name="f-name" value="Harry">
       </div>
       <div>
         <label>Last Name</label>
@@ -41,6 +47,7 @@
       </div>
     </div>
 
+	<div class ="second-section"></div>
     <div name ="bio" class="bio">
       <label>Bio</label>
       <textarea>Lorem ipsum dolor, sit amet consectetur  adipisicing elit. Laboriosam rerum explicabo consequatur eligendi  excepturi sit praesentium ex. </textarea>
@@ -57,7 +64,7 @@
       <label>New Password</label>
       <input name="n-pass"type="password" value="">
       <label>Retype Password</label>
-      <input name = "r-pass" type="password" value="">
+      <input name ="r-pass" type="password" value="">
     </div>
 
     <div class="buttons">

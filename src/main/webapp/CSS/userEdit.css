@@ -1,8 +1,13 @@
 @charset "UTF-8";
 
+:root {
+  --img-bg: #333;
+  --radius-lg: 16px;
+}
 body{
-    background-color: #222831;
-    color: #EEEEEE;
+    background-color: var(--color-primary);
+    font-family: 'Outfit', sans-serif;
+    color:var(--color-font);
 }
 
 .navbar {
@@ -13,10 +18,8 @@ body{
     align-items: center;
 }
 
-.menu {
-  font-size: 22px;
-  cursor: pointer;
-}
+
+
 .profile_img img{
     width: 100%;
     height: auto;
@@ -46,13 +49,20 @@ body{
     border-radius: 20px;
     margin: 0% 22% 4% 22%;
     background-color: #393E46;
+    background-color: var(--color-secondary);
 }
 .card-title{
     align-self: flex-start;
     margin:4% 4%;
     padding-right: 10%;
-    font-size: 25px;
 }
+
+.card-title a{
+	text-decoration: none;
+	color:var(--color-font);
+}
+
+
 .change {
 	margin-top: 10%;
     font-size: 18px;
@@ -60,12 +70,13 @@ body{
 }
 
 .profile-section{
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    margin: 1% 0 4%;
-    padding: 1% 2%;
+    display: flex;
+    flex-direction: column;
     width: 100%;
+    margin: 4% 0 2%;
+    padding: 1% 2%;
     text-align: center;
+    gap: 20px;
 }
 
 .profile-section label{
@@ -75,15 +86,19 @@ body{
     font-size: 18px;
 }
 .profile-section input{
-    width: 80%;
+    width: 50%;
     height: 40px;
-    border: none;
-    padding: 3%;
-    border-radius: 8px;
-    text-align: center;
-    font-size: 14px;
+	background-color: var(--color-primary);
+    border: 1.5px solid rgba(255, 255, 255, 0.08);
+    border-radius: 6px;
+    padding: 0.6rem 0.85rem;
+    color: var(--color-font);
+    font-size: 0.9rem;
+    font-family: 'Outfit', sans-serif;
+    transition: border-color 0.2s, box-shadow 0.2s;
     outline: none;
     box-sizing: border-box;
+    text-align: center;
 }
 
 .bio label{
@@ -102,14 +117,16 @@ body{
 .bio textarea{
     width: 50%;
     height: 100px;
-    border: none;
-    padding: 3% 3%;
-    border-radius: 8px;
-    font-size: 14px;
+	background-color: var(--color-primary);
+    border: 1.5px solid rgba(255, 255, 255, 0.08);
+    border-radius: 6px;
+    padding: 0.6rem 0.85rem;
+    color: var(--color-font);
+    font-size: 0.9rem;
+    font-family: 'Outfit', sans-serif;
+    transition: border-color 0.2s, box-shadow 0.2s;
     outline: none;
-    text-align: center;
     box-sizing: border-box;
-    resize: vertical;
 }
 
 .DOB label{
@@ -121,10 +138,15 @@ body{
 .DOB input{
     width: 40%;
     height: 40px;
-    border: none;
-    border-radius: 8px;
     text-align: center;
-    font-size: 14px;
+	background-color: var(--color-primary);
+    border: 1.5px solid rgba(255, 255, 255, 0.08);
+    border-radius: 6px;
+    padding: 0.6rem 0.85rem;
+    color: var(--color-font);
+    font-size: 0.9rem;
+    font-family: 'Outfit', sans-serif;
+    transition: border-color 0.2s, box-shadow 0.2s;
     outline: none;
     box-sizing: border-box;
 }
@@ -132,10 +154,14 @@ body{
 .password input{
     width: 40%;
     height: 40px;
-    border: none;
-    border-radius: 8px;
-    text-align: center;
-    font-size: 14px;
+	background-color: var(--color-primary);
+    border: 1.5px solid rgba(255, 255, 255, 0.08);
+    border-radius: 6px;
+    padding: 0.6rem 0.85rem;
+    color: var(--color-font);
+    font-size: 0.9rem;
+    font-family: 'Outfit', sans-serif;
+    transition: border-color 0.2s, box-shadow 0.2s;
     outline: none;
     box-sizing: border-box;
 }
@@ -165,12 +191,12 @@ body{
     .buttons{
         display: flex;
         justify-content: center;
-        padding: 4%;
+        padding: 2%;
         width: 100%;
-        gap: 15%;
+        gap: 10%;
     }
     .btn{
-        padding: 2% 6%;
+        padding: 2% 4%;
         border-radius: 8px;
         font-size: 14px;
         font-weight: bold;
@@ -179,6 +205,22 @@ body{
         background-color: #00ADB5;
         color: #EEEEEE;  
     }
+    
+    
+    .back_btn{
+        padding: 2% 6%;
+        border-radius: 8px;
+        font-size: 14px;
+        font-weight: bold;
+        cursor: pointer;
+        border: 2px solid #00ADB5;
+        background-color: #00ADB5;
+        color: #EEEEEE;
+        width: 50%;
+    
+    }
+    
+
 
 
 @media (max-width: 1000px) {
@@ -250,6 +292,12 @@ body{
 
     .btn {
         width: 80%;
+        text-align: center;
+        margin-bottom: 5%;
+    }
+    
+    .back_btn{
+   		width: 80%;
         text-align: center;
         margin-bottom: 5%;
     }

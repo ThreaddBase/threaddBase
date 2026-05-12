@@ -8,6 +8,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
 
+import com.model.LoginModel;
 import com.service.BookmarkService;
 import com.service.UserManagementService;
 import com.util.SessionUtil;
@@ -46,7 +47,8 @@ public class BookmarkController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 	        throws ServletException, IOException {
 
-	    String username = SessionUtil.getLoggedUser(request);
+		LoginModel user = SessionUtil.getLoggedUser(request);
+		String username = user.getUsername();
 
 	    if (username == null) {
 	        response.sendRedirect(request.getContextPath() + "/login");

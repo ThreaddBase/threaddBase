@@ -11,6 +11,7 @@ public class CommunityModel {
     private Date createdAt;
     private byte[] communityProfile;
     private int userCount;
+    private int requestID;
 
     //public constructor
     public CommunityModel() {}
@@ -70,6 +71,10 @@ public class CommunityModel {
         return null;
     }
     
+    public int getRequestID() {
+        return requestID;
+    }
+    
     // Setters
     public void setId(int id) {
         this.id = id;
@@ -94,4 +99,8 @@ public class CommunityModel {
 	public void setCommunityProfile(byte[] communityProfile) {
 		this.communityProfile = communityProfile;
 	}
+	
+    public void setRequestId(int requestID) {
+        this.requestID = requestID;
+    }
 }

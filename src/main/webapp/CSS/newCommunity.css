@@ -1,23 +1,27 @@
 @charset "UTF-8";
 
-#ncOverlay {
-    position: fixed !important;
-    top: 0 !important;
-    left: 0 !important;
-    width: 100vw !important;
-    height: 100vh !important;
-    z-index: 99999 !important;
-    display: none !important;
-    align-items: center !important;
-    justify-content: center !important;
-    background: rgba(0, 0, 0, 0.75) !important;
-    backdrop-filter: blur(4px) !important;
+/* ── New Community Overlay ── */
+/* Old JS approach used #ncOverlay + .active — replaced with .nc-overlay--active */
+.nc-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 99999;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(4px);
 }
 
-#ncOverlay.active {
-    display: flex !important;
+/* JSTL renders this class when showModal == 'newCommunity' */
+.nc-overlay.nc-overlay--active {
+    display: flex;
 }
 
+/* Box */
 .nc-box {
     position: relative;
     animation: ncSlideUp 0.25s cubic-bezier(0.34, 1.2, 0.64, 1) both;
@@ -28,6 +32,7 @@
     to   { opacity: 1; transform: translateY(0) scale(1); }
 }
 
+/* Close button — now an <a> tag instead of <button> */
 .nc-close {
     position: absolute;
     top: -16px;
@@ -43,20 +48,22 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: background 0.2s, transform 0.15s;
+    transition: background 0.2s;
     z-index: 1;
+    text-decoration: none;   /* <a> tag reset */
+    line-height: 1;
 }
 
 .nc-close:hover {
     background: #888;
-    transform: rotate(90deg);
+    color: #fff;             /* keep white on hover for <a> tag */
 }
 
-/* ── Card ── */
+/* Card */
 .nc-card {
-    background: #222831;
-    border: 2px solid #AAB4BE;
-    border-radius: 15px;
+    background: #1e2430;
+    border: 1.5px solid #2e3a4a;
+    border-radius: 16px;
     padding: 24px;
     width: 480px;
     display: grid;
@@ -65,6 +72,7 @@
     gap: 16px;
 }
 
+/* Left column */
 .nc-left {
     display: flex;
     flex-direction: column;
@@ -75,9 +83,9 @@
 .nc-image-frame {
     width: 120px;
     height: 120px;
-    background: #bbb;
-    border: 2px solid #888;
-    border-radius: 15px;
+    background: #2a3444;
+    border: 1.5px solid #3a4a5a;
+    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -91,57 +99,143 @@
     display: none;
 }
 
+/* Change Image label — acts as the button, triggers file input natively */
+.nc-btn-change {
+    padding: 7px 0;
+    width: 120px;
+    background: transparent;
+    font-size: 12px;
+    font-weight: 500;
+    border: none;
+    border-bottom: 1px solid #4a5a6a;
+    border-radius: 0;
+    cursor: pointer;
+    color: #8a9aaa;
+    letter-spacing: 0.03em;
+    transition: color 0.15s ease, border-color 0.15s ease;
+    text-align: center;
+    display: inline-block;
+}
+
+.nc-btn-change:hover {
+    color: #c0cdd8;
+    border-bottom-color: #8a9aaa;
+}
+
+/* Hide the raw file input visually but keep it accessible/clickable via label */
+input[type="file"]#ncImageInput {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* Show selected filename below the label */
+.nc-left .nc-file-name {
+    font-size: 11px;
+    color: #5a6a7a;
+    width: 120px;
+    text-align: center;
+    word-break: break-all;
+    min-height: 16px;
+}
+
+/* Create button */
 .nc-btn-create {
-    padding: 6px 12px;
-    width: 100%;
+    padding: 6px 18px;
+    width: 140px;
     background-color: #00adb5;
-    font-size: 14px;
-    font-weight: 600;
+    font-size: 13px;
+    font-weight: 500;
     border: none;
     border-radius: 30px;
     cursor: pointer;
     transition: background-color 0.15s ease, transform 0.1s ease;
     text-align: center;
-    color: #eee;
+    color: #fff;
 }
 
 .nc-btn-create:hover {
     background-color: #008f96;
-    color: #eeeeeed3;
 }
 
 .nc-btn-create:active {
     transform: scale(0.97);
 }
 
+/* Right column */
 .nc-right {
     display: flex;
     flex-direction: column;
-    gap: 7px;
+    gap: 10px;
 }
 
-.nc-right input[type="text"] {
+.nc-right input[type="text"],
+.nc-right textarea,
+.nc-right select {
     width: 100%;
-    padding: 8px 12px;
-    border: 1px solid #aaa;
-    border-radius: 5px;
-    background: #eee;
+    padding: 10px 14px;
+    border: 1.5px solid #2e3a4a;
+    border-radius: 10px;
+    background: #252d3a;
+    color: #d0d8e4;
     font-size: 14px;
     outline: none;
+    transition: border-color 0.2s ease;
+    box-sizing: border-box;
+}
+
+.nc-right input[type="text"]::placeholder,
+.nc-right textarea::placeholder {
+    color: #5a6a7a;
+}
+
+.nc-right input[type="text"]:focus,
+.nc-right textarea:focus,
+.nc-right select:focus {
+    border-color: #00adb5;
+}
+
+.nc-right select {
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%235a6a7a' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+}
+
+.nc-right select option {
+    background: #252d3a;
+    color: #d0d8e4;
+}
+
+.nc-right select option:disabled {
+    color: #5a6a7a;
 }
 
 .nc-right textarea {
-    width: 100%;
     height: 115px;
-    padding: 10px 12px;
-    border: 1px solid #aaa;
-    border-radius: 5px;
-    background: #eee;
-    font-size: 14px;
     resize: none;
-    outline: none;
 }
 
+/* Error message */
+.nc-error {
+    grid-column: 1 / -1;
+    color: #ff6b6b;
+    background: #2a1a1a;
+    border: 1px solid #5a2a2a;
+    border-radius: 8px;
+    padding: 10px 14px;
+    font-size: 13px;
+}
+
+/* Actions row */
 .nc-actions {
     grid-column: 1 / -1;
     display: flex;

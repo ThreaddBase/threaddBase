@@ -30,7 +30,7 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
             </div>
             <button class="profile-btn">
                 <i class="fas fa-circle-user"></i>
-                <span>Profile</span>
+                <a href="<%=request.getContextPath()%>/admin">Profile</a>
             </button>
         </div>
 
@@ -38,7 +38,9 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
         <div class="heading-row">
             <h1 class="page-heading">Manage, Monitor &amp;<br>Moderate the<br>Communities</h1>
             <div class="heading-buttons">
-                <button class="create-community-btn" onclick="openNewCommunity()">Create a new community</button>
+                <a href="<%=request.getContextPath()%>/admin/community?showModal=newCommunity">
+				    <button class="create-community-btn">Create a new community</button>
+				</a>
                 <div class="btn-sep"></div>
                 <button class="filter-sort-btn">Filter/Sort</button>
             </div>
@@ -67,7 +69,9 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
                     <div class="card-desc">${community.description}</div>
                     <div class="card-action-btns">
                         <button class="view-btn"><a href="<%=request.getContextPath()%>/community/view?id=${community.id}">View Community</a></button>
-                        <button class="delete-btn">Delete Community</button>
+                        <a href="<%=request.getContextPath()%>/admin/community?showModal=delete&amp;communityId=${community.id}">
+						    <button class="delete-btn">Delete Community</button>
+						</a>
                     </div>
                 </div>
             </div>
@@ -81,31 +85,8 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
     </div>
     <%@ include file="newCommunity.jsp" %>
     
-	    <script>
-	    function openNewCommunity() {
-	        document.getElementById('ncOverlay').classList.add('active');
-	    }
-	
-	    function closeNewCommunity() {
-	        document.getElementById('ncOverlay').classList.remove('active');
-	    }
-	
-	    function previewNcImage(input) {
-	        if (input.files && input.files[0]) {
-	            const reader = new FileReader();
-	            reader.onload = e => {
-	                const img = document.getElementById('ncPreviewImg');
-	                img.src = e.target.result;
-	                img.style.display = 'block';
-	            };
-	            reader.readAsDataURL(input.files[0]);
-	        }
-	    }
-	
-	    document.getElementById('ncOverlay').addEventListener('click', function(e) {
-	        if (e.target === this) closeNewCommunity();
-	    });
-	</script>
+    <!-- Delete Confirmation Modal -->
+   	<%@ include file="deleteCommunity.jsp" %>
     
 </body>
 </html>

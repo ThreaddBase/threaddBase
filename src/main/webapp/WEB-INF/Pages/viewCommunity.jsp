@@ -50,9 +50,11 @@
         </div>
         <div class="community-right">
         	<c:choose>
-				<c:when test="${role.equals('Admin')}">
-            		<button class="add-btn" onclick="openEditCommunity()">Edit Community</button>		
-				</c:when>
+					<c:when test="${role == 'Admin'}">
+					    <a href="<%=request.getContextPath()%>/community/view?id=${community.id}&amp;showModal=editCommunity">
+					        <button class="add-btn">Edit Community</button>
+					    </a>
+					</c:when>
 				<c:otherwise>
 					<button class="add-btn">Create Thread</button>
 				</c:otherwise>
@@ -97,14 +99,6 @@
     <%@ include file="editCommunity.jsp" %>
     
 	   <script>
-	    function openEditCommunity() {
-	        document.getElementById('ecOverlay').classList.add('active');
-	    }
-	
-	    function closeEditCommunity() {
-	        document.getElementById('ecOverlay').classList.remove('active');
-	    }
-	
 	    function previewEcImage(input) {
 	        if (input.files && input.files[0]) {
 	            const reader = new FileReader();
@@ -116,11 +110,6 @@
 	            reader.readAsDataURL(input.files[0]);
 	        }
 	    }
-	
-	    // Close modal when clicking outside the card
-	    document.getElementById('ecOverlay').addEventListener('click', function(e) {
-	        if (e.target === this) closeEditCommunity();
-	    });
 	</script> 
    
 </body>
