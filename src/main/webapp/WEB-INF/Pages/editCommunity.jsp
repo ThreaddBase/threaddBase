@@ -42,6 +42,10 @@
                 <textarea name="communityDescription"
                           placeholder="Description of the community">${community.description}</textarea>
             </div>
+            
+            <c:if test="${not empty error}">
+            	<div class="nc-error">${error}</div>
+            </c:if>
 
             <div class="ec-actions">
                 <button type="submit" class="ec-btn-save">Save Changes</button>

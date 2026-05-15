@@ -103,22 +103,16 @@ public class ViewCommunityController extends HttpServlet {
 
         String idParam = request.getParameter("communityId");
         if (idParam == null || idParam.isEmpty()) {
-        	System.out.println(idParam+ "not found");
             response.sendRedirect(request.getContextPath() + "/error");
             return;
         }
 
         try {
-            int communityId    = Integer.parseInt(idParam);
-            String name        = request.getParameter("communityName");
+            int communityId = Integer.parseInt(idParam);
+            String name = request.getParameter("communityName");
             String description = request.getParameter("communityDescription");
-            Part imagePart     = request.getPart("communityImage");
-            
-            System.out.println(communityId);
-            System.out.println(name);
-            System.out.println(description);
-            System.out.println(imagePart);
-            
+            Part imagePart = request.getPart("communityImage");
+
             byte[] imageBytes = null;
             if (imagePart != null && imagePart.getSize() > 0) {
                 try (InputStream is = imagePart.getInputStream()) {
@@ -132,16 +126,41 @@ public class ViewCommunityController extends HttpServlet {
             community.setDescription(description);
             community.setCommunityProfile(imageBytes);
 
-            String updated = communityManageService.updateCommunity(community);
+            String error = communityManageService.updateCommunity(community);
 
-            response.sendRedirect(request.getContextPath()
-                + "/community/view?id=" + communityId);
+            if (error != null) {
+                communityEditError(request, response, communityId, error);
+                return;
+            }
+
+            response.sendRedirect(request.getContextPath() + "/community/view?id=" + communityId);
 
         } catch (NumberFormatException e) {
             response.sendRedirect(request.getContextPath() + "/error");
         } catch (SQLException e) {
             throw new ServletException("DB error updating community", e);
         }
+    }
+    
+    private void communityEditError(HttpServletRequest request, HttpServletResponse response,
+            int communityId, String error) throws ServletException, IOException {
+        try {
+            CommunityModel community = communityService.getCommunityByID(communityId);
+            List<PostModel> postList = postService.getPostByCommunity(communityId);
+            List<TagModel> tagList = tagService.getCommunityByID(communityId);
+
+            request.setAttribute("community", community);
+            request.setAttribute("postList", postList);
+            request.setAttribute("tagList", tagList);
+        } catch (SQLException e) {
+            throw new ServletException("Database error reloading community.", e);
+        }
+
+        request.setAttribute("error", error);
+        request.setAttribute("showModal", "editCommunity");
+        request.setAttribute("role", SessionUtil.getRole(request));
+
+        request.getRequestDispatcher("/WEB-INF/Pages/viewCommunity.jsp").forward(request, response);
     }
     
 }

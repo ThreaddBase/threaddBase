@@ -1,53 +1,68 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <link rel="stylesheet" href="<%=request.getContextPath()%>/CSS/newPostImage.css">
 
-<div id="npiOverlay" class="npi-overlay">
+<div class="npi-overlay ${param.showModal == 'image' ? 'active' : ''}">
     <div class="npi-box">
-        <button type="button" class="npi-close" onclick="closeNewPostImage()">&times;</button>
 
-        <h2 class="npi-heading"><span>Create</span> New Post</h2>
+        <a href="<%=request.getContextPath()%>/user/home?id=${param.id}" class="npi-close">&times;</a>
 
-        <div class="npi-body">
-            <!-- Left: image upload -->
-            <div class="npi-left">
-                <div class="npi-upload-area" onclick="document.getElementById('npiFileInput').click()">
-                    <i class="fas fa-arrow-up-from-bracket npi-upload-icon"></i>
-                    <button type="button" class="npi-upload-btn">Upload an Image</button>
-                    <p class="npi-upload-hint">PNG, JPG or GIF · Max 10MB</p>
-                    <input type="file" id="npiFileInput" accept="image/*"
-                           style="display:none" onchange="previewNpiImage(this)">
-                </div>
-            </div>
+        <form class="npi-card"
+              action="<%=request.getContextPath()%>/post/create"
+              method="post"
+              enctype="multipart/form-data">
 
-            <!-- Right: fields -->
-            <div class="npi-right">
-                <div>
-                    <p class="npi-field-label">Title</p>
-                    <input type="text" placeholder="Title for the post">
+            <h2 class="npi-heading"><span>Create</span> New Post</h2>
+
+            <div class="npi-body">
+                <div class="npi-left">
+                    <div class="npi-image-frame">
+                        <img src="" alt="Post Image" id="npiPreviewImg">
+                    </div>
+                    <label class="npi-btn-change" for="npiFileInput">Choose Image</label>
+                    <input type="file" id="npiFileInput" accept="image/*" name="postImage">
                 </div>
-                <div>
-                    <p class="npi-field-label">Description</p>
-                    <textarea placeholder="Description for the post..."></textarea>
-                </div>
-                <div>
-                    <p class="npi-field-label">Community</p>
-                    <select>
+
+                <div class="npi-right">
+                    <input type="text" placeholder="Title for the post" name="postTitle">
+                    <textarea placeholder="Description for the post..." name="postCaption"></textarea>
+                    <select name="communityId">
                         <option value="" disabled selected>Select community</option>
+                        <c:forEach var="community" items="${communityList}">
+                            <option value="${community.id}">${community.name}</option>
+                        </c:forEach>
                     </select>
+                    <input type="text" placeholder="# Add tags" name="postTags">
                 </div>
             </div>
-        </div>
 
-        <!-- Footer -->
-        <div class="npi-footer">
-            <input type="text" class="npi-tags-input" placeholder="# For the post">
-            <div class="npi-confirm">
+            <c:if test="${not empty error}">
+                <div class="npi-error">${error}</div>
+            </c:if>
+
+            <div class="npi-actions">
                 <span>Sure you want to post it?</span>
-                <button type="button" class="npi-post-btn">Post Thread</button>
+                <button type="submit" class="npi-post-btn">Post Thread</button>
             </div>
-        </div>
 
+        </form>
     </div>
 </div>
+
+<script>
+    const npiInput = document.getElementById('npiFileInput');
+    if (npiInput) {
+        npiInput.addEventListener('change', function () {
+            if (this.files && this.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    var img = document.getElementById('npiPreviewImg');
+                    img.src = e.target.result;
+                    img.style.display = 'block';
+                };
+                reader.readAsDataURL(this.files[0]);
+            }
+        });
+    }
+</script>

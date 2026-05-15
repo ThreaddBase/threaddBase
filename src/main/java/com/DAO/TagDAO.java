@@ -11,7 +11,7 @@ import com.model.TagModel;
 import com.util.DBConfig;
 
 public class TagDAO {
-	// method to get all tags from community posts
+	// method to get top 5 tags from community posts
 	public List<TagModel> getCommunityPostTag(int communityID) throws SQLException {
 		
 		String query = "SELECT t.Tag_ID, t.Tag_Name, COUNT(t.Tag_ID) AS tag_count "

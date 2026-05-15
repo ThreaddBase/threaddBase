@@ -63,12 +63,13 @@
             </form>
 
             <%-- Report — Admin only --%>
-            <c:if test="${role eq 'Admin'}">
-                <span class="action-btn report">
-                    <i class="fa-solid fa-triangle-exclamation"></i>
-                    ${post.reportCount}
-                </span>
-            </c:if>
+            
+              <span class="action-btn report">
+                  <i class="fa-solid fa-triangle-exclamation"></i>
+                  <c:if test="${role eq 'Admin'}">
+                  	${post.reportCount}
+          		</c:if>
+              </span>
 
         </div>
     </div>

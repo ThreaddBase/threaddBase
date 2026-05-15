@@ -67,7 +67,7 @@
 }
 
 /* ── tag pills ── */
-.tag-list span {
+.tag-list a {
     display: inline-block;
     white-space: nowrap;
     flex-shrink: 0;
@@ -79,14 +79,15 @@
     cursor: pointer;
     border: 1px solid transparent;
     transition: background-color 0.15s ease, color 0.15s ease;
+    text-decoration: none;
 }
 
-.tag-list span:hover {
+.tag-list a:hover {
     background-color: #1a6fb5;
     color: white;
 }
 
-.tag-list span.active {
+.tag-list a.active {
     background-color: #1a6fb5;
     color: white;
 }

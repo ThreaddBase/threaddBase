@@ -27,21 +27,12 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
         <button class="tag-arrow hidden" id="arrowLeft">
             <i class="fas fa-chevron-left"></i>
         </button>
-        <div class="tag-list">
-            <span class="active">All</span>
-            <span>#Tag1</span>
-            <span>#Tag2</span>
-            <span>#Tag3</span>
-            <span>#Tag4</span>
-            <span>#Tag5</span>
-            <span>#Tag6</span>
-            <span>#Tag1</span>
-            <span>#Tag2</span>
-            <span>#Tag3</span>
-            <span>#Tag4</span>
-            <span>#Tag5</span>
-            <span>#Tag6</span>
-        </div>
+			<div class="tag-list">
+			    <a href="<%=request.getContextPath()%>/user/home?id=0" class="${param.id == '0' || empty param.id ? 'active' : ''}">All</a>
+			    <c:forEach var="tag" items="${tagList}">
+			        <a href="<%=request.getContextPath()%>/user/home?id=${tag.tagID}" class="${param.id == tag.tagID ? 'active' : ''}">#${tag.name}</a>
+			    </c:forEach>
+			</div>
         <button class="tag-arrow" id="arrowRight">
             <i class="fas fa-chevron-right"></i>
         </button>
@@ -49,43 +40,50 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
     
     <section id="main-section">
         <section class="section1">
+			    <!-- post section -->
                 <div class="new-thread-container">
                 <p>What's on your mind? Start a Thread...</p>
                 <div class="thread-option">
-                    <a href="#" onclick="openNewPostImage(); return false;">
+					<a href="<%=request.getContextPath()%>/user/home?id=${param.id}&amp;showModal=image">
 					    <i class="fas fa-image"></i>
 					    <span>Photo</span>
 					</a>
-					<a href="#" onclick="openNewPostMessage(); return false;">
+					<a href="<%=request.getContextPath()%>/user/home?id=${param.id}&amp;showModal=thread">
 					    <i class="fa-brands fa-shoelace fa-rotate-270"></i>
 					    <span>Thread</span>
 					</a>
                 </div>
             </div>
-
-            <%@ include file="post.jsp" %>
-            <%@ include file="post.jsp" %>
-            <%@ include file="post.jsp" %>
-            <%@ include file="post.jsp" %>
+            
+            <!-- main section to shoe post -->
+        	<c:forEach var="post" items="${ postList }">
+        		<%@ include file="post.jsp" %>
+        	</c:forEach>
         </section>
-        	<div class = "section2wrapper">
-                <section class="section2">
-                	<p>Discover Communities</p>
-		            <a href="<%=request.getContextPath()%>/community/view" class="discover-communities">
-		                <img src="" alt="Logo" class="community-profile">
-		                <p>Community Name</p>
-		            </a>
-		            <a href="<%=request.getContextPath()%>/community/view" class="discover-communities">
-		                <img src="" alt="Logo" class="community-profile">
-		                <p>Community Name</p>
-		            </a>
-		            <a href="<%=request.getContextPath()%>/community/view" class="discover-communities">
-		                <img src="" alt="Logo" class="community-profile">
-		                <p>Community Name</p>
-		            </a>
-       			 </section>
-        		<%@ include file="miniFooterUser.jsp" %>
-        	</div>
+			<div class="section2wrapper">
+			    <section class="section2">
+			        <p>Discover Communities</p>
+			
+			        <c:forEach var="community" items="${communityList}">
+			            <a href="<%=request.getContextPath()%>/community/view?id=${community.id}" class="discover-communities">
+			                <c:choose>
+						        <c:when test="${not empty community.communityProfileBase64}">
+						            <img class="community-profile"
+						                 src="data:image/jpeg;base64,${community.communityProfileBase64}"
+						                 alt="avatar"/>
+						        </c:when>
+						        <c:otherwise>
+						            <img class="community-profile"
+						                 src="<%=request.getContextPath()%>/Assets/default-community.jpg"
+						                 alt="avatar"/>
+						        </c:otherwise>
+						    </c:choose>
+			                <p>${community.name}</p>
+			            </a>
+			        </c:forEach>
+			    </section>
+			    <%@ include file="miniFooterUser.jsp" %>
+			</div>
        
     </section>
     
@@ -98,7 +96,7 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
 	const tagList = document.querySelector('.tag-list');
 	const arrowLeft = document.getElementById('arrowLeft');
 	const arrowRight = document.getElementById('arrowRight');
-	const tags = document.querySelectorAll('.tag-list span');
+	const tags = document.querySelectorAll('.tag-list a');
 	const SCROLL_AMOUNT = 200;
 
 	// arrow clicks
@@ -130,53 +128,7 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
 	    e.preventDefault();
 	    tagList.scrollLeft = scrollStart - (e.pageX - tagList.offsetLeft - startX);
 	});
-
-	// active tag highlight
-	tags.forEach(tag => {
-	    tag.addEventListener('click', () => {
-	        tags.forEach(t => t.classList.remove('active'));
-	        tag.classList.add('active');
-	    });
-	});
-
-	// new post image modal
-	function openNewPostImage() {
-	    document.getElementById('npiOverlay').classList.add('active');
-	}
-
-	function closeNewPostImage() {
-	    document.getElementById('npiOverlay').classList.remove('active');
-	}
-
-	function previewNpiImage(input) {
-	    if (input.files && input.files[0]) {
-	        const reader = new FileReader();
-	        reader.onload = e => {
-	            const img = document.getElementById('npiPreviewImg');
-	            img.src = e.target.result;
-	            img.style.display = 'block';
-	        };
-	        reader.readAsDataURL(input.files[0]);
-	    }
-	}
-
-	document.getElementById('npiOverlay').addEventListener('click', function(e) {
-	    if (e.target === this) closeNewPostImage();
-	});
 	
-	
-	// new post message modal
-	function openNewPostMessage() {
-	    document.getElementById('npmOverlay').classList.add('active');
-	}
-
-	function closeNewPostMessage() {
-	    document.getElementById('npmOverlay').classList.remove('active');
-	}
-
-	document.getElementById('npmOverlay').addEventListener('click', function(e) {
-	    if (e.target === this) closeNewPostMessage();
-	});
 </script>
 </body>
 </html>
