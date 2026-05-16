@@ -89,7 +89,7 @@ public class PostDAO {
 	    ) {
 	        ps.setInt(1, post.getCommunityId());
 	        ps.setInt(2, post.getUserId());
-	        ps.setBytes(3, post.getPostImage());
+	        ps.setBytes(3, (post.getPostImage() != null ? post.getPostImage() : null));
 	        ps.setString(4, (post.getCaption() != null && !post.getCaption().trim().isEmpty()) ? post.getCaption().trim() : null);
 
 	        ps.executeUpdate();

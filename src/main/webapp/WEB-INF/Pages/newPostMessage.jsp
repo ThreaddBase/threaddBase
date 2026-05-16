@@ -18,7 +18,7 @@
 
         <form action="<%=request.getContextPath()%>/post/create"
               method="post">
-
+			<input type="hidden" name="showModal" value="thread">
             <div class="post_main_section">
                 <textarea placeholder="What's the new thread going to be about?" name="postCaption"></textarea>
             </div>
@@ -36,7 +36,9 @@
             </div>
 
             <button type="submit">Thread your thoughts into the community</button>
-
+			<c:if test="${not empty param.error}">
+			    <div class="npi-error">${param.error}</div>
+			</c:if>
         </form>
     </div>
 </div>

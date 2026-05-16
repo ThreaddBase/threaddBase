@@ -10,6 +10,7 @@ public class PostModel {
 	private String caption;
     private Date postDate;
     private byte[] postImage;
+    private String postType;
 
     // count details
     private int voteCount;
@@ -133,5 +134,13 @@ public class PostModel {
 	}
 	public void setCommunityId(int communityId) {
 		this.communityId = communityId;
+	}
+	
+	 public String getPostType() {
+		return postType;
+	}
+	 
+	public void setPostType(String postType) {
+		this.postType = postType;
 	}
 }

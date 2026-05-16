@@ -31,6 +31,7 @@ public class AuthenticationFilter extends HttpFilter implements Filter {
     private static final String ABOUTUS = "/aboutUS";
     private static final String LOGOUT = "/logout";
     private static final String ERROR = "/error";
+    private static final String TERMSANDCONDITION = "/termsAndCondition";
 
     // ADMIN allowed URIs
     private String[] adminURIs = {
@@ -115,7 +116,7 @@ public class AuthenticationFilter extends HttpFilter implements Filter {
         }
         
  
-        boolean isPublic = path.equals(LOGIN) || path.equals(REGISTER) || path.equals(HOME) || path.equals(ABOUTUS) || path.equals(CONTACT) || path.equals(ERROR) || path.equals(LOGOUT);
+        boolean isPublic = path.equals(LOGIN) || path.equals(REGISTER) || path.equals(HOME) || path.equals(ABOUTUS) || path.equals(CONTACT) || path.equals(ERROR) || path.equals(LOGOUT) || path.equals(TERMSANDCONDITION);
         boolean isAccessed = path.equals(LOGIN) || path.equals(REGISTER) || path.equals(HOME);
         if (!isLoggedIn) {
             if (isPublic) {

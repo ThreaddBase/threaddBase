@@ -54,7 +54,7 @@
         <div class="terms">
             <input type="checkbox" id="terms" name="terms" checked/>
             <label for="terms">
-                Accept <a href="#">Terms and Conditions</a>
+                Accept <a href="<%=request.getContextPath()%>/termsAndCondition">Terms and Conditions</a>
             </label>
         </div>
 

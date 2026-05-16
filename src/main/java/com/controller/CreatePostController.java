@@ -49,6 +49,9 @@ public class CreatePostController extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+	    String showModal = request.getParameter("showModal"); // "image" or "thread"
+	    System.out.println(showModal);
+
 	    // safely parse communityId
 	    String communityIdParam = request.getParameter("communityId");
 	    int communityId = 0;
@@ -56,7 +59,7 @@ public class CreatePostController extends HttpServlet {
 	        try {
 	            communityId = Integer.parseInt(communityIdParam);
 	        } catch (NumberFormatException e) {
-	            communityId = 0; // will fail validation below
+	            communityId = 0;
 	        }
 	    }
 
@@ -64,30 +67,62 @@ public class CreatePostController extends HttpServlet {
 	    String postCaption = request.getParameter("postCaption");
 	    String postTags = request.getParameter("postTags");
 
-	    Part imagePart = request.getPart("postImage");
-	    byte[] postImage = (imagePart != null && imagePart.getSize() > 0)
-	            ? imagePart.getInputStream().readAllBytes()
-	            : new byte[0];
-
 	    PostModel post = new PostModel();
 	    post.setCommunityId(communityId);
 	    post.setUserId(userId);
 	    post.setCaption(postCaption);
-	    post.setPostImage(postImage);
+	    post.setPostType(showModal); // "image" or "thread"
 
-	    CreatePostService postService = new CreatePostService();
+	    if ("image".equals(showModal)) {
+	        handleImagePost(request, response, post, postTags);
+	    } else if ("thread".equals(showModal)) {
+	        handleThreadPost(request, response, post, postTags);
+	    } else {
+	        response.sendRedirect(request.getContextPath() + "/user/home");
+	    }
+	}
+
+	private void handleImagePost(HttpServletRequest request, HttpServletResponse response, PostModel post, String postTags) throws IOException, ServletException {
 
 	    try {
-	        String error = postService.validatePost(post, postTags);
+	        Part imagePart = request.getPart("postImage");
+	        byte[] postImage = (imagePart != null && imagePart.getSize() > 0)
+	                ? imagePart.getInputStream().readAllBytes()
+	                : new byte[0];
+	        post.setPostImage(postImage);
 
+	        String error = new CreatePostService().validatePost(post, postTags);
 	        if (error != null) {
 	            response.sendRedirect(request.getContextPath() + "/user/home?showModal=image&error=" + java.net.URLEncoder.encode(error, "UTF-8"));
 	            return;
 	        }
 	    } catch (SQLException e) {
 	        e.printStackTrace();
-	        request.getSession().setAttribute("postError", "Something went wrong. Please try again.");
-	        response.sendRedirect(request.getContextPath() + "/user/home?showModal=image");
+	        response.sendRedirect(request.getContextPath()
+	                + "/user/home?showModal=image&error="
+	                + java.net.URLEncoder.encode("Something went wrong. Please try again.", "UTF-8"));
+	        return;
+	    }
+
+	    response.sendRedirect(request.getContextPath() + "/user/home");
+	}
+
+	private void handleThreadPost(HttpServletRequest request, HttpServletResponse response,
+	        PostModel post, String postTags) throws IOException {
+
+	    try {
+	        post.setPostImage(null); // no image for thread
+
+	        String error = new CreatePostService().validateTextPost(post, postTags);
+	        if (error != null) {
+	            response.sendRedirect(request.getContextPath() + "/user/home?showModal=thread&error=" + java.net.URLEncoder.encode(error, "UTF-8"));
+	            return;
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	        response.sendRedirect(request.getContextPath()
+	                + "/user/home?showModal=thread&error="
+	                + java.net.URLEncoder.encode("Something went wrong. Please try again.", "UTF-8"));
 	        return;
 	    }
 

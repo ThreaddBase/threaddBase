@@ -103,3 +103,47 @@ section p span {
 .join-btn:hover {
     background-color: #555;
 }
+
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.modal-box {
+    background: white;
+    border-radius: 12px;
+    padding: 2rem;
+    text-align: center;
+    min-width: 280px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+.modal-icon {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+}
+.modal-icon.success { color: #22c55e; }
+.modal-icon.error   { color: #ef4444; }
+.modal-box h3 {
+    margin: 0.5rem 0;
+    font-size: 1.3rem;
+}
+.modal-box p {
+    color: #555;
+    margin-bottom: 1.2rem;
+}
+.close-modal-btn {
+    display: inline-block;
+    background: #4f46e5;
+    color: white;
+    border: none;
+    padding: 0.5rem 1.5rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    text-decoration: none;
+}
+.close-modal-btn:hover { background: #4338ca; }

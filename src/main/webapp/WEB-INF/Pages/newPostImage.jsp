@@ -12,9 +12,9 @@
               action="<%=request.getContextPath()%>/post/create"
               method="post"
               enctype="multipart/form-data">
-
+			<input type="hidden" name="showModal" value="image">
             <h2 class="npi-heading"><span>Create</span> New Post</h2>
-
+			
             <div class="npi-body">
                 <div class="npi-left">
                     <div class="npi-image-frame">
