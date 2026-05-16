@@ -1,4 +1,4 @@
-<div class="post_text">
+    <div class="post_text">
         <div class="post_profile">
             <div class="post_avatar"></div>
             <div class="post_heading">

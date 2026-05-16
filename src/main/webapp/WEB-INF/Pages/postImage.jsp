@@ -1,4 +1,4 @@
-<div class="postImage">
+    <div class="postImage">
         <h2 class="form-heading">Create <span>New Post</span></h2>
 
         <div class="postImage-right">

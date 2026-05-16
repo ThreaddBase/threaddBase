@@ -9,6 +9,7 @@
 <link rel="stylesheet" href="<%=request.getContextPath()%>/CSS/communityManagement.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/CSS/util.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/CSS/sidebar.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/CSS/newCommunity.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" 
 integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" 
 crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -29,7 +30,7 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
             </div>
             <button class="profile-btn">
                 <i class="fas fa-circle-user"></i>
-                <span>Profile</span>
+                <a href="<%=request.getContextPath()%>/admin">Profile</a>
             </button>
         </div>
 
@@ -37,7 +38,9 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
         <div class="heading-row">
             <h1 class="page-heading">Manage, Monitor &amp;<br>Moderate the<br>Communities</h1>
             <div class="heading-buttons">
-                <button class="create-community-btn">Create a new community</button>
+                <a href="<%=request.getContextPath()%>/admin/community?showModal=newCommunity">
+				    <button class="create-community-btn">Create a new community</button>
+				</a>
                 <div class="btn-sep"></div>
                 <button class="filter-sort-btn">Filter/Sort</button>
             </div>
@@ -66,7 +69,9 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
                     <div class="card-desc">${community.description}</div>
                     <div class="card-action-btns">
                         <button class="view-btn"><a href="<%=request.getContextPath()%>/community/view?id=${community.id}">View Community</a></button>
-                        <button class="delete-btn">Delete Community</button>
+                        <a href="<%=request.getContextPath()%>/admin/community?showModal=delete&amp;communityId=${community.id}">
+						    <button class="delete-btn">Delete Community</button>
+						</a>
                     </div>
                 </div>
             </div>
@@ -78,5 +83,10 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
             </c:if>
         </div>
     </div>
+    <%@ include file="newCommunity.jsp" %>
+    
+    <!-- Delete Confirmation Modal -->
+   	<%@ include file="deleteCommunity.jsp" %>
+    
 </body>
 </html>

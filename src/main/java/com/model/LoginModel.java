@@ -2,6 +2,7 @@ package com.model;
 
 public class LoginModel {
 	
+	private int id;
 	private String username;
 	private String password;
 	private String userRole;
@@ -12,10 +13,19 @@ public class LoginModel {
 		this.password = password;
 	}
 	
-    public LoginModel(String username, String password, String userRole) {
+    public LoginModel(int id, String username, String password, String userRole) {
+    	this.id = id;
         this.username = username;
         this.password = password;
         this.userRole = userRole;
+    }
+    
+    public int getId() {
+    	return id;
+    }
+    
+    public void setId(int id) {
+    	this.id = id;
     }
 
 	public String getUsername() {

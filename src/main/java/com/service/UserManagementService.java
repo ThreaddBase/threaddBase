@@ -14,4 +14,8 @@ public class UserManagementService {
 	public List<UserModel> getAllUsers() throws SQLException {
 		return userDAO.getAllUsers();
 	}
+	
+	public int getUserIdByUsername(String username) throws SQLException {
+		return userDAO.getUserIdByUsername(username);
+	}
 }

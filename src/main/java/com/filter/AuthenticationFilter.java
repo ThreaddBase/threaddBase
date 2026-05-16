@@ -13,6 +13,7 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
+import com.model.LoginModel;
 import com.util.CookieUtil;
 import com.util.SessionUtil;
 
@@ -40,7 +41,9 @@ public class AuthenticationFilter extends HttpFilter implements Filter {
         "/community/view",
         "/admin/userManagement",
         "/comment",
-        "/admin/userImage"
+        "/admin/userImage",
+        "/vote",
+        "/bookmark",
     };
 
     // USER allowed URIs
@@ -53,8 +56,11 @@ public class AuthenticationFilter extends HttpFilter implements Filter {
         "/user",
         "/user/setting",
         "/community/view",
-        "/user/edit",
-        "/comment"
+        "/member/edit",
+        "/comment",
+        "/vote",
+        "/bookmark",
+        
     };
     
     /**
@@ -99,8 +105,8 @@ public class AuthenticationFilter extends HttpFilter implements Filter {
             return;
         }
      
-        Object user = SessionUtil.getAttribute(req, "loggedUser");
-        String role = (String) SessionUtil.getRole(req);
+        LoginModel user = SessionUtil.getLoggedUser(req);
+        String role = SessionUtil.getRole(req);
         boolean isLoggedIn = (user != null);
         
         

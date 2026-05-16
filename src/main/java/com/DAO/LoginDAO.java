@@ -25,6 +25,7 @@ public class LoginDAO {
             try (ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) {
                     return new LoginModel(
+                    	rs.getInt("User_ID"),
                         rs.getString("Username"),
                         rs.getString("Password"),
                         rs.getString("user_Role")

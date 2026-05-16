@@ -9,10 +9,16 @@ public class UserModel {
     private String lastName;
     private String email;
     private String status;
+    private String dob;
+    private String username;
+    private String role;
+    private String created_At;
+    private String bio;
     private int postCount;
     private int commentCount;
     private int reportCount;
     private byte[] profilePicture;
+    private String password;
 
     // No-arg constructor
     public UserModel() {
@@ -20,17 +26,22 @@ public class UserModel {
 
     // All-arg constructor
     public UserModel(int id, String firstName, String lastName, String email,
-            String status, int postCount, int commentCount,
-            int reportCount, byte[] profilePicture) {
-        this.id = id;
+            String status, String dob, String username, String role, String created_At, String bio, int postCount, int commentCount,
+            int reportCount, byte[] profilePicture, String password) {
+    	this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
-        this.status = status;
+        this.dob = dob;
+        this.username = username;
+        this.role = role;
+        this.created_At=created_At;
+        this.bio = bio;
         this.postCount = postCount;
         this.commentCount = commentCount;
         this.reportCount = reportCount;
         this.profilePicture = profilePicture;
+        this.password = password;
     }
 
     // Getters
@@ -53,6 +64,27 @@ public class UserModel {
     public String getStatus() {
         return status;
     }
+    
+    
+    public String getDob(){
+    	return dob;
+    }
+    
+    public String getUsername(){
+    	return username;
+    }
+    
+    public String getRole(){
+    	return role;
+    }
+    
+    public String getCreated_At(){
+    	return created_At;
+    }
+    
+    public String getBio(){
+    	return bio;
+    }
 
     public int getPostCount() {
         return postCount;
@@ -71,10 +103,14 @@ public class UserModel {
     }
 
     public String getProfilePictureBase64() {
-        if (profilePicture != null && profilePicture.length > 1000) {
-            return Base64.getEncoder().encodeToString(profilePicture);
+        if (profilePicture != null && profilePicture.length > 0) {
+        	return Base64.getEncoder().encodeToString(profilePicture);
         }
         return null;
+    }
+    
+    public String getPassword() {
+    	return password;
     }
     
     // Setters
@@ -93,6 +129,28 @@ public class UserModel {
     public void setEmail(String email) {
         this.email = email;
     }
+    
+    public void setDob(String dob) {
+        this.dob = dob;
+
+    }
+    
+	public void setUsername(String username) {
+	    this.username = username;
+	 }
+	
+	public void setRole(String role) {
+	    this.role = role;
+	 }
+	
+	public void setCreated_At(String created_At) {
+    	this.created_At = created_At;
+    }
+	
+	public void setBio(String bio) {
+	    this.bio = bio;
+	}
+
 
     public void setStatus(String status) {
         this.status = status;
@@ -112,5 +170,9 @@ public class UserModel {
 
     public void setProfilePicture(byte[] profilePicture) {
         this.profilePicture = profilePicture;
+    }
+    
+    public void setPassword(String password) {
+    	this.password = password;
     }
 }

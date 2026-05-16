@@ -1,4 +1,6 @@
     <div class="noti-panel">
+    
+    
         <div class="noti-header">
             <h3>Notifications</h3>
             <button class="mark-as-read">Mark as Read</button>

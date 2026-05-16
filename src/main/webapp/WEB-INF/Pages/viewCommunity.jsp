@@ -50,9 +50,11 @@
         </div>
         <div class="community-right">
         	<c:choose>
-				<c:when test="${role.equals('Admin')}">
-            		<button class="add-btn">Edit Community</button>		
-				</c:when>
+					<c:when test="${role == 'Admin'}">
+					    <a href="<%=request.getContextPath()%>/community/view?id=${community.id}&amp;showModal=editCommunity">
+					        <button class="add-btn">Edit Community</button>
+					    </a>
+					</c:when>
 				<c:otherwise>
 					<button class="add-btn">Create Thread</button>
 				</c:otherwise>
@@ -64,11 +66,9 @@
     <div class="community-tag">
         <p>Popular Tags</p>
         <div class="tag-list">
-            <span>All</span>
-            <span>#Tag1</span>
-            <span>#Tag3</span>
-            <span>#Tag4</span>
-            <span>#Tag5</span>
+            <c:forEach var="tag" items="${tagList}">
+            	<span># ${ tag.name }</span>
+            </c:forEach>
         </div>
     </div>
 
@@ -92,9 +92,25 @@
          <c:if test="${role.equals('Member')}">
             <button class="join-community">Join Community</button>	
 		 </c:if>
-
+		 <%@ include file="miniFooterViewCom.jsp" %>
         </div>
     </section>
     <%@ include file="notificationModel.jsp" %>
+    <%@ include file="editCommunity.jsp" %>
+    
+	   <script>
+	    function previewEcImage(input) {
+	        if (input.files && input.files[0]) {
+	            const reader = new FileReader();
+	            reader.onload = e => {
+	                const img = document.getElementById('ecPreviewImg');
+	                img.src = e.target.result;
+	                img.style.display = 'block';
+	            };
+	            reader.readAsDataURL(input.files[0]);
+	        }
+	    }
+	</script> 
+   
 </body>
 </html>

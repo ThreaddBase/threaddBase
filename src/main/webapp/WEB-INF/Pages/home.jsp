@@ -9,6 +9,7 @@
 <link rel="stylesheet" href="<%=request.getContextPath()%>/CSS/util.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/CSS/home.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/CSS/login.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/CSS/footer.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/CSS/registration.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
@@ -285,6 +286,7 @@
   <!-- CTA section ends -->
 
 	</div>
+	<%@ include file="footer.jsp" %>
   <!-- Login popup -->
 
    <%@ include file="loginModel.jsp" %>

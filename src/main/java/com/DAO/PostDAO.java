@@ -12,12 +12,12 @@ import com.util.DBConfig;
 
 public class PostDAO {
 	
-	// method to get all bost from community ID
+	// method to get all post from community ID
 	public List<PostModel> getPostByCommunity(int communityId) throws SQLException {
 		
-		String query = "SELECT p.Post_ID, p.Post_Caption, p.Post_Date,"
+		String query = "SELECT p.Post_ID, p.Post_Caption, p.Post_Date, p.Post_Image,"
 				+ "       p.User_ID,"
-				+ "       u.User_First_Name, u.User_Last_Name,"
+				+ "       u.User_First_Name, u.User_Last_Name, u.User_Profile_Picture,"
 				+ "       COUNT(DISTINCT c.Comment_ID)  AS comment_count,"
 				+ "       COUNT(DISTINCT v.Vote_ID) AS vote_count,"
 				+ "       COUNT(DISTINCT b.Bookmark_ID) AS bookmark_count,"
@@ -29,8 +29,8 @@ public class PostDAO {
 				+ "LEFT JOIN bookmark b ON p.Post_ID  = b.Post_ID "
 				+ "LEFT JOIN user_report r ON p.User_ID  = r.User_ID "
 				+ "WHERE p.Community_ID = ? "
-				+ "GROUP BY p.Post_ID, p.Post_Caption, p.Post_Date,"
-				+ "         p.User_ID, u.User_First_Name, u.User_Last_Name "
+				+ "GROUP BY p.Post_ID, p.Post_Caption, p.Post_Date, p.Post_Image,"
+				+ "         p.User_ID, u.User_First_Name, u.User_Last_Name, u.User_Profile_Picture "
 				+ "ORDER BY p.Post_Date DESC";
 		
 		List<PostModel> postList = new ArrayList<>();
@@ -42,7 +42,10 @@ public class PostDAO {
 			
 				ps.setInt(1, communityId);
 				
-				try(ResultSet rs = ps.executeQuery();){					
+				try(ResultSet rs = ps.executeQuery();){		
+					
+					TagDAO tagDAO = new TagDAO();
+					
 					while(rs.next()) {
 						PostModel post = new PostModel();
 						
@@ -63,7 +66,10 @@ public class PostDAO {
 	                    post.setUserFirstName(rs.getString("User_First_Name"));
 	                    post.setUserLastName(rs.getString("User_Last_Name"));
 	                    post.setUserProfilePic(rs.getBytes("User_Profile_Picture"));
-
+	                    
+	                    List<String> tags = tagDAO.getTagByPost(post.getPostId());
+	                    post.setTags(tags);
+	                    
 	                    postList.add(post);
 					}
 				}	

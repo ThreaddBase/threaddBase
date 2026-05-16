@@ -1,24 +1,89 @@
 <div class="post-card">
     <div class="post-left">
+
+        <%-- User Info --%>
         <div class="post-header">
-            <div class="avatar"></div>
+            <c:choose>
+                <c:when test="${not empty post.userProfilePicBase64}">
+                    <img class="avatar"
+                         src="data:image/jpeg;base64,${post.userProfilePicBase64}"
+                         alt="avatar"/>
+                </c:when>
+                <c:otherwise>
+                    <div class="avatar"></div>
+                </c:otherwise>
+            </c:choose>
             <div>
-                <p class="username">Harry Newgate</p>
-                <p class="post-date">2023-10-28</p>
+                <p class="username">${post.userFirstName} ${post.userLastName}</p>
+                <p class="post-date">${post.postDate}</p>
             </div>
         </div>
-        <p class="community-name">Community Name</p>
-        <p class="post-body">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laboriosam rerum
-            explicabo consequatur ex...</p>
-        <p class="post-tags">#Tag #anothertag</p>
+
+        <%-- Community + Caption --%>
+        <p class="community-name">${community.name}</p>
+        <p class="post-body">${post.caption}</p>
+
+        <%-- Tags --%>
+        <p class="post-tags">
+            <c:forEach var="tag" items="${post.tags}">
+                <span>#${tag}</span>
+            </c:forEach>
+            <c:if test="${empty post.tags}">
+                <span>No tags</span>
+            </c:if>
+        </p>
+
+        <%-- Post Actions --%>
         <div class="post-actions">
-            <span><i class="fa-regular fa-circle-check"></i> 101</span>
-            <span><i class="fa-regular fa-comment"></i> 101</span>
-            <span><i class="fa-regular fa-bookmark"></i> 101</span>
-            <span class="report"><i class="fa-solid fa-triangle-exclamation"></i></span>
+
+            <%-- Vote Button --%>
+            <form action="<%=request.getContextPath()%>/vote"
+                  method="POST" style="display:inline;">
+                <input type="hidden" name="postId" value="${post.postId}"/>
+                <button type="submit" class="action-btn">
+                    <i class="fa-regular fa-circle-check"></i>
+                    ${post.voteCount}
+                </button>
+            </form>
+
+            <%-- Comment Count --%>
+            <a href="<%=request.getContextPath()%>/comment" class="action-btn">
+	                <i class="fa-regular fa-comment"></i>
+	                ${post.commentCount}
+            </a>
+
+            <%-- Bookmark Button --%>
+            <form action="<%=request.getContextPath()%>/bookmark"
+                  method="POST" style="display:inline;">
+                <input type="hidden" name="postId" value="${post.postId}"/>
+                <button type="submit" class="action-btn">
+                    <i class="fa-regular fa-bookmark"></i>
+                    ${post.bookmarkCount}
+                </button>
+            </form>
+
+            <%-- Report — Admin only --%>
+            <c:if test="${role eq 'Admin'}">
+                <span class="action-btn report">
+                    <i class="fa-solid fa-triangle-exclamation"></i>
+                    ${post.reportCount}
+                </span>
+            </c:if>
+
         </div>
     </div>
+
+    <%-- Post Image --%>
     <div class="post-image">
-        <img src="../Badminton.jpeg" alt="post image">
+        <c:choose>
+            <c:when test="${not empty post.postImageBase64}">
+                <img src="data:image/jpeg;base64,${post.postImageBase64}"
+                     alt="post image"/>
+            </c:when>
+            <c:otherwise>
+                <%-- no image — show nothing --%>
+            </c:otherwise>
+        </c:choose>
     </div>
+
 </div>

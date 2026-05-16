@@ -78,6 +78,27 @@
     flex-wrap: wrap;
 }
 
+.action-btn {
+	text-decoration: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: inherit;
+    font-size: 14px;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 5px 10px;
+}
+
+.action-btn:hover {
+    color: #00ADB5;
+}
+
+.action-btn.report {
+    color: #e05555;
+}
+
 each action button
 .post-actions span {
     display: flex;

@@ -32,7 +32,7 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
             </div>
             <button class="profile-btn">
                 <i class="fas fa-circle-user"></i>
-                <span>Profile</span>
+                <a href="<%=request.getContextPath()%>/admin">Profile</a>
             </button>
         </div>
 
