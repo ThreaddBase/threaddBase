@@ -4,7 +4,7 @@
       <div class="user-info">
         <h2>Harry Newgate</h2>
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-      <button class="edit-btn"><a a href="<%=request.getContextPath()%>/user/edit">Edit Profile</a></button>
+      <button class="edit-btn"><a a href="<%=request.getContextPath()%>/member/edit">Edit Profile</a></button>
       </div>
     </div>
   </section>

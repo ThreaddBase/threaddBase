@@ -9,6 +9,7 @@ public class SessionUtil {
 	
     public static final String ROLE_ADMIN = "ADMIN";
     public static final String ROLE_USER  = "USER";
+    public static final String ROLE_MEMBER = "MEMBER";
 	
 	public static void setAttribute(HttpServletRequest request, String key, Object value) {
         HttpSession session = request.getSession();

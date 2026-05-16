@@ -29,7 +29,7 @@ public class UserManagementDAO {
 	    return -1; // user not found
 	}
 	
-	// mthod to get all user information and return a list containing obj of userModel
+	// method to get all user information and return a list containing obj of userModel
 	public List<UserModel> getAllUsers() throws SQLException {
 		
 		String query = "SELECT u.user_ID, u.User_First_Name, u.User_Last_Name, " +
@@ -73,4 +73,6 @@ public class UserManagementDAO {
 		}
 		
 	}
+	
+
 }
