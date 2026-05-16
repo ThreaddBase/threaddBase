@@ -11,6 +11,9 @@
 <link rel="stylesheet" href="<%=request.getContextPath()%>/CSS/topSearchbar.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/CSS/community.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/CSS/notificationModel.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" 
+integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" 
+crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
     <%@ include file="sidebar.jsp" %>
@@ -18,8 +21,22 @@
 
     <section>
         <p>Discover More <span>Communities</span></p>
+  		<form 
+  			action="<%=request.getContextPath()%>/community"
+            method="post"
+  			class="filter-form">
+  			
+		  <label for="member-filter">Filter</label>
+		  <div class="select-wrapper">
+			<select id="member-filter" name="filterCommunity" onchange="this.form.submit()">
+			    <option value="all" ${selectedFilter == 'all' ? 'selected' : ''}>All</option>
+			    <option value="joined" ${selectedFilter == 'joined' ? 'selected' : ''}>Joined</option>
+			    <option value="notJoined" ${selectedFilter == 'notJoined' ? 'selected' : ''}>Not Joined</option>
+			</select>
+		  </div>
+		</form>
         <div class="community-list">
-
+			
             <c:forEach var="community" items="${communities}">
                 <div class="community-card">
                     <c:choose>
@@ -43,9 +60,18 @@
                             <button class="view-btn">
                                 <a href="<%=request.getContextPath()%>/community/view?id=${community.id}">View Community</a>
                             </button>
-                            <a href="<%=request.getContextPath()%>/community?communityId=${community.id}">
-                                <button class="join-btn">Join Community</button>
-                            </a>
+                            <c:choose>
+	                            <c:when test="${community.isJoined == true}">
+	                            	 <a href="<%=request.getContextPath()%>/community?task=leave&amp;communityId=${community.id}">
+	                                	<button class="join-btn">Leave Community</button>
+	                            	</a>
+	                            </c:when>
+	                            <c:otherwise>
+		                            <a href="<%=request.getContextPath()%>/community?task=join&amp;communityId=${community.id}">
+		                                <button class="join-btn">Join Community</button>
+		                            </a>
+	                            </c:otherwise>
+                            </c:choose>
                         </div>
                     </div>
                 </div>
@@ -58,26 +84,25 @@
         </div>
     </section>
 
-    <!-- Pure CSS Modal — shows automatically when result is set -->
     <c:if test="${not empty result}">
-        <div class="modal-overlay">
-            <div class="modal-box">
-                <c:choose>
-                    <c:when test="${result == 'Joined Community'}">
-                        <div class="modal-icon success">&#10003;</div>
-                        <h3>Success!</h3>
-                    </c:when>
-                    <c:otherwise>
-                        <div class="modal-icon error">&#10007;</div>
-                        <h3>Failed!</h3>
-                    </c:otherwise>
-                </c:choose>
-                <p>${result}</p>
-                <!-- Close by navigating back to clean community page -->
-                <a href="<%=request.getContextPath()%>/community" class="close-modal-btn">OK</a>
-            </div>
-        </div>
-    </c:if>
+	    <div class="modal-overlay">
+	        <div class="modal-box">
+	            <c:choose>
+	                <c:when test="${result == 'Joined Community' || result == 'Left Community'}">
+	                    <div class="modal-icon success">&#10003;</div>
+	                    <h3>Success!</h3>
+	                </c:when>
+	                <c:otherwise>
+	                    <div class="modal-icon error">&#10007;</div>
+	                    <h3>Failed!</h3>
+	                </c:otherwise>
+	            </c:choose>
+	            <p>${result}</p>
+	            <!-- Close by navigating back to clean community page -->
+	            <a href="<%=request.getContextPath()%>/community" class="close-modal-btn">OK</a>
+	        </div>
+	    </div>
+	</c:if>
 
     <%@ include file="notificationModel.jsp" %>
 

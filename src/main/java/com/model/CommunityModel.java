@@ -12,6 +12,7 @@ public class CommunityModel {
     private byte[] communityProfile;
     private int userCount;
     private int requestID;
+    private boolean isJoined;
 
     //public constructor
     public CommunityModel() {}
@@ -71,8 +72,13 @@ public class CommunityModel {
         return null;
     }
     
+    
     public int getRequestID() {
         return requestID;
+    }
+    
+    public boolean getIsJoined() {
+    	return isJoined;
     }
     
     // Setters
@@ -102,5 +108,9 @@ public class CommunityModel {
 	
     public void setRequestId(int requestID) {
         this.requestID = requestID;
+    }
+    
+    public void setIsJoined(boolean isJoined) {
+        this.isJoined = isJoined;
     }
 }

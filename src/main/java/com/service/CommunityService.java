@@ -18,7 +18,19 @@ public class CommunityService {
 		return communityDAO.getCommunityNotJoined(userId);
 	}
 	
-	public boolean joinCommunity(int userID, int communityID) throws SQLException {
-		return communityDAO.joinCommunity(userID, communityID);
+	public List<CommunityModel> getJoinedComunity(int userId) throws SQLException {
+		return communityDAO.getJoinedComunity(userId);
+	}
+	
+	public List<CommunityModel> getAllCommunity(int userId) throws SQLException {
+		return communityDAO.getAllCommunity(userId);
+	}
+	
+	public boolean joinCommunity(int userId, int communityId) throws SQLException {
+		return communityDAO.joinCommunity(userId, communityId);
+	}
+
+	public boolean leaveCommunity(int userId, int communityId) throws SQLException{
+		return communityDAO.leaveCommunity(userId, communityId);
 	}
 }
