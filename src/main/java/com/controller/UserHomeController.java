@@ -59,8 +59,7 @@ public class UserHomeController extends HttpServlet {
             
         } catch (SQLException e) {
             e.printStackTrace();
-        }
-        
+        }        
         request.setAttribute("tagList", tagList);
         request.setAttribute("postList", postList);
         request.setAttribute("communityList", communityList);

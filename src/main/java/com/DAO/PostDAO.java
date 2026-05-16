@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -75,5 +76,30 @@ public class PostDAO {
 				}	
 			}
 		return postList;
+	}
+	
+	// method to create post
+	public int createPost(PostModel post) throws SQLException {
+	    String query = "INSERT INTO post (Community_ID, User_ID, Post_Image, Post_Date, Post_Caption) "
+	                 + "VALUES (?, ?, ?, CURDATE(), ?)";
+
+	    try (
+	        Connection con = DBConfig.getConnection();
+	        PreparedStatement ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)
+	    ) {
+	        ps.setInt(1, post.getCommunityId());
+	        ps.setInt(2, post.getUserId());
+	        ps.setBytes(3, post.getPostImage());
+	        ps.setString(4, (post.getCaption() != null && !post.getCaption().trim().isEmpty()) ? post.getCaption().trim() : null);
+
+	        ps.executeUpdate();
+
+	        ResultSet rs = ps.getGeneratedKeys();
+	        if (rs.next()) {
+	            return rs.getInt(1);
+	        }
+
+	        return -1;
+	    }
 	}
 }

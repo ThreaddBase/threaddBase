@@ -25,7 +25,6 @@
                 </div>
 
                 <div class="npi-right">
-                    <input type="text" placeholder="Title for the post" name="postTitle">
                     <textarea placeholder="Description for the post..." name="postCaption"></textarea>
                     <select name="communityId">
                         <option value="" disabled selected>Select community</option>
@@ -34,18 +33,13 @@
                         </c:forEach>
                     </select>
                     <input type="text" placeholder="# Add tags" name="postTags">
+                    <button type="submit" class="npi-post-btn">Post Thread</button>
                 </div>
             </div>
 
-            <c:if test="${not empty error}">
-                <div class="npi-error">${error}</div>
-            </c:if>
-
-            <div class="npi-actions">
-                <span>Sure you want to post it?</span>
-                <button type="submit" class="npi-post-btn">Post Thread</button>
-            </div>
-
+			<c:if test="${not empty param.error}">
+			    <div class="npi-error">${param.error}</div>
+			</c:if>
         </form>
     </div>
 </div>

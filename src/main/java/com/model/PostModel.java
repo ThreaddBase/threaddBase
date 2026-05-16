@@ -26,7 +26,9 @@ public class PostModel {
     // Tag
     private List<String> tags;
     
-
+    // community
+    private int communityId;
+    
 	// constructor
     public PostModel() {}
     
@@ -125,4 +127,11 @@ public class PostModel {
         }
         return null;
     }
+    
+    public int getCommunityId() {
+		return communityId;
+	}
+	public void setCommunityId(int communityId) {
+		this.communityId = communityId;
+	}
 }

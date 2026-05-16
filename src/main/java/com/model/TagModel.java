@@ -4,6 +4,7 @@ public class TagModel {
 	private int tagID;
 	private String name;
 	private int tagCount;
+	private int postId;
 	
 	public int getTagID() {
 		return tagID;
@@ -15,6 +16,14 @@ public class TagModel {
 	
 	public int getTagCount() {
 		return tagCount;
+	}
+	
+	public int getPostId() {
+		return postId;
+	}
+	
+	public void setPostId(int postId) {
+		this.postId = postId;
 	}
 	
 	public void setTagID(int tagID) {

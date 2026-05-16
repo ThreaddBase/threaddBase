@@ -9,6 +9,12 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.Part;
 
 import java.io.IOException;
+import java.sql.SQLException;
+
+import com.model.PostModel;
+import com.service.CreatePostService;
+import com.service.PostService;
+import com.util.SessionUtil;
 
 /**
  * Servlet implementation class PostController
@@ -42,22 +48,49 @@ public class CreatePostController extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		String postTitle = request.getParameter("postTitle"); 
-		String postCaption = request.getParameter("postCaption"); 
-		int communityId = Integer.parseInt(request.getParameter("communityId"));
-		String postTags = request.getParameter("postTags");
-		
-		
+
+	    // safely parse communityId
+	    String communityIdParam = request.getParameter("communityId");
+	    int communityId = 0;
+	    if (communityIdParam != null && !communityIdParam.trim().isEmpty()) {
+	        try {
+	            communityId = Integer.parseInt(communityIdParam);
+	        } catch (NumberFormatException e) {
+	            communityId = 0; // will fail validation below
+	        }
+	    }
+
+	    int userId = SessionUtil.getUserId(request);
+	    String postCaption = request.getParameter("postCaption");
+	    String postTags = request.getParameter("postTags");
+
 	    Part imagePart = request.getPart("postImage");
-	    byte[] postImage = imagePart.getInputStream().readAllBytes();
-	    
-	    System.out.println("Title: " + postTitle);
-	    System.out.println("Caption: " + postCaption);
-	    System.out.println("Tags: " + postTags);
-	    System.out.println("Community ID: " + communityId);
-	    System.out.println("Image size: " + postImage.length);
-	    
+	    byte[] postImage = (imagePart != null && imagePart.getSize() > 0)
+	            ? imagePart.getInputStream().readAllBytes()
+	            : new byte[0];
+
+	    PostModel post = new PostModel();
+	    post.setCommunityId(communityId);
+	    post.setUserId(userId);
+	    post.setCaption(postCaption);
+	    post.setPostImage(postImage);
+
+	    CreatePostService postService = new CreatePostService();
+
+	    try {
+	        String error = postService.validatePost(post, postTags);
+
+	        if (error != null) {
+	            response.sendRedirect(request.getContextPath() + "/user/home?showModal=image&error=" + java.net.URLEncoder.encode(error, "UTF-8"));
+	            return;
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	        request.getSession().setAttribute("postError", "Something went wrong. Please try again.");
+	        response.sendRedirect(request.getContextPath() + "/user/home?showModal=image");
+	        return;
+	    }
+
 	    response.sendRedirect(request.getContextPath() + "/user/home");
 	}
 

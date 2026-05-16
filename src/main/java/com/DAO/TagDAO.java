@@ -68,4 +68,17 @@ public class TagDAO {
 		}
 		return tagName;
 	}
+	
+	// insert new tag
+	public void insertTag(TagModel tag) throws SQLException {
+	    String query = "INSERT INTO tag (Tag_Name, Post_ID) VALUES (?, ?)";
+	    try (
+	        Connection con = DBConfig.getConnection();
+	        PreparedStatement ps = con.prepareStatement(query)
+	    ) {
+	        ps.setString(1, tag.getName());
+	        ps.setInt(2, tag.getPostId());
+	        ps.executeUpdate();
+	    }
+	}
 }
