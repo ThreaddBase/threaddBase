@@ -66,16 +66,21 @@ body{
     min-width: 130px;
     width: 20%;
 }
+
+
+
+
 .card-wrap{
     display: flex;
     flex-direction: column;
     align-items: center;
     position :relative;
-    padding: 2% 2%;
+    padding: 2% 2% 4% 2%;
     border-radius: 20px;
     margin: 0% 22% 4% 22%;
     background-color: #393E46;
     background-color: var(--color-secondary);
+    padding-top: 120px;
 }
 .card-title{
     align-self: flex-start;
@@ -125,7 +130,10 @@ body{
     outline: none;
     box-sizing: border-box;
     text-align: center;
+    margin: 0 auto;
 }
+
+
 
 .bio label{
     display: block;
@@ -153,6 +161,7 @@ body{
     transition: border-color 0.2s, box-shadow 0.2s;
     outline: none;
     box-sizing: border-box;
+    text-align: center;
 }
 
 .DOB label{
@@ -250,30 +259,36 @@ body{
 
 
 @media (max-width: 1000px) {
-	.change {
-		margin-top: 18%;
-	}
+    .card-wrap {
+        margin: 0% 10% 4% 10%;
+    }
+
+    .change {
+        margin-top: 18%;
+    }
 }
 
 @media (max-width: 680px) {
 
-    .navbar{
+    .navbar {
         padding: 3% 4%;
-        margin-bottom: 20%;
+        margin-bottom: 10%;
     }
 
     .card-wrap {
-        margin-top: 120px;
-        max-width: 100%;
-        height: auto;
+        margin: 10% 4% 4% 4%;
+        padding: 2% 4% 6% 4%;
+        border-radius: 12px;
     }
 
     .profile_img {
-    	display: flex;
-    	align-items: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         top: -80px;
+        width: 120px;
+        min-width: 120px;
     }
-
 
     .card-title {
         margin-top: 20px;
@@ -285,47 +300,127 @@ body{
         margin-top: 23%;
     }
 
+    /* PROFILE SECTION */
     .profile-section {
-        grid-template-columns: 1fr;
         gap: 14px;
     }
 
     .profile-section input {
-        width: 100%;
+        width: 90%;
     }
 
+    .profile-section label {
+        font-size: 16px;
+    }
+
+    /* BIO */
     .bio textarea {
-        width: 80%;
-        height: auto;
-        font-family: Arial, sans-serif;
+        width: 90%;
+        height: 80px;
+        font-family: 'Outfit', sans-serif;
         margin-bottom: 5%;
+    }
+
+    .bio label {
+        font-size: 16px;
+    }
+
+    /* DOB */
+    .DOB {
+        margin-bottom: 4%;
     }
 
     .DOB input {
-        width: 80%;
-         margin-bottom: 5%;
+        width: 90%;
+        margin-bottom: 5%;
+    }
+
+    .DOB label {
+        font-size: 16px;
+    }
+
+    /* PASSWORD */
+    .password {
+        gap: 16px;
+        padding: 4% 2%;
     }
 
     .password input {
-        width: 80%;
-         margin-bottom: 5%;
+        width: 90%;
+        margin-bottom: 0;
     }
 
+    .password label {
+        font-size: 16px;
+    }
+
+    /* BUTTONS */
     .buttons {
         flex-direction: column;
         align-items: center;
+        gap: 12px;
+        padding: 4% 2%;
     }
 
     .btn {
-        width: 80%;
+        width: 90%;
         text-align: center;
-        margin-bottom: 5%;
-    }
-    
-    .back_btn{
-   		width: 80%;
-        text-align: center;
-        margin-bottom: 5%;
+        padding: 4% 2%;
+        margin-bottom: 0;
     }
 
+    .back_btn {
+        width: 90%;
+        text-align: center;
+        padding: 4% 2%;
+        margin-bottom: 0;
+    }
+}
+
+@media (max-width: 480px) {
+
+    .card-wrap {
+        margin: 20% 4% 4% 0%;
+        padding: 20% 4% 6% 2%;
+    }
+
+    .profile_img {
+        top: -70px;
+        width: 100px;
+        min-width: 100px;
+    }
+
+    .card-title {
+        font-size: 16px;
+        margin: 2% 4%;
+        position: relative;
+        z-index: 1;
+    }
+
+    .change {
+        margin-top: 15%;
+        font-size: 13px;
+    }
+
+    .profile-section input {
+        width: 95%;
+    }
+
+    .bio textarea {
+        width: 95%;
+    }
+
+    .DOB input {
+        width: 95%;
+    }
+
+    .password input {
+        width: 95%;
+    }
+
+    .btn {
+        width: 45%;
+        padding: 4% 2%;
+        font-size: 13px;
+    }
 }
