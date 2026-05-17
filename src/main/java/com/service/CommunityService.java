@@ -33,4 +33,8 @@ public class CommunityService {
 	public boolean leaveCommunity(int userId, int communityId) throws SQLException{
 		return communityDAO.leaveCommunity(userId, communityId);
 	}
+	
+	public boolean getJoinedCommunityById(int userId, int communityId) throws SQLException {
+		return communityDAO.getJoinedCommunityById(userId, communityId);
+	}
 }

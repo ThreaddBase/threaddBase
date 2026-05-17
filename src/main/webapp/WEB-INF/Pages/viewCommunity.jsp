@@ -19,12 +19,12 @@
 <body>
 
 	<c:choose>
-		<c:when test="${role.equals('Admin')}">
-	         	<%@ include file="adminSidebar.jsp" %>
-		</c:when>
-		<c:otherwise>
-				<%@ include file="sidebar.jsp" %>
-		</c:otherwise>
+	    <c:when test="${role == 'Admin'}">
+	        <%@ include file="adminSidebar.jsp" %>
+	    </c:when>
+	    <c:otherwise>
+	        <%@ include file="sidebar.jsp" %>
+	    </c:otherwise>
 	</c:choose>
 
 	<%@ include file="topSearchbar.jsp" %>
@@ -56,10 +56,12 @@
 					    </a>
 					</c:when>
 				<c:otherwise>
-					<button class="add-btn">Create Thread</button>
+					<c:if test="${isJoined}">
+					    <button class="add-btn">Post Image</button>
+					    <button class="add-btn">Create Thread</button>
+					</c:if>
 				</c:otherwise>
-        	</c:choose>
-        		
+        	</c:choose>	
         </div>
     </div>
 
@@ -79,7 +81,6 @@
         	<c:forEach var="post" items="${ postList }">
         		<%@ include file="post.jsp" %>
         	</c:forEach>
-        	<%@ include file="post.jsp" %>
         </div>
         <div class="about-community">
             <p>About Community</p>
@@ -89,9 +90,20 @@
                 <span><i class="fa-solid fa-users"></i> ${community.userCount} Members</span>
                 <span><i class="fa-solid fa-user-check"></i> 10 Online</span>
             </div>
-         <c:if test="${role.equals('Member')}">
-            <button class="join-community">Join Community</button>	
-		 </c:if>
+         <c:if test="${role == 'Member'}">
+		    <c:choose>
+		        <c:when test="${isJoined}">
+		            <a href="<%=request.getContextPath()%>/community/view?id=${community.id}&amp;communityId=${community.id}&amp;task=leave">
+		                <button class="join-community">Leave Community</button>
+		            </a>
+		        </c:when>
+		        <c:otherwise>
+		            <a href="<%=request.getContextPath()%>/community/view?id=${community.id}&amp;communityId=${community.id}&amp;task=join">
+		                <button class="join-community">Join Community</button>
+		            </a>
+		        </c:otherwise>
+		    </c:choose>
+		</c:if>
 		 <%@ include file="miniFooterViewCom.jsp" %>
         </div>
     </section>

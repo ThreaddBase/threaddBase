@@ -22,39 +22,34 @@ import com.service.PostService;
 import com.service.TagService;
 import com.util.SessionUtil;
 
+/**
+ * Controller for viewing and managing a single community page.
+ * Handles GET requests for viewing, joining, and leaving communities,
+ * and POST requests for editing community details.
+ */
 @MultipartConfig(
-	    fileSizeThreshold = 1024 * 1024,
-	    maxFileSize = 5 * 1024 * 1024,
-	    maxRequestSize = 10 * 1024 * 1024
-	)
+    fileSizeThreshold = 1024 * 1024,
+    maxFileSize = 5 * 1024 * 1024,
+    maxRequestSize = 10 * 1024 * 1024
+)
 @WebServlet(asyncSupported = true, urlPatterns = { "/community/view" })
 public class ViewCommunityController extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
 
-    // Service objects
-    private CommunityService communityService = new CommunityService();
-    private CommunityManagementService communityManageService = new CommunityManagementService();
-    private PostService postService = new PostService();
-    private TagService tagService = new TagService();
+    private final CommunityService communityService = new CommunityService();
+    private final CommunityManagementService communityManageService = new CommunityManagementService();
+    private final PostService postService = new PostService();
+    private final TagService tagService = new TagService();
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-    	
-    	String showModal = request.getParameter("showModal");
-    	if (showModal != null) {
-    		request.setAttribute("showModal", showModal);
-    	}
-    	
-        // check role
-        String role = (String) SessionUtil.getRole(request);
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        // get community ID by URL (Guess)
+        int userId = SessionUtil.getUserId(request);
+        String task = request.getParameter("task");
+        String communityIdParam = request.getParameter("communityId");
         String idParam = request.getParameter("id");
-        System.out.println("Community ID: " + idParam);
 
-        // validation
         if (idParam == null || idParam.isEmpty()) {
             response.sendRedirect(request.getContextPath() + "/error");
             return;
@@ -63,30 +58,13 @@ public class ViewCommunityController extends HttpServlet {
         try {
             int communityId = Integer.parseInt(idParam);
 
-            // fetch community
-            CommunityModel community = communityService.getCommunityByID(communityId);
-
-            if (community == null) {
-                response.sendRedirect(request.getContextPath() + "/error");
-                return;
+            // Handle join/leave before loading page data
+            if (communityIdParam != null && !communityIdParam.isEmpty()) {
+                int actionCommunityId = Integer.parseInt(communityIdParam);
+                handleMembership(request, task, userId, actionCommunityId);
             }
 
-            // fetch posts
-            List<PostModel> postList = postService.getPostByCommunity(communityId);
-            System.out.println("Posts found: " + postList.size());
-            
-            // fetch tags
-            List<TagModel> tagList = tagService.getCommunityByID(communityId);
-            
-            
-            // pass to JSP
-            request.setAttribute("community", community);
-            request.setAttribute("postList", postList);
-            request.setAttribute("tagList", tagList);
-            request.setAttribute("role", role);
-
-            request.getRequestDispatcher("/WEB-INF/Pages/viewCommunity.jsp")
-                   .forward(request, response);
+            loadCommunityPage(request, response, userId, communityId);
 
         } catch (NumberFormatException e) {
             System.out.println("Invalid community ID: " + idParam);
@@ -96,7 +74,55 @@ public class ViewCommunityController extends HttpServlet {
             throw new ServletException("Database error in ViewCommunityController", e);
         }
     }
-    
+
+    /**
+     * Delegates join/leave actions based on the task parameter.
+     */
+    private void handleMembership(HttpServletRequest request, String task, int userId, int communityId)
+            throws SQLException {
+        if ("join".equals(task)) {
+            boolean success = communityService.joinCommunity(userId, communityId);
+            request.setAttribute("result", success ? "Joined Community" : "Community cannot be joined");
+
+        } else if ("leave".equals(task)) {
+            boolean success = communityService.leaveCommunity(userId, communityId);
+            request.setAttribute("result", success ? "Left Community" : "Community cannot be left");
+        }
+    }
+
+    /**
+     * Fetches all data required to render the community page and forwards to the JSP.
+     */
+    private void loadCommunityPage(HttpServletRequest request, HttpServletResponse response,
+                                   int userId, int communityId)
+            throws SQLException, ServletException, IOException {
+
+        CommunityModel community = communityService.getCommunityByID(communityId);
+        if (community == null) {
+            response.sendRedirect(request.getContextPath() + "/error");
+            return;
+        }
+
+        List<PostModel> postList = postService.getPostByCommunity(communityId);
+        List<TagModel> tagList = tagService.getCommunityByID(communityId);
+        boolean isJoined = communityService.getJoinedCommunityById(userId, communityId);
+        String role = (String) SessionUtil.getRole(request);
+
+        // Pass modal trigger if present (e.g. ?showModal=editCommunity)
+        String showModal = request.getParameter("showModal");
+        if (showModal != null) {
+            request.setAttribute("showModal", showModal);
+        }
+
+        request.setAttribute("community", community);
+        request.setAttribute("postList", postList);
+        request.setAttribute("tagList", tagList);
+        request.setAttribute("isJoined", isJoined);
+        request.setAttribute("role", role);
+
+        request.getRequestDispatcher("/WEB-INF/Pages/viewCommunity.jsp").forward(request, response);
+    }
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -109,27 +135,12 @@ public class ViewCommunityController extends HttpServlet {
 
         try {
             int communityId = Integer.parseInt(idParam);
-            String name = request.getParameter("communityName");
-            String description = request.getParameter("communityDescription");
-            Part imagePart = request.getPart("communityImage");
 
-            byte[] imageBytes = null;
-            if (imagePart != null && imagePart.getSize() > 0) {
-                try (InputStream is = imagePart.getInputStream()) {
-                    imageBytes = is.readAllBytes();
-                }
-            }
-
-            CommunityModel community = new CommunityModel();
-            community.setId(communityId);
-            community.setName(name);
-            community.setDescription(description);
-            community.setCommunityProfile(imageBytes);
+            CommunityModel community = buildCommunityFromRequest(request, communityId);
 
             String error = communityManageService.updateCommunity(community);
-
             if (error != null) {
-                communityEditError(request, response, communityId, error);
+                reloadPageWithError(request, response, communityId, error);
                 return;
             }
 
@@ -137,13 +148,45 @@ public class ViewCommunityController extends HttpServlet {
 
         } catch (NumberFormatException e) {
             response.sendRedirect(request.getContextPath() + "/error");
+
         } catch (SQLException e) {
-            throw new ServletException("DB error updating community", e);
+            throw new ServletException("Database error updating community", e);
         }
     }
-    
-    private void communityEditError(HttpServletRequest request, HttpServletResponse response,
-            int communityId, String error) throws ServletException, IOException {
+
+    /**
+     * Builds a CommunityModel from the POST request parameters.
+     */
+    private CommunityModel buildCommunityFromRequest(HttpServletRequest request, int communityId)
+            throws IOException, ServletException {
+
+        String name = request.getParameter("communityName");
+        String description = request.getParameter("communityDescription");
+        Part imagePart = request.getPart("communityImage");
+
+        byte[] imageBytes = null;
+        if (imagePart != null && imagePart.getSize() > 0) {
+            try (InputStream is = imagePart.getInputStream()) {
+                imageBytes = is.readAllBytes();
+            }
+        }
+
+        CommunityModel community = new CommunityModel();
+        community.setId(communityId);
+        community.setName(name);
+        community.setDescription(description);
+        community.setCommunityProfile(imageBytes);
+
+        return community;
+    }
+
+    /**
+     * Reloads the community page with an error message and the edit modal open.
+     * Used when community update validation fails.
+     */
+    private void reloadPageWithError(HttpServletRequest request, HttpServletResponse response,
+                                     int communityId, String error)
+            throws ServletException, IOException {
         try {
             CommunityModel community = communityService.getCommunityByID(communityId);
             List<PostModel> postList = postService.getPostByCommunity(communityId);
@@ -152,8 +195,9 @@ public class ViewCommunityController extends HttpServlet {
             request.setAttribute("community", community);
             request.setAttribute("postList", postList);
             request.setAttribute("tagList", tagList);
+
         } catch (SQLException e) {
-            throw new ServletException("Database error reloading community.", e);
+            throw new ServletException("Database error reloading community", e);
         }
 
         request.setAttribute("error", error);
@@ -162,5 +206,4 @@ public class ViewCommunityController extends HttpServlet {
 
         request.getRequestDispatcher("/WEB-INF/Pages/viewCommunity.jsp").forward(request, response);
     }
-    
 }

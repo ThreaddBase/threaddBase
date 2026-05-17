@@ -200,5 +200,20 @@ public class CommunityDAO {
 			
 		}
 	}
+
+	public boolean getJoinedCommunityById(int userId, int communityId) throws SQLException {
+	    String query = "SELECT joined_Members, community_ID FROM user_community WHERE joined_Members = ? AND community_ID = ?";
+
+	    try (
+	        Connection con = DBConfig.getConnection();
+	        PreparedStatement ps = con.prepareStatement(query);
+	    ) {
+	        ps.setInt(1, userId);
+	        ps.setInt(2, communityId);
+
+	        ResultSet rs = ps.executeQuery();
+	        return rs.next();
+	    }
+	}
 	
 }

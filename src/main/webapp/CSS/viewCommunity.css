@@ -51,6 +51,7 @@
     color: white;
     cursor: pointer;
     border-radius: 30px;
+    margin: 0 8px;
 }
 
 .add-btn:hover {
