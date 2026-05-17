@@ -1,7 +1,7 @@
 @charset "UTF-8";
 
 /* Overlay */
-#ecOverlay {
+.ec-overlay {
     position: fixed;
     top: 0;
     left: 0;
@@ -15,8 +15,7 @@
     backdrop-filter: blur(4px);
 }
 
-/* Rendered by servlet — no JS needed */
-#ecOverlay.active {
+.ec-overlay.active {
     display: flex;
 }
 
@@ -49,6 +48,7 @@
     justify-content: center;
     transition: background 0.2s, transform 0.15s;
     z-index: 1;
+    text-decoration: none;
 }
 
 .ec-close:hover { background: #888; }
@@ -59,7 +59,7 @@
     border: 1.5px solid #2e3a4a;
     border-radius: 16px;
     padding: 24px;
-    width: 480px;
+    width: 510px;
     display: grid;
     grid-template-columns: 140px 1fr;
     grid-template-rows: auto auto;
@@ -187,5 +187,4 @@
     display: flex;
     justify-content: center;
     gap: 16px;
-    padding-left: 155px;
 }

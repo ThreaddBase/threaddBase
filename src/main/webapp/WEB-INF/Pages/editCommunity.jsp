@@ -1,13 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" isELIgnored="false"%>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/CSS/editCommunity.css">
 
-<c:if test="${showModal == 'editCommunity'}">
-<div id="ecOverlay" class="ec-overlay active">
+<div class="ec-overlay ${param.showModal == 'editCommunity' ? 'active' : ''}">
     <div class="ec-box">
-        <a href="<%=request.getContextPath()%>/community/view?id=${community.id}">
-            <button type="button" class="ec-close">&times;</button>
-        </a>
+
+        <a href="<%=request.getContextPath()%>/community/view?id=${community.id}" class="ec-close">&times;</a>
 
         <form class="ec-card"
               action="<%=request.getContextPath()%>/community/view"
@@ -15,6 +11,7 @@
               enctype="multipart/form-data">
 
             <input type="hidden" name="communityId" value="${community.id}">
+
             <div class="ec-left">
                 <div class="ec-image-frame">
                     <c:choose>
@@ -41,19 +38,19 @@
                        placeholder="Community Name">
                 <textarea name="communityDescription"
                           placeholder="Description of the community">${community.description}</textarea>
-            </div>
-            
-            <c:if test="${not empty error}">
-            	<div class="nc-error">${error}</div>
-            </c:if>
 
-            <div class="ec-actions">
-                <button type="submit" class="ec-btn-save">Save Changes</button>
-                <a href="<%=request.getContextPath()%>/community/view?id=${community.id}">
-                    <button type="button" class="ec-btn-discard">Discard Changes</button>
-                </a>
+                <c:if test="${not empty param.error}">
+                    <div class="ec-error">${param.error}</div>
+                </c:if>
+
+                <div class="ec-actions">
+                    <button type="submit" class="ec-btn-save">Save Changes</button>
+                    <a href="<%=request.getContextPath()%>/community/view?id=${community.id}">
+                        <button type="button" class="ec-btn-discard">Discard Changes</button>
+                    </a>
+                </div>
             </div>
+
         </form>
     </div>
 </div>
-</c:if>

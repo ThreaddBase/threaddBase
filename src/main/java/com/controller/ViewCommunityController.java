@@ -195,28 +195,15 @@ public class ViewCommunityController extends HttpServlet {
      * @param communityId the community that failed to update
      * @param error the validation error message to display
      */
-    private void reloadPageWithError(HttpServletRequest request, HttpServletResponse response,
-                                     int communityId, String error)
-            throws ServletException, IOException {
-        try {
-            CommunityModel community = communityService.getCommunityByID(communityId);
-            List<PostModel> postList = postService.getPostByCommunity(communityId);
-            List<TagModel> tagList = tagService.getCommunityByID(communityId);
-            List<CommunityModel> communityList = List.of(community);
+    private void reloadPageWithError(HttpServletRequest request, HttpServletResponse response, int communityId, String error) throws ServletException, IOException {
 
-            request.setAttribute("community", community);
-            request.setAttribute("communityList", communityList);
-            request.setAttribute("postList", postList);
-            request.setAttribute("tagList", tagList);
-
-        } catch (SQLException e) {
-            throw new ServletException("Database error reloading community", e);
-        }
-
-        request.setAttribute("error", error);
-        request.setAttribute("showModal", "editCommunity");
-        request.setAttribute("role", SessionUtil.getRole(request));
-
-        request.getRequestDispatcher("/WEB-INF/Pages/viewCommunity.jsp").forward(request, response);
+    	try {
+    		response.sendRedirect(request.getContextPath()
+    				+ "/community/view?id=" + communityId
+    				+ "&showModal=editCommunity"
+    				+ "&error=" + java.net.URLEncoder.encode(error, "UTF-8"));
+    	} catch (Exception e) {
+    		throw new ServletException("Redirect error", e);
+    	}
     }
 }

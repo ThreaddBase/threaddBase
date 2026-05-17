@@ -43,6 +43,19 @@
     background-size: contain;
 }
 
+.edit-btn {
+    width: 165px;
+    padding: 10px 20px;
+    border: none;
+    background: var(--color-highlight);
+    color: white;
+    cursor: pointer;
+    border-radius: 30px;
+    margin: 0 8px;
+    font-weight: 500;
+    font-size: 1.02rem;
+}
+
 .add-btn-p {
     width: 150px;
     padding: 10px 20px;
@@ -214,6 +227,14 @@ section {
     width: 18px;
     text-align: center;
     color: #00adb5;
+}
+
+.join-community:has(> a) {
+  text-decoration: none;
+}
+
+a {
+	text-decoration: none;
 }
 
 .join-community {

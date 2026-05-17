@@ -76,7 +76,9 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
                     </div>
                 </div>
             </c:forEach>
-
+            <a href="<%=request.getContextPath()%>/community?showModal=requestCommunity">
+			    <button class="join-btn">Request Community</button>
+			</a>
             <c:if test="${empty communities}">
                 <div class="no-data">No Community found.</div>
             </c:if>
@@ -103,8 +105,16 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
 	        </div>
 	    </div>
 	</c:if>
-
+	
+	<c:if test="${param.success == 'true'}">
+	    <div class="toast-wrapper">
+	        <p class="toast-title">Request Sent!</p>
+	        <p class="toast-msg">Your community request has been submitted.</p>
+	    </div>
+	</c:if>
+	
     <%@ include file="notificationModel.jsp" %>
+    <%@ include file="requestCommunity.jsp" %>
 
 </body>
 </html>

@@ -52,7 +52,7 @@
         	<c:choose>
 					<c:when test="${role == 'Admin'}">
 					    <a href="<%=request.getContextPath()%>/community/view?id=${community.id}&amp;showModal=editCommunity">
-					        <button class="add-btn">Edit Community</button>
+					        <button class="edit-btn">Edit Community</button>
 					    </a>
 					</c:when>
 				<c:otherwise>
