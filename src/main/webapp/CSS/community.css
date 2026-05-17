@@ -6,6 +6,7 @@ section {
     margin-left: 250px;
     background-color: rgb(5, 21, 36);
     flex-direction: column;
+    min-height: 91.55vh;
 }
 
 section p {
@@ -16,6 +17,12 @@ section p {
 
 section p span {
 	color: #00ADB5;
+}
+
+.no-data {
+	margin: auto;
+	align-self: center;
+	padding-top: 175px;
 }
 
 .filter-form {
@@ -102,7 +109,6 @@ section p span {
     min-height: 180px;
 }
 
-
 .community-thumb {
     width: 260px;
     flex-shrink: 0;
@@ -110,29 +116,29 @@ section p span {
     display: block;
 }
 
-
 .card-details {
     flex: 1;
     padding: 20px 22px;
     display: flex;
     flex-direction: column;
     gap: 8px;
+    background: var(--color-secondary)
 }
 
 .card-title {
     font-size: 19px;
     font-weight: 800;
-    color: #111;
+    color: turquoise;
 }
 
 .card-created {
     font-size: 13px;
-    color: #555;
+    color: #ccc;
 }
 
 .card-desc {
     font-size: 14px;
-    color: #333;
+    color: #ddd;
     line-height: 1.55;
 }
 
@@ -148,9 +154,28 @@ section p span {
     padding-top: 8px;
 }
 
-.view-btn,
+.view-btn {
+    background-color: var(--color-highlight);
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 9px 20px;
+    font-size: 13px;
+    cursor: pointer;
+}
+
 .join-btn {
-    background-color: #2b2b2b;
+    background-color: #02bd50;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 9px 20px;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.leave-btn {
+    background-color: #a60202;
     color: white;
     border: none;
     border-radius: 20px;
@@ -165,29 +190,38 @@ section p span {
 }
 
 .view-btn:hover {
-    background-color: #444;
+    background-color: #00848a;
 }
 
 .join-btn:hover {
-    background-color: #555;
+    background-color: #008035;
+}
+
+.leave-btn:hover {
+    background-color: #7a0000;
 }
 
 .modal-overlay {
     position: fixed;
     inset: 0;
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.4);
     z-index: 1000;
     display: flex;
     justify-content: center;
     align-items: center;
+    backdrop-filter: blur(6px);
 }
 .modal-box {
-    background: white;
+    background: rgba(30, 40, 50, 0.75);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--color-highlight);
     border-radius: 12px;
     padding: 2rem;
+    padding-bottom: 1.2rem;
     text-align: center;
     min-width: 280px;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
 }
 .modal-icon {
     font-size: 2.5rem;
@@ -200,12 +234,13 @@ section p span {
     font-size: 1.3rem;
 }
 .modal-box p {
-    color: #555;
-    margin-bottom: 1.2rem;
+    color: #ccc;
+    margin-bottom: 1.6rem;
+    font-weight: 600;
 }
 .close-modal-btn {
     display: inline-block;
-    background: #4f46e5;
+    background: var(--color-highlight);
     color: white;
     border: none;
     padding: 0.5rem 1.5rem;
@@ -214,4 +249,246 @@ section p span {
     font-size: 1rem;
     text-decoration: none;
 }
-.close-modal-btn:hover { background: #4338ca; }
+.close-modal-btn:hover { 
+	background: #038b91; 
+}
+
+.close-modal-btn:active { 
+	transform: scale(0.97);
+}
+
+
+/* ============================================
+   RESPONSIVE MEDIA QUERIES
+   ============================================ */
+
+/* 2XL - Large / wide screens (max 1536px) */
+@media (max-width: 1536px) {
+    section {
+        margin-left: 250px;
+    }
+
+    .community-thumb {
+        width: 240px;
+    }
+}
+
+/* XL - Laptops / desktops (max 1280px) */
+@media (max-width: 1280px) {
+    section {
+        margin-left: 220px;
+    }
+
+    .community-thumb {
+        width: 210px;
+    }
+
+    .card-title {
+        font-size: 17px;
+    }
+}
+
+/* LG - Tablets landscape / small laptops (max 1024px) */
+@media (max-width: 1024px) {
+    section {
+        margin-left: 250px;
+        padding: 3% 3% 3% 2%;
+    }
+
+    section p {
+        font-size: 1.7rem;
+        padding: 20px;
+    }
+
+    .community-thumb {
+        width: 190px;
+    }
+
+    .community-list {
+        padding: 0 20px 20px 20px;
+    }
+
+    .card-title {
+        font-size: 16px;
+    }
+
+    .card-desc {
+        font-size: 13px;
+    }
+}
+
+/* Sidebar collapses to 80px at 800px */
+@media (max-width: 800px) {
+    section {
+        margin-left: 80px;
+        padding: 2% 3%;
+    }
+}
+
+/* MD - Tablets portrait (max 768px) */
+@media (max-width: 768px) {
+    section {
+        margin-left: 80px;
+        padding: 2% 3%;
+    }
+
+    section p {
+        font-size: 1.5rem;
+        padding: 15px;
+    }
+
+    .filter-form {
+        margin-left: 0;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    .community-card {
+        flex-direction: column;
+        min-height: unset;
+    }
+
+    .community-thumb {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+    }
+
+    .community-list {
+        padding: 0 15px 15px 15px;
+    }
+
+    .card-details {
+        padding: 15px 16px;
+    }
+
+    .card-title {
+        font-size: 16px;
+    }
+
+    .card-action-btns {
+        flex-wrap: wrap;
+    }
+
+    .modal-box {
+        padding: 1.5rem;
+        min-width: 240px;
+    }
+}
+
+/* SM - Large phones (max 640px) */
+@media (max-width: 640px) {
+    section {
+        margin-left: 80px;
+        padding: 3%;
+    }
+
+    section p {
+        font-size: 1.3rem;
+        padding: 12px;
+    }
+
+    .community-thumb {
+        height: 170px;
+    }
+
+    .community-list {
+        padding: 0 10px 10px 10px;
+        gap: 15px;
+    }
+
+    .card-title {
+        font-size: 15px;
+    }
+
+    .card-created,
+    .card-tags {
+        font-size: 12px;
+    }
+
+    .card-desc {
+        font-size: 13px;
+    }
+
+    .view-btn,
+    .join-btn,
+    .leave-btn {
+        padding: 8px 16px;
+        font-size: 12px;
+    }
+
+    .filter-form select {
+        min-width: 130px;
+        font-size: 13px;
+    }
+}
+
+/* XS - Small phones (max 480px) */
+@media (max-width: 480px) {
+    section {
+        margin-left: 80px;
+        padding: 2%;
+    }
+
+    section p {
+        font-size: 1.1rem;
+        padding: 10px;
+    }
+
+    .community-thumb {
+        height: 150px;
+    }
+
+    .community-list {
+        padding: 0 8px 8px 8px;
+        gap: 12px;
+    }
+
+    .card-details {
+        padding: 12px 14px;
+        gap: 6px;
+    }
+
+    .card-title {
+        font-size: 14px;
+    }
+
+    .card-desc {
+        font-size: 12px;
+    }
+
+    .card-action-btns {
+        gap: 8px;
+    }
+
+    .view-btn,
+    .join-btn,
+    .leave-btn {
+        padding: 7px 13px;
+        font-size: 12px;
+        border-radius: 16px;
+    }
+
+    .filter-form {
+        gap: 6px;
+    }
+
+    .filter-form select {
+        min-width: 110px;
+        padding: 7px 32px 7px 12px;
+        font-size: 12px;
+    }
+
+    .modal-box {
+        padding: 1.2rem;
+        min-width: 200px;
+    }
+
+    .modal-box h3 {
+        font-size: 1.1rem;
+    }
+
+    .modal-box p {
+        font-size: 0.9rem;
+    }
+}

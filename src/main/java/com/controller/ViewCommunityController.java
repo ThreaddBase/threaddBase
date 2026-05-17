@@ -22,11 +22,6 @@ import com.service.PostService;
 import com.service.TagService;
 import com.util.SessionUtil;
 
-/**
- * Controller for viewing and managing a single community page.
- * Handles GET requests for viewing, joining, and leaving communities,
- * and POST requests for editing community details.
- */
 @MultipartConfig(
     fileSizeThreshold = 1024 * 1024,
     maxFileSize = 5 * 1024 * 1024,
@@ -43,7 +38,8 @@ public class ViewCommunityController extends HttpServlet {
     private final TagService tagService = new TagService();
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
 
         int userId = SessionUtil.getUserId(request);
         String task = request.getParameter("task");
@@ -58,8 +54,7 @@ public class ViewCommunityController extends HttpServlet {
         try {
             int communityId = Integer.parseInt(idParam);
 
-            // Handle join/leave before loading page data
-            if (communityIdParam != null && !communityIdParam.isEmpty()) {
+            if (communityIdParam != null && !communityIdParam.isEmpty() && task != null) {
                 int actionCommunityId = Integer.parseInt(communityIdParam);
                 handleMembership(request, task, userId, actionCommunityId);
             }
@@ -67,7 +62,6 @@ public class ViewCommunityController extends HttpServlet {
             loadCommunityPage(request, response, userId, communityId);
 
         } catch (NumberFormatException e) {
-            System.out.println("Invalid community ID: " + idParam);
             response.sendRedirect(request.getContextPath() + "/error");
 
         } catch (SQLException e) {
@@ -76,7 +70,12 @@ public class ViewCommunityController extends HttpServlet {
     }
 
     /**
-     * Delegates join/leave actions based on the task parameter.
+     * Handles join and leave community actions based on the task parameter.
+     *
+     * @param request the HTTP request
+     * @param task either "join" or "leave"
+     * @param userId the logged-in user's ID
+     * @param communityId the target community ID
      */
     private void handleMembership(HttpServletRequest request, String task, int userId, int communityId)
             throws SQLException {
@@ -91,7 +90,14 @@ public class ViewCommunityController extends HttpServlet {
     }
 
     /**
-     * Fetches all data required to render the community page and forwards to the JSP.
+     * Loads all data needed for the community page and forwards to the JSP.
+     * Sets community, posts, tags, membership status, role, and communityList
+     * as request attributes so included JSP fragments (e.g. newPostImage.jsp) can access them.
+     *
+     * @param request: the HTTP request
+     * @param response: the HTTP response
+     * @param userId: the logged-in user's ID
+     * @param communityId: the community to load
      */
     private void loadCommunityPage(HttpServletRequest request, HttpServletResponse response,
                                    int userId, int communityId)
@@ -107,14 +113,10 @@ public class ViewCommunityController extends HttpServlet {
         List<TagModel> tagList = tagService.getCommunityByID(communityId);
         boolean isJoined = communityService.getJoinedCommunityById(userId, communityId);
         String role = (String) SessionUtil.getRole(request);
-
-        // Pass modal trigger if present (e.g. ?showModal=editCommunity)
-        String showModal = request.getParameter("showModal");
-        if (showModal != null) {
-            request.setAttribute("showModal", showModal);
-        }
+        List<CommunityModel> communityList = List.of(community);
 
         request.setAttribute("community", community);
+        request.setAttribute("communityList", communityList);
         request.setAttribute("postList", postList);
         request.setAttribute("tagList", tagList);
         request.setAttribute("isJoined", isJoined);
@@ -135,7 +137,6 @@ public class ViewCommunityController extends HttpServlet {
 
         try {
             int communityId = Integer.parseInt(idParam);
-
             CommunityModel community = buildCommunityFromRequest(request, communityId);
 
             String error = communityManageService.updateCommunity(community);
@@ -155,7 +156,12 @@ public class ViewCommunityController extends HttpServlet {
     }
 
     /**
-     * Builds a CommunityModel from the POST request parameters.
+     * Builds a CommunityModel from multipart POST form data.
+     * Reads community name, description, and optional profile image.
+     *
+     * @param request the HTTP request containing form fields
+     * @param communityId the ID of the community being updated
+     * @return a populated CommunityModel ready for the service layer
      */
     private CommunityModel buildCommunityFromRequest(HttpServletRequest request, int communityId)
             throws IOException, ServletException {
@@ -181,8 +187,13 @@ public class ViewCommunityController extends HttpServlet {
     }
 
     /**
-     * Reloads the community page with an error message and the edit modal open.
-     * Used when community update validation fails.
+     * Reloads the community page with a validation error and reopens the edit modal.
+     * Called when communityManageService.updateCommunity() returns an error message.
+     *
+     * @param request the HTTP request
+     * @param response the HTTP response
+     * @param communityId the community that failed to update
+     * @param error the validation error message to display
      */
     private void reloadPageWithError(HttpServletRequest request, HttpServletResponse response,
                                      int communityId, String error)
@@ -191,8 +202,10 @@ public class ViewCommunityController extends HttpServlet {
             CommunityModel community = communityService.getCommunityByID(communityId);
             List<PostModel> postList = postService.getPostByCommunity(communityId);
             List<TagModel> tagList = tagService.getCommunityByID(communityId);
+            List<CommunityModel> communityList = List.of(community);
 
             request.setAttribute("community", community);
+            request.setAttribute("communityList", communityList);
             request.setAttribute("postList", postList);
             request.setAttribute("tagList", tagList);
 

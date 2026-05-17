@@ -13,4 +13,8 @@ public class PasswordUtil {
     public static boolean checkPassword(String input, String storedHash) {
         return BCrypt.checkpw(input, storedHash);
     }
+    
+    public static String hash(String currentPass) {
+		return getHashPassword(currentPass);
+	}
 }

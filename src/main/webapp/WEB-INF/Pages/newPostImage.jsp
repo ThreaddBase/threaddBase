@@ -1,12 +1,18 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-
 <link rel="stylesheet" href="<%=request.getContextPath()%>/CSS/newPostImage.css">
 
 <div class="npi-overlay ${param.showModal == 'image' ? 'active' : ''}">
     <div class="npi-box">
 
-        <a href="<%=request.getContextPath()%>/user/home?id=${param.id}" class="npi-close">&times;</a>
+        <c:choose>
+		    <c:when test="${not empty param.communityId}">
+		        <%-- close goes back to community page --%>
+		        <a href="<%=request.getContextPath()%>/community/view?id=${param.communityId}" class="npi-close">&times;</a>
+		    </c:when>
+		    <c:otherwise>
+		        <%-- close goes back to home --%>
+		        <a href="<%=request.getContextPath()%>/user/home?id=${param.id}" class="npi-close">&times;</a>
+		    </c:otherwise>
+		</c:choose>
 
         <form class="npi-card"
               action="<%=request.getContextPath()%>/post/create"
@@ -26,12 +32,22 @@
 
                 <div class="npi-right">
                     <textarea placeholder="Description for the post..." name="postCaption"></textarea>
-                    <select name="communityId">
-                        <option value="" disabled selected>Select community</option>
-                        <c:forEach var="community" items="${communityList}">
-                            <option value="${community.id}">${community.name}</option>
-                        </c:forEach>
-                    </select>
+					<c:choose>
+					    <c:when test="${not empty param.communityId}">
+					        <%-- Already inside a community, no need for dropdown --%>
+					        <input type="hidden" name="communityId" value="${param.communityId}">
+					        <p>Posting in: <strong>${community.name}</strong></p>
+					    </c:when>
+					    <c:otherwise>
+					        <%-- Home page: let user pick --%>
+					        <select name="communityId">
+					            <option value="" disabled selected>Select community</option>
+					            <c:forEach var="c" items="${communityList}">
+					                <option value="${c.id}">${c.name}</option>
+					            </c:forEach>
+					        </select>
+					    </c:otherwise>
+					</c:choose>
                     <input type="text" placeholder="# Add tags" name="postTags">
                     <button type="submit" class="npi-post-btn">Post Thread</button>
                 </div>

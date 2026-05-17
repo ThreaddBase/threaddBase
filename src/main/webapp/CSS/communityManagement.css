@@ -348,7 +348,7 @@ body {
 }
 
 .view-btn {
-	background: #18ad59;
+	background: var(--color-highlight);
 }
 
 .delete-btn {

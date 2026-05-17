@@ -61,7 +61,8 @@ public class AuthenticationFilter extends HttpFilter implements Filter {
         "/comment",
         "/vote",
         "/bookmark",
-        "/post/create"
+        "/post/create",
+        "/member/edit"
     };
     
     /**

@@ -57,8 +57,15 @@
 					</c:when>
 				<c:otherwise>
 					<c:if test="${isJoined}">
-					    <button class="add-btn">Post Image</button>
-					    <button class="add-btn">Create Thread</button>
+						<%-- Post Image button --%>
+						<a href="<%=request.getContextPath()%>/community/view?id=${community.id}&amp;communityId=${community.id}&amp;showModal=image">
+						    <button class="add-btn-p">Post Image</button>
+						</a>
+						
+						<%-- Create Thread button --%>
+						<a href="<%=request.getContextPath()%>/community/view?id=${community.id}&amp;communityId=${community.id}&amp;showModal=thread">
+						    <button class="add-btn-t">Create Thread</button>
+						</a>
 					</c:if>
 				</c:otherwise>
         	</c:choose>	
@@ -94,7 +101,7 @@
 		    <c:choose>
 		        <c:when test="${isJoined}">
 		            <a href="<%=request.getContextPath()%>/community/view?id=${community.id}&amp;communityId=${community.id}&amp;task=leave">
-		                <button class="join-community">Leave Community</button>
+		                <button class="leave-community">Leave Community</button>
 		            </a>
 		        </c:when>
 		        <c:otherwise>
@@ -109,6 +116,8 @@
     </section>
     <%@ include file="notificationModel.jsp" %>
     <%@ include file="editCommunity.jsp" %>
+    <%@ include file="newPostImage.jsp" %>
+   	<%@ include file="newPostMessage.jsp" %>
     
 	   <script>
 	    function previewEcImage(input) {

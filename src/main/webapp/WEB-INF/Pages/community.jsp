@@ -63,7 +63,7 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
                             <c:choose>
 	                            <c:when test="${community.isJoined == true}">
 	                            	 <a href="<%=request.getContextPath()%>/community?task=leave&amp;communityId=${community.id}">
-	                                	<button class="join-btn">Leave Community</button>
+	                                	<button class="leave-btn">Leave Community</button>
 	                            	</a>
 	                            </c:when>
 	                            <c:otherwise>
@@ -89,11 +89,11 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
 	        <div class="modal-box">
 	            <c:choose>
 	                <c:when test="${result == 'Joined Community' || result == 'Left Community'}">
-	                    <div class="modal-icon success">&#10003;</div>
+	                    <div class="modal-icon success"><i class="fa-solid fa-circle-check"></i></div>
 	                    <h3>Success!</h3>
 	                </c:when>
 	                <c:otherwise>
-	                    <div class="modal-icon error">&#10007;</div>
+	                    <div class="modal-icon error"><i class="fa-solid fa-circle-xmark"></i></div>
 	                    <h3>Failed!</h3>
 	                </c:otherwise>
 	            </c:choose>

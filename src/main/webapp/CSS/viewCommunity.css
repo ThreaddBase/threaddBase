@@ -43,19 +43,46 @@
     background-size: contain;
 }
 
-.add-btn {
+.add-btn-p {
     width: 150px;
     padding: 10px 20px;
     border: none;
-    background-color: #00adb5;
+    background: var(--color-highlight);
     color: white;
     cursor: pointer;
     border-radius: 30px;
     margin: 0 8px;
+    font-weight: 500;
+    font-size: 1.02rem;
 }
 
-.add-btn:hover {
-    background-color: #00acb5a4;
+.add-btn-t {
+    width: 150px;
+    padding: 10px 20px;
+    border: none;
+    background: var(--color-peach);
+    color: #fff;
+    cursor: pointer;
+    border-radius: 30px;
+    margin: 0 8px;
+    font-weight: 500;
+    font-size: 1.02rem;
+}
+
+.add-btn-p:hover {
+    background: #03898f;
+}
+
+.add-btn-p:active {
+    transform: scale(0.97);
+}
+
+.add-btn-t:hover {
+    background: #cf6342;
+}
+
+.add-btn-t:active {
+    transform: scale(0.97);
 }
 
 .community-tag {
@@ -88,7 +115,7 @@
     color: #eee;
     border-radius: 8px;
     margin-right: 10px;
-    font-size: 12px;
+    font-size: 17px;
     cursor: pointer;
 }
 
@@ -194,7 +221,23 @@ section {
     width: calc(100% - 40px);
     margin: 16px 20px;
     padding: 10px 0;
-    background-color: #00adb5;
+    background-color: #02bd50;
+    color: white;
+    font-size: 14px;
+    font-weight: 600;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: background-color 0.15s ease, transform 0.1s ease;
+    text-align: center;
+}
+
+.leave-community {
+    display: block;
+    width: calc(100% - 40px);
+    margin: 16px 20px;
+    padding: 10px 0;
+    background-color: #a60202;
     color: white;
     font-size: 14px;
     font-weight: 600;
@@ -206,10 +249,18 @@ section {
 }
 
 .join-community:hover {
-    background-color: #008f96;
+    background-color: #008035;
 }
 
 .join-community:active {
+    transform: scale(0.97);
+}
+
+.leave-community:hover {
+    background-color: #7a0000;
+}
+
+.leave-community:active {
     transform: scale(0.97);
 }
 
