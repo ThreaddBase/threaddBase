@@ -14,4 +14,8 @@ public class PostService {
 	        throws SQLException {
 	    return postDAO.getPostByCommunity(communityId);
 	}
+	
+	public List<PostModel> getPostByUserId(int userId) throws SQLException {
+		return postDAO.getPostByUserId(userId);
+	}
 }

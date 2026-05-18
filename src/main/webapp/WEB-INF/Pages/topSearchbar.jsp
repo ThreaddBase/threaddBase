@@ -3,8 +3,8 @@
         <input type="text" placeholder="Search...">
         <button><i class="fas fa-search"></i></button>
     </div>
-    <a href="<%=request.getContextPath()%>/user" class="user-profile">
-        <div class="avatar"></div>
-        <span class="username">John Doe</span>
-    </a>
+	<a href="<%=request.getContextPath()%>/user?id=${sessionScope.loggedUser.id}" class="user-profile">
+	    <div class="avatar"></div>
+	    <span class="username">${sessionScope.loggedUser.username}</span>
+	</a>
 </div>

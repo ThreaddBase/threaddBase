@@ -44,7 +44,7 @@ public class ProfileDAO {
 	}
         
 
-    // ── UPDATE profile info ───────────────────────────────
+    // UPDATE profile info
 	public boolean updateProfile(int id, String firstName, String lastName,
             String username,
             String dob, String bio) throws SQLException {

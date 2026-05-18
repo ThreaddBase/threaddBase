@@ -1,5 +1,6 @@
 @charset "UTF-8";
 
+/* ── posts ── */
 .posts {
   display: flex;
   flex-direction: column;
@@ -7,6 +8,12 @@
   max-width: 760px;
   margin: 0 auto;
   padding: 24px 40px 32px;
+}
+
+.no-posts {
+  text-align: center;
+  color: var(--color-slate);
+  padding: 40px 0;
 }
 
 .post {
@@ -25,40 +32,42 @@
 .post-left {
   display: flex;
   flex-direction: column;
-  gap: 16px;
-  padding: 22px;
+  gap: 12px;
+  padding: 20px;
   flex: 1;
 }
 
 .mini-avatar {
-  width: 54px;
-  height: 54px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
   background: var(--color-slate);
   flex-shrink: 0;
 }
 
 .post-left h4 {
-  margin-bottom: 8px;
+  margin: 0;
+  color: var(--color-font);
 }
 
 .post-left small,
 .post-left h5 {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
   color: var(--color-slate);
-  font-size: 0.95rem;
+  font-size: 0.9rem;
+  margin: 0;
 }
 
 .post-left h5 {
-  margin-top: 6px;
   color: var(--color-highlight);
 }
 
 .post-left p {
   color: var(--color-slate);
   line-height: 1.6;
+  margin: 0;
 }
 
 .post-actions {
@@ -71,24 +80,28 @@
 .post-actions span {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
   color: var(--color-slate);
-  font-size: 0.95rem;
+  font-size: 0.9rem;
 }
 
 .post-image {
-  width: 320px;
-  min-width: 240px;
+  width: 280px;
+  min-width: 200px;
   overflow: hidden;
+  flex-shrink: 0;
 }
 
 .post-image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  display: block;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 760px) {
+  .posts { padding: 20px; }
+
   .post {
     flex-direction: column;
   }
@@ -96,19 +109,6 @@
   .post-image {
     width: 100%;
     min-width: auto;
-    height: 220px;
-  }
-}
-
-@media (max-width: 760px) {
-  .profile-header,
-  .post {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .tabs {
-    padding: 14px 18px;
-    gap: 12px;
+    height: 200px;
   }
 }
