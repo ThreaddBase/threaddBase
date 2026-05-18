@@ -1,3 +1,168 @@
+//package com.filter;
+//
+//import jakarta.servlet.Filter;
+//import jakarta.servlet.FilterChain;
+//import jakarta.servlet.FilterConfig;
+//import jakarta.servlet.ServletException;
+//import jakarta.servlet.ServletRequest;
+//import jakarta.servlet.ServletResponse;
+//import jakarta.servlet.annotation.WebFilter;
+//import jakarta.servlet.http.HttpFilter;
+//import jakarta.servlet.http.HttpServletRequest;
+//import jakarta.servlet.http.HttpServletResponse;
+//
+//import java.io.IOException;
+//
+//import com.util.CookieUtil;
+//import com.util.SessionUtil;
+//
+///**
+// * Servlet Filter implementation class AuthenticationFilter
+// */
+//@WebFilter("/*")
+//public class AuthenticationFilter extends HttpFilter implements Filter {
+//       
+//	// Public pages
+//    private static final String LOGIN   = "/login";
+//    private static final String REGISTER = "/register";
+//    private static final String HOME = "/home";
+//    private static final String CONTACT = "/contact";
+//    private static final String ABOUTUS = "/aboutUS";
+//    private static final String LOGOUT = "/logout";
+//    private static final String ERROR = "/error";
+//
+//    // ADMIN allowed URIs
+//    private String[] adminURIs = {
+//    	"/admin",
+//    	"/admin/edit",
+//        "/admin/dashboard",
+//        "/admin/community",
+//        "/community/view",
+//        "/admin/userManagement",
+//        "/comment",
+//        "/admin/userImage"
+//    };
+//
+//    // USER allowed URIs
+//    private String[] userURIs = {
+//        "/user/home",
+//        "/user/bookmark",
+//        "/community",
+//        "/user/joined",
+//        "/user/notification",
+//        "/user",
+//        "/user/setting",
+//        "/community/view",
+//        "/user/edit",
+//        "/comment"
+//    };
+//    
+//    /**
+//	 * @see Filter#init(FilterConfig)
+//	 */
+//	public void init(FilterConfig fConfig) throws ServletException {
+//		// TODO Auto-generated method stub
+//	} 
+//
+//	/**
+//	 * @see Filter#doFilter(ServletRequest, ServletResponse, FilterChain)
+//	 */
+//	
+//    // ── Check if path exists in allowed array ────────────────
+//    private boolean isAllowed(String path, String[] allowedArray) {
+//        for (int i = 0; i < allowedArray.length; i++) {
+//            if (path.startsWith(allowedArray[i])) {
+//                return true;  //  match found
+//            }
+//        }
+//        return false;
+//    }
+//	
+//	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+//		
+//		HttpServletRequest req = (HttpServletRequest) request;
+//        HttpServletResponse res = (HttpServletResponse) response;
+//
+//        String uri = req.getRequestURI();
+//        String contextPath = req.getContextPath(); //URL - URI
+//        String path = uri.substring(contextPath.length());
+//        
+//
+//        if (path.startsWith("/resources/") || path.endsWith(".css") || path.endsWith(".js") || path.endsWith(".png") || path.endsWith(".jpg")   || path.startsWith("/WEB-INF")) {
+//
+//            chain.doFilter(request, response);
+//            return;
+//        }
+//        
+//        if (path.equals(ERROR) || path.equals(LOGOUT)) {
+//            chain.doFilter(request, response); // looping in error page and logout page fix
+//            return;
+//        }
+//     
+//        Object user = SessionUtil.getAttribute(req, "loggedUser");
+//        String role = (String) SessionUtil.getRole(req);
+//        boolean isLoggedIn = (user != null);
+//        
+//        
+//        if (role != null) {
+//            role = role.toUpperCase(); // case issues solved
+//        }
+//        
+// 
+//        boolean isPublic = path.equals(LOGIN) || path.equals(REGISTER) || path.equals(HOME) || path.equals(ABOUTUS) || path.equals(CONTACT) || path.equals(ERROR) || path.equals(LOGOUT);
+//        boolean isAccessed = path.equals(LOGIN) || path.equals(REGISTER) || path.equals(HOME);
+//        if (!isLoggedIn) {
+//            if (isPublic) {
+//                chain.doFilter(request, response);
+//            } else {
+//                res.sendRedirect(contextPath + HOME);
+//            }
+//         return;
+//        }
+//
+//        // Logged in but trying to access login/register/home
+//        if (isAccessed) {
+//            if ("ADMIN".equals(role)) {
+//                res.sendRedirect(contextPath + "/admin/dashboard");
+//            } else {
+//                res.sendRedirect(contextPath + "/user/home");
+//            }
+//            return;
+//        }
+//        
+//        // Role-based access check
+//        if ("ADMIN".equals(role)) { // admin role check
+//            if (isAllowed(path, adminURIs)) {
+//                chain.doFilter(request, response);  // admin allowed
+//            } else {
+//                res.sendRedirect(contextPath + "/error"); // redirect to 404
+//            }
+//
+//        } else if ("MEMBER".equals(role)) { // user role check
+//            if (isAllowed(path, userURIs)) {
+//                chain.doFilter(request, response);  // user allowed
+//            } else {
+//                res.sendRedirect(contextPath + "/error"); // redirect to 404
+//            }
+//
+//        } else {
+//            // Unknown role → logout and go home
+//            res.sendRedirect(contextPath + "/logout");
+//        }
+//        System.out.println(">>> PATH: [" + path + "] | ROLE: [" + role + "] | LOGGED IN: [" + isLoggedIn + "]"); // check user path, role and islogged or not
+//	}
+//
+//	/**
+//	 * @see Filter#destroy()
+//	 */
+//	public void destroy() {
+//		// TODO Auto-generated method stub
+//	}
+//
+//}
+
+
+
 package com.filter;
 
 import jakarta.servlet.Filter;
@@ -13,28 +178,22 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
-import com.util.CookieUtil;
 import com.util.SessionUtil;
 
-/**
- * Servlet Filter implementation class AuthenticationFilter
- */
 @WebFilter("/*")
 public class AuthenticationFilter extends HttpFilter implements Filter {
-       
-	// Public pages
-    private static final String LOGIN   = "/login";
-    private static final String REGISTER = "/register";
-    private static final String HOME = "/home";
-    private static final String CONTACT = "/contact";
-    private static final String ABOUTUS = "/aboutUS";
-    private static final String LOGOUT = "/logout";
-    private static final String ERROR = "/error";
 
-    // ADMIN allowed URIs
+    private static final String LOGIN    = "/login";
+    private static final String REGISTER = "/register";
+    private static final String HOME     = "/home";
+    private static final String CONTACT  = "/contact";
+    private static final String ABOUTUS  = "/aboutUS";
+    private static final String LOGOUT   = "/logout";
+    private static final String ERROR    = "/error";
+
     private String[] adminURIs = {
-    	"/admin",
-    	"/admin/edit",
+        "/admin",
+        "/admin/edit",
         "/admin/dashboard",
         "/admin/community",
         "/community/view",
@@ -43,85 +202,82 @@ public class AuthenticationFilter extends HttpFilter implements Filter {
         "/admin/userImage"
     };
 
-    // USER allowed URIs
     private String[] userURIs = {
+        "/user",
         "/user/home",
         "/user/bookmark",
-        "/community",
         "/user/joined",
         "/user/notification",
-        "/user",
         "/user/setting",
-        "/community/view",
         "/user/edit",
-        "/comment"
+        "/community",
+        "/community/view",
+        "/comment",
+        "/postImage"
     };
-    
-    /**
-	 * @see Filter#init(FilterConfig)
-	 */
-	public void init(FilterConfig fConfig) throws ServletException {
-		// TODO Auto-generated method stub
-	} 
 
-	/**
-	 * @see Filter#doFilter(ServletRequest, ServletResponse, FilterChain)
-	 */
-	
-    // ── Check if path exists in allowed array ────────────────
+    public void init(FilterConfig fConfig) throws ServletException {}
+
     private boolean isAllowed(String path, String[] allowedArray) {
-        for (int i = 0; i < allowedArray.length; i++) {
-            if (path.startsWith(allowedArray[i])) {
-                return true;  //  match found
+        for (String allowed : allowedArray) {
+            if (path.equals(allowed) || path.startsWith(allowed + "/")) {
+                return true;
             }
         }
         return false;
     }
-	
-	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-		
-		HttpServletRequest req = (HttpServletRequest) request;
-        HttpServletResponse res = (HttpServletResponse) response;
 
-        String uri = req.getRequestURI();
-        String contextPath = req.getContextPath(); //URL - URI
-        String path = uri.substring(contextPath.length());
-        
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
+            throws IOException, ServletException {
 
-        if (path.startsWith("/resources/") || path.endsWith(".css") || path.endsWith(".js") || path.endsWith(".png") || path.endsWith(".jpg")   || path.startsWith("/WEB-INF")) {
+        HttpServletRequest  req  = (HttpServletRequest)  request;
+        HttpServletResponse res  = (HttpServletResponse) response;
 
+        String uri         = req.getRequestURI();
+        String contextPath = req.getContextPath();
+        String path        = uri.substring(contextPath.length());
+
+        // Always allow static resources
+        if (path.startsWith("/CSS/") || path.startsWith("/JS/") ||
+            path.startsWith("/images/") || path.startsWith("/resources/") ||
+            path.endsWith(".css") || path.endsWith(".js") ||
+            path.endsWith(".png") || path.endsWith(".jpg") ||
+            path.startsWith("/WEB-INF")) {
             chain.doFilter(request, response);
             return;
         }
-        
+
+        // Always allow error and logout through
         if (path.equals(ERROR) || path.equals(LOGOUT)) {
-            chain.doFilter(request, response); // looping in error page and logout page fix
+            chain.doFilter(request, response);
             return;
         }
-     
-        Object user = SessionUtil.getAttribute(req, "loggedUser");
-        String role = (String) SessionUtil.getRole(req);
+
+        Object user     = SessionUtil.getAttribute(req, "loggedUser");
+        String role     = SessionUtil.getRole(req);
         boolean isLoggedIn = (user != null);
-        
-        
+
         if (role != null) {
-            role = role.toUpperCase(); // case issues solved
+            role = role.toUpperCase();
         }
-        
- 
-        boolean isPublic = path.equals(LOGIN) || path.equals(REGISTER) || path.equals(HOME) || path.equals(ABOUTUS) || path.equals(CONTACT) || path.equals(ERROR) || path.equals(LOGOUT);
-        boolean isAccessed = path.equals(LOGIN) || path.equals(REGISTER) || path.equals(HOME);
+
+        boolean isPublic   = path.equals(LOGIN) || path.equals(REGISTER) ||
+                             path.equals(HOME)  || path.equals(ABOUTUS)  ||
+                             path.equals(CONTACT);
+        boolean isAuthPage = path.equals(LOGIN) || path.equals(REGISTER) || path.equals(HOME);
+
+        // Not logged in
         if (!isLoggedIn) {
             if (isPublic) {
                 chain.doFilter(request, response);
             } else {
                 res.sendRedirect(contextPath + HOME);
             }
-         return;
+            return;
         }
 
-        // Logged in but trying to access login/register/home
-        if (isAccessed) {
+        // Logged in but hitting public auth pages → redirect to their home
+        if (isAuthPage) {
             if ("ADMIN".equals(role)) {
                 res.sendRedirect(contextPath + "/admin/dashboard");
             } else {
@@ -129,34 +285,26 @@ public class AuthenticationFilter extends HttpFilter implements Filter {
             }
             return;
         }
-        
-        // Role-based access check
-        if ("ADMIN".equals(role)) { // admin role check
+
+        // Role-based access
+        if ("ADMIN".equals(role)) {
             if (isAllowed(path, adminURIs)) {
-                chain.doFilter(request, response);  // admin allowed
+                chain.doFilter(request, response);
             } else {
-                res.sendRedirect(contextPath + "/error"); // redirect to 404
+                res.sendRedirect(contextPath + "/error");
             }
-
-        } else if ("MEMBER".equals(role)) { // user role check
+        } else if ("MEMBER".equals(role) || "USER".equals(role)) {
             if (isAllowed(path, userURIs)) {
-                chain.doFilter(request, response);  // user allowed
+                chain.doFilter(request, response);
             } else {
-                res.sendRedirect(contextPath + "/error"); // redirect to 404
+                res.sendRedirect(contextPath + "/error");
             }
-
         } else {
-            // Unknown role → logout and go home
             res.sendRedirect(contextPath + "/logout");
         }
-        System.out.println(">>> PATH: [" + path + "] | ROLE: [" + role + "] | LOGGED IN: [" + isLoggedIn + "]"); // check user path, role and islogged or not
-	}
 
-	/**
-	 * @see Filter#destroy()
-	 */
-	public void destroy() {
-		// TODO Auto-generated method stub
-	}
+        System.out.println(">>> PATH: [" + path + "] | ROLE: [" + role + "] | LOGGED IN: [" + isLoggedIn + "]");
+    }
 
+    public void destroy() {}
 }

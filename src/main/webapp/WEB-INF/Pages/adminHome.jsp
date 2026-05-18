@@ -11,6 +11,8 @@
 <link rel="stylesheet" href="<%=request.getContextPath()%>/CSS/util.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/CSS/sidebar.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/CSS/topSearchbar.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/CSS/notificationModel.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/CSS/createNotification.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" 
 integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" 
 crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -22,7 +24,7 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
        LEFT SIDEBAR
   ========================= -->
   <%@ include file="adminSidebar.jsp" %>
-
+<%@ include file="createNotification.jsp" %>
 
   <!-- MAIN CONTENT -->
  <div class="main-content">
@@ -30,10 +32,19 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- Top bar: Search + Profile -->
      <%@ include file="topSearchbar.jsp" %>
      
-    <div class="heading-row">
+    <%-- <div class="heading-row">
             <h1 class="page-heading">Track &amp; Review<br>the Platform</h1>
-            
-        </div>
+            Notification trigger label — works with checkbox in createNotification.jsp
+    <label for="cnToggle" class="cn-trigger-btn">
+        <i class="fas fa-bell"></i> Send Notification
+    </label>
+        </div> --%>
+        <div class="heading-row">
+    <h1 class="page-heading">Track &amp; Review<br>the Platform</h1>
+    <label for="notifToggle" class="cn-trigger-btn">
+        <i class="fas fa-bell"></i> Send Notification
+    </label>
+</div>
     <main class="dashboard-content">
 
       <div class="top-stats-row">
