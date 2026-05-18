@@ -44,6 +44,19 @@ public class CommunityDAO {
 				}
 			}	
 		}
+		
 		return null; // returns null if communityID is not found
+		
 	}
+	public int getTotalUsers() throws Exception {
+	    String sql = "SELECT COUNT(*) FROM user";
+	    try (Connection conn = DBConfig.getConnection();
+	         PreparedStatement ps = conn.prepareStatement(sql)) {
+	        ResultSet rs = ps.executeQuery();
+	        if (rs.next()) return rs.getInt(1);
+	    }
+	    return 0;
+	}
+
+
 }

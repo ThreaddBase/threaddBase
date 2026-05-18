@@ -12,4 +12,5 @@ public class CommunityService {
 	public CommunityModel getCommunityByID(int communityID) throws SQLException {
 		return communityDAO.getCommunityByID(communityID);
 	}
+	
 }

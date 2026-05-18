@@ -14,7 +14,7 @@ public class ProfileDAO {
 	
 	public UserModel  getUserById(int id) throws Exception {
 
-        String sql = "SELECT User_ID, User_First_Name, User_Last_Name, User_DOB, Username, User_Bio, user_Role, User_Profile_Picture, Created_At, Password  FROM user WHERE User_ID = ?";
+        String sql = "SELECT User_ID, User_First_Name, User_Last_Name, User_DOB, Username, User_Bio, user_Role, User_Profile_Picture, Created_At, Password, user_Status FROM user WHERE User_ID = ?";
         
         try (Connection conn = DBConfig.getConnection();
         PreparedStatement ps = conn.prepareStatement(sql)) {;
@@ -35,6 +35,7 @@ public class ProfileDAO {
              user.setCreated_At(resultSet.getString("Created_At"));
              user.setProfilePicture(resultSet.getBytes("User_Profile_Picture"));
              user.setPassword(resultSet.getString("Password"));
+             user.setStatus(resultSet.getString("user_Status"));
              return user;
         	
         }

@@ -14,7 +14,7 @@ public class UserDAO {
 	
 	public ArrayList<UserModel> getUser() throws Exception {
 
-        String sql = "SELECT User_ID, User_First_Name, User_Last_Name, User_DOB, Username, User_Email, Created_At  FROM user";
+        String sql = "SELECT User_ID, User_First_Name, User_Last_Name, User_DOB, User_Bio, Username, User_Email, user_Role, Created_At, user_Status  FROM user";
         
         Connection conn = DBConfig.getConnection();
         PreparedStatement ps = conn.prepareStatement(sql);
@@ -32,8 +32,10 @@ public class UserDAO {
         	String bio = resultSet.getString("User_Bio");
         	String role = resultSet.getString("user_Role");
         	String createdAt = resultSet.getString("Created_AT");
+        	String status = resultSet.getString("user_Status");
         	
         }
         return userList;
     }
+	
 }
