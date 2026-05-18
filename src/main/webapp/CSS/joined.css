@@ -8,6 +8,10 @@
 
 .page-title h1 {
   font-size: 2rem;
+  padding-left: 80px;
+  background: var(--gradient-warm-cool);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .posts {
@@ -46,6 +50,7 @@
 }
 
 .post-left h4 {
+  color: #00c9a7;
   margin-bottom: 6px;
 }
 
@@ -65,7 +70,7 @@
   padding: 10px 16px;
   border-radius: 999px;
   border: 1px solid rgba(255, 255, 255, 0.16);
-  background: rgba(255, 255, 255, 0.08);
+  background: #00adb5;
   color: var(--color-font);
   cursor: pointer;
   transition: transform 0.2s ease, opacity 0.2s ease;
@@ -105,15 +110,25 @@
 .recommended-section {
   max-width: 760px;
   margin: 0 auto;
-  padding: 0 40px 32px;
+  padding-bottom: 32px;
   display: flex;
   flex-direction: column;
   gap: 18px;
 }
 
 .recommended-section h2 {
-  font-size: 1.2rem;
+  font-size: 2rem;
   margin-bottom: 12px;
+  background: var(--gradient-warm-cool);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.no-data {
+	color: #00c9a7;
+	font-size: 18px;
+	text-align: center;
+	margin: 0 0 49px 0;
 }
 
 @media (max-width: 760px) {

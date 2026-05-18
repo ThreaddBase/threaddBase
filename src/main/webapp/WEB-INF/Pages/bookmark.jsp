@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,7 +19,6 @@
       <a href="/Threaddbase/user/joined" >Joined Communities</a>
       <a href="/Threaddbase/user/bookmark" class="active">Bookmark</a>
       <a href="/Threaddbase/user/notification">Notification</a>
-      <a href="/Threaddbase/user/setting">Settings</a>
     </div>
   </nav>
 

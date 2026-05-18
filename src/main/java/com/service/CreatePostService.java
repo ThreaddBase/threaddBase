@@ -38,8 +38,8 @@ public class CreatePostService {
 	        if (caption.trim().length() < 3) {
 	            return "Caption must be at least 3 characters.";
 	        }
-	        if (caption.trim().length() > 50) {
-	            return "Caption must not exceed 50 characters.";
+	        if (caption.trim().length() > 250) {
+	            return "Caption must not exceed 250 characters.";
 	        }
 	    }
 

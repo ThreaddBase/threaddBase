@@ -47,4 +47,5 @@ if (!PasswordUtil.checkPassword(currentPass, user.getPassword()))
 dao.updatePassword(id, PasswordUtil.hash(newPass));
 return "success";
 }
+
 }

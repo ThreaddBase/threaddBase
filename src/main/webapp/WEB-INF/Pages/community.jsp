@@ -21,6 +21,12 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <section>
         <p>Discover More <span>Communities</span></p>
+        
+         <div class="filter-row">
+        <a href="<%=request.getContextPath()%>/community?showModal=requestCommunity">
+            <button class="request-com-btn">Request Community</button>
+        </a>
+        
   		<form 
   			action="<%=request.getContextPath()%>/community"
             method="post"
@@ -35,6 +41,7 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
 			</select>
 		  </div>
 		</form>
+		</div>
         <div class="community-list">
 			
             <c:forEach var="community" items="${communities}">
@@ -76,9 +83,6 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
                     </div>
                 </div>
             </c:forEach>
-            <a href="<%=request.getContextPath()%>/community?showModal=requestCommunity">
-			    <button class="join-btn">Request Community</button>
-			</a>
             <c:if test="${empty communities}">
                 <div class="no-data">No Community found.</div>
             </c:if>

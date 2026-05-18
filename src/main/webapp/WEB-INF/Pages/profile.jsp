@@ -28,6 +28,7 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
     </div>
 </nav>
 <section class="posts">
+<h2>Posts</h2>
     <c:choose>
         <c:when test="${not empty postList}">
             <c:forEach var="post" items="${postList}">

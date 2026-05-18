@@ -67,8 +67,30 @@ body{
     width: 20%;
 }
 
+.card-title a {
+ 	  font-size: 45px;
+	  text-decoration: none;
+	  color: var(--color-font);
+	  line-height: 1;
+	  border: 2px solid var(--color-highlight);
+	  border-radius: 50px;
+	  justify-content: center;
+	  display: flex;           
+	  align-items: center;      
+	  width: 55px;              
+	  height: 50px;   
+	  text-align: center;   
+	  padding-bottom: 7px;
+}
 
+.card-title a:hover {
+	color: #333;
+  	background: var(--color-highlight);
+}
 
+.card-title a:active {
+	transform: scale(0.97);
+}
 
 .card-wrap{
     display: flex;

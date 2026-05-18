@@ -18,7 +18,6 @@
       <a href="/Threaddbase/user/joined" >Joined Communities</a>
       <a href="/Threaddbase/user/bookmark">Bookmark</a>
       <a href="/Threaddbase/user/notification" class="active">Notification</a>
-      <a href="/Threaddbase/user/setting">Settings</a>
     </div>
   </nav>
 
