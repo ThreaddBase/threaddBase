@@ -62,19 +62,23 @@
 }
 
 .mini-avatar {
-  width: 48px;
-  height: 48px;
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
   border-radius: 50%;
-  background: var(--color-slate);
+  background: rgba(0, 173, 181, 0.12);
+  color: var(--color-highlight);
   flex-shrink: 0;
 }
 
 .post-left h4 {
   margin-bottom: 6px;
+  color: #00c9a7;
 }
 
 .post-left p {
-  color: var(--color-slate);
+  color: var(--color-font);
   font-size: 0.95rem;
   line-height: 1.5;
 }

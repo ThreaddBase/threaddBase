@@ -9,6 +9,9 @@
 <link rel="stylesheet" href="<%=request.getContextPath()%>/CSS/userNav.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/CSS/util.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/CSS/bookmark.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" 
+integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" 
+crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
 <%@ include file="userPortal.jsp" %>
@@ -26,49 +29,25 @@
     <h1>Bookmarks</h1>
   </div>
   
-  <section class="posts">
-    
-    <article class="post">
-      <div class="post-left">
-        <div class="bookmark-badge"><iconify-icon icon="mdi:star" width="16"></iconify-icon></div>
-        <div>
-          <h4>Post A</h4>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit...</p>
-        </div>
-      </div>
-      <div class="post-buttons">
-        <button class="view-btn">View Post</button>
-        <button class="leave-btn">Remove Bookmark</button>
-      </div>
-    </article>
+  <section class="posts"> 
+	<c:forEach var="bookmark" items="${bookmarkList}">
+	  <article class="post">
+	    <div class="post-left">
+	      <div class="bookmark-badge"><i class="fa-solid fa-bookmark"></i></div>
+	      <div>
+	        <h4>${bookmark.userFirstName} ${bookmark.userLastName}</h4>
+	        <p>${bookmark.postCaption}</p>
+	      </div>
+	    </div>
+	    <div class="post-buttons">
+	      <button class="view-btn">View Post</button>
+ 	      <a href="<%=request.getContextPath()%>/user/bookmark?postId=${bookmark.postId}">
+	        <button class="leave-btn">Remove Bookmark</button>
+	      </a> 
+	    </div>
+	  </article>
+	</c:forEach>
 
-    <article class="post">
-      <div class="post-left">
-        <div class="bookmark-badge"><iconify-icon icon="mdi:star" width="16"></iconify-icon></div>
-        <div>
-          <h4>Post C</h4>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit...</p>
-        </div>
-      </div>
-      <div class="post-buttons">
-        <button class="view-btn">View Post</button>
-        <button class="leave-btn">Remove Bookmark</button>
-      </div>
-    </article>
-
-    <article class="post">
-      <div class="post-left">
-        <div class="bookmark-badge"><iconify-icon icon="mdi:star" width="16"></iconify-icon></div>
-        <div>
-          <h4>Post E</h4>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit...</p>
-        </div>
-      </div>
-      <div class="post-buttons">
-        <button class="view-btn">View Post</button>
-        <button class="leave-btn">Remove Bookmark</button>
-      </div>
-    </article>
   </section>
  </body>
  </html>

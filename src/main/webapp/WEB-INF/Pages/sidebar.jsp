@@ -1,3 +1,5 @@
+<input type="checkbox" id="notiToggle" <c:if test="${openPopup}"> checked </c:if> >
+
 <div class="side-navbar">
     <a href="#" class="logo-container">
         <img src="<%=request.getContextPath()%>/Assets/logo_white.png" class="logo" alt="logo">
@@ -15,9 +17,10 @@
             </a>
         </li>
         <li>
-            <a onclick="showNotification()">
-                <i class="fa-solid fa-bell"></i> <span>Notification</span>
-            </a>
+            <label for="notiToggle" class="noti-btn">
+                <i class="fa-solid fa-bell"></i>
+                <span>Notification</span>
+            </label>
         </li>
         <li>
             <a href="<%=request.getContextPath()%>/logout">
@@ -26,3 +29,4 @@
         </li>
     </ul>
 </div>
+<%@ include file="notificationModel.jsp" %>

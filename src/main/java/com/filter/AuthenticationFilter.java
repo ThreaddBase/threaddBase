@@ -44,7 +44,8 @@ public class AuthenticationFilter extends HttpFilter implements Filter {
         "/comment",
         "/admin/userImage",
         "/vote",
-        "/bookmark"
+        "/bookmark",
+        "/admin/notification"
     };
 
     // USER allowed URIs

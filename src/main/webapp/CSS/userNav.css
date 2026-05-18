@@ -44,7 +44,6 @@ body {
   text-decoration: none;
   color: var(--color-font);
   line-height: 1;
-  border: 2px solid var(--color-highlight);
   border-radius: 50px;
   justify-content: center;
   display: flex;           
@@ -56,8 +55,7 @@ body {
 }
 
 .top a:hover {
-  color: #333;
-  background: var(--color-highlight);
+  color: #eee;
 }
 
 .top a:active {
@@ -198,8 +196,8 @@ body {
 }
 
 .tabs a.active {
-  color: var(--color-font);
-  border-bottom: 2px solid var(--color-font);
+  color: var(--color-highlight);
+  border-bottom: 2px solid var(--color-highlight);
 }
 
 /* ── responsive ── */

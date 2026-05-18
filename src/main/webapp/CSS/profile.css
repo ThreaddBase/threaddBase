@@ -3,9 +3,7 @@
 .posts h2 {
   font-size: 2rem;
   margin-bottom: 12px;
-  background: var(--gradient-warm-cool);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: #fff;
 }
 
 .posts {

@@ -1,44 +1,63 @@
-    <div class="noti-panel">
-    
-    
-        <div class="noti-header">
-            <h3>Notifications</h3>
-            <button class="mark-as-read">Mark as Read</button>
+
+<div class="notification-overlay"></div>
+<div class="noti-panel">
+
+    <!-- HEADER -->
+    <div class="noti-header">
+        <h3>Notifications</h3>
+        <div class="header-actions">
+
+            <!-- MARK READ -->
+            <a href="<%=request.getContextPath()%>/user/home?action=markRead" class="mark-btn">
+                Mark as Read
+            </a>
+
+            <!-- CLOSE -->
+            <label for="notiToggle" class="close-btn">
+                ×
+            </label>
         </div>
-        <hr>
-        <ul class="noti-list">
-            <li><span>Shanice101 commented on your thread, “So true, wish it was me!”!</span></li>
-            <li><span>BabaRamdev192 liked your thread!</span></li>
-            <li><span>Harleyman900 replied to your comment, “Yea, that does happen from time t...</span></li>
-            <li><span>Your post, “Check out my pet rock!” got 3 reports!</span></li>
-            <li><span>David292 mentioned you in a thread!</span></li>
-            <li><span>Davie505 posted a new thread in “Animals_club” community. </span></li>
-            <li><span>hyeana202 commented on your thread, “THAT IS DOPE DUDE!!”</span></li>
-            <li><span>Shanice101 replied to your comment, “Is there any recommendations you give...</span></li>
-        </ul>
     </div>
 
-<script>
-    const markAsReadBtn = document.querySelector('.mark-as-read');
-    const notiItems = document.querySelectorAll('.noti-list li');
+    <!-- SUCCESS -->
+    <c:if test="${not empty successMessage}">
+        <div class="success-box">
+            ✓ ${successMessage}
+        </div>
+    </c:if>
 
-    markAsReadBtn.addEventListener('click', () => {
-        notiItems.forEach(item => {
-            item.style.opacity = '0.5';
-        });
-    });
+    <!-- BODY -->
+    <div class="noti-body">
+        <c:choose>
+            <c:when test="${empty notificationList}">
+                <div class="empty-noti">
+                    No unread notifications.
+                </div>
+            </c:when>
+            <c:otherwise>
+                <c:forEach var="n" items="${notificationList}">
+                    <div class="noti-item unread">
+                        <div class="dot"></div>
+                        <div class="noti-content">
+                            <p>
+                                ${n.notificationMessage}
+                            </p>
+                            <small>
+                                ${n.notificationDate}
+                                &nbsp;
+                                ${n.notificationTime}
+                            </small>
+                        </div>
+                    </div>
+                </c:forEach>
+            </c:otherwise>
+        </c:choose>
+    </div>
 
-    const notipanel = document.querySelector('.noti-panel');
-    let notificationStatus = false;
-    function showNotification() {
-        if(notificationStatus) {
-            notipanel.style.display = 'none';
-            notificationStatus = false;
-            return;
-        }
-        else {
-            notipanel.style.display = 'block';
-            notificationStatus = true;
-        }
-    }
-</script>
+    <!-- FOOTER -->
+    <div class="noti-footer">
+        <a href="<%=request.getContextPath()%>/user/notification">
+            View All Notifications →
+        </a>
+    </div>
+</div>

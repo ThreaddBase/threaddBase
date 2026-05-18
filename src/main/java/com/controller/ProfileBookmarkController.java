@@ -8,8 +8,10 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
+import com.model.BookmarkModel;
 import com.model.CommunityModel;
 import com.model.UserModel;
+import com.service.BookmarkService;
 import com.service.ProfileService;
 import com.util.SessionUtil;
 
@@ -29,6 +31,7 @@ public class ProfileBookmarkController extends HttpServlet {
     }
     
     ProfileService profileService = new ProfileService();
+    BookmarkService bookmarkService = new BookmarkService();
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -38,15 +41,30 @@ public class ProfileBookmarkController extends HttpServlet {
 		
 		int loggedInUserId = SessionUtil.getUserId(request);
 		
-        try {
-            
-            UserModel user = profileService.getUserById(loggedInUserId);
-            
-            request.setAttribute("user", user);
-            request.setAttribute("loggedInUserId", loggedInUserId);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+		String postParamId = request.getParameter("postId");
+	    if (postParamId != null && !postParamId.isEmpty()) {
+	        try {
+	            int postId = Integer.parseInt(postParamId);
+	            bookmarkService.toggleBookmark(postId, loggedInUserId);
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	        }
+	        // Redirect after remove to avoid re-triggering on refresh
+	        response.sendRedirect(request.getContextPath() + "/user/bookmark");
+	        return;
+	    }
+	    
+	    try {
+	        UserModel user = profileService.getUserById(loggedInUserId);
+	        List<BookmarkModel> bookmarkList = bookmarkService.getbookmarkByUserId(loggedInUserId);
+
+	        request.setAttribute("user", user);
+	        request.setAttribute("loggedInUserId", loggedInUserId);
+	        request.setAttribute("bookmarkList", bookmarkList);
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
+		
 		
 		request.getRequestDispatcher("/WEB-INF/Pages/bookmark.jsp").forward(request, response);
 	}
