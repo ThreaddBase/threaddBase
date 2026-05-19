@@ -67,6 +67,7 @@ body {
     padding: 25px 6px;
     border-radius: 14px;
     cursor: pointer;
+    transition: 0.2s ease;
 }
 
 .nav-links li a:hover {

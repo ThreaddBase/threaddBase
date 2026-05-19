@@ -3,7 +3,7 @@
     <div class="footer-content">
       <div class="footer-brand-section">
         <div class="footer-logo-container">
-          <img src="logo.png" alt="Threadbase Logo" class="footer-logo-img">
+          <img src="<%=request.getContextPath()%>/Assets/logo_white.png" class="footer-logo-img" alt="logo">
         </div>
         <p class="text-under-logo">
           Connect your thoughts with like-minded people.

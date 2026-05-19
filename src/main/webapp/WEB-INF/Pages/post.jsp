@@ -63,14 +63,14 @@
             </form>
 
             <%-- Report — Admin only --%>
-            
+            <c:if test="${sessionScope.loggedUser.id != post.userId}">
               <span class="action-btn report">
                   <i class="fa-solid fa-triangle-exclamation"></i>
                   <c:if test="${role eq 'Admin'}">
                   	${post.reportCount}
           		</c:if>
               </span>
-
+			</c:if>
         </div>
     </div>
 

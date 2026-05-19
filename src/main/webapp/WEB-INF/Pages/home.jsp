@@ -280,7 +280,7 @@
         </span>
 
       </p>
-      <button>Share Your Thoughts -></button>
+      <button>Share Your Thoughts</button>
     </div>
   </div>
   <!-- CTA section ends -->

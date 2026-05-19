@@ -6,7 +6,8 @@ public class LoginModel {
 	private String username;
 	private String password;
 	private String userRole;
-	
+	private byte[] userProfilePic;
+
 	public LoginModel(String username, String password) {
 		super();
 		this.username = username; 
@@ -50,5 +51,20 @@ public class LoginModel {
 
 	public void setUserRole(String userRole) {
 		this.userRole = userRole;
+	}
+	
+	public byte[] getUserProfilePic() { 
+		return userProfilePic; 
+	}
+	
+	public void setUserProfilePic(byte[] userProfilePic) { 
+		this.userProfilePic = userProfilePic; 
+	}
+
+	public String getUserProfilePicBase64() {
+	    if (userProfilePic != null && userProfilePic.length > 0) {
+	        return java.util.Base64.getEncoder().encodeToString(userProfilePic);
+	    }
+	    return null;
 	}
 }

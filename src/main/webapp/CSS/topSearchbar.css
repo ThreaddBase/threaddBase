@@ -1,5 +1,13 @@
 @charset "UTF-8";
 
+.avatar {
+	width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: #eee;
+    border: 1px solid #ddd;
+    flex-shrink: 0;
+}
 
 .top-bar {
     margin-left: 250px;

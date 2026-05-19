@@ -41,12 +41,12 @@ public class AdminNotificationController extends HttpServlet {
             throws ServletException, IOException {
 
         String message = request.getParameter("message");
-        System.out.println("Message received: " + message); // ← check Tomcat console
+        System.out.println("Message received: " + message);
         int adminId = SessionUtil.getUserId(request);
         
         if (message != null && !message.trim().isEmpty()) {
             NotificationService service = new NotificationService();
-            service.sendNotification(message.trim(), adminId); // hardcoded adminId=1 for now
+            service.sendNotification(message.trim(), adminId);
             System.out.println("Notification saved successfully");
         } else {
             System.out.println("Message was null or empty");

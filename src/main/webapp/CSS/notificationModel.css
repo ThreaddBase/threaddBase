@@ -420,12 +420,12 @@
 
 .noti-btn:hover {
 
-    color: #00d9ff;
+    color: var(--color-highlight);
 }
 
 .noti-btn:hover i {
 
-    color: #00d9ff;
+    color: var(--color-highlight);
 }
 
 @media (max-width: 800px) {

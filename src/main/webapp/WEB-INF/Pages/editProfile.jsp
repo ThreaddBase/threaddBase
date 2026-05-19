@@ -5,100 +5,118 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Edit Profile</title>
-<link rel="stylesheet" href="<%=request.getContextPath()%>/CSS/editProfile.css">
-<link rel="stylesheet" href="<%=request.getContextPath()%>/CSS/utill.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edit Profile</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="<%=request.getContextPath()%>/CSS/editProfile.css">
+  <link rel="stylesheet" href="<%=request.getContextPath()%>/CSS/utill.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
 </head>
-
 <body>
-<form action="${formAction}"
-      method="post"
-      enctype="multipart/form-data">
-<div class="card-title"><i class="fa-solid fa-circle-arrow-left"></i><a a href=${backURL}>Edit Profile</a>
 
-   </div>
- <div class="card-wrap">
+  <nav class="navbar"></nav>
+	        <%-- Back button --%>
+        <div class="card-title">
+          <a href="${backURL}" title="Go back">
+            <i class="fa-solid fa-circle-arrow-left"></i>
+          </a>
+        </div>
+  <div class="page">
+    <div class="card-wrap">
 
-  <div class="profile_img">
- <c:choose>
-        <c:when test="${not empty user.profilePictureBase64}">
-             <img src="data:image/jpeg;base64,${user.profilePictureBase64}"
+      <%-- Avatar: absolute-positioned, anchored to card-wrap --%>
+      <div class="profile_img">
+        <c:choose>
+          <c:when test="${not empty user.profilePictureBase64}">
+            <img src="data:image/jpeg;base64,${user.profilePictureBase64}" alt="Profile Picture">
+          </c:when>
+          <c:otherwise>
+            <img src="https://static.vecteezy.com/system/resources/previews/046/409/821/non_2x/avatar-profile-icon-in-flat-style-male-user-profile-illustration-on-isolated-background-man-profile-sign-business-concept-vector.jpg"
                  alt="Profile Picture">
-        </c:when>
-        <c:otherwise>
-            <img src="https://static.vecteezy.com/system/resources/previews/046/409/821/non_2x/avatar-profile-icon-in-flat-style-male-user-profile-illustration-on-isolated-background-man-profile-sign-business-concept-vector.jpg" 
-                 alt="Profile Picture">
-        </c:otherwise>
-    </c:choose>
-	</div>
+          </c:otherwise>
+        </c:choose>
+      </div>
+
+      <form action="${formAction}" method="post" enctype="multipart/form-data"
+            style="width:100%; display:flex; flex-direction:column; align-items:center;">
 
 
-<label for="file-upload" style="cursor: pointer; padding: 8px 16px; border: 1px solid #ccc; border-radius: 6px; display: inline-block;">
-    Upload Profile Picture
-</label>
-<input id="file-upload" type="file" name="profilePicture" accept="image/*" style="display: none;" />
-    <!-- PROFILE -->
-    <div class="profile-section">
+        <%-- Upload --%>
+        <label for="file-upload" class="upload-label">
+          <i class="fa-solid fa-camera" style="margin-right:5px;"></i>Upload Photo
+        </label>
+        <input id="file-upload" type="file" name="profilePicture" accept="image/*" style="display:none;">
 
-        <label>Username</label>
-        <input type="text"
-               name="username"
-               value="${user.username}">
+        <hr class="divider">
 
-        <label>First Name</label>
-        <input type="text"
-               name="firstName"
-               value="${user.firstName}">
+        <%-- Profile info --%>
+        <div class="section">
+          <div class="field">
+            <label for="username">Username</label>
+            <input id="username" type="text" name="username" value="${user.username}" placeholder="Username">
+          </div>
+          <div class="field">
+            <label for="firstName">First Name</label>
+            <input id="firstName" type="text" name="firstName" value="${user.firstName}" placeholder="First name">
+          </div>
+          <div class="field">
+            <label for="lastName">Last Name</label>
+            <input id="lastName" type="text" name="lastName" value="${user.lastName}" placeholder="Last name">
+          </div>
+        </div>
 
-        <label>Last Name</label>
-        <input type="text"
-               name="lastName"
-               value="${user.lastName}">
+        <hr class="divider">
+
+        <%-- Bio --%>
+        <div class="section">
+          <div class="field">
+            <label for="bio">Bio</label>
+            <textarea id="bio" name="bio" placeholder="Tell us about yourself…">${user.bio}</textarea>
+          </div>
+        </div>
+
+        <hr class="divider">
+
+        <%-- DOB --%>
+        <div class="section">
+          <div class="field">
+            <label for="dob">Date of Birth</label>
+            <input id="dob" type="Date" name="dob" value="${user.dob}" placeholder="YYYY-MM-DD">
+          </div>
+        </div>
+
+        <hr class="divider">
+
+        <%-- Password --%>
+        <div class="section">
+          <div class="field">
+            <label for="currentPass">Current Password</label>
+            <input id="currentPass" type="password" name="currentPass" placeholder="••••••••">
+          </div>
+          <div class="field">
+            <label for="newPass">New Password</label>
+            <input id="newPass" type="password" name="newPass" placeholder="••••••••">
+          </div>
+          <div class="field">
+            <label for="retypePass">Retype Password</label>
+            <input id="retypePass" type="password" name="retypePass" placeholder="••••••••">
+          </div>
+        </div>
+
+        <hr class="divider">
+
+        <%-- Buttons --%>
+        <div class="buttons">
+          <button class="btn-save" type="submit">Save Changes</button>
+          <button class="btn-discard" type="button" onclick="location.href='${backURL}'">Discard</button>
+        </div>
+
+      </form>
     </div>
-
-    <!-- BIO -->
-    <div class="bio">
-        <label>Bio</label>
-
-        <textarea name="bio">${user.bio}</textarea>
-    </div>
-
-    <!-- DOB -->
-    <div class="DOB">
-        <label>Date of Birth</label>
-
-        <input type="text"
-               name="dob"
-               value="${user.dob}">
-    </div>
-
-    <!-- PASSWORD -->
-    <div class="password">
-
-        <label>Current Password</label>
-        <input type="password" name="currentPass">
-
-        <label>New Password</label>
-        <input type="password" name="newPass">
-
-        <label>Retype Password</label>
-        <input type="password" name="retypePass">
-    </div>
-
-    <!-- BUTTON -->
-    <div class="buttons">
-        <button class="btn" type="submit">
-            Save Changes
-        </button>
-        <button class="btn"type="button"
-                    onclick="location.href='${backURL}'"> Discard Change</button>
-    </div>
-
-</form>
- 
-</div>
+  </div>
 
 </body>
 </html>
