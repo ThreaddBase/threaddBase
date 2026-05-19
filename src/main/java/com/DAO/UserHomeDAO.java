@@ -45,18 +45,20 @@ public class UserHomeDAO {
 		String query = "SELECT p.Post_ID, p.Post_Caption, p.Post_Date, p.Post_Image,"
 				+ "       p.User_ID,"
 				+ "       u.User_First_Name, u.User_Last_Name, u.User_Profile_Picture,"
+				+ "       com.Community_Name,"
 				+ "       COUNT(DISTINCT c.Comment_ID)  AS comment_count,"
 				+ "       COUNT(DISTINCT v.Vote_ID) AS vote_count,"
 				+ "       COUNT(DISTINCT b.Bookmark_ID) AS bookmark_count,"
 				+ "       COUNT(DISTINCT r.Report_ID) AS report_count "
 				+ "FROM post p "
 				+ "LEFT JOIN user u ON p.User_ID  = u.user_ID "
+				+ "LEFT JOIN community com ON p.Community_ID = com.Community_ID "
 				+ "LEFT JOIN comment c ON p.Post_ID  = c.Post_ID "
 				+ "LEFT JOIN vote v ON p.Post_ID  = v.Post_ID "
 				+ "LEFT JOIN bookmark b ON p.Post_ID  = b.Post_ID "
 				+ "LEFT JOIN user_report r ON p.User_ID  = r.User_ID "
 				+ "GROUP BY p.Post_ID, p.Post_Caption, p.Post_Date, p.Post_Image,"
-				+ "         p.User_ID, u.User_First_Name, u.User_Last_Name, u.User_Profile_Picture "
+				+ "         p.User_ID, u.User_First_Name, u.User_Last_Name, u.User_Profile_Picture, com.Community_Name "
 				+ "ORDER BY p.Post_Date DESC";
 		
 		List<PostModel> postList = new ArrayList<>();
@@ -89,6 +91,9 @@ public class UserHomeDAO {
                     post.setUserFirstName(rs.getString("User_First_Name"));
                     post.setUserLastName(rs.getString("User_Last_Name"));
                     post.setUserProfilePic(rs.getBytes("User_Profile_Picture"));
+                    
+                    // community fields
+                    post.setCommunityName(rs.getString("Community_Name"));
                     
                     List<String> tags = tagDAO.getTagByPost(post.getPostId());
                     post.setTags(tags);

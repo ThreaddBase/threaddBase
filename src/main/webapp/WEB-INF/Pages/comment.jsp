@@ -1,42 +1,70 @@
-<!-- Main Comment -->
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false"%>
+
 <div class="comment">
     <div class="comment-avatar">
-        <img src="<%=request.getContextPath()%>/Assets/default-avatar.png" alt="avatar">
+        <c:choose>
+            <c:when test="${not empty comment.userProfilePictureBase64}">
+                <img src="data:image/jpeg;base64,${comment.userProfilePictureBase64}" alt="avatar">
+            </c:when>
+            <c:otherwise>
+                <img src="<%=request.getContextPath()%>/Assets/default-avatar.png" alt="avatar">
+            </c:otherwise>
+        </c:choose>
     </div>
 
     <div class="comment-content">
         <div class="top-row">
             <div class="user-info">
-                <h3>Username</h3>
-                <span class="time">7h ago</span>
+                <h3>${comment.username}</h3>
+                <span class="time">${comment.commentDate}</span>
             </div>
         </div>
 
-        <p class="text">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            Laboriosam rerum explicabo consequatur eligendi.
-        </p>
+        <p class="text">${comment.commentMessage}</p>
 
         <!-- Vote + Reply -->
         <div class="comment-actions">
             <div class="vote-group">
-                <button class="vote-btn upvote" onclick="vote(this)">
+                <button class="vote-btn upvote">
                     <i class="fa-regular fa-circle-check"></i>
                 </button>
-                <span class="vote-count">1.2k</span>
+                <span class="vote-count">${comment.voteCount}</span>
             </div>
 
-            <button class="reply-btn" onclick="toggleReply('reply-1')">Reply</button>
+            <!-- reply-btn styled as a link but looks like a button via CSS class -->
+            <c:choose>
+                <c:when test="${replyTo == comment.commentId}">
+                    <a class="reply-btn" href="<%=request.getContextPath()%>/comment?postId=${post.postId}">Cancel</a>
+                </c:when>
+                <c:otherwise>
+                    <a class="reply-btn" 
+                       href="<%=request.getContextPath()%>/comment?postId=${post.postId}&replyTo=${comment.commentId}"
+                       style="text-decoration:none;">Reply</a>
+                </c:otherwise>
+            </c:choose>
         </div>
 
-        <!-- Reply Form -->
-        <div id="reply-1" class="reply-form" style="display:none; margin-top: 12px;">
-            <form action="<%=request.getContextPath()%>/comment" method="post">
-                <input type="hidden" name="postId" value="1" />
-                <input type="hidden" name="parentId" value="COMMENT_ID_HERE" />
-                <input type="text" name="content" placeholder="Write a reply..." class="reply-input" />
-                <button type="submit" class="reply-submit-btn">Send</button>
-            </form>
-        </div>
+        <!-- Reply Form — only visible when replyTo matches -->
+        <c:if test="${replyTo == comment.commentId}">
+            <div class="reply-form">
+                <form action="<%=request.getContextPath()%>/comment" method="post">
+                    <input type="hidden" name="postId"           value="${post.postId}" />
+                    <input type="hidden" name="parentCommentId"  value="${comment.commentId}" />
+                    <input type="text"   name="content" 
+                           class="reply-input" 
+                           placeholder="Write a reply..." />
+                    <button type="submit" class="reply-submit-btn">Send</button>
+                </form>
+            </div>
+        </c:if>
+
+        <!-- Nested Replies -->
+        <c:if test="${not empty comment.replies}">
+            <div class="nested-comments">
+                <c:forEach var="comment" items="${comment.replies}">
+                    <%@ include file="nestedComment.jsp" %>
+                </c:forEach>
+            </div>
+        </c:if>
     </div>
 </div>

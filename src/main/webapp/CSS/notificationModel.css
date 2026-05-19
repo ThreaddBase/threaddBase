@@ -376,41 +376,46 @@
 
 .noti-btn {
 
-    display: flex;
-
-    align-items: center;
-
-    gap: 20px;
-
-    color: white;
-
-    font-size: 1.2rem;
-    font-weight: 600;
-
-    padding: 25px 3px;
-
-    border-radius: 14px;
-
-    cursor: pointer;
-
-    transition: 0.2s ease;
+	display: flex;
+	
+	align-items: center;
+	
+	gap: 31px;
+	
+	color: white;
+	
+	font-size: 1.2rem;
+	
+	font-weight: 600;
+	
+	padding: 25px 3px;
+	
+	border-radius: 14px;
+	
+	cursor: pointer;
+	
+	transition: 0.2s ease;
 }
 
 .noti-btn i {
 
-    width: 38px;
-    height: 38px;
-
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    border-radius: 10px;
-
-    font-size: 16px;
-
-    color: white;
+	width: 38px;
+	
+	height: 38px;
+	
+	display: flex;
+	
+	align-items: center;
+	
+	/* justify-content: center; */
+	
+	border-radius: 10px;
+	
+	font-size: 16px;
+	
+	color: white;
+	
+	padding-left: 6px;
 }
 
 .noti-btn:hover {
@@ -421,4 +426,10 @@
 .noti-btn:hover i {
 
     color: #00d9ff;
+}
+
+@media (max-width: 800px) {
+    .noti-btn i {
+        justify-content: center;
+    }
 }

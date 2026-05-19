@@ -14,13 +14,13 @@
                 </c:otherwise>
             </c:choose>
             <div>
-                <p class="username">${post.userFirstName} ${post.userLastName}</p>
+                <a href="<%=request.getContextPath()%>/user?id=${post.userId}" class="username-link"><p class="username">${post.userFirstName} ${post.userLastName}</p></a>
                 <p class="post-date">${post.postDate}</p>
             </div>
         </div>
 
         <%-- Community + Caption --%>
-        <p class="community-name">${community.name}</p>
+        <p class="community-name">${post.communityName}</p>
         <p class="post-body">${post.caption}</p>
 
         <%-- Tags --%>
@@ -47,7 +47,7 @@
             </form>
 
             <%-- Comment Count --%>
-            <a href="<%=request.getContextPath()%>/comment" class="action-btn">
+            <a href="<%=request.getContextPath()%>/comment?postId=${post.postId}" class="action-btn">
 	                <i class="fa-regular fa-comment"></i>
 	                ${post.commentCount}
             </a>
@@ -75,16 +75,17 @@
     </div>
 
     <%-- Post Image --%>
-    <div class="post-image">
-        <c:choose>
-            <c:when test="${not empty post.postImageBase64}">
-                <img src="data:image/jpeg;base64,${post.postImageBase64}"
-                     alt="post image"/>
-            </c:when>
-            <c:otherwise>
-                <%-- no image — show nothing --%>
-            </c:otherwise>
-        </c:choose>
-    </div>
+    <c:choose>
+        <c:when test="${not empty post.postImageBase64}">
+			<div class="post-image">
+            	<img src="data:image/jpeg;base64,${post.postImageBase64}"
+                 alt="post image"/>
+		 	</div>
+        </c:when>
+        <c:otherwise>
+            <%-- no image — show nothing --%>
+
+        </c:otherwise>
+    </c:choose>
 
 </div>

@@ -29,6 +29,7 @@ public class PostModel {
     
     // community
     private int communityId;
+    private String communityName;
     
 	// constructor
     public PostModel() {}
@@ -142,5 +143,11 @@ public class PostModel {
 	 
 	public void setPostType(String postType) {
 		this.postType = postType;
+	}
+	public String getCommunityName() {
+		return communityName;
+	}
+	public void setCommunityName(String communityName) {
+		this.communityName = communityName;
 	}
 }

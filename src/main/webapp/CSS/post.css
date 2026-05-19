@@ -36,6 +36,15 @@
     flex-shrink: 0;
 }
 
+.username-link {
+	text-decoration: none;
+	color: white;
+}
+
+.username-link:hover {
+	text-decoration: underline;
+}
+
 .username {
     margin: 0;
     font-size: 14px;

@@ -1,4 +1,5 @@
 eclipse.preferences.version=1
+encoding//src/main/webapp/WEB-INF/Pages/comment.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/Pages/notification.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/Pages/notificationModel.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/Pages/post.jsp=UTF-8

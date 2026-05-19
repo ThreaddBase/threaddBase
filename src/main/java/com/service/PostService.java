@@ -18,4 +18,8 @@ public class PostService {
 	public List<PostModel> getPostByUserId(int userId) throws SQLException {
 		return postDAO.getPostByUserId(userId);
 	}
+	
+	public PostModel getPostById(int postId) throws SQLException {
+		return postDAO.getPostById(postId);
+	}
 }

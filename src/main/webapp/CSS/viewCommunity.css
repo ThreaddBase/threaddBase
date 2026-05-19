@@ -73,7 +73,7 @@
     width: 150px;
     padding: 10px 20px;
     border: none;
-    background: var(--color-peach);
+    background: #0ee8c0;
     color: #fff;
     cursor: pointer;
     border-radius: 30px;
@@ -83,7 +83,7 @@
 }
 
 .add-btn-p:hover {
-    background: #03898f;
+    background: #0ee8c0;
 }
 
 .add-btn-p:active {
@@ -91,7 +91,7 @@
 }
 
 .add-btn-t:hover {
-    background: #cf6342;
+    background: #03898f;
 }
 
 .add-btn-t:active {

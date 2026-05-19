@@ -1,11 +1,10 @@
 @charset "UTF-8";
 
-/* ============== ROOT VARIABLES ============== */
+
 :root {
   --color-success: #00C864;
 }
 
-/* ============== BASE STYLES ============== */
 body {
     background-color: var(--color-primary);
     color: #fff;
@@ -213,7 +212,7 @@ body {
 .comment,
 .comment-nested {
     background-color: #1e1e2e;
-    border: 1px solid #333;
+    /* border: 1px solid #333; */
     border-radius: 16px;
     padding: 16px;
     margin-bottom: 16px;
@@ -326,9 +325,16 @@ body {
 
 /* Nested Comment */
 .comment-nested {
-    margin-left: 62px;
-    border-left: 4px solid #00adb5;
+    margin: 22px 0 0 62px;
+    margin-left: 5px;
+    /* border: 1px solid #00adb5; */
     max-width: calc(100% - 62px);
+}
+
+a.reply-btn {
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
 }
 
 /* ============== RESPONSIVE ============== */

@@ -1,4 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8" isELIgnored="false"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,57 +14,64 @@
 </head>
 <body>
 
-    <i class="fa-solid fa-circle-arrow-left back-button" onclick="history.back()"></i>
+    <a href="<%=request.getContextPath()%>/user/home"><i class="fa-solid fa-circle-arrow-left back-button"></i></a>
 
     <!-- Post Author Profile -->
 
     <div class="profile">
         <div class="avatar">
-            <img src="https://static.vecteezy.com/system/resources/previews/046/409/821/non_2x/avatar-profile-icon-in-flat-style-male-user-profile-illustration-on-isolated-background-man-profile-sign-business-concept-vector.jpg"
-                alt="avatar">
+            <c:choose>
+                <c:when test="${not empty post.userProfilePicBase64}">
+                    <img src="data:image/jpeg;base64,${post.userProfilePicBase64}" alt="avatar">
+                </c:when>
+                <c:otherwise>
+                    <img src="https://static.vecteezy.com/system/resources/previews/046/409/821/non_2x/avatar-profile-icon-in-flat-style-male-user-profile-illustration-on-isolated-background-man-profile-sign-business-concept-vector.jpg"
+                         alt="avatar">
+                </c:otherwise>
+            </c:choose>
         </div>
         <div class="content">
-            <h1>Username</h1>
-            <span>2026/01/01 · 1y ago</span>
-            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                Laboriosam rerum explicabo consequatur eligendi excepturi.</p>
+            <h1>${post.userFirstName} ${post.userLastName}</h1>
+            	<span>${post.postDate}</span>
+            	<p>${post.caption}</p>
         </div>
     </div>
 
     <!-- Post Image -->
-    <div class="main_content">
-        <img src="https://external-preview.redd.it/jannik-sinner-madrid-open-win-against-alexander-zverev-sets-v0-bxlfQEu-8mU8OQ_u55qG3Eqlw73nE0IwHMknGU5e3dw.jpeg?auto=webp&s=26f25e89ace734d55002528e4a09268941ab5a0a"
-            alt="post image">
-    </div>
+    <c:if test="${not empty post.postImageBase64}">
+        <div class="main_content">
+            <img src="data:image/jpeg;base64,${post.postImageBase64}" alt="post image">
+        </div>
+    </c:if>
 
     <!-- Post Actions — keep as plain spans, no wrapper divs -->
     <div class="post-actions">
-        <span><i class="fa-regular fa-circle-check"></i> 101</span>
-        <span><i class="fa-regular fa-comment"></i> 101</span>
-        <span><i class="fa-regular fa-bookmark"></i> 101</span>
+        <span><i class="fa-regular fa-circle-check"></i> ${post.voteCount}</span>
+        <span><i class="fa-regular fa-comment"></i> ${post.commentCount}</span>
+        <span><i class="fa-regular fa-bookmark"></i> ${post.bookmarkCount}</span>
         <span class="report"><i class="fa-solid fa-triangle-exclamation"></i></span>
     </div>
-
+    
     <!-- Comment Input -->
-    <div class="comment-box">
-        <form class="post-form" action="<%=request.getContextPath()%>/comment" method="post">
-            <input type="hidden" name="postId" value="1" />
-            <input type="text" name="content" placeholder="Hop into the conversation...">
-            <button type="submit">Post</button>
-        </form>
-    </div>
-
-    <!-- Comments List -->
-    <section class="comment-section">
-    	<%@ include file="comment.jsp" %>
-    	<%@ include file="nestedComment.jsp" %>
+	<div class="comment-box">
+	    <form class="post-form" action="<%=request.getContextPath()%>/comment" method="post">
+	        <input type="hidden" name="postId" value="${post.postId}" />
+	        <input type="text" name="content" placeholder="Hop into the conversation...">
+	        <button type="submit">Post</button>
+	    </form>
+	</div>
+	    
+    <!-- Error Message -->
+    <c:if test="${not empty error}">
+        <div class="error-msg">${error}</div>
+    </c:if>
+	
+    <!-- Comment Input -->
+	<section class="comment-section">
+        <c:forEach var="comment" items="${comments}">
+            <%@ include file="comment.jsp" %>
+        </c:forEach>
     </section>
-    <script>
-        function toggleReply(id) {
-            const el = document.getElementById(id);
-            el.style.display = el.style.display === 'none' ? 'block' : 'none';
-        }
-    </script>
-</script>
+
 </body>
 </html>
