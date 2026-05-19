@@ -11,6 +11,7 @@ import java.util.List;
 
 import com.model.CommunityModel;
 import com.service.DashboardService;
+import com.util.SessionUtil;
 
 import java.time.LocalDate;
 
@@ -44,12 +45,15 @@ public class AdminHomeController extends HttpServlet {
 			int totalCommunity = dashboardService.getTotalCommunities();
 			List<CommunityModel> topCommunity = dashboardService.getTopCommunities();
 			List<CommunityModel> allCommunity = dashboardService.getAllCommunities();
+			List<String> topRequestedNames = dashboardService.getTopRequestedCommunityNames();
 			
 			// set data in key pair value
 			request.setAttribute("totalUser", totalUser);
 			request.setAttribute("totalCommunity", totalCommunity);
 			request.setAttribute("topCommunity", topCommunity);
 			request.setAttribute("allCommunity", allCommunity);
+			request.setAttribute("topRequestedNames", topRequestedNames);
+			request.setAttribute("AdminName", SessionUtil.getLoggedUser(request).getUsername());
 			request.setAttribute("today", LocalDate.now().toString());
 			
 			

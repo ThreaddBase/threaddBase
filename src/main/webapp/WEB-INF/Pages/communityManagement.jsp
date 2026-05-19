@@ -42,7 +42,14 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
 				    <button class="create-community-btn">Create a new community</button>
 				</a>
                 <div class="btn-sep"></div>
-                <button class="filter-sort-btn">Filter/Sort</button>
+                <form action="<%=request.getContextPath()%>/admin/community" method="post" style="display:inline;">
+        <select name="filterCommunity" onchange="this.form.submit()" class="filter-sort-btn">
+            <option value="all"          ${selectedFilter == 'all'          ? 'selected' : ''}>All</option>
+            <option value="post"         ${selectedFilter == 'post'         ? 'selected' : ''}>Post</option>
+            <option value="alphabetical" ${selectedFilter == 'alphabetical' ? 'selected' : ''}>Alphabetical</option>
+            <option value="user joined"  ${selectedFilter == 'user joined'  ? 'selected' : ''}>User Joined</option>
+        </select>
+    </form>
             </div>
         </div>
 

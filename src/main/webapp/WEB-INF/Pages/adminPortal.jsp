@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ page isELIgnored="false" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,12 +24,24 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
   </header>
 
   <section class="profile-header">
-    <div class="avatar"></div>
-    <div class="user-info">
-      <h2>Harry Newgate</h2>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+    <div class="avatar">
+     <c:choose>
+        <c:when test="${not empty user.profilePictureBase64}">
+             <img src="data:image/jpeg;base64,${user.profilePictureBase64}"
+                 alt="Profile Picture">
+        </c:when>
+        <c:otherwise>
+            <img src="https://static.vecteezy.com/system/resources/previews/046/409/821/non_2x/avatar-profile-icon-in-flat-style-male-user-profile-illustration-on-isolated-background-man-profile-sign-business-concept-vector.jpg" 
+                 alt="Profile Picture">
+        </c:otherwise>
+    </c:choose>
     </div>
-    <button class="edit-btn"><a a href="<%=request.getContextPath()%>/admin/edit">Edit Profile</a></button>
+    
+    <div class="user-info">
+      <h2>${user.firstName} ${user.lastName}</h2>
+      <p>${user.bio}</p>
+    </div>
+    <button class="edit-btn"><a href="<%=request.getContextPath()%>/admin/edit">Edit Profile</a></button>
   </section>
 
 
@@ -34,12 +49,11 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
         <div class="personal_info">
         <h2> Personal Information </h2>
         <ul> 
-           <li>Full Name  :  Olatunji Victor San </li> 
-           <li>Username  :  VictorDada</li>
-           <li>Email ID  :  Olaunji_Olatunje_San@gmail.com</li>
-           <li>Date of Birth  :  1999/07/11</li>
-           <li>Phone No.  :  9861411701</li>
-           <li>Language  :  English (UK)</li>
+          <li>Full Name : ${user.firstName} ${user.lastName}</li>
+			<li>Username : ${user.username}</li>
+			<li>Email ID : ${user.email}</li>
+			<li>Date of Birth : ${user.dob}</li>
+			<li>Bio : ${user.bio}</li>
         </ul>
         </div>
     
@@ -57,24 +71,24 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <div class="dashboard">
         <div class="badge">
-        <button class="badge-btn">Active</button>
-        <button class="badge-btn">Since Jan 2022</button>
+        <button class="badge-btn">${user.status}</button>
+        <button class="badge-btn">Created At: ${user.created_At}</button>
         </div>
         <div class="action">
-
         <div class="action-box">
-          <p>Actions Taken</p>
-          <h2>1,000</h2>
+          <p>Community Created</p>
+          <h2>${totalCommunities}</h2>
         </div>
+        
 
         <div class="action-box">
-          <p>Actions Taken</p>
+          <p>Notification</p>
           <h2>1,000</h2>
         </div>
 
          <div class="action-box">
-          <p>Actions Taken</p>
-          <h2>1,000</h2>
+          <p>Total User Banned</p>
+          <h2>${totalBannedUsers}</h2>
         </div>
 
         </div>

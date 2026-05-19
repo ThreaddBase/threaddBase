@@ -8,13 +8,12 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
 public class ProfileDAO {
 	
 	public UserModel  getUserById(int id) throws Exception {
 
-        String sql = "SELECT User_ID, User_First_Name, User_Last_Name, User_DOB, Username, User_Bio, user_Role, User_Profile_Picture, Created_At, Password  FROM user WHERE User_ID = ?";
+        String sql = "SELECT User_ID, User_First_Name, User_Last_Name, User_DOB, Username, User_Bio, User_email, user_Role, User_Profile_Picture, Created_At, Password, user_Status FROM user WHERE User_ID = ?";
         
         try (Connection conn = DBConfig.getConnection();
         PreparedStatement ps = conn.prepareStatement(sql)) {;
@@ -31,6 +30,8 @@ public class ProfileDAO {
              user.setDob(resultSet.getString("User_DOB"));
              user.setUsername(resultSet.getString("Username"));
              user.setBio(resultSet.getString("User_Bio"));
+             user.setEmail(resultSet.getString("User_Email"));
+             user.setStatus(resultSet.getString("user_Status"));
              user.setRole(resultSet.getString("user_Role"));
              user.setCreated_At(resultSet.getString("Created_At"));
              user.setProfilePicture(resultSet.getBytes("User_Profile_Picture"));

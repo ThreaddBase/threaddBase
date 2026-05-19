@@ -2,7 +2,10 @@ package com.DAO;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.model.RequestCommunityModel;
 import com.util.DBConfig;
@@ -28,4 +31,27 @@ public class RequestCommunityDAO {
             ps.executeUpdate();
         }
     }
+    public List<String> getTopRequestedCommunityNames() throws SQLException {
+        String sql = "SELECT Community_Name, COUNT(*) AS request_count " +
+                "FROM Community_Request " +
+                "WHERE Community_Name LIKE '%' " +
+                "GROUP BY Community_Name " +
+                "ORDER BY request_count DESC " +
+                "LIMIT 5";
+       
+
+        try (Connection conn = DBConfig.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            
+            
+            List<String> name = new ArrayList<>();
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                name.add(rs.getString("Community_Name"));
+            }
+            return name;
+        }
+        
+    }
+    
 }

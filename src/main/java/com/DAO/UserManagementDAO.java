@@ -29,7 +29,21 @@ public class UserManagementDAO {
 	    return -1; // user not found
 	}
 	
-	// mthod to get all user information and return a list containing obj of userModel
+	public int getTotalBannedUsers() throws SQLException{
+		String query = "SELECT COUNT(*) FROM user WHERE user_Status ='Banned' AND user_Role='?'";
+	    try (
+		        Connection con = DBConfig.getConnection();
+		        PreparedStatement ps = con.prepareStatement(query);
+	    		ResultSet rs = ps.executeQuery();
+		    ) {
+		            if (rs.next()) {
+		                return rs.getInt(1);
+		            }
+		            return 0;
+		        }
+	}
+	
+	// method to get all user information and return a list containing obj of userModel
 	public List<UserModel> getAllUsers() throws SQLException {
 		
 		String query = "SELECT u.user_ID, u.User_First_Name, u.User_Last_Name, " +
@@ -73,4 +87,20 @@ public class UserManagementDAO {
 		}
 		
 	}
+	
+
+	// method to update user status active or banned
+	public boolean updateStatus(int userId, String status) throws SQLException{
+	String query = "UPDATE user SET user_Status = ? WHERE user_ID = ?";
+	try (
+		Connection con = DBConfig.getConnection();
+		PreparedStatement ps = con.prepareStatement(query);
+		){
+	
+		 ps.setString(1, status); 
+	     ps.setInt(2, userId); 
+		return ps.executeUpdate() > 0;
+		
+	}
+}
 }

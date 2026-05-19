@@ -39,7 +39,19 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
         <!-- Page heading + Filter button -->
         <div class="heading-row">
             <h1 class="page-heading">Monitor &amp; Manage<br>the Users</h1>
-            <button class="filter-btn">Filter/Sort</button>
+              
+              
+        <form action="<%=request.getContextPath()%>/admin/userManagement" method="get">
+		  <div class="select-wrapper">
+        <select name="filterStatus" onchange="this.form.submit()" class="filter-btn">
+            <option value="all"    ${selectedFilter == 'all'          ? 'selected' : ''}>Filter/Sort</option>
+            <option value="active" ${selectedFilter == 'active' ? 'selected' : ''}>Active</option>
+            <option value="banned"  ${selectedFilter == 'banned'  ? 'selected' : ''}>Banned</option>
+        </select>
+		  </div>
+		</form>
+		
+		
         </div>
 
         <!-- User table -->
@@ -74,19 +86,19 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
 				    <span>${user.firstName} ${user.lastName}</span>
 				</div>
 
-                    <%-- Email --%>
+                    
                     <div class="user-email">${user.email}</div>
 
-                    <%-- Post Count --%>
+                   
                     <div class="user-post">${user.postCount}</div>
 
-                    <%-- Comment Count --%>
+                    
                     <div class="user-comment">${user.commentCount}</div>
 
-                    <%-- Report Count --%>
+                    
                     <div class="user-report">${user.reportCount}</div>
 
-                    <%-- Status Badge --%>
+                    
                     <div class="user-status">
                         <c:choose>
                             <c:when test="${user.status == 'Active'}">
@@ -98,10 +110,19 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
                         </c:choose>
                     </div>
 
-                    <%-- Actions --%>
-                    <div class="user-actions">
-                        <button class="actions-btn">Action</button>
-                    </div>
+                    <div class="actions-btn">
+               <form action="<%=request.getContextPath()%>/admin/userManagement" method="post">
+			    <input type="hidden" name="action" value="updateStatus"/>
+			    <input type="hidden" name="userId" value="${user.id}"/>
+			    <div class="user-actions">
+			        <select name="status" onchange="this.form.submit()">
+			            <option value="" disabled selected>Action</option>
+			            <option value="active" ${user.status == 'Active' ? 'selected' : ''}>Active</option>
+			            <option value="banned" ${user.status == 'Banned' ? 'selected' : ''}>Banned</option>
+			        </select>
+			    </div>
+			</form>
+			</div>
 
                 </div>
             </c:forEach>

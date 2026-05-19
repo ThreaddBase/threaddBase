@@ -1,0 +1,197 @@
+@charset "UTF-8";
+
+/* ── Trigger button ── */
+.cn-trigger-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--color-highlight);
+    color: #1a2a2a;
+    border-radius: 30px;
+    padding: 10px 22px;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s;
+    font-family: inherit;
+}
+
+.cn-trigger-btn:hover { background: #00c4cc; }
+
+/* ── Overlay hidden by default ── */
+.cn-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(4px);
+    z-index: 9999;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ── Show when checkbox checked ── */
+#reportToggle:checked ~ .cn-overlay {
+    display: flex;
+}
+
+/* ── Modal box ── */
+.cn-box {
+    background: var(--color-primary);
+    border-radius: 16px;
+    width: 92%;
+    max-width: 500px;
+    padding: 32px;
+    position: relative;
+    animation: cnSlide 0.25s ease both;
+}
+
+@keyframes cnSlide {
+    from { opacity: 0; transform: translateY(30px) scale(0.97); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* ── Header ── */
+.cn-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.cn-header h2 {
+    color: var(--color-font);
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.cn-close {
+    background: var(--color-secondary);
+    border-radius: 50%;
+    width: 34px;
+    height: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 16px;
+    color: var(--color-font);
+    transition: background 0.2s, transform 0.15s;
+}
+
+.cn-close:hover {
+    background: var(--color-slate);
+    transform: rotate(90deg);
+}
+
+/* ── Body ── */
+.cn-body { margin-bottom: 20px; }
+
+.report-subject {
+	width: 100%;
+    height: 40px;
+    background: var(--color-secondary);
+    border: none;
+    outline: none;
+    border-radius: 12px;
+    padding: 14px 16px;
+    font-size: 15px;
+    color: var(--color-font);
+    resize: none;
+    font-family: inherit;
+    margin-bottom: 10px;
+}
+
+.report-subject::placeholder { color: var(--color-slate); }
+
+.cn-textarea {
+    width: 100%;
+    height: 140px;
+    background: var(--color-secondary);
+    border: none;
+    outline: none;
+    border-radius: 12px;
+    padding: 14px 16px;
+    font-size: 15px;
+    color: var(--color-font);
+    resize: none;
+    font-family: inherit;
+}
+
+.cn-textarea::placeholder { color: var(--color-slate); }
+
+/* ── Footer ── */
+.cn-footer {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.cn-send-btn {
+    background: var(--color-highlight);
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    padding: 12px 0;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s;
+    font-family: inherit;
+    width: 100%;
+}
+
+.cn-send-btn:hover { background: #008f96; }
+
+.report-user {
+	text-decoration: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: inherit;
+    font-size: 20px;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 5px 10px;
+}
+
+.report-user i {
+	color: #e05555;
+}
+
+.toast {
+    position: fixed;
+    top: -100px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 14px 24px;
+    border-radius: 12px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    z-index: 99999;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    animation: toastSlide 4s ease forwards;
+    white-space: nowrap;
+}
+
+.toast-success {
+    background-color: rgba(0, 200, 100, 0.15);
+    border: 1px solid #00c864;
+    color: #00c864;
+}
+
+.toast-error {
+    background-color: rgba(226, 75, 74, 0.15);
+    border: 1px solid #e24b4a;
+    color: #e24b4a;
+}
+
+@keyframes toastSlide {
+    0%   { top: -100px; opacity: 0; }   /* hidden above screen */
+    15%  { top: 30px;   opacity: 1; }   /* slides down */
+    75%  { top: 30px;   opacity: 1; }   /* stays visible */
+    100% { top: -100px; opacity: 0; }   /* slides back up */
+}

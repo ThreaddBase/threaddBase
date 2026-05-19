@@ -11,10 +11,10 @@ import com.model.UserModel;
 import com.util.DBConfig;
 
 public class UserDAO {
-	
-	public ArrayList<UserModel> getUser() throws Exception {
+    
+    public ArrayList<UserModel> getUser() throws Exception {
 
-        String sql = "SELECT User_ID, User_First_Name, User_Last_Name, User_DOB, Username, User_Email, Created_At  FROM user";
+        String sql = "SELECT User_ID, User_First_Name, User_Last_Name, User_DOB, User_Bio, Username, User_Email, user_Role, Created_At, user_Status  FROM user";
         
         Connection conn = DBConfig.getConnection();
         PreparedStatement ps = conn.prepareStatement(sql);
@@ -23,17 +23,19 @@ public class UserDAO {
         
         ResultSet resultSet = ps.executeQuery();
         while(resultSet.next()) {
-        	int id = resultSet.getInt("User_ID");
-        	String fname = resultSet.getString("User_First_Name");
-        	String lname = resultSet.getString("User_Last_Name");
-        	String DOB = resultSet.getString("User_DOB");
-        	String username = resultSet.getString("username");
-        	String email = resultSet.getString("User_Email");
-        	String bio = resultSet.getString("User_Bio");
-        	String role = resultSet.getString("user_Role");
-        	String createdAt = resultSet.getString("Created_AT");
-        	
+            int id = resultSet.getInt("User_ID");
+            String fname = resultSet.getString("User_First_Name");
+            String lname = resultSet.getString("User_Last_Name");
+            String DOB = resultSet.getString("User_DOB");
+            String username = resultSet.getString("username");
+            String email = resultSet.getString("User_Email");
+            String bio = resultSet.getString("User_Bio");
+            String role = resultSet.getString("user_Role");
+            String createdAt = resultSet.getString("Created_AT");
+            String status = resultSet.getString("user_Status");
+            
         }
         return userList;
     }
+
 }

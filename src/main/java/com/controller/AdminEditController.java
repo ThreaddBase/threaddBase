@@ -37,7 +37,7 @@ public class AdminEditController extends HttpServlet {
             req.setAttribute("user", admin);
             req.setAttribute("formAction", req.getContextPath() + "/admin/edit");
             req.setAttribute("backURL", req.getContextPath() + "/admin");
-            req.getRequestDispatcher("/WEB-INF/Pages/Edit.jsp")
+            req.getRequestDispatcher("/WEB-INF/Pages/editProfile.jsp")
                .forward(req, resp);
 
         } catch (Exception e) {

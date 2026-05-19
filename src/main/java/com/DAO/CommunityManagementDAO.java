@@ -25,6 +25,7 @@ public class CommunityManagementDAO {
 			
 			List<CommunityModel> communityList = new ArrayList<>();
 			
+			
 			while (rs.next()) {
 				
 				CommunityModel community = new CommunityModel();
@@ -40,6 +41,8 @@ public class CommunityManagementDAO {
 		}
 	}
 	
+	
+
 	// create community without request ID
 	public boolean createCommunity(int createdBy, CommunityModel community) throws SQLException {
 
@@ -110,6 +113,86 @@ public class CommunityManagementDAO {
 			ps.setInt(1, communityId);
 			return ps.executeUpdate() > 0;
 		}
+	}
+	
+	
+	
+	// Sharing query among the filter
+	
+	List<CommunityModel> fetchFilteredCommunities(String query) throws SQLException {
+
+	    try (
+	        Connection con = DBConfig.getConnection();
+	        PreparedStatement ps = con.prepareStatement(query);
+	        ResultSet rs = ps.executeQuery()
+	    ) {
+	        List<CommunityModel> communityList = new ArrayList<>();
+
+	        while (rs.next()) {
+	            CommunityModel community = new CommunityModel();
+	            community.setId(rs.getInt("Community_ID"));
+	            community.setName(rs.getString("Community_Name"));
+	            community.setCommunityProfile(rs.getBytes("Community_Profile_Picture"));
+	            community.setDescription(rs.getString("Community_Description"));
+	            community.setCreatedAt(rs.getDate("Created_At"));
+	            community.setPostCount(rs.getInt("post_count"));
+	            community.setMemberCount(rs.getInt("member_count"));
+	            communityList.add(community);
+	        }
+	        return communityList;
+	    }
+	}
+	
+	
+	// Filter option for Communities sorted by post
+	public List<CommunityModel> getCommunitiesSortedByPost() throws SQLException {
+
+	    String query = "SELECT c.Community_ID, c.Community_Name, c.Community_Profile_Picture, " +
+	                   "c.Community_Description, c.Created_At, " +
+	                   "COUNT(DISTINCT p.Post_ID) AS post_count, " +
+	                   "SUM(uc.Joined_Members) AS member_count " +
+	                   "FROM community c " +
+	                   "LEFT JOIN post p ON c.Community_ID = p.Community_ID " +
+	                   "LEFT JOIN user_community uc ON c.Community_ID = uc.Community_ID " +
+	                   "GROUP BY c.Community_ID, c.Community_Name, c.Community_Profile_Picture, " +
+	                   "c.Community_Description, c.Created_At " +
+	                   "ORDER BY post_count DESC";
+
+	    return fetchFilteredCommunities(query);
+	}
+
+	// Filter option for Communities sorted by Alphabetical order
+	public List<CommunityModel> getCommunitiesSortedAlphabetically() throws SQLException {
+
+	    String query = "SELECT c.Community_ID, c.Community_Name, c.Community_Profile_Picture, " +
+	                   "c.Community_Description, c.Created_At, " +
+	                   "COUNT(DISTINCT p.Post_ID) AS post_count, " +
+	                   "SUM(uc.Joined_Members) AS member_count " +
+	                   "FROM community c " +
+	                   "LEFT JOIN post p ON c.Community_ID = p.Community_ID " +
+	                   "LEFT JOIN user_community uc ON c.Community_ID = uc.Community_ID " +
+	                   "GROUP BY c.Community_ID, c.Community_Name, c.Community_Profile_Picture, " +
+	                   "c.Community_Description, c.Created_At " +
+	                   "ORDER BY c.Community_Name ASC";
+
+	    return fetchFilteredCommunities(query);
+	}
+
+	// Filter option for Communities sorted by joined members
+	public List<CommunityModel> getCommunitiesSortedByMemberCount() throws SQLException {
+
+	    String query = "SELECT c.Community_ID, c.Community_Name, c.Community_Profile_Picture, " +
+	                   "c.Community_Description, c.Created_At, " +
+	                   "COUNT(DISTINCT p.Post_ID) AS post_count, " +
+	                   "SUM(uc.Joined_Members) AS member_count " +
+	                   "FROM community c " +
+	                   "LEFT JOIN post p ON c.Community_ID = p.Community_ID " +
+	                   "LEFT JOIN user_community uc ON c.Community_ID = uc.Community_ID " +
+	                   "GROUP BY c.Community_ID, c.Community_Name, c.Community_Profile_Picture, " +
+	                   "c.Community_Description, c.Created_At " +
+	                   "ORDER BY member_count DESC";
+
+	    return fetchFilteredCommunities(query);
 	}
 	
 	public boolean updateCommunity(CommunityModel community) throws SQLException {

@@ -10,33 +10,34 @@
 <link rel="stylesheet" href="<%=request.getContextPath()%>/CSS/adminHome.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/CSS/util.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/CSS/sidebar.css">
-<link rel="stylesheet" href="<%=request.getContextPath()%>/CSS/topSearchbar.css">
-<link rel="stylesheet" href="<%=request.getContextPath()%>/CSS/notificationModel.css">
-<link rel="stylesheet" href="<%=request.getContextPath()%>/CSS/createNotification.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" 
 integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" 
 crossorigin="anonymous" referrerpolicy="no-referrer" />
 <title>Admin Home</title>
 </head>
 <body>
-
- <!-- ========================
-       LEFT SIDEBAR
-  ========================= -->
   <%@ include file="adminSidebar.jsp" %>
-<%@ include file="createNotification.jsp" %>
+
 
   <!-- MAIN CONTENT -->
  <div class="main-content">
 
     <!-- Top bar: Search + Profile -->
-     <%@ include file="topSearchbar.jsp" %>
-        <div class="heading-row">
-    <h1 class="page-heading">Track &amp; Review<br>the Platform</h1>
-    <label for="notifToggle" class="cn-trigger-btn">
-        <i class="fas fa-bell"></i> Send Notification
-    </label>
-</div>
+    <div class="top-bar">
+      <div class="search-box">
+        <input type="text" placeholder="Search" />
+        <i class="fas fa-magnifying-glass"></i>
+      </div>
+      <button class="profile-btn">
+        <i class="fas fa-circle-user"></i>
+        <a href="<%=request.getContextPath()%>/admin">Profile</a>
+      </button>
+    </div>
+    
+    <div class="heading-row">
+            <h1 class="page-heading">Track &amp; Review<br>the Platform</h1>
+            
+        </div>
     <main class="dashboard-content">
 
       <div class="top-stats-row">
@@ -97,30 +98,32 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
           </div>
 
           <div class="legend-card">
-            <c:forEach var="community" items="${allCommunity}">
+           <div class="status-card-title">Requested Communities</div>
+            <c:forEach var= "name" items="${topRequestedNames}">
 			    <div class="legend-item">
-			        <span class="legend-icon">C</span>
-			        <span class="legend-label">${community.name}</span>
+			        <span class="legend-label">${name}</span>
 			    </div>
 			</c:forEach>
-          </div>
+		</div>
 
         </div>
 
         <div class="report-card">
           <div class="report-card-header">
             <span class="report-card-title">Report Status</span>
-            <button class="generate-btn">Generate Report</button>
+
           </div>
           <div class="report-admin-row">
-            <span>Admin Name</span>
+            <span>${AdminName}</span>
             <span>${today}</span>
           </div>
           
           <c:forEach var="c" items="${allCommunity}">
 	          <div class="community-report-item">
 	            <span class="report-community-name">${c.name}</span>
-	            <button class="expand-btn">Expand</button>
+	            <button class="expand-btn">
+	            <a href ="<%=request.getContextPath()%>/community/view?id=${c.id}">get me three </a>
+	            </button>
 	          </div>
           </c:forEach>
         </div>

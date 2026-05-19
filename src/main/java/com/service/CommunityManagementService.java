@@ -28,7 +28,7 @@ public class CommunityManagementService {
         return success ? null : "Failed to create community. Please try again.";
     }
     
-    
+
     
     // update community
     public String updateCommunity(CommunityModel community) throws SQLException {
@@ -99,12 +99,23 @@ public class CommunityManagementService {
  
         return null;
     }
- 
+    
     // validate createdBy
     public String validateCreatedBy(int createdBy) {
         if (createdBy <= 0) {
             return "Invalid user. Please log in again.";
         }
         return null;
+    }
+    
+    public List<CommunityModel> getFilteredCommunities(String filter) throws SQLException {
+        if (filter == null) return communityDAO.getAllCommunity();
+
+        switch (filter) {
+            case "post":         return communityDAO.getCommunitiesSortedByPost();
+            case "alphabetical": return communityDAO.getCommunitiesSortedAlphabetically();
+            case "user joined":  return communityDAO.getCommunitiesSortedByMemberCount();
+            default:             return communityDAO.getAllCommunity();
+        }
     }
 }

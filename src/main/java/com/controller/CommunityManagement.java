@@ -55,15 +55,20 @@ public class CommunityManagement extends HttpServlet {
             if (showModal != null) {
                 request.setAttribute("showModal", showModal);
             }
+            
+            String filterCommunity = request.getParameter("filterCommunity");
+            if (filterCommunity == null) filterCommunity = "all";
 
-            List<CommunityModel> community = communityService.getAllCommunity();
-            request.setAttribute("communityList", community);
-
+            List<CommunityModel> communities = communityService.getFilteredCommunities(filterCommunity);
+            request.setAttribute("communityList", communities);
+            request.setAttribute("selectedFilter", filterCommunity);
             request.getRequestDispatcher("/WEB-INF/Pages/communityManagement.jsp").forward(request, response);
 
         } catch (SQLException e) {
             throw new ServletException("Database error in CommunityManagementController", e);
         }
+        
+       
     }
 
     @Override
@@ -72,13 +77,18 @@ public class CommunityManagement extends HttpServlet {
 
         // Route to correct handler based on hidden action field
         String action = request.getParameter("action");
+        String filterCommunity = request.getParameter("filterCommunity");
 
-        if ("delete".equals(action)) {
-        	deleteCommunity(request, response);
+        if (filterCommunity != null) {
+            doGet(request, response);          // filter dropdown → reload with sort
+        } else if ("delete".equals(action)) {
+            deleteCommunity(request, response);
         } else {
-        	createCommunity(request, response);
+            createCommunity(request, response);
         }
     }
+    
+    
     
     private void createCommunity(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	
@@ -133,7 +143,7 @@ public class CommunityManagement extends HttpServlet {
         }
     }
 
-    // Forwards back to the page with modal open and error visible
+    // Forwards back to the page with modal open and error visible in class
     private void communityCreationError(HttpServletRequest request, HttpServletResponse response, String error) throws ServletException, IOException {
         try {
             List<CommunityModel> communities = communityService.getAllCommunity();
@@ -146,4 +156,5 @@ public class CommunityManagement extends HttpServlet {
         request.setAttribute("showModal", "newCommunity");
         request.getRequestDispatcher("/WEB-INF/Pages/communityManagement.jsp").forward(request, response);
     }
+    
 }

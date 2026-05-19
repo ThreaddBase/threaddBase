@@ -13,6 +13,9 @@ public class CommunityModel {
     private int userCount;
     private int requestID;
     private boolean isJoined;
+    private String communityFilter;
+    private int memberCount;  
+    private int postCount;   
 
     //public constructor
     public CommunityModel() {}
@@ -32,12 +35,13 @@ public class CommunityModel {
      * @param createdAt
      * @param communityProfile
      */
-    public CommunityModel(int id, String name, String description, Date createdAt, byte[] communityProfile) {
+    public CommunityModel(int id, String name, String description, Date createdAt, byte[] communityProfile,String communityFilter) {
     	this.id = id;
         this.name = name;
         this.description = description;
         this.createdAt = createdAt;
         this.communityProfile = communityProfile;
+        this.communityFilter = communityFilter;
     }
     
     // Getters
@@ -81,6 +85,17 @@ public class CommunityModel {
     	return isJoined;
     }
     
+    public String getCommunityFilter() {
+    	return communityFilter;
+    }
+    
+    public int getPostCount() { 
+    	return postCount; }
+    
+    public int getMemberCount() {
+     return memberCount; }
+    
+    
     // Setters
     public void setId(int id) {
         this.id = id;
@@ -113,4 +128,14 @@ public class CommunityModel {
     public void setIsJoined(boolean isJoined) {
         this.isJoined = isJoined;
     }
+    
+    public void setCommunityFilter(String communityFilter) {
+    	this.communityFilter = communityFilter;
+    }
+    
+    public void setMemberCount(int memberCount) { 
+    	this.memberCount = memberCount; }
+    
+    public void setPostCount(int postCount) {
+    	this.postCount = postCount; }
 }

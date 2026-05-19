@@ -19,6 +19,7 @@ public class UserModel {
     private int reportCount;
     private byte[] profilePicture;
     private String password;
+    
 
     // No-arg constructor
     public UserModel() {
@@ -113,6 +114,8 @@ public class UserModel {
     	return password;
     }
     
+
+    
     // Setters
     public void setId(int id) {
         this.id = id;
@@ -175,4 +178,5 @@ public class UserModel {
     public void setPassword(String password) {
     	this.password = password;
     }
+
 }

@@ -87,6 +87,7 @@ public class CommunityDAO {
 	    }
 	}
 	
+	
 	// method to get all community user Joined
 	public List<CommunityModel> getJoinedComunity(int userId) throws SQLException {
 		
@@ -215,5 +216,20 @@ public class CommunityDAO {
 	        return rs.next();
 	    }
 	}
+	
+	public int getTotalCommunities() throws SQLException {
+        String sql = "SELECT COUNT(*) FROM community";
+        try(
+            Connection con = DBConfig.getConnection();
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            ){
+            if(rs.next()) {
+                return rs.getInt(1);
+            }
+            return 0;
+        }
+        
+    }
 	
 }
