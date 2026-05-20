@@ -7,13 +7,16 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 import com.model.CommunityModel;
+import com.model.LoginModel;
 import com.model.NotificationModel;
 import com.model.PostModel;
 import com.model.TagModel;
+import com.model.UserModel;
 import com.service.NotificationService;
 import com.service.UserHomeService;
 import com.util.SessionUtil;
@@ -75,11 +78,14 @@ public class UserHomeController extends HttpServlet {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
+        LoginModel userInfo = SessionUtil.getLoggedUser(request); 
+        
         request.setAttribute("tagList", tagList);
         request.setAttribute("postList", postList);
         request.setAttribute("communityList", communityList);
         request.setAttribute("notificationList", latestNotifications);
+        request.setAttribute("userInfo", userInfo);
+        request.setAttribute("today", LocalDate.now().toString());
 
         request.getRequestDispatcher("/WEB-INF/Pages/userHome.jsp").forward(request, response);
     }

@@ -63,32 +63,32 @@
             <img src="<%=request.getContextPath()%>/Assets/gaurab.jpg" class="team-img"></img>
             <h3>Gaurab Tandukar</h3>
             <p style="color: #00ADB5;">CEO</p>
-            <article>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam, est ab? Laudantium, voluptatem exercitationem quaerat ab sequi iure quod, nesciunt et illum molestiae voluptatum dignissimos! Libero inventore ducimus minus explicabo.</article>
+            <article>Gaurab leads Threadbase with a vision to build a community where ideas flow freely. As the driving force behind the platform, he oversees the big picture from strategy to culture, making sure Threadbase stays true to its roots.</article>
         </div>
         <div class="team-card">
             <img src="<%=request.getContextPath()%>/Assets/suva.jpg" class="team-img"></img>
             <h3>Suvashish Shrestha</h3>
             <p style="color: #00ADB5;">Product Manager</p>
-            <article>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam, est ab? Laudantium, voluptatem exercitationem quaerat ab sequi iure quod, nesciunt et illum molestiae voluptatum dignissimos! Libero inventore ducimus minus explicabo.</article>
+            <article>Suvashish bridges ideas and execution. He shapes the Threadbase experience by turning user needs into features, managing the product roadmap, and making sure every update feels just right for the community.</article>
         </div>
         <div class="team-card">
             <img src="<%=request.getContextPath()%>/Assets/samundra.jpg" class="team-img"></img>
             <h3>Samundra Adhikari</h3>
             <p style="color: #00ADB5;">Managing Director</p>
-            <article>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam, est ab? Laudantium, voluptatem exercitationem quaerat ab sequi iure quod, nesciunt et illum molestiae voluptatum dignissimos! Libero inventore ducimus minus explicabo.</article>
+            <article>Samundra keeps the wheels turning behind the scenes. As Managing Director, he oversees day-to-day operations, coordinates across the team, and ensures Threadbase runs smoothly from the ground up.</article>
         </div>
         <div class="team-card">
-            <img src="<%=request.getContextPath()%>/Assets/sudhanshu.jpg" class="team-img"></img>
+            <img src="<%=request.getContextPath()%>/Assets/SudhaanshuProfile.png" class="team-img"></img>
             <h3>Sudhaanshu Shamsher Thapa</h3>
             <p style="color: #00ADB5;">Executive Assistant</p>
-            <article>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam, est ab? Laudantium, voluptatem exercitationem quaerat ab sequi iure quod, nesciunt et illum molestiae voluptatum dignissimos! Libero inventore ducimus minus explicabo.</article>
+            <article>Sudhaanshu is the backbone of Threadbase's coordination. He supports leadership, manages schedules, and makes sure nothing slips through the cracks; quietly keeping everything on track.</article>
 
         </div>
         <div class="team-card">
             <img src="<%=request.getContextPath()%>/Assets/sujal.jpg" class="team-img"></img>
             <h3>Sujal Pokhrel</h3>
             <p style="color: #00ADB5;">HR</p>
-            <article>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam, est ab? Laudantium, voluptatem exercitationem quaerat ab sequi iure quod, nesciunt et illum molestiae voluptatum dignissimos! Libero inventore ducimus minus explicabo.</article>
+            <article>Sujal handles the people side of Threadbase. He manages recruitment, team coordination, and makes sure everything runs smoothly between members.</article>
 
         </div>
     </div>

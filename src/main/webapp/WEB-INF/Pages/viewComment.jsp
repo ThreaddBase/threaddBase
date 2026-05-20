@@ -19,17 +19,17 @@
     <!-- Post Author Profile -->
 
     <div class="profile">
-        <div class="avatar">
+        
             <c:choose>
                 <c:when test="${not empty post.userProfilePicBase64}">
-                    <img src="data:image/jpeg;base64,${post.userProfilePicBase64}" alt="avatar">
+                    <img class="comment-avatar" src="data:image/jpeg;base64,${post.userProfilePicBase64}" alt="avatar">
                 </c:when>
                 <c:otherwise>
                     <img src="https://static.vecteezy.com/system/resources/previews/046/409/821/non_2x/avatar-profile-icon-in-flat-style-male-user-profile-illustration-on-isolated-background-man-profile-sign-business-concept-vector.jpg"
                          alt="avatar">
                 </c:otherwise>
             </c:choose>
-        </div>
+        
         <div class="content">
             <h1>${post.userFirstName} ${post.userLastName}</h1>
             	<span>${post.postDate}</span>

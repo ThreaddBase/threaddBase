@@ -10,6 +10,8 @@
 <link rel="stylesheet" href="<%=request.getContextPath()%>/CSS/adminHome.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/CSS/util.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/CSS/sidebar.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/CSS/notificationModel.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/CSS/createNotification.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" 
 integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" 
 crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -17,7 +19,7 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
   <%@ include file="adminSidebar.jsp" %>
-
+<%@ include file="createNotification.jsp" %>
 
   <!-- MAIN CONTENT -->
  <div class="main-content">
@@ -36,7 +38,9 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
     
     <div class="heading-row">
             <h1 class="page-heading">Track &amp; Review<br>the Platform</h1>
-            
+            <label for="notifToggle" class="cn-trigger-btn">
+		        <i class="fas fa-bell"></i> Send Notification
+		    </label>
         </div>
     <main class="dashboard-content">
 
@@ -122,7 +126,7 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
 	          <div class="community-report-item">
 	            <span class="report-community-name">${c.name}</span>
 	            <button class="expand-btn">
-	            <a href ="<%=request.getContextPath()%>/community/view?id=${c.id}">get me three </a>
+	            <a href ="<%=request.getContextPath()%>/community/view?id=${c.id}">Get Me There </a>
 	            </button>
 	          </div>
           </c:forEach>

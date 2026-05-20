@@ -220,7 +220,14 @@ body {
     gap: 14px;
 }
 
-.comment-avatar img {
+.comment-avatar {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.comment-avatar img{
     width: 48px;
     height: 48px;
     border-radius: 50%;

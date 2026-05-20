@@ -15,10 +15,19 @@
 		</c:choose>
 
         <div class="post_profile">
-            <div class="post_avatar"></div>
+        	
+	        	<c:choose>
+	                <c:when test="${not empty userInfo.userProfilePicBase64}">
+	                    <img class="post_avatar" src="data:image/jpeg;base64,${userInfo.userProfilePicBase64}" alt="avatar"/>
+	                </c:when>
+	                <c:otherwise>
+	                    <img class="post_avatar" src="<%=request.getContextPath()%>/Assets/default-avatar.jpg" alt="avatar"/>
+	                </c:otherwise>
+	            </c:choose>
+            
             <div class="post_heading">
-                <h1>Harry Newgate</h1>
-                <h3>2026-05-02</h3>
+                <h1>${userInfo.username}</h1>
+                <h3>${today}</h3>
             </div>
         </div>
 

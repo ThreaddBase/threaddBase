@@ -36,7 +36,7 @@ public class SessionUtil {
         HttpSession old = request.getSession(false);
         if (old != null) old.invalidate();
         HttpSession session = request.getSession(true);
-        session.setAttribute("loggedUser", user); // store full object
+        session.setAttribute("loggedUser", user);
         session.setMaxInactiveInterval(30 * 60);
     }
 

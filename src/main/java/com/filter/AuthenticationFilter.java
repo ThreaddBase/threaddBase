@@ -79,7 +79,7 @@ public class AuthenticationFilter extends HttpFilter implements Filter {
 	 * @see Filter#doFilter(ServletRequest, ServletResponse, FilterChain)
 	 */
 	
-    // ── Check if path exists in allowed array ────────────────
+    // Check if path exists in allowed array
     private boolean isAllowed(String path, String[] allowedArray) {
         for (int i = 0; i < allowedArray.length; i++) {
             if (path.startsWith(allowedArray[i])) {
@@ -99,7 +99,7 @@ public class AuthenticationFilter extends HttpFilter implements Filter {
         String path = uri.substring(contextPath.length());
         
 
-        if (path.startsWith("/resources/") || path.endsWith(".css") || path.endsWith(".js") || path.endsWith(".png") || path.endsWith(".jpg")   || path.startsWith("/WEB-INF")) {
+        if (path.startsWith("/resources/") || path.endsWith(".css") || path.endsWith(".js") || path.endsWith(".png") || path.endsWith(".jpg") || path.startsWith("/WEB-INF")) {
 
             chain.doFilter(request, response);
             return;

@@ -14,7 +14,7 @@
 
             <!-- CLOSE -->
             <label for="notiToggle" class="close-btn">
-                ×
+                <i class="fa-solid fa-xmark"></i>
             </label>
         </div>
     </div>
@@ -57,7 +57,7 @@
     <!-- FOOTER -->
     <div class="noti-footer">
         <a href="<%=request.getContextPath()%>/user/notification">
-            View All Notifications →
+            View All Notifications <i class="fa-solid fa-arrow-right"></i>
         </a>
     </div>
 </div>
