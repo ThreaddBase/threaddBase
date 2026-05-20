@@ -18,6 +18,10 @@
 
 .cn-trigger-btn:hover { background: #00c4cc; }
 
+.report-post-modal #reportPostToggle:checked ~ .cn-overlay {
+    display: flex;
+}
+
 /* ── Overlay hidden by default ── */
 .cn-overlay {
     display: none;
@@ -31,7 +35,7 @@
 }
 
 /* ── Show when checkbox checked ── */
-#reportToggle:checked ~ .cn-overlay {
+.cn-overlay.active {
     display: flex;
 }
 

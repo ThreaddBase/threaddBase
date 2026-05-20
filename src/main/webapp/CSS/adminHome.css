@@ -448,7 +448,7 @@ body {
         }    
     }
 
-@media (max-width: 768px) {
+@media (max-width: 800px) {
 
     /* --- SIDEBAR: shrink to icon-only strip --- */
     .side-navbar {
@@ -524,7 +524,7 @@ body {
 
     /* --- MAIN CONTENT: push right by exact sidebar width --- */
     .main-content {
-        margin-left: 60px;
+        margin-left: 90px;
         /* Stop content from ever going wider than its container */
         width: calc(100vw - 60px);
         overflow-x: hidden;

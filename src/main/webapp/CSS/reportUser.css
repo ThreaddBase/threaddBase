@@ -31,7 +31,7 @@
 }
 
 /* ── Show when checkbox checked ── */
-#reportToggle:checked ~ .cn-overlay {
+.report-user-modal #reportUserToggle:checked ~ .cn-overlay {
     display: flex;
 }
 

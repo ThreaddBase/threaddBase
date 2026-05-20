@@ -40,5 +40,7 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
         </c:otherwise>
     </c:choose>
 </section>
+<%@ include file="reportUser.jsp" %>
+<%-- <%@ include file="reportPost.jsp" %> --%>
 </body>
  </html>

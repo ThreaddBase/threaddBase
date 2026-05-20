@@ -118,6 +118,7 @@
     <%@ include file="editCommunity.jsp" %>
     <%@ include file="newPostImage.jsp" %>
    	<%@ include file="newPostMessage.jsp" %>
+   	<%@ include file="reportPost.jsp" %>
     
 	   <script>
 	    function previewEcImage(input) {

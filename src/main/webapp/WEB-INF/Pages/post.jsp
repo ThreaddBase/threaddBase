@@ -65,7 +65,7 @@
             <%-- Report — Admin only --%>
             <c:if test="${sessionScope.loggedUser.id != post.userId}">
               <span class="action-btn report">
-              		<label for="reportToggle" class="report-user">
+              		<label for="reportPostToggle" class="report-user">
 			    		<i class="fa-solid fa-triangle-exclamation"></i>
 					</label>
                   <c:if test="${role eq 'Admin'}">

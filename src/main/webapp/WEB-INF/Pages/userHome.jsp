@@ -91,6 +91,7 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
     <%@ include file="notificationModel.jsp" %>
     <%@ include file="newPostImage.jsp" %>
    	<%@ include file="newPostMessage.jsp" %>
+   	<%@ include file="reportPost.jsp" %>
  
 <script>
 	const tagList = document.querySelector('.tag-list');

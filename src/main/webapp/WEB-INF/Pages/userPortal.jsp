@@ -55,7 +55,7 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
             </c:if>
             
             <c:if test="${user.id != sessionScope.loggedUser.id}">
-                <label for="reportToggle" class="report-user">
+                <label for="reportUserToggle" class="report-user">
 			    	<i class="fa-solid fa-triangle-exclamation"></i>
 				</label>
             </c:if>                
@@ -63,3 +63,4 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     </div>
 </section>
+<%@ include file="reportPost.jsp" %>

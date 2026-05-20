@@ -30,7 +30,7 @@ public class AuthenticationFilter extends HttpFilter implements Filter {
     private static final String CONTACT = "/contact";
     private static final String ABOUTUS = "/aboutUS";
     private static final String LOGOUT = "/logout";
-    private static final String ERROR = "/error";
+	private static final String ERROR = "/error";
     private static final String TERMSANDCONDITION = "/termsAndCondition";
 
     // ADMIN allowed URIs
@@ -45,7 +45,8 @@ public class AuthenticationFilter extends HttpFilter implements Filter {
         "/admin/userImage",
         "/vote",
         "/bookmark",
-        "/admin/notification"
+        "/admin/notification",
+        "/post/report"
     };
 
     // USER allowed URIs
@@ -65,7 +66,8 @@ public class AuthenticationFilter extends HttpFilter implements Filter {
         "/post/create",
         "/member/edit",
         "/community/request",
-        "/user/report"
+        "/user/report",
+        "/post/report"
     };
     
     /**
