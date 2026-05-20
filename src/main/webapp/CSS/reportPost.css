@@ -1,27 +1,5 @@
 @charset "UTF-8";
 
-/* ── Trigger button ── */
-.cn-trigger-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: var(--color-highlight);
-    color: #1a2a2a;
-    border-radius: 30px;
-    padding: 10px 22px;
-    font-size: 15px;
-    font-weight: 700;
-    cursor: pointer;
-    transition: background 0.2s;
-    font-family: inherit;
-}
-
-.cn-trigger-btn:hover { background: #00c4cc; }
-
-.report-post-modal #reportPostToggle:checked ~ .cn-overlay {
-    display: flex;
-}
-
 /* ── Overlay hidden by default ── */
 .cn-overlay {
     display: none;
@@ -34,8 +12,8 @@
     justify-content: center;
 }
 
-/* ── Show when checkbox checked ── */
-.cn-overlay.active {
+/* ── Show modal when its checkbox is checked ── */
+input[id^="reportToggle_"]:checked ~ .report-post-modal .cn-overlay {
     display: flex;
 }
 
@@ -92,7 +70,7 @@
 .cn-body { margin-bottom: 20px; }
 
 .report-subject {
-	width: 100%;
+    width: 100%;
     height: 40px;
     background: var(--color-secondary);
     border: none;
@@ -146,8 +124,9 @@
 
 .cn-send-btn:hover { background: #008f96; }
 
+/* ── Report trigger button ── */
 .report-user {
-	text-decoration: none;
+    text-decoration: none;
     background: none;
     border: none;
     cursor: pointer;
@@ -160,9 +139,10 @@
 }
 
 .report-user i {
-	color: #e05555;
+    color: #e05555;
 }
 
+/* ── Toast ── */
 .toast {
     position: fixed;
     top: -100px;
@@ -194,8 +174,8 @@
 }
 
 @keyframes toastSlide {
-    0%   { top: -100px; opacity: 0; }   /* hidden above screen */
-    15%  { top: 30px;   opacity: 1; }   /* slides down */
-    75%  { top: 30px;   opacity: 1; }   /* stays visible */
-    100% { top: -100px; opacity: 0; }   /* slides back up */
+    0%   { top: -100px; opacity: 0; }
+    15%  { top: 30px;   opacity: 1; }
+    75%  { top: 30px;   opacity: 1; }
+    100% { top: -100px; opacity: 0; }
 }

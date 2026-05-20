@@ -40,7 +40,7 @@ public class PostReportController extends HttpServlet {
         // fetch data
         String subject = request.getParameter("subject");
         String description = request.getParameter("description");
-        String reportedIdParam = request.getParameter("reportedPostId");
+        String reportedIdParam  = request.getParameter("reportedPostId");
         
         int reportedPostId = 0;
         if (reportedIdParam != null && !reportedIdParam.isEmpty()) {

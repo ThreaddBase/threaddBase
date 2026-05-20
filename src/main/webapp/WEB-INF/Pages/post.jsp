@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<link rel="stylesheet" href="<%=request.getContextPath()%>/CSS/reportPost.css">
+
 <div class="post-card">
     <div class="post-left">
 
@@ -14,7 +17,9 @@
                 </c:otherwise>
             </c:choose>
             <div>
-                <a href="<%=request.getContextPath()%>/user?id=${post.userId}" class="username-link"><p class="username">${post.userFirstName} ${post.userLastName}</p></a>
+                <a href="<%=request.getContextPath()%>/user?id=${post.userId}" class="username-link">
+                    <p class="username">${post.userFirstName} ${post.userLastName}</p>
+                </a>
                 <p class="post-date">${post.postDate}</p>
             </div>
         </div>
@@ -37,8 +42,7 @@
         <div class="post-actions">
 
             <%-- Vote Button --%>
-            <form action="<%=request.getContextPath()%>/vote"
-                  method="POST" style="display:inline;">
+            <form action="<%=request.getContextPath()%>/vote" method="POST" style="display:inline;">
                 <input type="hidden" name="postId" value="${post.postId}"/>
                 <button type="submit" class="action-btn">
                     <i class="fa-regular fa-circle-check"></i>
@@ -48,13 +52,12 @@
 
             <%-- Comment Count --%>
             <a href="<%=request.getContextPath()%>/comment?postId=${post.postId}" class="action-btn">
-	                <i class="fa-regular fa-comment"></i>
-	                ${post.commentCount}
+                <i class="fa-regular fa-comment"></i>
+                ${post.commentCount}
             </a>
 
             <%-- Bookmark Button --%>
-            <form action="<%=request.getContextPath()%>/bookmark"
-                  method="POST" style="display:inline;">
+            <form action="<%=request.getContextPath()%>/bookmark" method="POST" style="display:inline;">
                 <input type="hidden" name="postId" value="${post.postId}"/>
                 <button type="submit" class="action-btn">
                     <i class="fa-regular fa-bookmark"></i>
@@ -62,31 +65,60 @@
                 </button>
             </form>
 
-            <%-- Report — Admin only --%>
+            <%-- Report Button + Modal --%>
             <c:if test="${sessionScope.loggedUser.id != post.userId}">
-              <span class="action-btn report">
-              		<label for="reportPostToggle" class="report-user">
-			    		<i class="fa-solid fa-triangle-exclamation"></i>
-					</label>
-                  <c:if test="${role eq 'Admin'}">
-                  	${post.reportCount}
-          		</c:if>
-              </span>
-			</c:if>
+
+                <input type="checkbox" id="reportToggle_${post.postId}" style="display:none;">
+
+                <label for="reportToggle_${post.postId}" class="action-btn report-user">
+                    <i class="fa-solid fa-triangle-exclamation"></i>
+                    <c:if test="${role eq 'Admin'}">
+                        ${post.reportCount}
+                    </c:if>
+                </label>
+
+                <div class="report-post-modal">
+                    <div class="cn-overlay">
+                        <div class="cn-box">
+                            <div class="cn-header">
+                                <h2>Report Post</h2>
+                                <label for="reportToggle_${post.postId}" class="cn-close">&#x2715;</label>
+                            </div>
+                            <form action="<%=request.getContextPath()%>/post/report" method="post">
+                                <input type="hidden" name="reportedPostId" value="${post.postId}"/>
+                                <div class="cn-body">
+                                    <input type="text"
+                                           name="subject"
+                                           class="report-subject"
+                                           placeholder="Report Subject"
+                                           maxlength="20"/>
+                                    <textarea name="description"
+                                              class="cn-textarea"
+                                              placeholder="Report Reason"
+                                              maxlength="200"></textarea>
+                                </div>
+                                <div class="cn-footer">
+                                    <button type="submit" class="cn-send-btn">Send</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+            </c:if>
+
         </div>
     </div>
 
     <%-- Post Image --%>
     <c:choose>
         <c:when test="${not empty post.postImageBase64}">
-			<div class="post-image">
-            	<img src="data:image/jpeg;base64,${post.postImageBase64}"
-                 alt="post image"/>
-		 	</div>
+            <div class="post-image">
+                <img src="data:image/jpeg;base64,${post.postImageBase64}" alt="post image"/>
+            </div>
         </c:when>
         <c:otherwise>
-            <%-- no image — show nothing --%>
-
+            <%-- no image --%>
         </c:otherwise>
     </c:choose>
 

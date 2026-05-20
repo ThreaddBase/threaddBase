@@ -11,6 +11,7 @@
             </div>
             <form action="<%=request.getContextPath()%>/post/report" method="post">
                 <input type="hidden" name="reportedPostId" value="${post.id}"/>
+                <p>postid: ${ post.id }</p>
                 <div class="cn-body">
                     <input type="text"
                            name="subject"
