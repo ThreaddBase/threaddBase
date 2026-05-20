@@ -1,4 +1,5 @@
-<div class="register-container">
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<div class="register-container" id="register">
     <div class="register-text">
         Keep up with the <span>Discussions.</span>
         <p>Register, Join a community and create your own thread</p>
@@ -22,7 +23,7 @@
             <label for="profile_pic" class="profile-upload-btn">
                 <i class="fa-regular fa-image"></i>
                 <span id="upload-label">Upload a profile picture</span>
-                <input type="file" id="profile_pic" name="profile_pic" accept="image/*" required hidden />
+                <input type="file" id="profile_pic" name="profile_pic" accept="image/*" hidden />
             </label>
         </div>
 
@@ -38,7 +39,7 @@
         
         <div class="input-section">
             <label for="dob">Date of Birth</label>
-            <input type="date" id="email" name="dob" placeholder="2006/06/08" />
+            <input type="date" id="dob" name="dob" placeholder="2006/06/08" />
         </div>
 
         <div class="input-section">
@@ -65,3 +66,15 @@
         </div>
     </form>
 </div>
+
+<c:if test="${not empty sessionScope.message}">
+    <div class="register-toast error-toast">
+        ${sessionScope.message}
+    </div>
+    <c:remove var="message" scope="session"/>
+</c:if>
+
+<c:if test="${not empty sessionScope.success}">
+    <div class="register-toast success-toast">${sessionScope.success}</div>
+    <c:remove var="success" scope="session"/>
+</c:if>

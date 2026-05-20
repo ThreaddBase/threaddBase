@@ -26,8 +26,6 @@ public class RegisterController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        System.out.println("--- RegisterController doPost reached ---");
-
         try {
             // Text fields
             String firstName = request.getParameter("first_name");
@@ -36,7 +34,8 @@ public class RegisterController extends HttpServlet {
             String username = request.getParameter("username");
             String email = request.getParameter("email");
             String password = request.getParameter("password");
-
+            String confirmPw = request.getParameter("confirm_password");
+            String terms = request.getParameter("terms");
 
             // Profile picture upload
             byte[] profilePic = null;
@@ -46,20 +45,35 @@ public class RegisterController extends HttpServlet {
             	
                 // reads raw binary from HTTP request
             	profilePic = filePart.getInputStream().readAllBytes();
-                System.out.println("Received image: " + profilePic.length + " bytes");
             }
             
 
             // Register the user
             RegisterService service = new RegisterService();
-            service.registerUser(firstName, lastName, dob, username, email, password, profilePic);
 
-            System.out.println("registerUser done — redirecting to home");
-            response.sendRedirect(request.getContextPath() + "/home");
+            String message = service.registerUser(
+                    firstName, lastName, dob, username,
+                    email, password, confirmPw, profilePic
+                );
+            
+            
+            if (terms == null) {
+                request.getSession().setAttribute("message", "You must accept the Terms and Conditions");
+                response.sendRedirect(request.getContextPath() + "/home#register");
+                return;
+            }
+            
+            if (message != null) {
+                request.getSession().setAttribute("message", message);
+                response.sendRedirect(request.getContextPath() + "/home#register");
+            } else {
+                request.getSession().setAttribute("success", "Registration Successful!");
+                response.sendRedirect(request.getContextPath() + "/home#register");
+            }
+            
 
         } catch (Exception e) {
             e.printStackTrace();
-            System.out.println("Registration Failed");
             request.setAttribute("errorMessage", "Registration failed. Please try again.");
             request.getRequestDispatcher("/WEB-INF/Pages/home.jsp").forward(request, response);
         }

@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -112,7 +112,7 @@
                         Reach us anytime with anything that’s bothering you!
                     </p>
                 </div>
-                <form action="" method="post" class="contact-form">
+                <form action="<%=request.getContextPath()%>/contact" method="post" class="contact-form">
                     <div class="name">
                         <input 
                             type="text" 
@@ -124,7 +124,7 @@
                         <input 
                             type="text" 
                             name="Last_name" 
-                            id="fname" 
+                            id="lname" 
                             placeholder="Last Name"
                         >
                     </div>
@@ -163,6 +163,16 @@
             </div>
         </div>
     </div>
-    
+    <c:if test="${not empty message}">
+	    <div class="toast error-toast">
+	        ${message}
+	    </div>
+	</c:if>
+	
+	<c:if test="${not empty success}">
+	    <div class="toast success-toast">
+	        ${success}
+	    </div>
+	</c:if>
 </body>
 </html>
