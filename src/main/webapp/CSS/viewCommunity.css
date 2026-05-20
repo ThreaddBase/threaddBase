@@ -1,5 +1,77 @@
 @charset "UTF-8";
 
+/* Admin side top search bar */
+
+.top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 30px;
+  gap: 20px;
+  position: relative;
+  background: var(--color-primary);
+}
+
+.search-box {
+  	display: flex;
+    align-items: center;
+    background-color: #222831;
+    border-radius: 30px;
+    padding: 10px 20px;
+    gap: 10px;
+    width: 480px;
+    border: 3px solid #00ADB5;
+}
+
+.search-box input {
+  	border: none;
+    outline: none;
+    background: transparent;
+    font-size: 15px;
+    color: #444;
+    width: 100%;
+}
+
+.search-box input::placeholder {
+  color: #888;
+}
+
+.search-box i {
+  color: #666;
+  font-size: 15px;
+}
+
+.profile-btn {
+    position: absolute;
+    right: 30px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background-color: #393E46;
+    border: 2px solid #393E46;
+    border-radius: 30px;
+    padding: 8px 18px;
+    cursor: pointer;
+    font-size: 14px;
+    color: #eee;
+    font-weight: 500;
+}
+
+.profile-btn i {
+	text-decoration: none;
+	color: #eee;
+}
+
+.profile-btn a {
+	text-decoration: none;
+	color: #eee;
+}
+
+.profile-btn:hover {
+  background: #212429;
+  border: 2px solid #aaa;
+}
+
 .community-profile {
     margin-left: 250px;
     display: flex;

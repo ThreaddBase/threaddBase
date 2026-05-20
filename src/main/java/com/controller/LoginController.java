@@ -7,6 +7,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+import com.util.CookieUtil;
 import com.util.SessionUtil;
 import com.model.LoginModel;
 import com.model.UserModel;
@@ -40,30 +41,42 @@ public class LoginController extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		
-		// get username and password from Login form from LoginUI
-		String username = request.getParameter("Username");
-		String password = request.getParameter("Password");
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) 
+	        throws ServletException, IOException {
 
-		try {
-		    LoginService service = new LoginService();
-		    LoginModel user = service.authenticate(username, password);
+	    String username = request.getParameter("Username");
+	    String password = request.getParameter("Password");
+	    String rememberMe = request.getParameter("rememberMe"); // "on" if checked, null if not
 
-		    if (user != null) {
-		        SessionUtil.setLoggedUser(request, user); // pass full object
-		        redirectByRole(request, response);
-		    } else {
-		        request.setAttribute("errorMessage", "Invalid username or password.");
-		        request.getRequestDispatcher("/WEB-INF/Pages/login.jsp").forward(request, response);
-		    }
-		    
-		} catch (Exception e) {
-		    e.printStackTrace();
-		    request.setAttribute("errorMessage", "Something went wrong. Please try again.");
-		    request.getRequestDispatcher("/WEB-INF/Pages/login.jsp").forward(request, response);
-		}
+	    try {
+	        LoginService service = new LoginService();
+	        LoginModel user = service.authenticate(username, password);
+
+	        if (user != null) {
+	            SessionUtil.setLoggedUser(request, user);
+
+	            // Remember Me cookie logic
+	            if ("on".equals(rememberMe)) {
+	                CookieUtil.addCookie(response, "rememberedUser", username, 30 * 24 * 60 * 60);
+	            } else {
+	                CookieUtil.deleteCookie(response, "rememberedUser");
+	            }
+
+	            redirectByRole(request, response);
+
+	        } else {
+	            // Login failed — go back to home with popup open
+	            request.setAttribute("loginError", true);
+	            request.setAttribute("showLogin", true);
+	            request.getRequestDispatcher("/WEB-INF/Pages/home.jsp").forward(request, response);
+	        }
+
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	        request.setAttribute("loginError", true);
+	        request.setAttribute("showLogin", true);
+	        request.getRequestDispatcher("/WEB-INF/Pages/home.jsp").forward(request, response);
+	    }
 	}
 	
 	private void redirectByRole(HttpServletRequest request, HttpServletResponse response)

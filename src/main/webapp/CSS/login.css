@@ -1,92 +1,158 @@
 @charset "UTF-8";
 
-#overlay {
-    transition: filter 0.2s ease;
+/* ── Backdrop ── */
+.login-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.65);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    z-index: 98;
+    pointer-events: none;
 }
 
-#overlay.dimmed {
-    filter: brightness(0.7);
-    pointer-events: none; /* prevent clicking page elements behind popup */
+.login-backdrop.active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: all;
 }
 
-/* ── Card ── */
+/* ── Popup ── */
 .login_page {
     display: none;
     width: 100%;
-    max-width: 480px;
+    max-width: 460px;
     background-color: var(--color-secondary);
-    color: #fff;
-    padding: 40px 45px;
-    border-radius: 30px;
-    position: relative;
+    border: 1px solid rgba(0, 173, 181, 0.15);
+    color: var(--color-font);
+    padding: 44px 48px;
+    border-radius: 24px;
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    z-index: 100;
-    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    z-index: 200;
+    box-shadow:
+        0 0 0 1px rgba(0, 173, 181, 0.08),
+        0 32px 80px rgba(0, 0, 0, 0.6),
+        0 0 60px rgba(0, 173, 181, 0.06);
+    pointer-events: all;
 }
 
-/* ── Close icon ── */
+.login_page.active {
+    display: block;
+    animation: popIn 0.38s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+@keyframes popIn {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -58%) scale(0.88);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+/* ── Close button ── */
 .fa-xmark {
     position: absolute;
-    top: -12px;
-    right: 19px;
-    font-size: 3rem;
-    color: #ff0000;
+    top: 14px;
+    right: 14px;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    color: var(--color-slate);
     cursor: pointer;
-    transition: transform 0.2s ease, color 0.2s ease;
-    border: none;
-    background: none;
+    border: 1px solid rgba(170, 180, 190, 0.15);
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.04);
+    transition: color 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+    text-decoration: none;
 }
 
-.fa-xmark:hover {     
-    color: #008080;
+.fa-xmark:hover {
+    color: var(--color-font);
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(170, 180, 190, 0.35);
 }
+
+.fa-xmark:active {
+    transform: scale(0.92);
+}
+
 
 /* ── Heading ── */
 .login_page h1 {
-    font-size: 28px;
+    font-size: 24px;
+    font-weight: 600;
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: 8px;
+    color: var(--color-font);
+    line-height: 1.3;
 }
 
 .login_page h1 span {
-	color: var(--color-highlight);
+    background: var(--gradient-aqua);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* ── Subtext under heading ── */
+.login_page .login-sub {
+    text-align: center;
+    font-size: 13px;
+    color: var(--color-slate);
+    margin-bottom: 28px;
 }
 
 /* ── Input Box ── */
 .login_page .input-box {
-    position: relative;
     width: 100%;
-    margin: 15px 0;
-    padding: 10px 0px;
+    margin: 14px 0;
 }
 
 .input-box label {
     display: block;
-    font-size: 16px;
-    margin-bottom: 6px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--color-slate);
+    margin-bottom: 8px;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
 }
 
 .input-box input {
     width: 100%;
-    height: 45px;
-    border: 2px solid var(--color-primary);
+    height: 46px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
     background-color: var(--color-primary);
-    border-radius: 10px;
-    font-size: 18px;
-    padding: 0 15px;
-    transition: border-color 0.2s ease;
+    border-radius: 12px;
+    font-size: 15px;
+    padding: 0 16px;
+    color: var(--color-font);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    outline: none;
 }
 
 .input-box input::placeholder {
-    color: #fff;
+    color: rgba(238, 238, 238, 0.25);
 }
 
 .input-box input:focus {
-    border-color: #008080;         /* teal focus to match theme */
-    outline: none;
+    border-color: var(--color-highlight);
+    box-shadow: 0 0 0 3px rgba(0, 173, 181, 0.12);
 }
 
 /* ── Password Wrapper ── */
@@ -96,97 +162,169 @@
 
 .wrapper input {
     width: 100%;
-    height: 45px;
-    border: 2px solid black;
-    border-radius: 10px;
-    padding: 0px 44px 0px 15px;   /* FIX: right padding for icon room */
-    font-size: 18px;
-    transition: border-color 0.2s ease;
-}
-
-.wrapper input:focus {
-    border-color: #008080;         /* FIX: was #1e5bb8, now matches teal theme */
+    height: 46px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background-color: var(--color-primary);
+    border-radius: 12px;
+    padding: 0 16px;
+    font-size: 15px;
+    color: var(--color-font);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
     outline: none;
 }
 
-.wrapper span {
-	position: relative;
-    top: -31px;
-    left: 87%;
+.wrapper input::placeholder {
+    color: rgba(238, 238, 238, 0.25);
 }
 
-
-.material-symbols-outlined:hover {
-	cursor: pointer;
-    color: #008080;                /* teal hover matches theme */
+.wrapper input:focus {
+    border-color: var(--color-highlight);
+    box-shadow: 0 0 0 3px rgba(0, 173, 181, 0.12);
 }
 
+/* ── Remember Me ── */
+.remember-me {
+    margin: 4px 0 20px;
+}
 
-
-/* ── Forgot Password ── */
-.login_page .forget {
+.checkbox-wrapper {
     display: flex;
-    font-size: 14px;
-    margin: 5px 0 15px;
-    justify-content: end;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    width: fit-content;
 }
 
-.forget a {
-    color: #fff;
-    text-decoration: none;
+/* hide the native checkbox */
+.checkbox-wrapper input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+    pointer-events: none;
 }
 
-.forget a:hover {
-    text-decoration: underline;
-    color: #008080;                /* teal hover matches theme */
+/* custom box */
+.custom-checkbox {
+    width: 18px;
+    height: 18px;
+    min-width: 18px;
+    border: 1.5px solid rgba(255, 255, 255, 0.15);
+    border-radius: 5px;
+    background: var(--color-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+}
+
+.custom-checkbox svg {
+    width: 12px;
+    height: 10px;
+    color: var(--color-primary);
+    opacity: 0;
+    transform: scale(0.6);
+    transition: opacity 0.15s ease, transform 0.15s ease;
+}
+
+/* checked state */
+.checkbox-wrapper input[type="checkbox"]:checked + .custom-checkbox {
+    background: var(--color-highlight);
+    border-color: var(--color-highlight);
+    box-shadow: 0 0 0 3px rgba(0, 173, 181, 0.15);
+}
+
+.checkbox-wrapper input[type="checkbox"]:checked + .custom-checkbox svg {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* hover state */
+.checkbox-wrapper:hover .custom-checkbox {
+    border-color: var(--color-highlight);
+}
+
+.checkbox-label {
+    font-size: 13px;
+    color: var(--color-slate);
+    transition: color 0.2s ease;
+    user-select: none;
+}
+
+.checkbox-wrapper:hover .checkbox-label {
+    color: var(--color-font);
 }
 
 /* ── Submit Button ── */
 .login_page .btn {
     width: 100%;
-    height: 50px;
-    background: #008080;
+    height: 48px;
+    background: var(--gradient-aqua);
     border: none;
-    border-radius: 25px;
+    border-radius: 12px;
     font-size: 15px;
-    color: #fff;
     font-weight: 600;
-    margin-top: 20px;
+    color: var(--color-primary);    /* dark text on teal gradient */
+    margin-top: 8px;
     display: block;
-    cursor: pointer;               /* FIX: was missing */
-    transition: background 0.2s ease, transform 0.1s ease;  /* FIX: was missing */
+    cursor: pointer;
+    letter-spacing: 0.02em;
+    transition: opacity 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+    box-shadow: 0 4px 20px rgba(0, 173, 181, 0.3);
 }
 
 .login_page .btn:hover {
-    background: #006666;           /* FIX: was missing — darker teal on hover */
+    opacity: 0.88;
+    box-shadow: 0 6px 28px rgba(0, 173, 181, 0.45);
 }
 
 .login_page .btn:active {
     transform: scale(0.98);
+    opacity: 1;
+}
+
+/* ── Divider (optional, for future OAuth) ── */
+.login_page .divider {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 20px 0;
+    color: var(--color-slate);
+    font-size: 12px;
+}
+
+.login_page .divider::before,
+.login_page .divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.07);
+}
+
+.login-error {
+	color: red;
 }
 
 /* ── Responsive ── */
-@media (max-width: 480px) {
+@media (max-width: 520px) {
     .login_page {
-        padding: 20px;
+        padding: 36px 24px;
         border-radius: 20px;
+        max-width: calc(100vw - 24px);
     }
 
     .login_page h1 {
-        font-size: 22px;
+        font-size: 20px;
     }
 
-    .input-box label {
+    .input-box input,
+    .wrapper input {
+        height: 42px;
         font-size: 14px;
     }
 
-    .input-box input {
-        height: 40px;
-        font-size: 13px;
-    }
-
-    .login_page .btn {             /* FIX: was .login-page (dash typo) */
-        height: 42px;
+    .login_page .btn {
+        height: 44px;
         font-size: 14px;
     }
 }

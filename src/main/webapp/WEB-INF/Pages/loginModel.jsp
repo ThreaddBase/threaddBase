@@ -1,54 +1,58 @@
-<div class="login_page">
-    <button class="fa-xmark" onclick="closeLoginPopup()">&times;</button>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
+<div class="login_page ${showLogin == true ? 'active' : ''}">
+    <a href="<%=request.getContextPath()%>/home">
+        <button type="button" class="fa-xmark">&times;</button>
+    </a>
+
     <form action="<%=request.getContextPath()%>/login" method="post">
         <h1>Login to keep up with <span>Threads</span></h1>
+        <p class="login-sub">Welcome back! good to see you again.</p>
 
         <div class="input-box">
             <label>Username</label>
-            <input type="text" placeholder="username" name="Username" required>
+            <input
+                type="text"
+                placeholder="username"
+                name="Username"
+                value="${not empty rememberedUsername ? rememberedUsername : ''}"
+                required>
         </div>
+
         <div class="input-box">
             <label>Password</label>
             <div class="wrapper">
-                <input type="password" id="password" name="Password" placeholder="Password" required>
-                <span class="material-symbols-outlined">visibility</span>
+                <input type="password" name="Password" placeholder="Password" required>
             </div>
         </div>
-        <div class="forget">
-            <a href="#"> Forgot your Password ?</a>
+
+        <div class="forget-row">
+            <div class="remember-me">
+                <label class="checkbox-wrapper">
+                    <input
+                        type="checkbox"
+                        name="rememberMe"
+                        id="rememberMe"
+                        ${not empty rememberedUsername ? 'checked' : ''}>
+                    <span class="custom-checkbox">
+                        <svg viewBox="0 0 12 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <polyline points="1,5 4.5,8.5 11,1" stroke="currentColor"
+                                stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </span>
+                    <span class="checkbox-label">Remember me</span>
+                </label>
+            </div>
         </div>
-        <button type="submit" class="btn"> Log in</button>
+        <c:if test="${not empty loginError}">
+            <div class="login-error">
+                <i class="fa-solid fa-circle-exclamation"></i>
+                Invalid username or password.
+            </div>
+        </c:if>
+
+        <button type="submit" class="btn">Log in</button>
     </form>
 </div>
-<script>
-    const body = document.querySelector('body');
-    const passwordInput = document.querySelector('#password');
-    const eyeIcon = document.querySelector('.material-symbols-outlined');
 
-    // Toggle password visibility
-    eyeIcon.addEventListener('click', () => {
-        // Check current type
-        if (passwordInput.type === 'password') {
-            passwordInput.type = 'text';
-            eyeIcon.textContent = 'visibility_off'; // Change icon to "hide"
-        } else {
-            passwordInput.type = 'password';
-            eyeIcon.textContent = 'visibility';     // Change icon back to "show"
-        }
-    });
-
-    const loginModel = document.querySelector('.login_page');
-    const overlay = document.getElementById('overlay');
-
-    function loginPopup() {
-        document.getElementById('overlay').classList.add('dimmed');
-        loginModel.style.display = 'block';
-        document.body.style.overflow = 'hidden';
-    }
-
-    function closeLoginPopup() {
-        document.getElementById('overlay').classList.remove('dimmed');
-        loginModel.style.display = 'none';
-        document.body.style.overflow = '';
-    }
-</script>
+<div class="login-backdrop ${showLogin == true ? 'active' : ''}"></div>

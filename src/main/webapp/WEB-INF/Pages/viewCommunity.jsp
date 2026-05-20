@@ -27,7 +27,27 @@
 	    </c:otherwise>
 	</c:choose>
 
-	<%@ include file="topSearchbar.jsp" %>
+	
+      <c:choose>
+			<c:when test="${role == 'Admin'}">
+			    <!-- Top bar: Search + Profile -->
+		       <div class="top-bar">
+		           <div class="search-box">
+		               <input type="text" placeholder="Search" />
+		               <i class="fas fa-magnifying-glass"></i>
+		           </div>
+		           <button class="profile-btn">
+		               <i class="fas fa-circle-user"></i>
+		               <a href="<%=request.getContextPath()%>/admin">Profile</a>
+		           </button>
+		       </div>
+			</c:when>
+		<c:otherwise>
+			<%@ include file="topSearchbar.jsp" %>
+		</c:otherwise>
+      </c:choose>	
+	
+	
 
     <div class="community-profile">
         <div class="community-left">

@@ -1,4 +1,3 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <div class="register-container" id="register">
     <div class="register-text">
         Keep up with the <span>Discussions.</span>
@@ -78,3 +77,18 @@
     <div class="register-toast success-toast">${sessionScope.success}</div>
     <c:remove var="success" scope="session"/>
 </c:if>
+
+<script>
+    document.getElementById('profile_pic').addEventListener('change', function () {
+        const label = document.getElementById('upload-label');
+        const uploadBtn = document.querySelector('.profile-upload-btn');
+
+        if (this.files && this.files[0]) {
+            label.textContent = this.files[0].name;
+            uploadBtn.classList.add('file-selected');
+        } else {
+            label.textContent = 'Upload a profile picture';
+            uploadBtn.classList.remove('file-selected');
+        }
+    });
+</script>
