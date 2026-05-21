@@ -42,29 +42,28 @@
         <div class="post-actions">
 
             <%-- Vote Button --%>
-            <form action="<%=request.getContextPath()%>/vote" method="POST" style="display:inline;">
-                <input type="hidden" name="postId" value="${post.postId}"/>
-                <button type="submit" class="action-btn">
-                    <i class="fa-regular fa-circle-check"></i>
-                    ${post.voteCount}
-                </button>
-            </form>
-
-            <%-- Comment Count --%>
-            <a href="<%=request.getContextPath()%>/comment?postId=${post.postId}" class="action-btn">
-                <i class="fa-regular fa-comment"></i>
-                ${post.commentCount}
-            </a>
-
-            <%-- Bookmark Button --%>
-            <form action="<%=request.getContextPath()%>/bookmark" method="POST" style="display:inline;">
-                <input type="hidden" name="postId" value="${post.postId}"/>
-                <button type="submit" class="action-btn">
-                    <i class="fa-regular fa-bookmark"></i>
-                    ${post.bookmarkCount}
-                </button>
-            </form>
-
+			<form action="<%=request.getContextPath()%>/vote" method="POST" style="display:inline;">
+			    <input type="hidden" name="postId" value="${post.postId}"/>
+			    <button type="submit" class="action-btn vote-btn" ${post.hasVoted ? 'active' : ''}>
+			        <i class="fa-regular fa-circle-check"></i>
+			        ${post.voteCount}
+			    </button>
+			</form>
+			
+			<%-- Comment Count --%>
+			<a href="<%=request.getContextPath()%>/comment?postId=${post.postId}" class="action-btn comment-btn">
+			    <i class="fa-regular fa-comment"></i>
+			    ${post.commentCount}
+			</a>
+			
+			<%-- Bookmark Button --%>
+			<form action="<%=request.getContextPath()%>/bookmark" method="POST" style="display:inline;">
+			    <input type="hidden" name="postId" value="${post.postId}"/>
+			    <button type="submit" class="action-btn bookmark-btn">
+			        <i class="fa-regular fa-bookmark"></i>
+			        ${post.bookmarkCount}
+			    </button>
+			</form>
             <%-- Report Button + Modal --%>
             <c:if test="${sessionScope.loggedUser.id != post.userId}">
 
