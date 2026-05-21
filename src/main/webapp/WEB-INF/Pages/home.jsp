@@ -262,6 +262,13 @@
     function scrollToRegister() {
       document.querySelector('.register-container').scrollIntoView({ behavior: 'smooth' });
     }
+    
+    function scrollToTop() {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    }
 
     const toast = document.querySelector('.toast');
     const communityBox = document.querySelector('.community-box');

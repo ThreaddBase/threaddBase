@@ -46,7 +46,9 @@ public class AuthenticationFilter extends HttpFilter implements Filter {
         "/vote",
         "/bookmark",
         "/admin/notification",
-        "/post/report"
+        "/post/report",
+        "/aboutUS",
+        "/contact"
     };
 
     // USER allowed URIs
@@ -67,7 +69,9 @@ public class AuthenticationFilter extends HttpFilter implements Filter {
         "/member/edit",
         "/community/request",
         "/user/report",
-        "/post/report"
+        "/post/report",
+        "/aboutUS",
+        "/contact"
     };
     
     /**
@@ -128,7 +132,7 @@ public class AuthenticationFilter extends HttpFilter implements Filter {
             if (isPublic) {
                 chain.doFilter(request, response);
             } else {
-                res.sendRedirect(contextPath + HOME);
+                res.sendRedirect(contextPath + HOME + "?showLogin=true");
             }
          return;
         }

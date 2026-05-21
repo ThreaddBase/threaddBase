@@ -14,7 +14,7 @@
 </head>
 <body>
 
-    <a href="<%=request.getContextPath()%>/user/home"><i class="fa-solid fa-circle-arrow-left back-button"></i></a>
+    <a href="<%=request.getContextPath()%>/home"><i class="fa-solid fa-circle-arrow-left back-button"></i></a>
 
     <!-- Post Author Profile -->
 
@@ -44,13 +44,31 @@
         </div>
     </c:if>
 
-    <!-- Post Actions — keep as plain spans, no wrapper divs -->
-    <div class="post-actions">
-        <span><i class="fa-regular fa-circle-check"></i> ${post.voteCount}</span>
-        <span><i class="fa-regular fa-comment"></i> ${post.commentCount}</span>
-        <span><i class="fa-regular fa-bookmark"></i> ${post.bookmarkCount}</span>
-        <span class="report"><i class="fa-solid fa-triangle-exclamation"></i></span>
-    </div>
+
+	<div class="post-actions">
+	
+	    <%-- Vote --%>
+	    <form action="<%=request.getContextPath()%>/comment" method="post">
+	        <input type="hidden" name="postId" value="${post.postId}" />
+	        <input type="hidden" name="action" value="vote" />
+	        <button type="submit" class="action-btn ${post.hasVoted ? 'active' : ''}">
+	            <i class="fa-regular fa-circle-check"></i> ${post.voteCount}
+	        </button>
+	    </form>
+	
+	    <%-- Comment count (no action, just display) --%>
+	    <span><i class="fa-regular fa-comment"></i> ${post.commentCount}</span>
+	
+	    <%-- Bookmark --%>
+	    <form action="<%=request.getContextPath()%>/comment" method="post">
+	        <input type="hidden" name="postId" value="${post.postId}" />
+	        <input type="hidden" name="action" value="bookmark" />
+	        <button type="submit" class="action-btn ${post.hasBookmarked ? 'active' : ''}">
+	            <i class="fa-regular fa-bookmark"></i> ${post.bookmarkCount}
+	        </button>
+	    </form>
+	
+	</div>
     
     <!-- Comment Input -->
 	<div class="comment-box">

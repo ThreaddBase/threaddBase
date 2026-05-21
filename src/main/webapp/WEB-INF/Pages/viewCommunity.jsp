@@ -20,7 +20,7 @@
 
 	<c:choose>
 	    <c:when test="${role == 'Admin'}">
-	        <%@ include file="adminSidebar.jsp" %>
+	        <%@include file="adminSidebar.jsp"%>
 	    </c:when>
 	    <c:otherwise>
 	        <%@ include file="sidebar.jsp" %>
@@ -31,12 +31,12 @@
       <c:choose>
 			<c:when test="${role == 'Admin'}">
 			    <!-- Top bar: Search + Profile -->
-		       <div class="top-bar">
-		           <div class="search-box">
+		       <div class="admin-top-bar">
+		           <div class="admin-search-box">
 		               <input type="text" placeholder="Search" />
 		               <i class="fas fa-magnifying-glass"></i>
 		           </div>
-		           <button class="profile-btn">
+		           <button class="admin-profile-btn">
 		               <i class="fas fa-circle-user"></i>
 		               <a href="<%=request.getContextPath()%>/admin">Profile</a>
 		           </button>

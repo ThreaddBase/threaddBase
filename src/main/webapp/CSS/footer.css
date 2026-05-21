@@ -134,6 +134,23 @@
   font-weight: 500;
 }
 
+.back-to-top-btn button {
+	background-color: transparent;
+    padding: 9px 20px;
+    border: 2px solid var(--color-highlight);
+    border-radius: 2rem;
+    color: var(--color-font);
+}
+
+.back-to-top-btn button:hover {
+	background-color: var(--color-highlight);
+	color: black;
+}
+
+.back-to-top-btn button:active {
+	transform: scale(0.9);
+}		
+
 /* Responsiveness */
 @media (max-width: 768px) {
   .footer-content {

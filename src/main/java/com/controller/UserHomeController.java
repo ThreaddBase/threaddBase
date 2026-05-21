@@ -17,7 +17,9 @@ import com.model.NotificationModel;
 import com.model.PostModel;
 import com.model.TagModel;
 import com.model.UserModel;
+import com.service.CommunityService;
 import com.service.NotificationService;
+import com.service.PostService;
 import com.service.UserHomeService;
 import com.util.SessionUtil;
 
@@ -39,19 +41,18 @@ public class UserHomeController extends HttpServlet {
     // service Objects
     UserHomeService userService = new UserHomeService();
     NotificationService notifService = new NotificationService();
+    CommunityService communityservice = new CommunityService();
+    PostService postService = new PostService();
     
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) 
             throws ServletException, IOException {
-
         int loggedInUserId = SessionUtil.getUserId(request);
         String action = request.getParameter("action");
-
-        // In UserHomeController
+        
         List<NotificationModel> latestNotifications = notifService.getUnreadNotifications();
-
         if ("markRead".equals(action)) {
             notifService.markAllAsRead();
             response.sendRedirect(request.getContextPath() + "/user/home");
@@ -61,32 +62,51 @@ public class UserHomeController extends HttpServlet {
         List<TagModel> tagList = new ArrayList<>();
         List<PostModel> postList = new ArrayList<>();
         List<CommunityModel> communityList = new ArrayList<>();
+        List<CommunityModel> joinedCommunities = new ArrayList<>();
 
         String idParam = request.getParameter("id");
         int tagId = (idParam != null && !idParam.isEmpty()) ? Integer.parseInt(idParam) : 0;
 
+       
+        String searchKeyword = request.getParameter("searchQuery");
+
         try {
             tagList = userService.getTag();
             communityList = userService.getTopCommunitiesNotJoined(loggedInUserId);
+            joinedCommunities = communityservice.getJoinedComunity(loggedInUserId);
 
-            if (tagId == 0) {
+            
+            if (searchKeyword != null && !searchKeyword.trim().isEmpty()) {
+                postList = postService.getPostFromSearch(searchKeyword);
+                request.setAttribute("searchKeyword", searchKeyword);
+            } else if (tagId == 0) {
                 postList = userService.getAllPost();
             } else {
                 postList = userService.filterPostByTag(tagId);
             }
 
+        } catch (IllegalArgumentException e) {
+            request.setAttribute("error", e.getMessage());
+            postList = new ArrayList<>();
         } catch (SQLException e) {
             e.printStackTrace();
+            request.setAttribute("error", "Something went wrong. Please try again.");
         }
-        LoginModel userInfo = SessionUtil.getLoggedUser(request); 
-        
+
+        // Check no results found
+        if (postList != null && postList.isEmpty() && searchKeyword != null) {
+            request.setAttribute("error", "No posts found for: " + searchKeyword);
+        }
+
+        LoginModel userInfo = SessionUtil.getLoggedUser(request);
+
         request.setAttribute("tagList", tagList);
         request.setAttribute("postList", postList);
         request.setAttribute("communityList", communityList);
+        request.setAttribute("joinedCommunityList", joinedCommunities);
         request.setAttribute("notificationList", latestNotifications);
         request.setAttribute("userInfo", userInfo);
         request.setAttribute("today", LocalDate.now().toString());
-
         request.getRequestDispatcher("/WEB-INF/Pages/userHome.jsp").forward(request, response);
     }
 

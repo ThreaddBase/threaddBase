@@ -2,7 +2,7 @@
 
 /* Admin side top search bar */
 
-.top-bar {
+.admin-top-bar {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -12,7 +12,7 @@
   background: var(--color-primary);
 }
 
-.search-box {
+.admin-search-box {
   	display: flex;
     align-items: center;
     background-color: #222831;
@@ -23,7 +23,7 @@
     border: 3px solid #00ADB5;
 }
 
-.search-box input {
+.admin-search-box input {
   	border: none;
     outline: none;
     background: transparent;
@@ -32,16 +32,16 @@
     width: 100%;
 }
 
-.search-box input::placeholder {
+.admin-search-box input::placeholder {
   color: #888;
 }
 
-.search-box i {
+.admin-search-box i {
   color: #666;
   font-size: 15px;
 }
 
-.profile-btn {
+.admin-profile-btn {
     position: absolute;
     right: 30px;
     display: flex;
@@ -57,17 +57,17 @@
     font-weight: 500;
 }
 
-.profile-btn i {
+.admin-profile-btn i {
 	text-decoration: none;
 	color: #eee;
 }
 
-.profile-btn a {
+.admin-profile-btn a {
 	text-decoration: none;
 	color: #eee;
 }
 
-.profile-btn:hover {
+.admin-profile-btn:hover {
   background: #212429;
   border: 2px solid #aaa;
 }

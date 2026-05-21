@@ -38,15 +38,14 @@
 					        <input type="hidden" name="communityId" value="${param.communityId}">
 					        <p>Posting in: <strong>${community.name}</strong></p>
 					    </c:when>
-					    <c:otherwise>
-					        <%-- Home page: let user pick --%>
-					        <select name="communityId">
-					            <option value="" disabled selected>Select community</option>
-					            <c:forEach var="c" items="${communityList}">
-					                <option value="${c.id}">${c.name}</option>
-					            </c:forEach>
-					        </select>
-					    </c:otherwise>
+						<c:otherwise>
+						    <select name="communityId">
+						        <option value="" disabled selected>Select community</option>
+						        <c:forEach var="c" items="${joinedCommunityList}">
+						            <option value="${c.id}">${c.name}</option>
+						        </c:forEach>
+						    </select>
+						</c:otherwise>
 					</c:choose>
                     <input type="text" placeholder="# Add tags" name="postTags">
                     <button type="submit" class="npi-post-btn">Post Thread</button>

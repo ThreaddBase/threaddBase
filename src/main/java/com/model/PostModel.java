@@ -31,6 +31,9 @@ public class PostModel {
     private int communityId;
     private String communityName;
     
+	private boolean hasVoted;
+    private boolean hasBookmarked;
+    
 	// constructor
     public PostModel() {}
     
@@ -149,5 +152,33 @@ public class PostModel {
 	}
 	public void setCommunityName(String communityName) {
 		this.communityName = communityName;
+	}
+	
+    /**
+	 * @return the hasVoted
+	 */
+	public boolean isHasVoted() {
+		return hasVoted;
+	}
+
+	/**
+	 * @return the hasBookmarked
+	 */
+	public boolean isHasBookmarked() {
+		return hasBookmarked;
+	}
+
+	/**
+	 * @param hasVoted the hasVoted to set
+	 */
+	public void setHasVoted(boolean hasVoted) {
+		this.hasVoted = hasVoted;
+	}
+
+	/**
+	 * @param hasBookmarked the hasBookmarked to set
+	 */
+	public void setHasBookmarked(boolean hasBookmarked) {
+		this.hasBookmarked = hasBookmarked;
 	}
 }

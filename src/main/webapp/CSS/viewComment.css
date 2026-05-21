@@ -84,9 +84,12 @@ body {
     display: flex;
     gap: 12px;
     flex-wrap: wrap;
+    align-items: center;
 }
 
-.post-actions span {
+/* applies to both spans AND form buttons */
+.post-actions span,
+.post-actions .action-btn {
     display: flex;
     align-items: center;
     gap: 6px;
@@ -95,16 +98,47 @@ body {
     cursor: pointer;
     font-size: 1.25rem;
     transition: all 0.2s ease;
+    background: none;
+    border: none;
+    color: #fff;
+    font-family: inherit;
 }
 
-.post-actions span:hover i {
+.post-actions span:hover i,
+.post-actions .action-btn:hover i {
     transform: scale(1.2);
 }
 
-.post-actions span:nth-child(1):hover { color: #00c864; }
+/* vote button hover - green */
+.post-actions form:nth-child(1) .action-btn:hover { color: #00c864; }
+
+/* comment span hover - teal */
 .post-actions span:nth-child(2):hover { color: #00adb5; }
-.post-actions span:nth-child(3):hover { color: #ffc800; }
+
+/* bookmark button hover - yellow */
+.post-actions form:nth-child(3) .action-btn:hover { color: #ffc800; }
+
+/* report hover - red */
 .post-actions .report:hover { color: #e24b4a; }
+
+/* active states */
+.post-actions .action-btn.active,
+.post-actions .action-btn.active i {
+    color: #00c864;
+}
+
+.post-actions form:nth-child(3) .action-btn.active,
+.post-actions form:nth-child(3) .action-btn.active i {
+    color: #ffc800;
+}
+
+/* remove default form spacing */
+.post-actions form {
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
 
 /* ============== MAIN COMMENT BOX ============== */
 

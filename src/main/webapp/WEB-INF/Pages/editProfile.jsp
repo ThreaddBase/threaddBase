@@ -17,17 +17,41 @@
 </head>
 <body>
 
+  <%-- Toast: success --%>
+  <c:if test="${param.msg == 'updated'}">
+    <div class="toast success">
+      <i class="fa-solid fa-circle-check"></i>
+      Profile updated successfully!
+    </div>
+  </c:if>
+
+  <%-- Toast: profile error --%>
+  <c:if test="${not empty profileError}">
+    <div class="toast error">
+      <i class="fa-solid fa-circle-exclamation"></i>
+      ${profileError}
+    </div>
+  </c:if>
+
+  <%-- Toast: password error --%>
+  <c:if test="${not empty passError}">
+    <div class="toast error">
+      <i class="fa-solid fa-circle-exclamation"></i>
+      ${passError}
+    </div>
+  </c:if>
+
   <nav class="navbar"></nav>
-	        <%-- Back button --%>
-        <div class="card-title">
-          <a href="${backURL}" title="Go back">
-            <i class="fa-solid fa-circle-arrow-left"></i>
-          </a>
-        </div>
+  <div class="card-title">
+    <a href="${backURL}" title="Go back">
+      <i class="fa-solid fa-circle-arrow-left"></i>
+    </a>
+  </div>
+
   <div class="page">
     <div class="card-wrap">
 
-      <%-- Avatar: absolute-positioned, anchored to card-wrap --%>
+      <%-- Avatar --%>
       <div class="profile_img">
         <c:choose>
           <c:when test="${not empty user.profilePictureBase64}">
@@ -42,7 +66,6 @@
 
       <form action="${formAction}" method="post" enctype="multipart/form-data"
             style="width:100%; display:flex; flex-direction:column; align-items:center;">
-
 
         <%-- Upload --%>
         <label for="file-upload" class="upload-label">
@@ -84,7 +107,7 @@
         <div class="section">
           <div class="field">
             <label for="dob">Date of Birth</label>
-            <input id="dob" type="Date" name="dob" value="${user.dob}" placeholder="YYYY-MM-DD">
+            <input id="dob" type="date" name="dob" value="${user.dob}" placeholder="YYYY-MM-DD">
           </div>
         </div>
 

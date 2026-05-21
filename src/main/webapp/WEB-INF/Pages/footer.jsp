@@ -15,25 +15,24 @@
           <a href="#" class="social-icon"><i class="fa-brands fa-instagram"></i></a>
         </div>
         <div class="back-to-top-btn">
-          <a href="#top">BACK TO TOP</a>
-        </div>
+		    <button onclick="scrollToTop()">BACK TO TOP</button>
+		</div>
       </div>
 
       <div class="footer-links-container">
         <div class="footer-column">
           <h3>Other Links</h3>
-          <a href="#">Homepage</a>
-          <a href="#">About Us</a>
-          <a href="#">Discover Communities</a>
-          <a href="#">Edit Profile</a>
-          <a href="#">Report Account</a>
-          <a href="#">Contact Us</a>
+          <a href="<%=request.getContextPath()%>/home">Homepage</a>
+          <a href="<%=request.getContextPath()%>/aboutUS">About Us</a>
+          <a href="<%=request.getContextPath()%>/community">Discover Communities</a>
+          <a href="<%=request.getContextPath()%>/member/edit">Edit Profile</a>
+          <a href="<%=request.getContextPath()%>/contact">Contact Us</a>
         </div>
         <div class="footer-column">
           <h3>Legal</h3>
-          <a href="#">Privacy Policy</a>
-          <a href="#">Terms of Services</a>
-          <a href="#">Lawyer's Corners</a>
+          <a href="<%=request.getContextPath()%>/termsAndCondition">Privacy Policy</a>
+          <a href="<%=request.getContextPath()%>/termsAndCondition">Terms of Services</a>
+          <a href="<%=request.getContextPath()%>/termsAndCondition">Lawyer's Corners</a>
         </div>
       </div>
     </div>

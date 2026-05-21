@@ -72,7 +72,7 @@ public class ProfileDAO {
 			}
 		}
 
-    // ── UPDATE profile picture ────────────────────────────
+    // UPDATE profile picture
     public boolean updateProfilePicture(int id, byte[] picture) throws SQLException {
 
         String sql = "UPDATE user SET User_Profile_Picture=? WHERE User_ID=?";
@@ -86,7 +86,7 @@ public class ProfileDAO {
         }
     }
 
-    // ── UPDATE password ───────────────────────────────────
+    // UPDATE password
     public boolean updatePassword(int id, String newHashedPassword) throws SQLException {
 
     	String sql = "UPDATE user SET Password=? WHERE User_ID=?";
