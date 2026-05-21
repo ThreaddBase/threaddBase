@@ -48,9 +48,9 @@
         <c:if test="${replyTo == comment.commentId}">
             <div class="reply-form">
                 <form action="<%=request.getContextPath()%>/comment" method="post">
-                    <input type="hidden" name="postId"           value="${post.postId}" />
-                    <input type="hidden" name="parentCommentId"  value="${comment.commentId}" />
-                    <input type="text"   name="content" 
+                    <input type="hidden" name="postId" value="${post.postId}" />
+                    <input type="hidden" name="parentCommentId" value="${comment.commentId}" />
+                    <input type="text" name="content" 
                            class="reply-input" 
                            placeholder="Write a reply..." />
                     <button type="submit" class="reply-submit-btn">Send</button>
