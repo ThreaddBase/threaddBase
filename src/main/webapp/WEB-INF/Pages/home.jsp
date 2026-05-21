@@ -234,14 +234,14 @@
     <%@ include file="registration.jsp" %>
 
     <div class="CTA-section">
-      <div class="CTA-image"></div>
+      <img src="<%=request.getContextPath()%>/Assets/CTA image.png" class="CTA-image">
       <div class="CTA-text">
         <p>Where every voice finds its thread.
           Join the discussion,<span>
             Start a Thread.
           </span>
         </p>
-        <button>Share Your Thoughts</button>
+        <a href="<%=request.getContextPath()%>/community"><button>Share Your Thoughts</button></a>
       </div>
     </div>
 

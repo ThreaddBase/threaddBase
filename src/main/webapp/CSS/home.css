@@ -565,12 +565,8 @@
     min-height: 400px;
     width: 40%;
     border-radius: 10px;
-    background-color: var(--color-secondary);
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-    padding: 2rem 2.5rem;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
+    object-fit: cover;
 }
 
 .CTA-text {
@@ -578,11 +574,10 @@
     font-size: 2rem;
     display: flex;
     flex-direction: column;
-    gap: 4rem;
+    gap: 2rem;
 }
 
 .CTA-text span {
-    /* display: block; */
     color: var(--color-highlight);
 }
 
@@ -610,21 +605,28 @@
     transform: translateY(0);
 }
 
+.CTA-text a{
+	text-decoration: none;
+}
+
 @media (max-width: 500px) {
     .CTA-section {
         flex-direction: column;
+        gap: 2rem;
+        padding: 2rem 1rem;
     }
 
     .CTA-text {
         font-size: 1.7rem;
+        width: 90%;
     }
 
     .CTA-image {
         min-height: 300px;
-        width: 60%;
+        width: 85%;
     }
 
     .CTA-text button {
-        width: 120%;
+        width: 100%;
     }
 }
