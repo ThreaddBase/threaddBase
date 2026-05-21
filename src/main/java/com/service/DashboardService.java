@@ -6,6 +6,7 @@ import java.util.List;
 import com.DAO.DashboardDAO;
 import com.DAO.RequestCommunityDAO;
 import com.model.CommunityModel;
+import com.model.RequestCommunityModel;
 
 public class DashboardService {
 	// call DashboardDAO
@@ -28,7 +29,7 @@ public class DashboardService {
 		return dashboardDAO.getAllCommunity();
 	}
     
-    public List<String> getTopRequestedCommunityNames() throws SQLException {
+    public List<RequestCommunityModel> getTopRequestedCommunityNames() throws SQLException {
         return requestCommunityDAO.getTopRequestedCommunityNames();
     }
 }

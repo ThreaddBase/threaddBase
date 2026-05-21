@@ -41,7 +41,8 @@ public class ViewCommentController extends HttpServlet {
         try {
             int postId = Integer.parseInt(postIdParam);
             PostModel post = postService.getPostById(postId);
-            List<CommentModel> comments = commentService.getCommentsByPostId(postId);
+            int userId = SessionUtil.getUserId(request);
+            List<CommentModel> comments = commentService.getCommentsByPostId(postId, userId);
 
             if (post == null) {
                 response.sendRedirect(request.getContextPath() + "/home");
@@ -49,7 +50,6 @@ public class ViewCommentController extends HttpServlet {
             }
             
             if (SessionUtil.isLoggedIn(request)) {
-                int userId = SessionUtil.getUserId(request);
                 post.setHasVoted(voteService.voteDAO.hasVoted(postId, userId));
                 post.setHasBookmarked(bookmarkService.bookmarkDAO.hasBookmarked(postId, userId));
             }
@@ -144,7 +144,7 @@ public class ViewCommentController extends HttpServlet {
             request.setAttribute("error", error);
             try {
                 request.setAttribute("post", postService.getPostById(postId));
-                request.setAttribute("comments", commentService.getCommentsByPostId(postId));
+                request.setAttribute("comments", commentService.getCommentsByPostId(postId, userId));
                 request.getRequestDispatcher("/WEB-INF/Pages/viewComment.jsp").forward(request, response);
                 return;
             } catch (SQLException e) {

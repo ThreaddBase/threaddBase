@@ -48,7 +48,8 @@ public class AuthenticationFilter extends HttpFilter implements Filter {
         "/admin/notification",
         "/post/report",
         "/aboutUS",
-        "/contact"
+        "/contact",
+        "/commentVote"
     };
 
     // USER allowed URIs
@@ -71,7 +72,8 @@ public class AuthenticationFilter extends HttpFilter implements Filter {
         "/user/report",
         "/post/report",
         "/aboutUS",
-        "/contact"
+        "/contact",
+        "/commentVote"
     };
     
     /**

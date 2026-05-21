@@ -25,12 +25,17 @@
 
         <!-- Vote + Reply -->
         <div class="comment-actions">
+            
             <div class="vote-group">
-                <button class="vote-btn upvote">
-                    <i class="fa-regular fa-circle-check"></i>
-                </button>
-                <span class="vote-count">${comment.voteCount}</span>
-            </div>
+		        <form action="<%=request.getContextPath()%>/commentVote" method="post">
+		            <input type="hidden" name="commentId" value="${comment.commentId}" />
+		            <input type="hidden" name="postId" value="${post.postId}" />
+		            <button type="submit" class="vote-btn upvote ${comment.hasVoted ? 'active' : ''}">
+		                <i class="fa-regular fa-circle-check"></i>
+		            </button>
+		        </form>
+		        <span class="vote-count">${comment.voteCount}</span>
+		    </div>
 
             <%-- <c:choose>
                 <c:when test="${replyTo == comment.commentId}">

@@ -19,6 +19,7 @@ public class CommentModel {
 
     // From comment_vote table (COUNT where vote_type = 1)
     private int voteCount;
+    private boolean hasVoted;
 
     // Nested replies — built in Java
     private List<CommentModel> replies;
@@ -95,7 +96,14 @@ public class CommentModel {
 	public int getVoteCount() {
 		return voteCount;
 	}
-
+	
+	/**
+	 * @return the hasVoted
+	 */
+	public boolean isHasVoted() {
+	    return hasVoted;
+	}
+	
 	/**
 	 * @return the replies
 	 */
@@ -171,5 +179,12 @@ public class CommentModel {
 	 */
 	public void setReplies(List<CommentModel> replies) {
 		this.replies = replies;
+	}
+	
+	/**
+	 * @param hasVoted the hasVoted to set
+	 */
+	public void setHasVoted(boolean hasVoted) {
+	    this.hasVoted = hasVoted;
 	}
 }

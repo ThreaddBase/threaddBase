@@ -58,13 +58,11 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
         </div>
     
     <div class="recent_act">
-       <h2>Recent Activity</h2>
+       <h2>Notification History</h2>
        <ul>
-        <li>Banned User Vik_Star for racism stuff</li>
-        <li>Community Updates and Changes</li>
-        <li>New User Added to the System</li>
-        <li>Removed Posts relating to Violence </li>
-        <li>Created New Community “Marvel_Fanbase”</li>
+       	<c:forEach var="notification" items="${topNotificationList}">
+       		<li>${ notification.notificationMessage }</li>
+       	</c:forEach>
        </ul>
     </div>
     </div>

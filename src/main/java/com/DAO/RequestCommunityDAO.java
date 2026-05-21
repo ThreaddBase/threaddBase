@@ -31,27 +31,28 @@ public class RequestCommunityDAO {
             ps.executeUpdate();
         }
     }
-    public List<String> getTopRequestedCommunityNames() throws SQLException {
-        String sql = "SELECT Community_Name, COUNT(*) AS request_count " +
+    
+    public List<RequestCommunityModel> getTopRequestedCommunityNames() throws SQLException {
+        String sql = "SELECT Request_ID, Community_Name, COUNT(*) AS request_count " +
                 "FROM Community_Request " +
                 "WHERE Community_Name LIKE '%' " +
-                "GROUP BY Community_Name " +
+                "GROUP BY Request_ID, Community_Name " +
                 "ORDER BY request_count DESC " +
                 "LIMIT 5";
-       
 
         try (Connection conn = DBConfig.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
-            
-            
-            List<String> name = new ArrayList<>();
+
+            List<RequestCommunityModel> results = new ArrayList<>();
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                name.add(rs.getString("Community_Name"));
+                RequestCommunityModel model = new RequestCommunityModel();
+                model.setRequestId(rs.getInt("Request_ID"));
+                model.setCommunityName(rs.getString("Community_Name"));
+                results.add(model);
             }
-            return name;
+            return results;
         }
-        
     }
     
 }

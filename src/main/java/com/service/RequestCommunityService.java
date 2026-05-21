@@ -1,6 +1,7 @@
 package com.service;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import com.DAO.RequestCommunityDAO;
 import com.model.RequestCommunityModel;
@@ -37,5 +38,9 @@ public class RequestCommunityService {
 
 	    requestDAO.insertRequest(requestCommunity);
 	    return null;
+	}
+	
+	public List<RequestCommunityModel> getTopRequestedCommunityNames() throws SQLException {
+		return requestDAO.getTopRequestedCommunityNames();
 	}
 }

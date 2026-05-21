@@ -103,9 +103,9 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
 
           <div class="legend-card">
            <div class="status-card-title">Requested Communities</div>
-            <c:forEach var= "name" items="${topRequestedNames}">
+            <c:forEach var= "requestCommunity" items="${topRequestedNames}">
 			    <div class="legend-item">
-			        <span class="legend-label">${name}</span>
+			        <span class="legend-label">${requestCommunity.communityName}</span>
 			    </div>
 			</c:forEach>
 		</div>

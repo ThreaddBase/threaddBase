@@ -7,10 +7,13 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
+import com.model.NotificationModel;
 import com.model.UserModel;
 import com.service.UserService;
 import com.service.CommunityService;
+import com.service.NotificationService;
 import com.service.UserManagementService;
 import com.DAO.UserDAO;
 import com.DAO.CommunityDAO;
@@ -23,9 +26,12 @@ import com.util.SessionUtil;
 @WebServlet(asyncSupported = true, urlPatterns = { "/admin" })
 public class AdminController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private final UserService service = new UserService();
+	
+	
+	UserService service = new UserService();
 	CommunityService communityService = new CommunityService();
 	UserManagementService userManagementService = new UserManagementService();
+    NotificationService notificationService = new NotificationService();
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -50,10 +56,15 @@ public class AdminController extends HttpServlet {
 		
 		try {
 			int totalCommunities = communityService.getTotalCommunities();
-			request.setAttribute("totalCommunities", communityService.getTotalCommunities());
-			
 			int totalBannedUsers = userManagementService.getTotalBannedUsers();
+			List<NotificationModel> topNotificationList = notificationService.getTopNotifications();
+			int notificationCount = topNotificationList.size();
+			
+			request.setAttribute("topNotificationList", topNotificationList);
 			request.setAttribute("totalBannedUsers", totalBannedUsers);
+			request.setAttribute("totalCommunities", totalCommunities);
+			request.setAttribute("notificationCount", notificationCount);
+			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

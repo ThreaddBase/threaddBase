@@ -44,6 +44,29 @@ public class NotificationDAO {
         }
         return notificationList;
     }
+    
+ // GET ALL NOTIFICATIONS (for history page)
+    public List<NotificationModel> getTopNotifications() {
+        List<NotificationModel> notificationList = new ArrayList<>();
+        try {
+            Connection conn = DBConfig.getConnection();
+            String query = "SELECT * FROM notification "
+                         + "ORDER BY Notification_Date DESC, "
+                         + "Notification_Time DESC "
+                         + "LIMIT 5";
+            PreparedStatement ps = conn.prepareStatement(query);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                notificationList.add(mapRow(rs));
+            }
+            rs.close();
+            ps.close();
+            conn.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return notificationList;
+    }
 
     // ONLY UNREAD FOR POPUP (same for all users)
     public List<NotificationModel> getUnreadNotifications() {

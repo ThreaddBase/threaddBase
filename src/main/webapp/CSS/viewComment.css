@@ -132,6 +132,8 @@ body {
     color: #ffc800;
 }
 
+
+
 /* remove default form spacing */
 .post-actions form {
     display: flex;
@@ -296,6 +298,12 @@ body {
 }
 
 /* ============== VOTE + REPLY ACTIONS ============== */
+
+.vote-btn.active i {
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900; /* 900 = solid, 400 = regular */
+}
+
 .comment-actions {
     display: flex;
     align-items: center;

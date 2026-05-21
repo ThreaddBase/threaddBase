@@ -15,11 +15,11 @@ public class CommentService {
     }
 
     // GET — returns null on success, error string on failure
-    public List<CommentModel> getCommentsByPostId(int postId) throws SQLException {
-    	if (postId <= 0) {
+    public List<CommentModel> getCommentsByPostId(int postId, int userId) throws SQLException {
+        if (postId <= 0) {
             return null;
         }
-        return commentDAO.getCommentsByPostId(postId); 
+        return commentDAO.getCommentsByPostId(postId, userId);
     }
 
     // POST — returns null on success, error string on failure

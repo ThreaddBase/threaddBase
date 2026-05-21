@@ -10,7 +10,10 @@ import java.sql.SQLException;
 import java.util.List;
 
 import com.model.CommunityModel;
+import com.model.NotificationModel;
+import com.model.RequestCommunityModel;
 import com.service.DashboardService;
+import com.service.NotificationService;
 import com.util.SessionUtil;
 
 import java.time.LocalDate;
@@ -45,7 +48,8 @@ public class AdminHomeController extends HttpServlet {
 			int totalCommunity = dashboardService.getTotalCommunities();
 			List<CommunityModel> topCommunity = dashboardService.getTopCommunities();
 			List<CommunityModel> allCommunity = dashboardService.getAllCommunities();
-			List<String> topRequestedNames = dashboardService.getTopRequestedCommunityNames();
+			List<RequestCommunityModel> topRequestedNames = dashboardService.getTopRequestedCommunityNames();
+			
 			
 			// set data in key pair value
 			request.setAttribute("totalUser", totalUser);

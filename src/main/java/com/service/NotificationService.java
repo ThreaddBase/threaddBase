@@ -18,6 +18,10 @@ public class NotificationService {
     public List<NotificationModel> getNotifications() {
         return dao.getAllNotifications();
     }
+    
+    public List<NotificationModel> getTopNotifications() {
+        return dao.getTopNotifications();
+    }
 
     // POPUP ONLY
     public List<NotificationModel> getUnreadNotifications() {

@@ -31,8 +31,8 @@
                           name="communityDescription"></textarea>
                 <select name="communityRequestId" id="ncRequestSelect">
                     <option value="" disabled selected>Select a community request</option>
-                    <c:forEach var="req" items="${requestList}">
-                        <option value="${req.requestId}">${req.requestName}</option>
+                    <c:forEach var="req" items="${topRequestedCommunity}">
+                        <option value="${req.requestId}">${req.communityName}</option>
                     </c:forEach>
                 </select>
             </div>

@@ -14,6 +14,7 @@ import java.util.List;
 
 import com.model.CommunityModel;
 import com.service.CommunityManagementService;
+import com.service.RequestCommunityService;
 import com.util.SessionUtil;
 
 @MultipartConfig(
@@ -26,6 +27,7 @@ public class CommunityManagement extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     CommunityManagementService communityService = new CommunityManagementService();
+    RequestCommunityService requestCommunityService = new RequestCommunityService();
     CommunityModel community = new CommunityModel();
 
     public CommunityManagement() {
@@ -40,6 +42,7 @@ public class CommunityManagement extends HttpServlet {
             // Read URL param e.g. ?showModal=newCommunity
             String showModal = request.getParameter("showModal");
             
+    		
             String communityIdParam = request.getParameter("communityId");
             Boolean result = (Boolean) request.getSession().getAttribute("result");
             if (result != null) {
@@ -62,6 +65,7 @@ public class CommunityManagement extends HttpServlet {
             List<CommunityModel> communities = communityService.getFilteredCommunities(filterCommunity);
             request.setAttribute("communityList", communities);
             request.setAttribute("selectedFilter", filterCommunity);
+            request.setAttribute("topRequestedCommunity", requestCommunityService.getTopRequestedCommunityNames());
             request.getRequestDispatcher("/WEB-INF/Pages/communityManagement.jsp").forward(request, response);
 
         } catch (SQLException e) {
